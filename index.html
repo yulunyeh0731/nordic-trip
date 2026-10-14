@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#15293A">
-<title>北境冬旅｜北歐＋波蘭地點指南</title>
+<title>北境冬旅｜北歐＋波蘭行程與地點指南</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌌</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -73,7 +73,7 @@ body{margin:0;background:var(--frost);color:var(--ink);font-family:var(--sans);f
 .sky .drift2{animation:drift 34s ease-in-out infinite alternate-reverse}
 @keyframes drift{from{transform:translateX(-14px)}to{transform:translateX(14px)}}
 @media (prefers-reduced-motion:reduce){.sky .drift,.sky .drift2{animation:none}}
-.sky .title{padding:0 0 26px}
+.sky .title{padding-top:0;padding-bottom:26px}
 .sky h1{font-family:var(--serif);font-weight:900;font-size:clamp(34px,10vw,48px);line-height:1.1;margin:0;letter-spacing:.08em}
 .sky .sub{margin:10px 0 0;font-size:15px;color:#B9C8D3;line-height:1.7}
 
@@ -172,6 +172,40 @@ th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line-soft)
 th{font-weight:500;color:var(--ink-dim);font-size:13.5px;letter-spacing:.08em}
 tr:last-child td{border-bottom:none}
 
+/* 行程 */
+#plan{--c:var(--aurora)}
+#transport{--c:var(--ink-dim)}
+.leg{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--c);margin:0 0 12px;padding:14px 16px 8px}
+.leg-h{display:flex;align-items:baseline;gap:4px 12px;flex-wrap:wrap}
+.leg-h h3{font-family:var(--serif);font-weight:700;font-size:21px;margin:0;line-height:1.35}
+.leg-h .n{font-size:14px;color:var(--ink-dim)}
+.days{list-style:none;margin:6px 0 0;padding:0}
+.days li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:0 12px;padding:9px 0;border-top:1px solid var(--line-soft)}
+.days .d{font-weight:500;font-size:15px;line-height:1.6;color:var(--c)}
+.days .d small{display:block;font-weight:400;font-size:12.5px;color:var(--ink-dim);line-height:1.3}
+.days p{margin:0;font-size:15.5px;line-height:1.7}
+.days p+p{margin-top:4px}
+.mv-k{display:inline-block;font-size:12px;letter-spacing:.06em;line-height:1.5;padding:0 6px;margin-right:7px;border:1px solid var(--line);border-radius:2px;color:var(--ink-dim);vertical-align:2px}
+.leg .note{margin:6px 0 8px}
+
+/* 交通 */
+.seg{background:var(--paper);border:1px solid var(--line);padding:12px 16px 13px;margin:0 0 10px}
+.seg-top{display:flex;justify-content:space-between;align-items:baseline;gap:2px 12px;flex-wrap:wrap}
+.seg-top b{font-family:var(--serif);font-weight:700;font-size:17.5px;line-height:1.4}
+.seg-top span{font-size:13.5px;color:var(--ink-dim)}
+.seg dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:3px 14px;margin:8px 0 0;font-size:15px;line-height:1.65}
+.seg dt{color:var(--ink-dim);font-size:13.5px;line-height:1.85}
+.seg dd{margin:0}
+.seg .tag{font-size:11.5px;letter-spacing:.06em;margin-left:4px;vertical-align:1px}
+.sum{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--aurora);padding:13px 16px;margin:16px 0 0}
+.sum p{margin:0 0 6px;font-size:15px}
+.sum p:last-child{margin:0}
+.sum .big{font-family:var(--serif);font-weight:700;font-size:20px}
+.todo{margin:16px 0 0;background:var(--t-maybe-bg);padding:12px 14px 12px}
+.todo b{display:block;font-weight:500;margin-bottom:4px}
+.todo ul{margin:0;padding-left:1.15em;font-size:15px;line-height:1.7}
+.todo li{margin:4px 0}
+
 footer{margin-top:44px;background:var(--night);color:#9FB2C0;font-size:13.5px}
 footer .wrap{padding-top:22px;padding-bottom:30px}
 footer p{margin:0 0 6px}
@@ -194,26 +228,27 @@ footer svg path{fill:none;stroke-linecap:round}
   </svg>
   <div class="wrap title">
     <h1>北境冬旅</h1>
-    <p class="sub">北歐＋波蘭地點指南。2027 年 2 月 25 日深夜出發，3 月 15 日回台。<br>每個地點都寫了它是什麼、有什麼、旅人怎麼說，以及值不值得去。</p>
-    <div class="route" aria-label="行程1路線">
+    <p class="sub">北歐＋波蘭行程與地點指南。2027 年 2 月 27 日深夜出發，3 月 17 日回台，歐洲 16 晚。<br>前面是每天的行程和交通，後面是每個地點的介紹和旅人經驗。</p>
+    <div class="route" aria-label="目前路線">
       <ol>
-        <li><b>華沙</b><span>2 晚</span></li>
-        <li><b>格但斯克</b><span>3 晚</span></li>
+        <li><b>奧斯陸</b><span>2 晚</span></li>
         <li class="polar"><b>特羅姆瑟</b><span>3 晚</span></li>
         <li class="polar"><b>羅弗敦</b><span>4 晚</span></li>
-        <li><b>卑爾根</b><span>2 晚</span></li>
-        <li><b>挪威縮影</b><span>一日</span></li>
-        <li><b>奧斯陸</b><span>2 晚</span></li>
+        <li><b>卑爾根</b><span>3 晚，含挪威縮影</span></li>
+        <li><b>格但斯克</b><span>2 晚</span></li>
+        <li><b>華沙</b><span>2 晚</span></li>
       </ol>
     </div>
-    <p class="route-note">行程1的路線，綠點是極光區。左右滑動看完整路線。</p>
+    <p class="route-note">目前的路線，綠點是極光區。左右滑動看完整路線。</p>
   </div>
 </header>
 
 <nav class="jump" aria-label="章節">
   <div class="wrap">
-    <a href="#poland"><i style="background:var(--brick)"></i>波蘭</a>
+    <a href="#plan"><i style="background:var(--aurora)"></i>行程</a>
+    <a href="#transport"><i style="background:var(--ink-dim)"></i>交通</a>
     <a href="#norway"><i style="background:var(--fjord)"></i>挪威</a>
+    <a href="#poland"><i style="background:var(--brick)"></i>波蘭</a>
     <a href="#sweden"><i style="background:var(--ice)"></i>瑞典</a>
     <a href="#finland"><i style="background:var(--birch)"></i>芬蘭</a>
     <a href="#skip"><i style="background:var(--rust)"></i>不推薦</a>
@@ -223,6 +258,190 @@ footer svg path{fill:none;stroke-linecap:round}
 
 <main class="wrap">
 
+<!-- 行程 -->
+<section class="country" id="plan">
+  <div class="c-head"><h2>行程</h2><span class="motif">挪威先，波蘭收尾</span></div>
+  <div class="c-rule"></div>
+  <p class="c-lead">目前的版本，機票、住宿、租車都還沒訂。羅弗敦還在考慮要不要從 4 晚改成 5 晚。</p>
+
+  <div class="leg" style="--c:var(--ink-dim)">
+    <div class="leg-h"><h3>出發</h3><span class="n">台北經杜拜到奧斯陸</span></div>
+    <ul class="days">
+      <li><span class="d">2/27<small>週六</small></span><div><p><span class="mv-k">飛機</span>23:00 台北起飛，阿聯酋 EK367 到杜拜轉機</p></div></li>
+    </ul>
+  </div>
+
+  <div class="leg" style="--c:var(--fjord)">
+    <div class="leg-h"><h3>奧斯陸</h3><span class="n">2 晚，2/28～3/1</span></div>
+    <ul class="days">
+      <li><span class="d">2/28<small>週日</small></span><div><p><span class="mv-k">飛機</span>12:10 抵奧斯陸（EK159）</p><p>下午進市區，輕鬆走走調時差</p></div></li>
+      <li><span class="d">3/1<small>週一</small></span><div><p>市區一日：歌劇院屋頂、精品咖啡（Tim Wendelboe、Fuglen）</p></div></li>
+    </ul>
+  </div>
+
+  <div class="leg" style="--c:var(--aurora)">
+    <div class="leg-h"><h3>特羅姆瑟</h3><span class="n">3 晚，3/2～3/4</span></div>
+    <ul class="days">
+      <li><span class="d">3/2<small>週二</small></span><div><p><span class="mv-k">飛機</span>挪威航空 10:30→12:30，奧斯陸到特羅姆瑟</p></div></li>
+      <li><span class="d">3/3<small>週三</small></span><div><p>看雲量預報，挑最晴的一晚報極光團（Flexitour 優先，出發 24 小時前取消可退 95%）</p></div></li>
+      <li><span class="d">3/4<small>週四</small></span><div><p>哈士奇雪橇；極光團沒看到的話再報一次</p></div></li>
+    </ul>
+  </div>
+
+  <div class="leg" style="--c:var(--aurora)">
+    <div class="leg-h"><h3>羅弗敦</h3><span class="n">4 晚，3/5～3/8，自駕</span></div>
+    <ul class="days">
+      <li><span class="d">3/5<small>週五</small></span><div><p><span class="mv-k">飛機</span>Widerøe 10:55→12:15，特羅姆瑟到埃弗內斯，中途停安德內斯</p><p><span class="mv-k">自駕</span>機場取車，往西開到雷訥一帶</p></div></li>
+      <li><span class="d">3/6<small>週六</small></span><div><p>西側一日：雷訥、哈姆諾伊、薩克里索伊、Å</p></div></li>
+      <li><span class="d">3/7<small>週日</small></span><div><p><span class="mv-k">自駕</span>往東移動，沿途可停烏塔克萊夫、豪克蘭海灘，晚上住亨寧斯韋爾或斯沃爾韋爾一帶</p></div></li>
+      <li><span class="d">3/8<small>週一</small></span><div><p>東側一日：亨寧斯韋爾漁村。這天新月，晚上是整趟最暗的夜</p></div></li>
+    </ul>
+    <div class="note">住宿：雷訥一帶 2 晚（3/5、3/6），亨寧斯韋爾或斯沃爾韋爾一帶 2 晚（3/7、3/8），都找有廚房的住處。</div>
+  </div>
+
+  <div class="leg" style="--c:var(--fjord)">
+    <div class="leg-h"><h3>卑爾根</h3><span class="n">3 晚，3/9～3/11</span></div>
+    <ul class="days">
+      <li><span class="d">3/9<small>週二</small></span><div><p><span class="mv-k">自駕</span>開回埃弗內斯機場還車</p><p><span class="mv-k">飛機</span>Widerøe 13:55→16:40，埃弗內斯到卑爾根，中途停特隆赫姆</p></div></li>
+      <li><span class="d">3/10<small>週三</small></span><div><p><span class="mv-k">一日遊</span>挪威縮影來回，08:29 出發，18:17 回到卑爾根</p></div></li>
+      <li><span class="d">3/11<small>週四</small></span><div><p>卑爾根市區：布呂根、弗洛伊恩纜車、魚市場。挪威縮影如果停駛，改在這天走</p></div></li>
+    </ul>
+  </div>
+
+  <div class="leg" style="--c:var(--brick)">
+    <div class="leg-h"><h3>格但斯克</h3><span class="n">2 晚，3/12～3/13</span></div>
+    <ul class="days">
+      <li><span class="d">3/12<small>週五</small></span><div><p><span class="mv-k">飛機</span>Wizz Air 13:40→15:25，卑爾根到格但斯克</p><p>傍晚逛老城長街、河畔</p></div></li>
+      <li><span class="d">3/13<small>週六</small></span><div><p>馬爾堡城堡，或索波特海上棧橋</p></div></li>
+    </ul>
+  </div>
+
+  <div class="leg" style="--c:var(--brick)">
+    <div class="leg-h"><h3>華沙</h3><span class="n">2 晚，3/14～3/15</span></div>
+    <ul class="days">
+      <li><span class="d">3/14<small>週日</small></span><div><p><span class="mv-k">火車</span>格但斯克到華沙，約 2.5～3 小時</p><p>週日大部分商店公休</p></div></li>
+      <li><span class="d">3/15<small>週一</small></span><div><p>老城與王宮、瓦津基公園；有剛好的表演再看</p></div></li>
+    </ul>
+  </div>
+
+  <div class="leg" style="--c:var(--ink-dim)">
+    <div class="leg-h"><h3>回程</h3><span class="n">華沙經杜拜回台北</span></div>
+    <ul class="days">
+      <li><span class="d">3/16<small>週二</small></span><div><p><span class="mv-k">飛機</span>13:40 華沙起飛，阿聯酋 EK180 到杜拜，轉 EK366</p></div></li>
+      <li><span class="d">3/17<small>週三</small></span><div><p>15:35 抵台北</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 交通 -->
+<section class="country" id="transport">
+  <div class="c-head"><h2>交通</h2><span class="motif">每人價格，都還沒訂</span></div>
+  <div class="c-rule"></div>
+  <p class="c-lead">按搭乘順序排列。標「待確認」的是還沒查到或來源不一致的項目。</p>
+
+  <div class="seg">
+    <div class="seg-top"><b>台北 → 杜拜 → 奧斯陸</b><span>2/27～2/28</span></div>
+    <dl>
+      <dt>航班</dt><dd>阿聯酋 EK367＋EK159</dd>
+      <dt>時間</dt><dd>2/27 23:00 起飛，2/28 12:10 抵達<br>杜拜轉機時間<span class="tag t-maybe">待確認</span></dd>
+      <dt>票種</dt><dd>經濟艙彈性票價，30 公斤</dd>
+      <dt>價格</dt><dd>NT$19,592（台新優惠價）<span class="tag t-maybe">條件待確認</span><br>原價 NT$21,342</dd>
+    </dl>
+  </div>
+
+  <div class="seg">
+    <div class="seg-top"><b>奧斯陸 → 特羅姆瑟</b><span>3/2</span></div>
+    <dl>
+      <dt>航班</dt><dd>挪威航空<span class="tag t-maybe">班號待確認</span></dd>
+      <dt>時間</dt><dd>10:30→12:30，直飛</dd>
+      <dt>票種</dt><dd>LowFare+，含 23 公斤託運</dd>
+      <dt>價格</dt><dd>USD 137.30（約 NT$4,435）<span class="tag t-maybe">價格待更新</span></dd>
+    </dl>
+  </div>
+
+  <div class="seg">
+    <div class="seg-top"><b>特羅姆瑟 → 埃弗內斯</b><span>3/5</span></div>
+    <dl>
+      <dt>航班</dt><dd>Widerøe<span class="tag t-maybe">班號待確認</span></dd>
+      <dt>時間</dt><dd>10:55→12:15，中途停安德內斯</dd>
+      <dt>票種</dt><dd>Smart，含 1 件託運和登機箱</dd>
+      <dt>價格</dt><dd>749 挪威克朗（約 NT$2,502）<br>Full Flex 871 挪威克朗（約 NT$2,909），可改期可退</dd>
+    </dl>
+  </div>
+
+  <div class="seg">
+    <div class="seg-top"><b>埃弗內斯租車</b><span>3/5～3/9</span></div>
+    <dl>
+      <dt>條件</dt><dd>機場同地取還車，四驅、自排、雪胎</dd>
+      <dt>時間</dt><dd>3/5 中午取車，3/9 中午前還車</dd>
+      <dt>價格</dt><dd><span class="tag t-maybe">報價待查</span></dd>
+    </dl>
+  </div>
+
+  <div class="seg">
+    <div class="seg-top"><b>埃弗內斯 → 卑爾根</b><span>3/9</span></div>
+    <dl>
+      <dt>航班</dt><dd>Widerøe<span class="tag t-maybe">班號待確認</span></dd>
+      <dt>時間</dt><dd>13:55→16:40，中途停特隆赫姆</dd>
+      <dt>票種</dt><dd>Smart，含 1 件託運和登機箱</dd>
+      <dt>價格</dt><dd>1,599 挪威克朗（約 NT$5,341）</dd>
+    </dl>
+  </div>
+
+  <div class="seg">
+    <div class="seg-top"><b>挪威縮影</b><span>3/10</span></div>
+    <dl>
+      <dt>路線</dt><dd>卑爾根當天來回：火車、巴士、峽灣遊船、弗洛姆鐵路</dd>
+      <dt>時間</dt><dd>08:29 出發，18:17 回到卑爾根</dd>
+      <dt>價格</dt><dd>兩人 4,976 挪威克朗（每人約 NT$8,310）</dd>
+    </dl>
+  </div>
+
+  <div class="seg">
+    <div class="seg-top"><b>卑爾根 → 格但斯克</b><span>3/12</span></div>
+    <dl>
+      <dt>航班</dt><dd>Wizz Air<span class="tag t-maybe">班號待確認</span></dd>
+      <dt>時間</dt><dd>13:40→15:25，直飛</dd>
+      <dt>票種</dt><dd>基本票＋WIZZ Go，含 20 公斤託運</dd>
+      <dt>價格</dt><dd>1,006 挪威克朗（約 NT$3,361）</dd>
+    </dl>
+  </div>
+
+  <div class="seg">
+    <div class="seg-top"><b>格但斯克 → 華沙</b><span>3/14</span></div>
+    <dl>
+      <dt>交通</dt><dd>波蘭國鐵，約 2.5～3 小時</dd>
+      <dt>價格</dt><dd>約 19～32 英鎊<br>出發前約 30 天開賣，車次到時再查</dd>
+    </dl>
+  </div>
+
+  <div class="seg">
+    <div class="seg-top"><b>華沙 → 杜拜 → 台北</b><span>3/16～3/17</span></div>
+    <dl>
+      <dt>航班</dt><dd>阿聯酋 EK180＋EK366</dd>
+      <dt>時間</dt><dd>3/16 13:40 起飛；EK366 杜拜 03:40 起飛，3/17 15:35 抵台北</dd>
+      <dt>票種</dt><dd>經濟艙優惠票價，25 公斤</dd>
+      <dt>價格</dt><dd>NT$13,520（台新優惠價）<span class="tag t-maybe">條件待確認</span><br>原價 NT$14,020</dd>
+    </dl>
+  </div>
+
+  <div class="sum">
+    <p class="big">每人約 NT$57,061</p>
+    <p>上面所有航班＋挪威縮影，阿聯酋用台新優惠價；用原價約 NT$59,311。不含波蘭火車和租車。</p>
+  </div>
+
+  <div class="todo">
+    <b>還在等的決定</b>
+    <ul>
+      <li>羅弗敦要不要加到 5 晚：卑爾根改 2 晚（沒有備用日），或奧斯陸改 1 晚</li>
+      <li>阿聯酋現在訂，或等 11/6～9 的 ITF 旅展。台新優惠（代碼 TWTSB26）可以用到 12/31，但每筆訂單折扣金額、適用票種、開口票能不能用，都還要確認</li>
+      <li>May 能不能排到 2/27 晚上出發</li>
+    </ul>
+  </div>
+</section>
+
+<svg class="divider" viewBox="0 0 400 26" preserveAspectRatio="none" aria-hidden="true"><path d="M0,14 C80,4 150,22 220,12 S340,4 400,12"/></svg>
+
 <div class="legend" aria-label="分級說明">
   <div><span class="tag t-must">必去</span>值得為它安排</div>
   <div><span class="tag t-worth">值得</span>順路一定去</div>
@@ -230,16 +449,125 @@ footer svg path{fill:none;stroke-linecap:round}
   <div><span class="tag t-skip">不推薦</span>可以跳過</div>
 </div>
 
+<!-- 挪威 -->
+<section class="country" id="norway">
+  <div class="c-head"><h2>挪威</h2><span class="motif">峽灣與極光</span></div>
+  <div class="c-rule"></div>
+  <p class="c-lead">不論選哪個方案都會保留的核心：北極圈的極光和雪山，加上西部的峽灣。</p>
+
+  <details class="place polar">
+    <summary>
+      <div class="s-top"><h3>特羅姆瑟</h3><span class="tag t-must">必去</span><span class="polar-mark">極光區</span></div>
+      <p class="s-line">北極圈裡生活機能最好的城市，極光團最成熟。</p>
+      <span class="chev" aria-hidden="true"></span>
+    </summary>
+    <div class="body">
+      <h4>是什麼</h4>
+      <p>挪威北部最大的城市，位在北極圈內約 350 公里的小島上，被稱為「北極門戶」。市中心走路就能逛完，餐廳、博物館、飯店都很完整。</p>
+      <h4>有什麼</h4>
+      <ul>
+        <li><b>極光團</b>：好的導遊會看雲量開到內陸，甚至越過邊境到芬蘭追晴天。2018 年就是跟 Flexitour 看到極光的，這家現在仍由同一位導遊經營，評價依然很好</li>
+        <li><b>狗拉雪橇</b>：營地在郊外的克瓦洛亞島，例如 Tromsø Wilderness Centre，有超過 300 隻狗，推薦選自己駕駛</li>
+        <li><b>纜車</b>：上 421 公尺的觀景台，天氣好時看得到約 70 公里外的林根阿爾卑斯山</li>
+        <li><b>北極大教堂</b>：三角形的白色教堂，是城市地標</li>
+      </ul>
+      <h4>旅人怎麼說</h4>
+      <p class="quote">很貴、極光不穩定、市中心比想像中小，但不代表不值得去。如果期待的是 IG 上隨時都有的極光，很可能會失望。</p>
+      <p>2025 年機場旅客量增加約 40%，冬天晚上觀光巴士塞滿港邊。飯店每晚約 2,400～3,800 挪威克朗（約台幣 7,200～11,400）。</p>
+      <div class="note">極光團品質落差很大，要選小團、評價高、可彈性改期的業者。3 月看不到鯨魚，賞鯨季是 11～1 月。</div>
+    </div>
+  </details>
+
+  <details class="place polar">
+    <summary>
+      <div class="s-top"><h3>羅弗敦群島</h3><span class="tag t-must">必去</span><span class="polar-mark">極光區</span></div>
+      <p class="s-line">雪山直接從海裡拔起，山腳是紅色漁屋。挪威冬天風景的最高峰。</p>
+      <span class="chev" aria-hidden="true"></span>
+    </summary>
+    <div class="body">
+      <h4>是什麼</h4>
+      <p>挪威西北外海的一串群島，一條 E10 公路由東到西把所有島串起來。2～3 月是冬季最推薦的時段，因為白天變長，光線最漂亮。</p>
+      <h4>會去哪裡</h4>
+      <p>這次是先西後東：從埃弗內斯取車後直接往西，前 2 晚住雷訥一帶，後 2 晚住亨寧斯韋爾或斯沃爾韋爾一帶，最後開回埃弗內斯還車。下面依 E10 由東到西介紹。</p>
+      <div class="sub"><b>東側：斯沃爾韋爾、亨寧斯韋爾</b>斯沃爾韋爾是羅弗敦東側最大的鎮，生活機能最好。亨寧斯韋爾是建在小島群上的漁村，冬天正值鱈魚季，港口掛滿晾魚乾的木架。有名的海上足球場就在這裡，但經典照片是空拍，站在地面看不太出來。</div>
+      <div class="sub"><b>中段：烏塔克萊夫、豪克蘭海灘</b>白天是雪山配海灘，晚上是羅弗敦看極光的經典地點。</div>
+      <div class="sub"><b>西側：哈姆諾伊、薩克里索伊、雷訥、Å</b>整趟的精華。哈姆諾伊是紅色漁屋配尖山；過橋的薩克里索伊整村是黃色的；雷訥是羅弗敦最經典的明信片畫面；Å 是 E10 的終點。</div>
+      <h4>旅人怎麼說</h4>
+      <p class="quote">冬天絕對值得，但這時的羅弗敦比較安靜、陰鬱、難以預測。期待穩定的天氣就會失望。</p>
+      <p>3 月中去的旅客說主要道路清得很快，配釘胎慢慢開不難。中文平台上「冬天不適合自駕」的說法，多半來自推銷包團的業者。</p>
+      <div class="note">部分餐廳冬天會休息，超市選擇也少，建議住可以煮飯的小屋。雷訥布林根登山步道冬天很危險，不建議爬。租車選 SUV、確認有釘胎。</div>
+    </div>
+  </details>
+
+  <details class="place">
+    <summary>
+      <div class="s-top"><h3>挪威縮影</h3><span class="tag t-must">必去</span></div>
+      <p class="s-line">一天看完峽灣、高山鐵路和雪原。這次從卑爾根當天來回，不帶行李。</p>
+      <span class="chev" aria-hidden="true"></span>
+    </summary>
+    <div class="body">
+      <h4>是什麼</h4>
+      <p>一條把火車、巴士、峽灣遊船和登山鐵路串起來的經典路線。這次走卑爾根出發、卑爾根回來的一日版本，3/10 出發。</p>
+      <h4>依序會經過</h4>
+      <ol class="stops">
+        <li><b>卑爾根到沃斯</b>：08:29 搭火車，09:41 到沃斯，沿途湖泊和山谷</li>
+        <li><b>沃斯到古德旺恩</b>：10:10 轉巴士下山，11:10 到峽灣邊</li>
+        <li><b>納柔依峽灣遊船</b>：12:00 開船，14:00 到弗洛姆。世界遺產，兩岸峭壁非常窄</li>
+        <li><b>弗洛姆鐵路</b>：14:30 出發，15:14 到米達爾。約 20 公里爬升 800 多公尺，是世界上最陡的一般鐵路之一，會停在大瀑布旁</li>
+        <li><b>米達爾回卑爾根</b>：15:56 搭卑爾根鐵路，18:17 回到卑爾根</li>
+      </ol>
+      <h4>旅人怎麼說</h4>
+      <p>冬天評價兩極。有台灣旅人 3 月走，說雪景美到讓人忘記呼吸；也有人覺得冬天弗洛姆鐵路景色普通，瀑布整個結冰。還有人遇到火車取消，改坐好幾個小時的巴士。</p>
+      <div class="note">冬天遇到天氣不好或峽灣結冰，遊船會臨時改成從弗洛姆出發的來回航程，古德旺恩到弗洛姆改搭巴士。從古德旺恩出發的訂位改搭 12:00 的弗洛姆來回船，回到弗洛姆仍接得上 14:30 的鐵路。比較需要擔心的是卑爾根鐵路因冰雪延誤，所以 3/11 留作備用日。官方套票兩人 4,976 挪威克朗。</div>
+    </div>
+  </details>
+
+  <details class="place">
+    <summary>
+      <div class="s-top"><h3>卑爾根</h3><span class="tag t-worth">值得</span></div>
+      <p class="s-line">峽灣入口的港口城市，彩色木屋街是世界遺產。住 3 晚，含挪威縮影一日和一天備用。</p>
+      <span class="chev" aria-hidden="true"></span>
+    </summary>
+    <div class="body">
+      <ul>
+        <li><b>布呂根</b>：港邊一排彩色木造倉庫，漢薩同盟時期的商館，世界遺產</li>
+        <li><b>弗洛伊恩纜車</b>：上山看整個港灣，晚上夜景很美</li>
+        <li><b>魚市場</b>：港邊吃海鮮</li>
+      </ul>
+      <p>論壇上的評價是「值得待一天」。缺點是挪威最常下雨的城市之一。</p>
+    </div>
+  </details>
+
+  <details class="place">
+    <summary>
+      <div class="s-top"><h3>奧斯陸</h3><span class="tag t-worth">值得</span></div>
+      <p class="s-line">挪威首都，現代建築、孟克和北歐精品咖啡。1～2 天。</p>
+      <span class="chev" aria-hidden="true"></span>
+    </summary>
+    <div class="body">
+      <ul>
+        <li><b>歌劇院</b>：可以直接走上傾斜的屋頂看港灣，免費</li>
+        <li><b>孟克美術館</b>：收藏《吶喊》，每週三晚上 18～21 點免費，要提早預約</li>
+        <li><b>維格蘭雕塑公園</b>：兩百多座雕像，免費</li>
+        <li><b>精品咖啡</b>：Tim Wendelboe、Fuglen 等北歐咖啡代表店</li>
+      </ul>
+      <p>Time Out 曾把奧斯陸評為最佳北歐城市小旅行第一名；也有作者說它不像哥本哈根那麼漂亮。這次是抵達的第一站，住 2 晚，3/1 整天逛市區和喝咖啡。</p>
+    </div>
+  </details>
+</section>
+
+<svg class="divider" viewBox="0 0 400 26" preserveAspectRatio="none" aria-hidden="true"><path d="M0,10 C90,22 160,2 230,14 S350,22 400,8"/></svg>
+
 <!-- 波蘭 -->
 <section class="country" id="poland">
   <div class="c-head"><h2>波蘭</h2><span class="motif">紅磚與琥珀海岸</span></div>
   <div class="c-rule"></div>
-  <p class="c-lead">行程1的城市段。物價低，可以平衡挪威的高消費；古城風景和北極圈形成最大的反差。</p>
+  <p class="c-lead">行程最後的城市段：從卑爾根飛格但斯克，搭火車到華沙，再從華沙飛回台灣。物價低，可以平衡挪威的高消費；古城風景和北極圈形成最大的反差。</p>
 
   <details class="place">
     <summary>
       <div class="s-top"><h3>格但斯克</h3><span class="tag t-must">必去</span></div>
-      <p class="s-line">波羅的海邊的漢薩港口古城，冬天安靜又有氣氛，也是飛特羅姆瑟的起點。</p>
+      <p class="s-line">波羅的海邊的漢薩港口古城，冬天安靜又有氣氛。住 2 晚。</p>
       <span class="chev" aria-hidden="true"></span>
     </summary>
     <div class="body">
@@ -254,7 +582,7 @@ footer svg path{fill:none;stroke-linecap:round}
       <h4>旅人怎麼說</h4>
       <p class="quote">冬天比華沙和克拉科夫更安靜、更有氣氛，窄巷和彩色建築在冬天有一層霜的光澤。有人冬天去了四次，結論是絕對值得。</p>
       <p>天冷時通常不下雨，很適合逛老城；冬天人少，拍照很舒服。2024 年 2 月有人住老城旁的三星飯店，每晚約 220 茲羅提（約台幣 1,760）。</p>
-      <div class="note">海邊冬天風很大。最後一晚建議住機場旁飯店，因為飛特羅姆瑟的班機是早上 5:30。</div>
+      <div class="note">海邊冬天風很大。3/12 下午從卑爾根飛到，3/13 一整天可以去馬爾堡城堡或索波特。</div>
     </div>
   </details>
 
@@ -301,126 +629,18 @@ footer svg path{fill:none;stroke-linecap:round}
       </ul>
       <h4>旅人怎麼說</h4>
       <p>評價兩極：有人直說是波蘭比較無聊的城市，也有人喜歡老城的書店咖啡館和人少的氣氛。台灣旅人普遍稱讚火車準點、刷卡普及、治安好。</p>
-      <div class="note">週日大部分商店公休，只有餐廳和少數便利商店營業。剛落地時當作休息調時差最適合。</div>
+      <div class="note">3/14 是週日，從格但斯克搭火車抵達。週日大部分商店公休，只有餐廳和少數便利商店營業。3/16 從這裡飛回台灣。</div>
     </div>
   </details>
 </section>
 
 <svg class="divider" viewBox="0 0 400 26" preserveAspectRatio="none" aria-hidden="true"><path d="M0,18 C80,4 150,24 220,12 S340,2 400,10"/></svg>
 
-<!-- 挪威 -->
-<section class="country" id="norway">
-  <div class="c-head"><h2>挪威</h2><span class="motif">峽灣與極光</span></div>
-  <div class="c-rule"></div>
-  <p class="c-lead">不論選哪個方案都會保留的核心：北極圈的極光和雪山，加上西部的峽灣。</p>
-
-  <details class="place polar">
-    <summary>
-      <div class="s-top"><h3>特羅姆瑟</h3><span class="tag t-must">必去</span><span class="polar-mark">極光區</span></div>
-      <p class="s-line">北極圈裡生活機能最好的城市，極光團最成熟。</p>
-      <span class="chev" aria-hidden="true"></span>
-    </summary>
-    <div class="body">
-      <h4>是什麼</h4>
-      <p>挪威北部最大的城市，位在北極圈內約 350 公里的小島上，被稱為「北極門戶」。市中心走路就能逛完，餐廳、博物館、飯店都很完整。</p>
-      <h4>有什麼</h4>
-      <ul>
-        <li><b>極光團</b>：好的導遊會看雲量開到內陸，甚至越過邊境到芬蘭追晴天。2018 年就是跟 Flexitour 看到極光的，這家現在仍由同一位導遊經營，評價依然很好</li>
-        <li><b>狗拉雪橇</b>：營地在郊外的克瓦洛亞島，例如 Tromsø Wilderness Centre，有超過 300 隻狗，推薦選自己駕駛</li>
-        <li><b>纜車</b>：上 421 公尺的觀景台，天氣好時看得到約 70 公里外的林根阿爾卑斯山</li>
-        <li><b>北極大教堂</b>：三角形的白色教堂，是城市地標</li>
-      </ul>
-      <h4>旅人怎麼說</h4>
-      <p class="quote">很貴、極光不穩定、市中心比想像中小，但不代表不值得去。如果期待的是 IG 上隨時都有的極光，很可能會失望。</p>
-      <p>2025 年機場旅客量增加約 40%，冬天晚上觀光巴士塞滿港邊。飯店每晚約 2,400～3,800 挪威克朗（約台幣 7,200～11,400）。</p>
-      <div class="note">極光團品質落差很大，要選小團、評價高、可彈性改期的業者。3 月看不到鯨魚，賞鯨季是 11～1 月。</div>
-    </div>
-  </details>
-
-  <details class="place polar">
-    <summary>
-      <div class="s-top"><h3>羅弗敦群島</h3><span class="tag t-must">必去</span><span class="polar-mark">極光區</span></div>
-      <p class="s-line">雪山直接從海裡拔起，山腳是紅色漁屋。挪威冬天風景的最高峰。</p>
-      <span class="chev" aria-hidden="true"></span>
-    </summary>
-    <div class="body">
-      <h4>是什麼</h4>
-      <p>挪威西北外海的一串群島，一條 E10 公路由東到西把所有島串起來。2～3 月是冬季最推薦的時段，因為白天變長，光線最漂亮。</p>
-      <h4>會去哪裡，由東到西</h4>
-      <div class="sub"><b>東側：斯沃爾韋爾、亨寧斯韋爾</b>斯沃爾韋爾是交通門戶，適合第一晚落腳。亨寧斯韋爾是建在小島群上的漁村，冬天正值鱈魚季，港口掛滿晾魚乾的木架。有名的海上足球場就在這裡，但經典照片是空拍，站在地面看不太出來。</div>
-      <div class="sub"><b>中段：烏塔克萊夫、豪克蘭海灘</b>白天是雪山配海灘，晚上是羅弗敦看極光的經典地點。</div>
-      <div class="sub"><b>西側：哈姆諾伊、薩克里索伊、雷訥、Å</b>整趟的精華。哈姆諾伊是紅色漁屋配尖山；過橋的薩克里索伊整村是黃色的；雷訥是羅弗敦最經典的明信片畫面；Å 是 E10 的終點。</div>
-      <h4>旅人怎麼說</h4>
-      <p class="quote">冬天絕對值得，但這時的羅弗敦比較安靜、陰鬱、難以預測。期待穩定的天氣就會失望。</p>
-      <p>3 月中去的旅客說主要道路清得很快，配釘胎慢慢開不難。中文平台上「冬天不適合自駕」的說法，多半來自推銷包團的業者。</p>
-      <div class="note">部分餐廳冬天會休息，超市選擇也少，建議住可以煮飯的小屋。雷訥布林根登山步道冬天很危險，不建議爬。租車選 SUV、確認有釘胎。</div>
-    </div>
-  </details>
-
-  <details class="place">
-    <summary>
-      <div class="s-top"><h3>挪威縮影</h3><span class="tag t-must">必去</span></div>
-      <p class="s-line">一天看完峽灣、高山鐵路和雪原，同時也是從卑爾根移動到奧斯陸的交通。</p>
-      <span class="chev" aria-hidden="true"></span>
-    </summary>
-    <div class="body">
-      <h4>是什麼</h4>
-      <p>一條把火車、峽灣遊船、登山鐵路串起來的經典路線，連接卑爾根和奧斯陸。</p>
-      <h4>依序會經過</h4>
-      <ol class="stops">
-        <li><b>卑爾根到沃斯</b>：搭火車，沿途湖泊和山谷</li>
-        <li><b>沃斯到古德旺恩</b>：轉巴士下山到峽灣邊</li>
-        <li><b>納柔依峽灣遊船</b>：世界遺產，兩岸峭壁非常窄。冬天有時改成從弗洛姆出發來回</li>
-        <li><b>弗洛姆鐵路</b>：約 20 公里爬升 800 多公尺，是世界上最陡的一般鐵路之一，會停在大瀑布旁</li>
-        <li><b>米達爾到奧斯陸</b>：卑爾根鐵路穿越挪威中部高原，冬天是一整片雪原</li>
-      </ol>
-      <h4>旅人怎麼說</h4>
-      <p>冬天評價兩極。有台灣旅人 3 月走，說雪景美到讓人忘記呼吸；也有人覺得冬天弗洛姆鐵路景色普通，瀑布整個結冰。還有人遇到火車取消，坐了六小時巴士回奧斯陸。</p>
-      <div class="note">買官方套票，停駛時才有改訂保障；加購行李寄送，整天只要背小包。卑爾根和奧斯陸都要住一般飯店才能寄送。</div>
-    </div>
-  </details>
-
-  <details class="place">
-    <summary>
-      <div class="s-top"><h3>卑爾根</h3><span class="tag t-worth">值得</span></div>
-      <p class="s-line">峽灣入口的港口城市，彩色木屋街是世界遺產。1～2 天。</p>
-      <span class="chev" aria-hidden="true"></span>
-    </summary>
-    <div class="body">
-      <ul>
-        <li><b>布呂根</b>：港邊一排彩色木造倉庫，漢薩同盟時期的商館，世界遺產</li>
-        <li><b>弗洛伊恩纜車</b>：上山看整個港灣，晚上夜景很美</li>
-        <li><b>魚市場</b>：港邊吃海鮮</li>
-      </ul>
-      <p>論壇上的評價是「值得待一天」。缺點是挪威最常下雨的城市之一。</p>
-    </div>
-  </details>
-
-  <details class="place">
-    <summary>
-      <div class="s-top"><h3>奧斯陸</h3><span class="tag t-worth">值得</span></div>
-      <p class="s-line">挪威首都，現代建築、孟克和北歐精品咖啡。1～2 天。</p>
-      <span class="chev" aria-hidden="true"></span>
-    </summary>
-    <div class="body">
-      <ul>
-        <li><b>歌劇院</b>：可以直接走上傾斜的屋頂看港灣，免費</li>
-        <li><b>孟克美術館</b>：收藏《吶喊》，每週三晚上 18～21 點免費，要提早預約</li>
-        <li><b>維格蘭雕塑公園</b>：兩百多座雕像，免費</li>
-        <li><b>精品咖啡</b>：Tim Wendelboe、Fuglen 等北歐咖啡代表店</li>
-      </ul>
-      <p>Time Out 曾把奧斯陸評為最佳北歐城市小旅行第一名；也有作者說它不像哥本哈根那麼漂亮。回程從這裡出發，排 1～2 天剛好。</p>
-    </div>
-  </details>
-</section>
-
-<svg class="divider" viewBox="0 0 400 26" preserveAspectRatio="none" aria-hidden="true"><path d="M0,10 C90,22 160,2 230,14 S350,22 400,8"/></svg>
-
 <!-- 瑞典 -->
 <section class="country" id="sweden">
   <div class="c-head"><h2>瑞典</h2><span class="motif">冰與內陸</span></div>
   <div class="c-rule"></div>
-  <p class="c-lead">全北歐方案才會用到。真正值得為它改路線的，只有北部的拉普蘭。</p>
+  <p class="c-lead">目前路線沒有排瑞典，留著當參考。真正值得為它改路線的，只有北部的拉普蘭。</p>
 
   <details class="place polar">
     <summary>
@@ -533,7 +753,7 @@ footer svg path{fill:none;stroke-linecap:round}
     <li>
       <h3>半夜的沿岸郵輪，特羅姆瑟到羅弗敦</h3>
       <p>凌晨 1:30 開船、碼頭候船室夜間關閉、靠近引擎的艙房進出港時很吵、最後一天中午就要退房。峽灣遊船在挪威縮影也已經有了。</p>
-      <p class="alt">替代：特羅姆瑟飛埃弗內斯約 35 分鐘，在機場原地租還車。</p>
+      <p class="alt">替代：特羅姆瑟飛埃弗內斯（Widerøe，中途停安德內斯，約 1 小時 20 分），在機場原地租還車。</p>
     </li>
     <li>
       <h3>3 月去特羅姆瑟賞鯨</h3>
@@ -560,12 +780,12 @@ footer svg path{fill:none;stroke-linecap:round}
     <table>
       <thead><tr><th>地點</th><th>分級</th><th>一句話</th></tr></thead>
       <tbody>
-        <tr><td>格但斯克＋馬爾堡</td><td><span class="tag t-must">必去</span></td><td>冬天最有氣氛的波蘭古城</td></tr>
-        <tr><td>華沙</td><td><span class="tag t-worth">值得</span></td><td>重建的首都，1～2 天</td></tr>
         <tr><td>特羅姆瑟</td><td><span class="tag t-must">必去</span></td><td>極光團最成熟</td></tr>
         <tr><td>羅弗敦</td><td><span class="tag t-must">必去</span></td><td>冬季風景最高峰</td></tr>
         <tr><td>挪威縮影</td><td><span class="tag t-must">必去</span></td><td>一天看完峽灣和高原</td></tr>
-        <tr><td>卑爾根、奧斯陸</td><td><span class="tag t-worth">值得</span></td><td>各 1～2 天</td></tr>
+        <tr><td>卑爾根、奧斯陸</td><td><span class="tag t-worth">值得</span></td><td>卑爾根 3 晚、奧斯陸 2 晚</td></tr>
+        <tr><td>格但斯克＋馬爾堡</td><td><span class="tag t-must">必去</span></td><td>冬天最有氣氛的波蘭古城</td></tr>
+        <tr><td>華沙</td><td><span class="tag t-worth">值得</span></td><td>重建的首都，住 2 晚</td></tr>
         <tr><td>瑞典拉普蘭</td><td><span class="tag t-must">若加瑞典</span></td><td>替極光多一份保險</td></tr>
         <tr><td>斯德哥爾摩、赫爾辛基</td><td><span class="tag t-worth">值得</span></td><td>城市選項，角色類似波蘭</td></tr>
         <tr><td>芬蘭拉普蘭</td><td><span class="tag t-maybe">看情況</span></td><td>數據好但交通繞</td></tr>
@@ -583,8 +803,8 @@ footer svg path{fill:none;stroke-linecap:round}
     <path d="M-10,36 C80,18 160,40 240,24 S360,14 410,28" stroke="#AFA9EC" stroke-width=".8"/>
   </svg>
   <div class="wrap">
-    <p>資料整理於 2026 年 9 月，來源包括 TripAdvisor、PTT、背包客棧、旅遊部落客與雲量統計資料。</p>
-    <p>價格為當時查到的參考值，台幣為概算，實際以官網和訂購時為準。</p>
+    <p>地點資料整理於 2026 年 9 月，行程與交通更新於 2026 年 10 月 14 日。來源包括 TripAdvisor、PTT、背包客棧、旅遊部落客、各家官網與雲量統計資料。</p>
+    <p>目前機票、住宿、租車都還沒訂。價格為當時查到的參考值，挪威克朗以 1 克朗約台幣 3.34 元概算，實際以官網和訂購時為準。</p>
   </div>
 </footer>
 
