@@ -122,9 +122,24 @@ summary{list-style:none;cursor:pointer} summary::-webkit-details-marker{display:
 .stays .when small{display:block;font-family:var(--sans);font-weight:400;font-size:12px;color:var(--ink2);margin-top:3px}
 .stays p{margin:0;font-size:15px;line-height:1.5}
 .stays .s{font-size:13.5px;color:var(--ink2)}
-.drivers{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.drivers button{text-align:left;padding:10px 12px;border:1px solid var(--line);border-left:4px solid var(--c);border-radius:3px;background:var(--paper);cursor:pointer;font-size:13px;line-height:1.4;color:var(--ink2)}
-.drivers button b{display:block;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:2px;word-break:break-word}
+.addr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:center;padding:10px 14px;border-top:1px solid var(--line2)}
+.addr:first-child{border-top:0}
+.addr b{display:block;font-weight:600;font-size:15px;word-break:break-word;line-height:1.4}
+.addr span{display:block;font-size:13px;color:var(--ink2);line-height:1.45}
+.acts{display:flex;gap:6px}
+.acts button,.acts a{min-width:44px;min-height:34px;display:inline-flex;align-items:center;justify-content:center;padding:0 9px;border:1px solid var(--line);background:var(--paper);border-radius:3px;font-size:13px;text-decoration:none;color:var(--ink);cursor:pointer;white-space:nowrap}
+.toast{position:fixed;left:50%;bottom:calc(var(--navh) + env(safe-area-inset-bottom,0px) + 14px);transform:translateX(-50%);background:var(--ink);color:var(--paper);font-size:14px;padding:8px 14px;border-radius:3px;z-index:70;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.on{opacity:1}
+.strip{display:block;width:100%;height:30px}
+.art{position:absolute;right:0;bottom:0;width:86%;height:auto;pointer-events:none;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 38%);mask-image:linear-gradient(to right,transparent 0,#000 38%)}
+.art .b{fill:#fff;fill-opacity:.11}.art .m{fill:#fff;fill-opacity:.18}.art .f{fill:#fff;fill-opacity:.23}
+.art .w{fill:var(--c)}.art .ln{fill:#fff;fill-opacity:.5}.art .ac{fill:#E9785D;fill-opacity:.95}
+.art .au1{fill:none;stroke:#9FE1CB;stroke-opacity:.55;stroke-width:2.2;stroke-linecap:round}
+.art .au2{fill:none;stroke:#C9C4F2;stroke-opacity:.45;stroke-width:1.3;stroke-linecap:round}
+.art .brg{fill:none;stroke:#fff;stroke-opacity:.22;stroke-width:3}
+.art .rack{fill:none;stroke:#fff;stroke-opacity:.45;stroke-width:1.4}
+.art .rail{fill:none;stroke:#fff;stroke-opacity:.45;stroke-width:1.4;stroke-dasharray:3 2}
+.art .trail{fill:none;stroke:#fff;stroke-opacity:.35;stroke-width:1.6;stroke-dasharray:5 4}
 .rows div{display:grid;gap:2px;padding:10px 14px;border-top:1px solid var(--line2);font-size:15px}
 .rows div:first-child{border-top:0}
 .rows span:first-child{font-size:13px;color:var(--ink2)}
@@ -162,6 +177,7 @@ details.fold>.in{border-top:1px solid var(--line2);padding:4px 14px 12px}
 .chips a .td{display:block;font-size:10px;color:var(--alert)}
 .chips a[aria-current="true"] .td{color:#fff}
 .band{background:var(--c);color:#fff;margin-top:12px;padding:14px 16px 16px;border-radius:4px 4px 0 0;position:relative;overflow:hidden}
+.band>*:not(.art),.cband>*:not(.art){position:relative}
 .band .k{margin:0;font-size:12.5px;letter-spacing:.14em;opacity:.85}
 .band .row1{display:flex;align-items:flex-end;gap:12px;margin-top:2px}
 .band .dt{font-family:var(--serif);font-weight:700;font-size:64px;line-height:.95;letter-spacing:-.01em}
@@ -171,7 +187,18 @@ details.fold>.in{border-top:1px solid var(--line2);padding:4px 14px 12px}
 .daybody{background:var(--paper);border:1px solid var(--line);border-top:0;border-radius:0 0 4px 4px;padding:14px 16px 16px}
 .alerts{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
 .alert{display:inline-flex;align-items:center;font-size:13.5px;font-weight:600;color:var(--alert);border:1.5px solid var(--alert);border-radius:3px;padding:1px 8px;background:color-mix(in srgb,var(--alert) 6%,var(--paper))}
-.split{margin:0 0 18px}
+.tl{margin:0 0 18px}
+.tl-axis{position:relative;height:30px;background:var(--line2);border-radius:2px;overflow:hidden}
+.tl-free{position:absolute;inset:0;background:color-mix(in srgb,var(--c) 16%,var(--paper))}
+.tl-blk{position:absolute;top:0;bottom:0;background:var(--slate);color:#fff;font-size:11.5px;line-height:30px;padding:0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-left:1px solid var(--paper);border-right:1px solid var(--paper)}
+.tl-blk.tour{background:var(--c)}
+.tl-sun{position:relative;height:8px;margin-top:3px;background:#2C3E50;border-radius:2px;overflow:hidden}
+.tl-day{position:absolute;top:0;bottom:0;background:#F2C14E}
+.tl-tw{position:absolute;top:0;bottom:0;background:#8E7AB5}
+.tl-ticks{position:relative;height:16px;font-size:11px;color:var(--ink3)}
+.tl-ticks span{position:absolute;transform:translateX(-50%)}
+.tl-note{font-size:12.5px;color:var(--ink2);margin-top:2px;display:flex;flex-wrap:wrap;gap:2px 12px}
+.tl-note i{display:inline-block;width:10px;height:8px;margin-right:4px;border-radius:1px;vertical-align:0}
 .bar{display:flex;height:12px;border-radius:2px;overflow:hidden;background:var(--line2);gap:2px}
 .bar span{display:block;height:100%}
 .k-move{background:repeating-linear-gradient(135deg,var(--slate) 0 3px,transparent 3px 6px);opacity:.7}
@@ -231,10 +258,13 @@ details.area>summary span{display:block;font-size:13px;color:var(--ink2);line-he
 .poi p{margin:4px 0 0;font-size:15px;line-height:1.6}
 .poi .meta{font-size:13.5px;color:var(--ink2)}
 .poi .tip{font-size:14px;color:var(--ink2);border-left:2px solid var(--line);padding-left:9px;margin-top:6px}
-.poi .go{margin-top:6px;font-size:13.5px}
+.ph a.pin{font-size:16px;font-weight:600}
 
 /* 城市 */
-.cband{background:var(--c);color:#fff;padding:22px 0 20px}
+.cband{background:var(--c);color:#fff;padding:22px 0 0;position:relative;overflow:hidden}
+.cband .wrap{position:relative;padding-bottom:20px;min-height:150px}
+.cband .art{bottom:30px;width:74%}
+.cband .strip{position:relative;background:color-mix(in srgb,#000 12%,var(--c))}
 .cband h1{font-family:var(--serif);font-weight:700;font-size:44px;line-height:1.1;margin:0;letter-spacing:.04em}
 .cband p{margin:8px 0 0;font-size:15px;opacity:.92}
 .clist a{display:flex;align-items:center;gap:14px;text-decoration:none;background:var(--paper);border:1px solid var(--line);border-radius:3px;margin:0 0 8px;overflow:hidden}
@@ -301,7 +331,7 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
 
 <div id="view"></div>
 
-<div class="drv" id="drv" hidden role="dialog" aria-modal="true" aria-label="給司機看">
+<div class="drv" id="drv" hidden role="dialog" aria-modal="true" aria-label="大字顯示">
   <p class="sub" id="drv-sub"></p>
   <p class="big" id="drv-big"></p>
   <p class="addr" id="drv-addr"></p>
@@ -358,6 +388,71 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
   function placeById(id){ return T.places.filter(function(p){return p.id===id;})[0]; }
   function setTitle(t){ document.title = t+"｜北境冬旅"; }
 
+  var ART={"waw": "<rect class=\"b\" x=\"204\" y=\"84\" width=\"92\" height=\"36\"/><rect class=\"b\" x=\"214\" y=\"68\" width=\"72\" height=\"16\"/><rect class=\"b\" x=\"222\" y=\"52\" width=\"56\" height=\"16\"/><rect class=\"b\" x=\"230\" y=\"36\" width=\"40\" height=\"16\"/><rect class=\"b\" x=\"237\" y=\"24\" width=\"26\" height=\"12\"/><rect class=\"b\" x=\"243\" y=\"14\" width=\"14\" height=\"10\"/><rect class=\"b\" x=\"188\" y=\"96\" width=\"16\" height=\"24\"/><rect class=\"b\" x=\"296\" y=\"96\" width=\"16\" height=\"24\"/><polygon class=\"b\" points=\"247,14 250,0 253,14\"/><rect class=\"b\" x=\"203\" y=\"78\" width=\"3\" height=\"6\"/><rect class=\"b\" x=\"294\" y=\"78\" width=\"3\" height=\"6\"/><rect class=\"b\" x=\"213\" y=\"62\" width=\"3\" height=\"6\"/><rect class=\"b\" x=\"284\" y=\"62\" width=\"3\" height=\"6\"/><rect class=\"b\" x=\"221\" y=\"46\" width=\"3\" height=\"6\"/><rect class=\"b\" x=\"276\" y=\"46\" width=\"3\" height=\"6\"/><rect class=\"b\" x=\"229\" y=\"30\" width=\"3\" height=\"6\"/><rect class=\"b\" x=\"268\" y=\"30\" width=\"3\" height=\"6\"/><rect class=\"b\" x=\"236\" y=\"18\" width=\"3\" height=\"6\"/><rect class=\"b\" x=\"261\" y=\"18\" width=\"3\" height=\"6\"/><polygon class=\"f\" points=\"0,120 0,86 10,72 20,86 20,120\"/><rect class=\"w\" x=\"5.06667\" y=\"92\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"11.7333\" y=\"92\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"5.06667\" y=\"103\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"11.7333\" y=\"103\" width=\"3.2\" height=\"5\"/><polygon class=\"f\" points=\"20,120 20,80 23.7143,80 23.7143,74 27.4286,74 27.4286,68 31.1429,68 31.1429,62 34.8571,62 34.8571,68 38.5714,68 38.5714,74 42.2857,74 42.2857,80 46,80 46,120\"/><rect class=\"w\" x=\"24.9\" y=\"86\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"31.4\" y=\"86\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"37.9\" y=\"86\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"24.9\" y=\"97\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"31.4\" y=\"97\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"37.9\" y=\"97\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"24.9\" y=\"108\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"31.4\" y=\"108\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"37.9\" y=\"108\" width=\"3.2\" height=\"5\"/><polygon class=\"f\" points=\"46,120 46,90 55,76 64,90 64,120\"/><rect class=\"w\" x=\"50.4\" y=\"96\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"56.4\" y=\"96\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"50.4\" y=\"107\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"56.4\" y=\"107\" width=\"3.2\" height=\"5\"/><polygon class=\"f\" points=\"64,120 64,74 69.6,68 72.4,60 78,56 83.6,60 86.4,68 92,74 92,120\"/><rect class=\"w\" x=\"69.4\" y=\"80\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"76.4\" y=\"80\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"83.4\" y=\"80\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"69.4\" y=\"91\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"76.4\" y=\"91\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"83.4\" y=\"91\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"69.4\" y=\"102\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"76.4\" y=\"102\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"83.4\" y=\"102\" width=\"3.2\" height=\"5\"/><polygon class=\"f\" points=\"92,120 92,86 102,72 112,86 112,120\"/><rect class=\"w\" x=\"97.0667\" y=\"92\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"103.733\" y=\"92\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"97.0667\" y=\"103\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"103.733\" y=\"103\" width=\"3.2\" height=\"5\"/><polygon class=\"f\" points=\"112,120 112,80 115.714,80 115.714,74 119.429,74 119.429,68 123.143,68 123.143,62 126.857,62 126.857,68 130.571,68 130.571,74 134.286,74 134.286,80 138,80 138,120\"/><rect class=\"w\" x=\"116.9\" y=\"86\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"123.4\" y=\"86\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"129.9\" y=\"86\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"116.9\" y=\"97\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"123.4\" y=\"97\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"129.9\" y=\"97\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"116.9\" y=\"108\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"123.4\" y=\"108\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"129.9\" y=\"108\" width=\"3.2\" height=\"5\"/><polygon class=\"f\" points=\"138,120 138,92 148,78 158,92 158,120\"/><rect class=\"w\" x=\"143.067\" y=\"98\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"149.733\" y=\"98\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"143.067\" y=\"109\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"149.733\" y=\"109\" width=\"3.2\" height=\"5\"/><polygon class=\"f\" points=\"158,120 158,82 163.2,76 165.8,68 171,64 176.2,68 178.8,76 184,82 184,120\"/><rect class=\"w\" x=\"162.9\" y=\"88\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"169.4\" y=\"88\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"175.9\" y=\"88\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"162.9\" y=\"99\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"169.4\" y=\"99\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"175.9\" y=\"99\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"162.9\" y=\"110\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"169.4\" y=\"110\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"175.9\" y=\"110\" width=\"3.2\" height=\"5\"/><polygon class=\"f\" points=\"184,120 184,94 193,80 202,94 202,120\"/><rect class=\"w\" x=\"188.4\" y=\"100\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"194.4\" y=\"100\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"188.4\" y=\"111\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"194.4\" y=\"111\" width=\"3.2\" height=\"5\"/><rect class=\"f\" x=\"0\" y=\"118\" width=\"320\" height=\"2\"/>", "osl": "<rect class=\"b\" x=\"96\" y=\"62\" width=\"11\" height=\"58\"/><rect class=\"b\" x=\"112\" y=\"40\" width=\"11\" height=\"80\"/><rect class=\"b\" x=\"128\" y=\"74\" width=\"9\" height=\"46\"/><rect class=\"b\" x=\"142\" y=\"74\" width=\"13\" height=\"46\"/><rect class=\"b\" x=\"160\" y=\"68\" width=\"11\" height=\"52\"/><rect class=\"b\" x=\"176\" y=\"68\" width=\"9\" height=\"52\"/><rect class=\"b\" x=\"190\" y=\"74\" width=\"9\" height=\"46\"/><rect class=\"b\" x=\"204\" y=\"48\" width=\"9\" height=\"72\"/><rect class=\"b\" x=\"218\" y=\"74\" width=\"11\" height=\"46\"/><rect class=\"b\" x=\"234\" y=\"74\" width=\"9\" height=\"46\"/><rect class=\"b\" x=\"248\" y=\"48\" width=\"13\" height=\"72\"/><polygon class=\"m\" points=\"268,120 268,38 284,30 284,22 304,32 304,120\"/><rect class=\"w\" x=\"272\" y=\"44\" width=\"28\" height=\"1.4\"/><rect class=\"w\" x=\"272\" y=\"53\" width=\"28\" height=\"1.4\"/><rect class=\"w\" x=\"272\" y=\"62\" width=\"28\" height=\"1.4\"/><rect class=\"w\" x=\"272\" y=\"71\" width=\"28\" height=\"1.4\"/><rect class=\"w\" x=\"272\" y=\"80\" width=\"28\" height=\"1.4\"/><rect class=\"w\" x=\"272\" y=\"89\" width=\"28\" height=\"1.4\"/><rect class=\"w\" x=\"272\" y=\"98\" width=\"28\" height=\"1.4\"/><rect class=\"w\" x=\"272\" y=\"107\" width=\"28\" height=\"1.4\"/><polygon class=\"f\" points=\"0,120 0,112 110,90 176,90 176,74 228,70 228,90 250,90 272,104 272,120\"/><polygon class=\"f\" points=\"150,90 150,62 200,56 200,90\"/><rect class=\"w\" x=\"154\" y=\"64\" width=\"1.2\" height=\"24\"/><rect class=\"w\" x=\"160\" y=\"64\" width=\"1.2\" height=\"24\"/><rect class=\"w\" x=\"166\" y=\"64\" width=\"1.2\" height=\"24\"/><rect class=\"w\" x=\"172\" y=\"64\" width=\"1.2\" height=\"24\"/><rect class=\"w\" x=\"178\" y=\"64\" width=\"1.2\" height=\"24\"/><rect class=\"w\" x=\"184\" y=\"64\" width=\"1.2\" height=\"24\"/><rect class=\"w\" x=\"190\" y=\"64\" width=\"1.2\" height=\"24\"/><rect class=\"w\" x=\"196\" y=\"64\" width=\"1.2\" height=\"24\"/><rect class=\"m\" x=\"0\" y=\"118\" width=\"320\" height=\"2\"/>", "tos": "<path class=\"au1\" d=\"M10 22C70 6 120 30 180 14S270 2 320 12\"/><path class=\"au2\" d=\"M40 34C100 20 150 40 210 26S290 18 320 24\"/><polygon class=\"b\" points=\"0,120 0,74 36,56 70,66 118,44 170,62 214,50 260,58 320,48 320,120\"/><path class=\"brg\" d=\"M0 98 Q90 78 180 98\"/><rect class=\"m\" x=\"40\" y=\"88\" width=\"2\" height=\"30\"/><rect class=\"m\" x=\"90\" y=\"82\" width=\"2\" height=\"30\"/><rect class=\"m\" x=\"140\" y=\"88\" width=\"2\" height=\"30\"/><polygon class=\"f\" points=\"186,120 252,24 318,120\"/><polygon class=\"m\" points=\"204,120 258,34 312,120\"/><polygon class=\"m\" points=\"222,120 264,44 306,120\"/><polygon class=\"m\" points=\"240,120 270,54 300,120\"/><polygon class=\"m\" points=\"258,120 276,64 294,120\"/><polygon class=\"w\" points=\"238,120 252,82 266,120\"/><rect class=\"ln\" x=\"251\" y=\"90\" width=\"2\" height=\"24\"/><rect class=\"ln\" x=\"245\" y=\"98\" width=\"14\" height=\"2\"/><rect class=\"f\" x=\"0\" y=\"118\" width=\"320\" height=\"2\"/>", "lof": "<path class=\"au1\" d=\"M20 18C80 4 140 26 200 12S280 0 320 8\"/><path class=\"au2\" d=\"M60 30C120 16 170 36 230 22S300 14 320 18\"/><polygon class=\"b\" points=\"0,120 0,80 30,62 52,72 84,38 102,56 126,46 150,70 320,70 320,120\"/><polygon class=\"m\" points=\"110,120 140,90 158,98 186,52 198,64 212,40 236,78 256,62 282,90 320,74 320,120\"/><rect class=\"ac\" x=\"176\" y=\"98\" width=\"18\" height=\"14\"/><polygon class=\"ac\" points=\"174,99 185,91 196,99\"/><rect class=\"w\" x=\"179\" y=\"104\" width=\"4\" height=\"8\"/><rect class=\"ln\" x=\"178\" y=\"112\" width=\"1.6\" height=\"8\"/><rect class=\"ln\" x=\"191\" y=\"112\" width=\"1.6\" height=\"8\"/><rect class=\"ac\" x=\"200\" y=\"98\" width=\"18\" height=\"14\"/><polygon class=\"ac\" points=\"198,99 209,91 220,99\"/><rect class=\"w\" x=\"203\" y=\"104\" width=\"4\" height=\"8\"/><rect class=\"ln\" x=\"202\" y=\"112\" width=\"1.6\" height=\"8\"/><rect class=\"ln\" x=\"215\" y=\"112\" width=\"1.6\" height=\"8\"/><rect class=\"ac\" x=\"226\" y=\"98\" width=\"18\" height=\"14\"/><polygon class=\"ac\" points=\"224,99 235,91 246,99\"/><rect class=\"w\" x=\"229\" y=\"104\" width=\"4\" height=\"8\"/><rect class=\"ln\" x=\"228\" y=\"112\" width=\"1.6\" height=\"8\"/><rect class=\"ln\" x=\"241\" y=\"112\" width=\"1.6\" height=\"8\"/><path class=\"rack\" d=\"M262 120 L271 98 L280 120 M266 104 L276 104\"/><path class=\"rack\" d=\"M286 120 L295 98 L304 120 M290 104 L300 104\"/><rect class=\"m\" x=\"0\" y=\"116\" width=\"320\" height=\"4\"/>", "bgo": "<polygon class=\"b\" points=\"0,120 0,70 70,42 150,30 230,44 320,58 320,120\"/><path class=\"ln\" d=\"M150 31 L205 110\"/><polygon class=\"f\" points=\"104,120 104,74 114,54 124,74 124,120\"/><rect class=\"w\" x=\"107\" y=\"76\" width=\"0.8\" height=\"42\"/><rect class=\"w\" x=\"111\" y=\"76\" width=\"0.8\" height=\"42\"/><rect class=\"w\" x=\"115\" y=\"76\" width=\"0.8\" height=\"42\"/><rect class=\"w\" x=\"119\" y=\"76\" width=\"0.8\" height=\"42\"/><rect class=\"w\" x=\"111.5\" y=\"64\" width=\"5\" height=\"6\"/><polygon class=\"f\" points=\"125,120 125,66 137,46 149,66 149,120\"/><rect class=\"w\" x=\"128\" y=\"68\" width=\"0.8\" height=\"50\"/><rect class=\"w\" x=\"132\" y=\"68\" width=\"0.8\" height=\"50\"/><rect class=\"w\" x=\"136\" y=\"68\" width=\"0.8\" height=\"50\"/><rect class=\"w\" x=\"140\" y=\"68\" width=\"0.8\" height=\"50\"/><rect class=\"w\" x=\"144\" y=\"68\" width=\"0.8\" height=\"50\"/><rect class=\"w\" x=\"134.5\" y=\"56\" width=\"5\" height=\"6\"/><polygon class=\"f\" points=\"150,120 150,72 160,52 170,72 170,120\"/><rect class=\"w\" x=\"153\" y=\"74\" width=\"0.8\" height=\"44\"/><rect class=\"w\" x=\"157\" y=\"74\" width=\"0.8\" height=\"44\"/><rect class=\"w\" x=\"161\" y=\"74\" width=\"0.8\" height=\"44\"/><rect class=\"w\" x=\"165\" y=\"74\" width=\"0.8\" height=\"44\"/><rect class=\"w\" x=\"157.5\" y=\"62\" width=\"5\" height=\"6\"/><polygon class=\"f\" points=\"171,120 171,62 184,42 197,62 197,120\"/><rect class=\"w\" x=\"174\" y=\"64\" width=\"0.8\" height=\"54\"/><rect class=\"w\" x=\"178\" y=\"64\" width=\"0.8\" height=\"54\"/><rect class=\"w\" x=\"182\" y=\"64\" width=\"0.8\" height=\"54\"/><rect class=\"w\" x=\"186\" y=\"64\" width=\"0.8\" height=\"54\"/><rect class=\"w\" x=\"190\" y=\"64\" width=\"0.8\" height=\"54\"/><rect class=\"w\" x=\"194\" y=\"64\" width=\"0.8\" height=\"54\"/><rect class=\"w\" x=\"181.5\" y=\"52\" width=\"5\" height=\"6\"/><polygon class=\"f\" points=\"198,120 198,70 209,50 220,70 220,120\"/><rect class=\"w\" x=\"201\" y=\"72\" width=\"0.8\" height=\"46\"/><rect class=\"w\" x=\"205\" y=\"72\" width=\"0.8\" height=\"46\"/><rect class=\"w\" x=\"209\" y=\"72\" width=\"0.8\" height=\"46\"/><rect class=\"w\" x=\"213\" y=\"72\" width=\"0.8\" height=\"46\"/><rect class=\"w\" x=\"217\" y=\"72\" width=\"0.8\" height=\"46\"/><rect class=\"w\" x=\"206.5\" y=\"60\" width=\"5\" height=\"6\"/><polygon class=\"f\" points=\"221,120 221,64 233,44 245,64 245,120\"/><rect class=\"w\" x=\"224\" y=\"66\" width=\"0.8\" height=\"52\"/><rect class=\"w\" x=\"228\" y=\"66\" width=\"0.8\" height=\"52\"/><rect class=\"w\" x=\"232\" y=\"66\" width=\"0.8\" height=\"52\"/><rect class=\"w\" x=\"236\" y=\"66\" width=\"0.8\" height=\"52\"/><rect class=\"w\" x=\"240\" y=\"66\" width=\"0.8\" height=\"52\"/><rect class=\"w\" x=\"230.5\" y=\"54\" width=\"5\" height=\"6\"/><polygon class=\"f\" points=\"246,120 246,74 256,54 266,74 266,120\"/><rect class=\"w\" x=\"249\" y=\"76\" width=\"0.8\" height=\"42\"/><rect class=\"w\" x=\"253\" y=\"76\" width=\"0.8\" height=\"42\"/><rect class=\"w\" x=\"257\" y=\"76\" width=\"0.8\" height=\"42\"/><rect class=\"w\" x=\"261\" y=\"76\" width=\"0.8\" height=\"42\"/><rect class=\"w\" x=\"253.5\" y=\"64\" width=\"5\" height=\"6\"/><polygon class=\"f\" points=\"267,120 267,60 280,40 293,60 293,120\"/><rect class=\"w\" x=\"270\" y=\"62\" width=\"0.8\" height=\"56\"/><rect class=\"w\" x=\"274\" y=\"62\" width=\"0.8\" height=\"56\"/><rect class=\"w\" x=\"278\" y=\"62\" width=\"0.8\" height=\"56\"/><rect class=\"w\" x=\"282\" y=\"62\" width=\"0.8\" height=\"56\"/><rect class=\"w\" x=\"286\" y=\"62\" width=\"0.8\" height=\"56\"/><rect class=\"w\" x=\"290\" y=\"62\" width=\"0.8\" height=\"56\"/><rect class=\"w\" x=\"277.5\" y=\"50\" width=\"5\" height=\"6\"/><polygon class=\"f\" points=\"294,120 294,68 305,48 316,68 316,120\"/><rect class=\"w\" x=\"297\" y=\"70\" width=\"0.8\" height=\"48\"/><rect class=\"w\" x=\"301\" y=\"70\" width=\"0.8\" height=\"48\"/><rect class=\"w\" x=\"305\" y=\"70\" width=\"0.8\" height=\"48\"/><rect class=\"w\" x=\"309\" y=\"70\" width=\"0.8\" height=\"48\"/><rect class=\"w\" x=\"313\" y=\"70\" width=\"0.8\" height=\"48\"/><rect class=\"w\" x=\"302.5\" y=\"58\" width=\"5\" height=\"6\"/><rect class=\"f\" x=\"0\" y=\"118\" width=\"320\" height=\"2\"/>", "gdn": "<rect class=\"b\" x=\"40\" y=\"40\" width=\"38\" height=\"80\"/><polygon class=\"b\" points=\"78,120 78,72 124,58 170,72 170,120\"/><polygon class=\"b\" points=\"40,40 43,26 46,40\"/><polygon class=\"b\" points=\"72,40 75,26 78,40\"/><polygon class=\"b\" points=\"54,40 59,22 64,40\"/><rect class=\"f\" x=\"196\" y=\"60\" width=\"26\" height=\"60\"/><rect class=\"f\" x=\"254\" y=\"60\" width=\"26\" height=\"60\"/><polygon class=\"f\" points=\"190,62 286,62 286,38 238,14 190,38\"/><path class=\"rack\" d=\"M198 44 L180 34 M180 34 L180 56\"/><rect class=\"w\" x=\"205\" y=\"70\" width=\"6\" height=\"8\"/><rect class=\"w\" x=\"263\" y=\"70\" width=\"6\" height=\"8\"/><rect class=\"w\" x=\"205\" y=\"84\" width=\"6\" height=\"8\"/><rect class=\"w\" x=\"263\" y=\"84\" width=\"6\" height=\"8\"/><rect class=\"w\" x=\"205\" y=\"98\" width=\"6\" height=\"8\"/><rect class=\"w\" x=\"263\" y=\"98\" width=\"6\" height=\"8\"/><rect class=\"w\" x=\"196\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"202\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"208\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"214\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"220\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"226\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"232\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"238\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"244\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"250\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"256\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"262\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"268\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"274\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"280\" y=\"42\" width=\"1\" height=\"18\"/><polygon class=\"m\" points=\"286,120 286,82 294,70 302,82 302,120\"/><polygon class=\"m\" points=\"302,120 302,76 311,64 320,76 320,120\"/><rect class=\"m\" x=\"0\" y=\"116\" width=\"320\" height=\"4\"/>", "nutshell": "<polygon class=\"m\" points=\"0,120 0,14 40,22 78,48 118,96 130,120\"/><polygon class=\"m\" points=\"320,120 320,6 286,16 250,40 214,84 196,120\"/><polygon class=\"b\" points=\"110,120 140,78 160,70 186,80 210,120\"/><rect class=\"b\" x=\"0\" y=\"112\" width=\"320\" height=\"8\"/><polygon class=\"f\" points=\"150,110 176,110 172,115 154,115\"/><rect class=\"f\" x=\"160\" y=\"104\" width=\"8\" height=\"6\"/><path class=\"rail\" d=\"M10 30 L44 44 L22 58 L60 74 L44 88\"/><rect class=\"ac\" x=\"30\" y=\"47\" width=\"12\" height=\"5\"/><rect class=\"ac\" x=\"43\" y=\"48\" width=\"10\" height=\"4\"/>", "travel": "<path class=\"trail\" d=\"M0 104 C80 100 150 80 236 46\"/><g transform=\"translate(236,22) rotate(-24) scale(2.6)\"><path class=\"f\" d=\"M14 3.2v-1.2l-5-3.1v-3.3a1 1 0 0 0-2 0v3.3L2 2v1.2l5-1.5v3.1l-1.3 1V6.7l2.3-.7 2.3.7V5.8l-1.3-1V1.7z\" transform=\"rotate(90 8 2)\"/></g>"};
+  var PAT={ no:"<rect x=\"4\" y=\"14\" width=\"2\" height=\"2\"/><rect x=\"6\" y=\"6\" width=\"2\" height=\"2\"/><rect x=\"6\" y=\"8\" width=\"2\" height=\"2\"/><rect x=\"6\" y=\"14\" width=\"2\" height=\"2\"/><rect x=\"6\" y=\"20\" width=\"2\" height=\"2\"/><rect x=\"6\" y=\"22\" width=\"2\" height=\"2\"/><rect x=\"8\" y=\"6\" width=\"2\" height=\"2\"/><rect x=\"8\" y=\"8\" width=\"2\" height=\"2\"/><rect x=\"8\" y=\"10\" width=\"2\" height=\"2\"/><rect x=\"8\" y=\"14\" width=\"2\" height=\"2\"/><rect x=\"8\" y=\"18\" width=\"2\" height=\"2\"/><rect x=\"8\" y=\"20\" width=\"2\" height=\"2\"/><rect x=\"8\" y=\"22\" width=\"2\" height=\"2\"/><rect x=\"10\" y=\"8\" width=\"2\" height=\"2\"/><rect x=\"10\" y=\"10\" width=\"2\" height=\"2\"/><rect x=\"10\" y=\"12\" width=\"2\" height=\"2\"/><rect x=\"10\" y=\"14\" width=\"2\" height=\"2\"/><rect x=\"10\" y=\"16\" width=\"2\" height=\"2\"/><rect x=\"10\" y=\"18\" width=\"2\" height=\"2\"/><rect x=\"10\" y=\"20\" width=\"2\" height=\"2\"/><rect x=\"12\" y=\"10\" width=\"2\" height=\"2\"/><rect x=\"12\" y=\"12\" width=\"2\" height=\"2\"/><rect x=\"12\" y=\"16\" width=\"2\" height=\"2\"/><rect x=\"12\" y=\"18\" width=\"2\" height=\"2\"/><rect x=\"14\" y=\"4\" width=\"2\" height=\"2\"/><rect x=\"14\" y=\"6\" width=\"2\" height=\"2\"/><rect x=\"14\" y=\"8\" width=\"2\" height=\"2\"/><rect x=\"14\" y=\"10\" width=\"2\" height=\"2\"/><rect x=\"14\" y=\"18\" width=\"2\" height=\"2\"/><rect x=\"14\" y=\"20\" width=\"2\" height=\"2\"/><rect x=\"14\" y=\"22\" width=\"2\" height=\"2\"/><rect x=\"14\" y=\"24\" width=\"2\" height=\"2\"/><rect x=\"16\" y=\"10\" width=\"2\" height=\"2\"/><rect x=\"16\" y=\"12\" width=\"2\" height=\"2\"/><rect x=\"16\" y=\"16\" width=\"2\" height=\"2\"/><rect x=\"16\" y=\"18\" width=\"2\" height=\"2\"/><rect x=\"18\" y=\"8\" width=\"2\" height=\"2\"/><rect x=\"18\" y=\"10\" width=\"2\" height=\"2\"/><rect x=\"18\" y=\"12\" width=\"2\" height=\"2\"/><rect x=\"18\" y=\"14\" width=\"2\" height=\"2\"/><rect x=\"18\" y=\"16\" width=\"2\" height=\"2\"/><rect x=\"18\" y=\"18\" width=\"2\" height=\"2\"/><rect x=\"18\" y=\"20\" width=\"2\" height=\"2\"/><rect x=\"20\" y=\"6\" width=\"2\" height=\"2\"/><rect x=\"20\" y=\"8\" width=\"2\" height=\"2\"/><rect x=\"20\" y=\"10\" width=\"2\" height=\"2\"/><rect x=\"20\" y=\"14\" width=\"2\" height=\"2\"/><rect x=\"20\" y=\"18\" width=\"2\" height=\"2\"/><rect x=\"20\" y=\"20\" width=\"2\" height=\"2\"/><rect x=\"20\" y=\"22\" width=\"2\" height=\"2\"/><rect x=\"22\" y=\"6\" width=\"2\" height=\"2\"/><rect x=\"22\" y=\"8\" width=\"2\" height=\"2\"/><rect x=\"22\" y=\"14\" width=\"2\" height=\"2\"/><rect x=\"22\" y=\"20\" width=\"2\" height=\"2\"/><rect x=\"22\" y=\"22\" width=\"2\" height=\"2\"/><rect x=\"24\" y=\"14\" width=\"2\" height=\"2\"/><rect x=\"0\" y=\"0\" width=\"2\" height=\"2\"/><rect x=\"30\" y=\"0\" width=\"2\" height=\"2\"/><rect x=\"0\" y=\"30\" width=\"2\" height=\"2\"/><rect x=\"30\" y=\"30\" width=\"2\" height=\"2\"/><rect x=\"15\" y=\"0\" width=\"2\" height=\"2\"/><rect x=\"0\" y=\"15\" width=\"2\" height=\"2\"/><rect x=\"30\" y=\"15\" width=\"2\" height=\"2\"/><rect x=\"15\" y=\"30\" width=\"2\" height=\"2\"/>", pl:"<circle cx=\"20\" cy=\"16\" r=\"3.6\"/><ellipse cx=\"20\" cy=\"9\" rx=\"2.3\" ry=\"4.4\" transform=\"rotate(0 20 9)\"/><ellipse cx=\"24.9497\" cy=\"11.0503\" rx=\"2.3\" ry=\"4.4\" transform=\"rotate(45 24.9497 11.0503)\"/><ellipse cx=\"27\" cy=\"16\" rx=\"2.3\" ry=\"4.4\" transform=\"rotate(90 27 16)\"/><ellipse cx=\"24.9497\" cy=\"20.9497\" rx=\"2.3\" ry=\"4.4\" transform=\"rotate(135 24.9497 20.9497)\"/><ellipse cx=\"20\" cy=\"23\" rx=\"2.3\" ry=\"4.4\" transform=\"rotate(180 20 23)\"/><ellipse cx=\"15.0503\" cy=\"20.9497\" rx=\"2.3\" ry=\"4.4\" transform=\"rotate(225 15.0503 20.9497)\"/><ellipse cx=\"13\" cy=\"16\" rx=\"2.3\" ry=\"4.4\" transform=\"rotate(270 13 16)\"/><ellipse cx=\"15.0503\" cy=\"11.0503\" rx=\"2.3\" ry=\"4.4\" transform=\"rotate(315 15.0503 11.0503)\"/><ellipse cx=\"6\" cy=\"24\" rx=\"1.8\" ry=\"4.6\" transform=\"rotate(-35 6 24)\"/><ellipse cx=\"34\" cy=\"24\" rx=\"1.8\" ry=\"4.6\" transform=\"rotate(35 34 24)\"/><circle cx=\"2\" cy=\"6\" r=\"1.4\"/><circle cx=\"38\" cy=\"6\" r=\"1.4\"/><circle cx=\"20\" cy=\"30\" r=\"1.4\"/>" };
+  function art(k){ return ART[k]?'<svg class="art" viewBox="0 0 320 120" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">'+ART[k]+'</svg>':""; }
+  function strip(kind, color, id){ var w=kind==="no"?32:40;
+    return '<svg class="strip" aria-hidden="true"><defs><pattern id="'+id+'" width="'+w+'" height="32" patternUnits="userSpaceOnUse"><g fill="'+color+'">'+PAT[kind]+'</g></pattern></defs><rect width="100%" height="32" fill="url(#'+id+')"/></svg>'; }
+  function artKey(d){ return d.art || ({tw:"travel",sky:"travel"})[d.region] || d.region; }
+  /* 日出日落（NOAA 公式），回傳當地時間的小時數 */
+  function sunTimes(iso, lat, lng, tz, zen){
+    var d=parse(iso), start=new Date(d.getFullYear(),0,0), N=Math.round((d-start)/864e5);
+    var g=2*Math.PI/365*(N-1), r=Math.PI/180;
+    var eq=229.18*(0.000075+0.001868*Math.cos(g)-0.032077*Math.sin(g)-0.014615*Math.cos(2*g)-0.040849*Math.sin(2*g));
+    var dec=0.006918-0.399912*Math.cos(g)+0.070257*Math.sin(g)-0.006758*Math.cos(2*g)+0.000907*Math.sin(2*g)-0.002697*Math.cos(3*g)+0.00148*Math.sin(3*g);
+    var x=Math.cos(zen*r)/(Math.cos(lat*r)*Math.cos(dec))-Math.tan(lat*r)*Math.tan(dec);
+    if (x<-1||x>1) return null;
+    var ha=Math.acos(x)/r;
+    return [(720-4*(lng+ha)-eq)/60+tz, (720-4*(lng-ha)-eq)/60+tz];
+  }
+  function hm(h){ h=(h+24)%24; var H=Math.floor(h), M=Math.round((h-H)*60); if(M===60){H=(H+1)%24;M=0;} return String(H).padStart(2,"0")+":"+String(M).padStart(2,"0"); }
+  function toH(t){ var p=t.split(":"); return +p[0]+(+p[1])/60; }
+  function timeline(d){
+    var blks=[];
+    var TZ={TPE:8,DXB:4}, dayTz=(T.regions[d.sunAt||d.region]||{}).tz||1;
+    function tzOf(x){ return TZ[(x||"").split(" ")[1]]||1; }
+    (d.legs||[]).forEach(function(l){ if(!l.dep||!l.arr) return; var a=toH(l.dep), b=toH(l.arr);
+      if (l.t==="flight"){ a-=tzOf(l.from)-dayTz; b-=tzOf(l.to)-dayTz; }
+      if (l.plus||b<a) b+=24;
+      blks.push({a:a,b:b,t:l.t,label:(l.who?T.people[l.who]+" ":"")+(l.no||l.text||"")}); });
+    var reg=T.regions[d.sunAt||d.region], sun=reg&&reg.lat?sunTimes(d.date,reg.lat,reg.lng,reg.tz,90.833):null;
+    var dusk=reg&&reg.polar?sunTimes(d.date,reg.lat,reg.lng,reg.tz,102):null;
+    if (!blks.length && !sun) return "";
+    var lo=6, hi=24;
+    blks.forEach(function(x){ lo=Math.min(lo,Math.floor(x.a)); hi=Math.max(hi,Math.ceil(x.b)); });
+    if (reg&&reg.polar) hi=Math.max(hi,26);
+    hi=Math.min(hi,30); var span=hi-lo;
+    function pct(h){ return ((Math.max(lo,Math.min(hi,h))-lo)/span*100).toFixed(2)+"%"; }
+    function wid(a,b){ return ((Math.min(hi,b)-Math.max(lo,a))/span*100).toFixed(2)+"%"; }
+    var h='<div class="tl"><div class="tl-axis"><div class="tl-free"></div>'+blks.map(function(x){
+      return '<div class="tl-blk'+(x.t==="tour"?" tour":"")+'" style="left:'+pct(x.a)+';width:'+wid(x.a,x.b)+'">'+x.label+'</div>'; }).join("")+'</div>';
+    if (sun){ h+='<div class="tl-sun"><div class="tl-day" style="left:'+pct(sun[0])+';width:'+wid(sun[0],sun[1])+'"></div>'+
+      (dusk?'<div class="tl-tw" style="left:'+pct(sun[1])+';width:'+wid(sun[1],dusk[1])+'"></div><div class="tl-tw" style="left:'+pct(dusk[0])+';width:'+wid(dusk[0],sun[0])+'"></div>':"")+'</div>'; }
+    h+='<div class="tl-ticks">';
+    for (var t=Math.ceil(lo/3)*3; t<=hi; t+=3) h+='<span style="left:'+pct(t)+'">'+(t%24)+'</span>';
+    h+='</div><div class="tl-note"><span>當地時間</span>'+(blks.length?'<span><i style="background:var(--slate)"></i>已排定</span><span><i style="background:color-mix(in srgb,var(--c) 30%,var(--paper))"></i>自由</span>':"");
+    if (sun) h+='<span><i style="background:#F2C14E"></i>日出 '+hm(sun[0])+'，日落 '+hm(sun[1])+'</span>';
+    if (dusk) h+='<span><i style="background:#8E7AB5"></i>'+hm(dusk[1])+' 後天色夠暗，可以看極光</span>';
+    return h+'</div></div>';
+  }
+  /* 地址卡 */
+  var CODE={}; Object.keys(T.addresses).forEach(function(k){ var a=T.addresses[k]; if(a.code) CODE[a.code]=k; });
+  function addrRow(a){
+    var copy=a.addr||a.name, q=a.name+(a.addr?" "+a.addr:"")+(a.city?" "+a.city:"");
+    return '<div class="addr"><div><b>'+a.name+'</b><span>'+a.sub+(a.addr?"，"+a.addr:"")+'</span></div><div class="acts">'+
+      '<button type="button" data-copy="'+copy.replace(/"/g,"&quot;")+'">複製</button>'+
+      '<a href="https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(q)+'" target="_blank" rel="noopener">導航</a>'+
+      '<button type="button" data-big="'+encodeURIComponent(JSON.stringify({n:a.name,s:a.sub,a:a.addr||""}))+'">大字</button></div></div>';
+  }
+  function stayAddr(s){ return s.address?{name:s.name, addr:s.address, sub:s.area+"住處"}:null; }
+  function dayAddrs(d){
+    var list=[], seen={};
+    function push(k){ if(k&&!seen[k]&&T.addresses[k]){ seen[k]=1; list.push(T.addresses[k]); } }
+    (d.legs||[]).forEach(function(l){ if(l.t==="flight"){ [l.from,l.to].forEach(function(x){ var c=(x||"").split(" ")[1]; push(CODE[c]); }); } (l.addr||[]).forEach(push); });
+    staysOn(d.date).forEach(function(s){ var a=stayAddr(s); if(a) list.push(a); });
+    return list;
+  }
+
   var LINES='<g class="drift"><path d="M-30,58 C60,24 130,68 210,38 S330,12 430,32" stroke="#5DCAA5" stroke-width="2.4"/><path d="M-30,66 C70,36 140,76 220,48 S340,22 430,42" stroke="#1D9E75" stroke-width="1.4"/></g><g class="drift2"><path d="M-30,50 C50,18 120,58 200,30 S320,4 430,22" stroke="#AFA9EC" stroke-width="1"/><path d="M-30,74 C90,46 150,84 230,58 S350,34 430,52" stroke="#5DCAA5" stroke-width=".8"/></g>';
 
   /* ── 總覽 ── */
@@ -382,8 +477,9 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
       return '<li style="--c:'+col(reg?reg.region:"tw")+'"><span class="when">'+md(s.from)+'<small>'+s.nights+' 晚</small></span><div><p>'+who(s.who)+s.area+st(s.status)+'</p>'+
         (s.name?'<p class="s">'+(s.address?'<a class="pin" href="'+mapURL(s.name+" "+s.address)+'" target="_blank" rel="noopener">'+s.name+'</a>':s.name)+'</p>':"")+(s.note?'<p class="s">'+s.note+'</p>':"")+'</div></li>';
     }).join("")+'</ul></div>';
-    var drivers='<p class="muted" style="margin:0 0 8px">點一下用大字顯示當地名稱，直接把手機拿給司機或櫃台。</p><div class="drivers">'+T.drivers.list.map(function(d,i){
-      return '<button type="button" data-drv="'+i+'" style="--c:'+(d.lang==="pl"?"var(--brick)":"var(--fjord)")+'"><b>'+d.big+'</b>'+d.sub+'</button>'; }).join("")+'</div>';
+    var addrs=[]; T.stays.forEach(function(s){ var a=stayAddr(s); if(a) addrs.push(a); });
+    Object.keys(T.addresses).forEach(function(k){ addrs.push(T.addresses[k]); });
+    var drivers='<p class="muted" style="margin:0 0 8px">複製貼到 Bolt、Uber，或直接開 Google 地圖導航。住處訂好後會陸續加入。</p><div class="card">'+addrs.map(addrRow).join("")+'</div>';
     var bag='<div class="card rows">'+T.info.baggage.map(function(b){return '<div><span>'+b.seg+'</span><span>'+b.text+'</span></div>';}).join("")+'</div>';
     var tr='<details class="card fold"><summary>交通總表 <small>'+segs.length+' 段，含價格</small><span class="chev"></span></summary><div class="in">'+segs.map(function(x){
       var l=x.l, t=l.t==="flight"?l.from+" → "+l.to:l.text, sub=[];
@@ -396,10 +492,10 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
       '<h4>沒排進路線的地方</h4>'+T.notes.places.map(function(p){return '<p style="margin:6px 0"><b>'+p.name+'</b>：'+p.line+'</p>';}).join("")+
       '<h4>不推薦</h4><ul>'+T.notes.skip.map(function(s){return "<li><b>"+s.name+"</b>："+s.text+(s.alt?"替代："+s.alt:"")+"</li>";}).join("")+'</ul></div></details>';
     return '<section class="hero"><svg class="lines" viewBox="0 0 400 84" preserveAspectRatio="none" aria-hidden="true">'+LINES+'</svg><div class="wrap">'+
-      '<p class="kicker">北歐＋波蘭　冬季旅行手冊</p><h1>北境冬旅</h1><p class="dates">2027／2.25 — 3.17</p>'+count+'<div class="route"><ol>'+route+'</ol></div></div></section>'+
+      '<p class="kicker">北歐＋波蘭　冬季旅行手冊</p><h1>北境冬旅</h1><p class="dates">2027／2.25 — 3.17</p>'+count+'<div class="route"><ol>'+route+'</ol></div></div>'+strip("no","rgba(255,255,255,.16)","pn")+'</section>'+
       '<main class="wrap"><h2 class="sec">航班 <small>阿聯酋，杜拜轉機</small></h2>'+ledger+
       '<h2 class="sec">住宿 <small>依入住日</small></h2>'+stays+
-      '<h2 class="sec">給司機看</h2>'+drivers+
+      '<h2 class="sec">常用地址 <small>住處、機場、車站</small></h2>'+drivers+
       '<h2 class="sec">行李限額 <small>打包以最嚴的為準</small></h2>'+bag+
       '<h2 class="sec">更多</h2>'+tr+notes+
       '<p class="foot">資料更新於 '+T.updated.replace(/-/g,"/")+'。訂位代號不放在這個公開頁面。挪威克朗以 1 克朗約台幣 3.34 元、茲羅提以約台幣 8 元概算。</p></main>';
@@ -421,7 +517,7 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
       s.filter(Boolean).map(function(x){return '<p class="ev-s">'+x+'</p>';}).join("")+'</div></li>';
   }
   function poiHTML(p, ctx){
-    var h='<span class="ty ty-'+p.type+'">'+TYPE[p.type]+'</span><b>'+p.name+'</b>';
+    var h='<span class="ty ty-'+p.type+'">'+TYPE[p.type]+'</span><a class="pin" href="'+mapURL(p.q||((p.local||p.name)+" "+(ctx.mapCity||"")))+'" target="_blank" rel="noopener">'+p.name+'</a>';
     if (p.pri) h+='<span class="pri pri-'+p.pri+'">'+(p.pri==="must"?"必去":"有空再去")+'</span>';
     if (p.why) h+='<span class="why">'+p.why+'</span>';
     if (p.warn) h+='<span class="closed">'+p.warn+'</span>';
@@ -435,7 +531,7 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
     if (ctx.from && p.lat) meta.push("離"+ctx.fromName+"直線約 "+km(ctx.from,p).toFixed(1)+" 公里");
     return '<li class="poi" data-type="'+p.type+'"><div class="ph">'+h+'</div>'+(p.local?'<p class="loc">'+p.local+'</p>':"")+'<p>'+p.line+'</p>'+
       (info.length?'<p class="meta">'+info.join("；")+'</p>':"")+(meta.length?'<p class="meta">'+meta.join("，")+'</p>':"")+
-      (p.tip?'<p class="tip">'+p.tip+'</p>':"")+'<p class="go"><a class="pin" href="'+mapURL(p.q||((p.local||p.name)+" "+(ctx.mapCity||"")))+'" target="_blank" rel="noopener">在地圖上看</a></p></li>';
+      (p.tip?'<p class="tip">'+p.tip+'</p>':"")+'</li>';
   }
   function areaHTML(city, a, ctx, open){
     var list=city.pois.filter(function(p){return p.area===a.id;});
@@ -450,11 +546,7 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
       return '<a href="#/day/'+key(x.date)+'" style="--c:'+col(x.region)+'"'+(x===d?' aria-current="true"':"")+'>'+(x.date===today?'<span class="td">今天</span>':"")+'<b>'+md(x.date)+'</b>'+wd(x.date).slice(1)+'</a>'; }).join("")+'</div></div>';
     var b='';
     if (d.alerts) b+='<div class="alerts">'+d.alerts.map(function(a){return '<span class="alert">'+a+'</span>';}).join("")+'</div>';
-    if (d.split){
-      var tot=d.split.reduce(function(s,x){return s+x.h;},0);
-      b+='<div class="split"><div class="bar">'+d.split.map(function(x){return '<span class="k-'+x.k+'" style="flex:'+x.h+'"></span>';}).join("")+'</div><div class="legend">'+
-        d.split.map(function(x){return '<span><i class="k-'+x.k+'"></i>'+x.l+' 約 '+x.h+' 小時</span>';}).join("")+'</div></div>';
-    }
+    b+=timeline(d);
     if (d.legs) b+='<div class="blk"><span class="lab" style="--c:var(--slate)">固定行程</span><ol class="evs">'+d.legs.map(legHTML).join("")+'</ol></div>';
     var stays=staysOn(d.date), ref=stays.filter(function(s){return s.lat;})[0];
     if (d.free) d.free.forEach(function(f){
@@ -471,12 +563,14 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
       if (s.note&&n===1) sub.push(s.note);
       return '<div class="stay" style="margin-top:8px">'+svg("bed")+'<div><p>'+who(s.who)+s.area+'，第 '+n+' 晚／共 '+s.nights+' 晚'+st(s.status)+'</p>'+sub.map(function(x){return '<p class="s">'+x+'</p>';}).join("")+'</div></div>';
     }).join("")+'</div>';
+    var ads=dayAddrs(d);
+    if (ads.length) b+='<div class="blk"><span class="lab ghost">地址</span><div class="card" style="margin-top:8px">'+ads.map(addrRow).join("")+'</div></div>';
     var links=[];
     if (city&&city.areas) links.push('<a href="#/city/'+d.city+'">'+city.name+'城市頁</a>');
     (d.places||[]).forEach(function(id){ var p=placeById(id); if(p) links.push('<a href="#/place/'+id+'">'+p.name+'介紹</a>'); });
     if (links.length) b+='<div class="links">'+links.join("")+'</div>';
     var pager='<div class="pager">'+(prev?'<a href="#/day/'+key(prev.date)+'">‹ 前一天<b>'+md(prev.date)+'</b></a>':'<a class="off"></a>')+(next?'<a href="#/day/'+key(next.date)+'">後一天 ›<b>'+md(next.date)+'</b></a>':'<a class="off"></a>')+'</div>';
-    return chips+'<main class="wrap"><section style="--c:'+c+'"><div class="band"><p class="k">'+T.regions[d.region].name+'</p><span class="num">第 '+(diff(T.start,d.date)+1)+' 天</span>'+
+    return chips+'<main class="wrap"><section style="--c:'+c+'"><div class="band">'+art(artKey(d))+'<p class="k">'+T.regions[d.region].name+'</p><span class="num">第 '+(diff(T.start,d.date)+1)+' 天</span>'+
       '<div class="row1"><span class="dt">'+md(d.date)+'</span><span class="wd">'+wd(d.date)+'</span></div><h2>'+d.title+'</h2></div><div class="daybody">'+b+'</div></section>'+pager+'<p class="hint">左右滑動也能換日</p></main>';
   }
 
@@ -501,7 +595,7 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
   function pageCity(id){
     var c=T.cities[id]; if(!c) return pageCities();
     setTitle(c.name);
-    var h='<section class="cband" style="--c:'+col(c.region)+'"><div class="wrap"><h1>'+c.name+'</h1>'+(c.intro?'<p>'+c.intro+'</p>':"")+'</div></section><main class="wrap" style="--c:'+col(c.region)+'">';
+    var h='<section class="cband" style="--c:'+col(c.region)+'">'+art(id)+'<div class="wrap"><h1>'+c.name+'</h1>'+(c.intro?'<p>'+c.intro+'</p>':"")+'</div>'+strip(id==="waw"||id==="gdn"?"pl":"no","rgba(255,255,255,.22)","pc")+'</section><main class="wrap" style="--c:'+col(c.region)+'">';
     if (c.tips) h+='<h2 class="sec">要先知道</h2><div class="card"><ul class="tips">'+li(c.tips)+'</ul></div>';
     if (c.areas){
       var ref=T.stays.filter(function(s){return s.id===c.ref;})[0];
@@ -568,16 +662,27 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
   }
   window.addEventListener("hashchange", route);
 
+  /* 複製 */
+  var toast=document.createElement("div"); toast.className="toast"; toast.setAttribute("role","status"); document.body.appendChild(toast);
+  function say(t){ toast.textContent=t; toast.classList.add("on"); clearTimeout(say.t); say.t=setTimeout(function(){toast.classList.remove("on");},1600); }
+  function copyText(t){
+    function fallback(){ var ta=document.createElement("textarea"); ta.value=t; ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select();
+      try{ document.execCommand("copy"); say("已複製："+t); }catch(x){ say("複製失敗，請長按文字複製"); } document.body.removeChild(ta); }
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(t).then(function(){ say("已複製："+t); }, fallback); else fallback();
+  }
+
   /* 點擊 */
   var drv=document.getElementById("drv");
   document.addEventListener("click", function(e){
     var f=e.target.closest("#filter button"); if (f){ filter=f.getAttribute("data-f"); applyFilter(); return; }
-    var b=e.target.closest("[data-drv]");
-    if (b){ var d=T.drivers.list[+b.getAttribute("data-drv")];
-      document.getElementById("drv-sub").textContent=d.sub;
-      document.getElementById("drv-big").textContent=d.big;
-      document.getElementById("drv-addr").textContent=d.addr||"";
-      document.getElementById("drv-ask").textContent=T.drivers[d.lang];
+    var c=e.target.closest("[data-copy]");
+    if (c){ copyText(c.getAttribute("data-copy")); return; }
+    var b=e.target.closest("[data-big]");
+    if (b){ var d=JSON.parse(decodeURIComponent(b.getAttribute("data-big")));
+      document.getElementById("drv-sub").textContent=d.s;
+      document.getElementById("drv-big").textContent=d.n;
+      document.getElementById("drv-addr").textContent=d.a;
+      document.getElementById("drv-ask").textContent="";
       drv.hidden=false; document.getElementById("drv-close").focus(); return; }
     if (e.target.id==="drv-close"){ drv.hidden=true; return; }
     if (e.target.id==="reset"){ done={}; try{localStorage.removeItem("checklist");}catch(x){} route(); }

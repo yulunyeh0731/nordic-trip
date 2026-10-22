@@ -12,13 +12,13 @@ window.TRIP = {
   people: { Y: "Yulun", M: "May" },
 
   regions: {
-    tw:  { name: "台灣",     color: "ink" },
-    waw: { name: "華沙",     color: "brick" },
-    osl: { name: "奧斯陸",   color: "fjord" },
-    tos: { name: "特羅姆瑟", color: "aurora" },
-    lof: { name: "羅弗敦",   color: "aurora" },
-    bgo: { name: "卑爾根",   color: "fjord" },
-    gdn: { name: "格但斯克", color: "brick" },
+    tw:  { name: "台灣",     color: "ink", lat: 25.08, lng: 121.23, tz: 8 },
+    waw: { name: "華沙",     color: "brick", lat: 52.23, lng: 21.01, tz: 1 },
+    osl: { name: "奧斯陸",   color: "fjord", lat: 59.91, lng: 10.75, tz: 1 },
+    tos: { name: "特羅姆瑟", color: "aurora", lat: 69.65, lng: 18.96, tz: 1, polar: true },
+    lof: { name: "羅弗敦",   color: "aurora", lat: 68.15, lng: 13.70, tz: 1, polar: true },
+    bgo: { name: "卑爾根",   color: "fjord", lat: 60.39, lng: 5.32, tz: 1 },
+    gdn: { name: "格但斯克", color: "brick", lat: 54.35, lng: 18.65, tz: 1 },
     sky: { name: "回程",     color: "ink" }
   },
 
@@ -45,7 +45,7 @@ window.TRIP = {
   ],
 
   days: [
-    { date: "2027-02-25", title: "Yulun 出發",
+    { date: "2027-02-25", sunAt: "tw", title: "Yulun 出發",
       alerts: ["Yulun 20:00 前到桃園第二航廈"], region: "tw",
       legs: [
         { who: "Y", t: "flight", carrier: "阿聯酋", no: "EK367",
@@ -56,8 +56,7 @@ window.TRIP = {
       ],
       notes: ["阿聯酋建議起飛前 3 小時到機場"] },
 
-    { date: "2027-02-26", title: "Yulun 抵達華沙",
-      split: [{ k: "move", l: "抵達、到旅館", h: 2 }, { k: "free", l: "自由時段", h: 6 }], region: "waw", city: "waw",
+    { date: "2027-02-26", title: "Yulun 抵達華沙", region: "waw", city: "waw",
       legs: [
         { who: "Y", t: "flight", carrier: "阿聯酋", no: "EK179",
           from: "杜拜 DXB", fromNote: "第三航廈", dep: "07:50",
@@ -77,8 +76,8 @@ window.TRIP = {
           status: "self", price: "參考價 NT$19,592（台新優惠價），原價 NT$21,342" }
       ] },
 
-    { date: "2027-02-28", title: "飛奧斯陸，兩人會合",
-      alerts: ["May 12:10 抵達", "Yulun 14:25 起飛"], region: "osl", places: ["oslo"],
+    { date: "2027-02-28", title: "飛奧斯陸，兩人會合", city: "osl",
+      alerts: ["May 12:10 抵達", "Yulun 14:25 起飛"], region: "osl",
       legs: [
         { who: "M", t: "flight", carrier: "阿聯酋", no: "EK159",
           from: "杜拜 DXB", fromNote: "第三航廈", dep: "",
@@ -88,94 +87,94 @@ window.TRIP = {
           from: "華沙 WAW", dep: "14:25", to: "奧斯陸 OSL", arr: "16:20",
           bag: "託運 1 件 23 公斤；兩件手提合計 10 公斤", status: "booked", price: "待補" }
       ],
-      notes: ["兩人都降落奧斯陸機場（Gardermoen），May 早到約 4 小時。在機場等，或先進市區 check-in，待決定"] },
+      notes: ["兩人都降落奧斯陸機場（Gardermoen），May 早到約 4 小時。在機場等，或先進市區 check-in，待決定"],
+      free: [{ who: "M", when: "下午", text: "May 先到：國家博物館週日開到 17:00，想看的話今天是機會", areas: ["sentrum", "bjorvika"] }, { when: "晚上", text: "會合後回住處，週日只有小超市開", areas: ["bjorvika"] }] },
 
-    { date: "2027-03-01", title: "奧斯陸市區、咖啡", region: "osl", places: ["oslo"],
-      plan: ["市區一日：歌劇院屋頂、精品咖啡（Tim Wendelboe、Fuglen）"] },
+    { date: "2027-03-01", title: "奧斯陸市區、咖啡", region: "osl", city: "osl",
+      free: [{ when: "全天", text: "週一國家博物館休館，孟克美術館有開。早上去 Grünerløkka 喝咖啡，下午歌劇院和孟克", areas: ["lokka", "bjorvika", "sentrum", "frogner"] }] },
 
-    { date: "2027-03-02", title: "飛特羅姆瑟",
-      alerts: ["10:30 起飛"], region: "tos", places: ["tromso"],
+    { date: "2027-03-02", title: "飛特羅姆瑟", city: "tos",
+      alerts: ["10:30 起飛"], region: "tos",
       legs: [
         { t: "flight", carrier: "挪威航空", no: "",
           from: "奧斯陸 OSL", dep: "10:30", to: "特羅姆瑟 TOS", arr: "12:30",
           bag: "LowFare+，含 23 公斤託運", status: "pending",
           price: "USD 137.30（約 NT$4,435），價格待更新" }
-      ] },
+      ],
+      free: [{ when: "下午", text: "放好行李後市區走走、去超市採買", areas: ["centre"] }] },
 
-    { date: "2027-03-03", title: "特羅姆瑟，挑晴天報極光團", region: "tos", places: ["tromso"],
+    { date: "2027-03-03", title: "特羅姆瑟，挑晴天報極光團", region: "tos", city: "tos",
       plan: ["看雲量預報，挑最晴的一晚報極光團",
-             "選小團、評價高、可改期的業者，報名前問清楚會不會跨境追晴天。Flexitour 是候選（出發 24 小時前取消可退 95%）"] },
+             "選小團、評價高、可改期的業者，報名前問清楚會不會跨境追晴天。Flexitour 是候選（出發 24 小時前取消可退 95%）"],
+      free: [{ when: "白天", text: "晚上可能跟團，白天輕鬆一點", areas: ["centre", "tromsdalen"] }] },
 
-    { date: "2027-03-04", title: "哈士奇雪橇", region: "tos", places: ["tromso"],
-      plan: ["哈士奇雪橇", "極光團沒看到的話再報一次"] },
+    { date: "2027-03-04", title: "哈士奇雪橇", region: "tos", city: "tos",
+      plan: ["哈士奇雪橇", "極光團沒看到的話再報一次"],
+      free: [{ when: "白天", text: "沒排哈士奇的時段，可以上纜車或逛市區", areas: ["tromsdalen", "centre"] }] },
 
-    { date: "2027-03-05", title: "飛埃弗內斯取車，往西",
+    { date: "2027-03-05", region: "lof", title: "飛埃弗內斯取車，往西", city: "lof",
       alerts: ["10:55 起飛", "機場取車"],
-      split: [{ k: "move", l: "飛機", h: 2 }, { k: "move", l: "開車往西", h: 4 }, { k: "free", l: "雷訥一帶", h: 3 }], region: "lof", places: ["lofoten"],
       legs: [
         { t: "flight", carrier: "Widerøe", no: "",
           from: "特羅姆瑟 TOS", dep: "10:55", to: "埃弗內斯 EVE", arr: "12:15", via: "安德內斯",
           bag: "Smart：1 件託運＋登機箱", status: "pending",
           price: "749 挪威克朗（約 NT$2,502）" },
         { t: "car", text: "埃弗內斯機場取車（四驅、自排、雪胎），往西開到雷訥一帶", status: "pending" }
-      ] },
+      ],
+      free: [{ when: "傍晚", text: "到雷訥一帶天色已暗，先採買、入住", areas: ["west"] }] },
 
-    { date: "2027-03-06", title: "羅弗敦西側", region: "lof", places: ["lofoten"],
-      plan: ["西側一日：雷訥、哈姆諾伊、薩克里索伊、Å"] },
+    { date: "2027-03-06", title: "羅弗敦西側", region: "lof", city: "lof",
+      free: [{ when: "全天", text: "週六：記得把 3/7 週日的食物先買好", areas: ["west"] }] },
 
-    { date: "2027-03-07", title: "往東移動", region: "lof", places: ["lofoten"],
+    { date: "2027-03-07", title: "往東移動", region: "lof", city: "lof",
       legs: [
         { t: "car", text: "往東移動，沿途可停烏塔克萊夫、豪克蘭海灘" }
-      ] },
+      ],
+      free: [{ when: "全天", text: "沿 E10 往東，中段海灘停一停", areas: ["mid", "east"] }] },
 
-    { date: "2027-03-08", title: "羅弗敦東側，新月",
-      alerts: ["新月，整趟最暗的一夜"], region: "lof", places: ["lofoten"],
-      plan: ["東側一日：亨寧斯韋爾漁村"],
-      notes: ["新月，整趟最暗的一夜"] },
+    { date: "2027-03-08", title: "羅弗敦東側，新月", city: "lof",
+      alerts: ["新月，整趟最暗的一夜"], region: "lof",
+      free: [{ when: "全天", text: "東側慢慢逛；晚上新月，挑晴的方向去北側海灘", areas: ["east", "mid"] }] },
 
-    { date: "2027-03-09", title: "還車，飛卑爾根",
+    { date: "2027-03-09", region: "bgo", title: "還車，飛卑爾根", city: "bgo",
       alerts: ["還車後 13:55 起飛"],
-      split: [{ k: "move", l: "開回機場", h: 2.5 }, { k: "move", l: "飛機", h: 3 }, { k: "free", l: "卑爾根晚上", h: 3 }], region: "bgo", places: ["bergen"],
       legs: [
         { t: "car", text: "開回埃弗內斯機場還車" },
         { t: "flight", carrier: "Widerøe", no: "",
           from: "埃弗內斯 EVE", dep: "13:55", to: "卑爾根 BGO", arr: "16:40", via: "特隆赫姆",
           bag: "Smart：1 件託運＋登機箱", status: "pending",
           price: "1,599 挪威克朗（約 NT$5,341）" }
-      ] },
+      ],
+      free: [{ when: "晚上", text: "到卑爾根後港邊走走", areas: ["bryggen"] }] },
 
-    { date: "2027-03-10", title: "挪威縮影一日",
+    { date: "2027-03-10", region: "bgo", art: "nutshell", places: ["nutshell"], title: "挪威縮影一日", city: "bgo",
       alerts: ["08:29 火車出發"],
-      split: [{ k: "tour", l: "挪威縮影", h: 10 }, { k: "free", l: "晚上", h: 3 }], region: "bgo", places: ["nutshell"],
       legs: [
         { t: "tour", text: "挪威縮影一日來回", dep: "08:29", arr: "18:17", status: "pending",
           price: "兩人 4,976 挪威克朗（每人約 NT$8,310）" }
       ],
       notes: ["冬天遊船可能改航線，詳細時刻和備案見地點介紹"] },
 
-    { date: "2027-03-11", title: "卑爾根市區／備用日", region: "bgo", places: ["bergen"],
-      plan: ["卑爾根市區：布呂根、弗洛伊恩纜車、魚市場"],
-      notes: ["挪威縮影如果停駛，改在這天走"] },
+    { date: "2027-03-11", title: "卑爾根市區／備用日", region: "bgo", city: "bgo",
+      free: [{ when: "全天", text: "週四 KODE 有開；挪威縮影如果停駛，改在這天走", areas: ["bryggen", "kode"] }] },
 
-    { date: "2027-03-12", title: "飛格但斯克",
+    { date: "2027-03-12", region: "gdn", title: "飛格但斯克", city: "gdn",
       alerts: ["13:40 起飛"],
-      split: [{ k: "free", l: "卑爾根早上", h: 3 }, { k: "move", l: "機場、飛機", h: 4 }, { k: "free", l: "格但斯克傍晚", h: 3 }], region: "gdn", places: ["gdansk"],
       legs: [
         { t: "flight", carrier: "Wizz Air", no: "",
           from: "卑爾根 BGO", dep: "13:40", to: "格但斯克 GDN", arr: "15:25",
           bag: "WIZZ Go：託運 20 公斤", status: "pending",
           price: "1,006 挪威克朗（約 NT$3,361）" }
       ],
-      plan: ["傍晚逛老城長街、河畔"] },
+      free: [{ when: "傍晚", text: "逛老城長街、河畔", areas: ["main", "river"] }] },
 
-    { date: "2027-03-13", title: "馬爾堡或索波特", region: "gdn", places: ["malbork", "sopot"],
-      plan: ["馬爾堡城堡，或索波特海上棧橋"] },
+    { date: "2027-03-13", title: "馬爾堡或索波特", region: "gdn", city: "gdn",
+      free: [{ when: "全天", text: "馬爾堡或索波特二選一，回來再逛老城", areas: ["trips", "main", "river"] }] },
 
     { date: "2027-03-14", title: "火車到華沙",
-      alerts: ["週日商店公休"],
-      split: [{ k: "move", l: "火車", h: 3 }, { k: "free", l: "自由時段", h: 5 }], region: "waw", city: "waw",
+      alerts: ["週日商店公休"], region: "waw", city: "waw",
       legs: [
-        { t: "train", text: "波蘭國鐵，格但斯克到華沙，約 2.5～3 小時", status: "pending",
+        { t: "train", text: "波蘭國鐵，格但斯克到華沙，約 2.5～3 小時", status: "pending", addr: ["gdn-st", "waw-st"],
           price: "約 19～32 英鎊，出發前約 30 天開賣" }
       ],
       free: [{ when: "抵達後", text: "週日博物館有開、商店大多公休。兩人想一起看的展館排在今天", areas: ["old", "powisle"] }],
@@ -185,7 +184,7 @@ window.TRIP = {
       alerts: ["週一博物館休館"], region: "waw", city: "waw",
       free: [{ when: "全天", text: "週一王宮和國家博物館休館，適合公園、觀景台和市區散步", areas: ["centrum", "lazienki", "old"] }] },
 
-    { date: "2027-03-16", title: "華沙起飛回台",
+    { date: "2027-03-16", sunAt: "waw", title: "華沙起飛回台",
       alerts: ["10:40 前到機場"], region: "sky",
       legs: [
         { t: "flight", carrier: "阿聯酋", no: "EK180",
@@ -196,7 +195,7 @@ window.TRIP = {
       ],
       notes: ["阿聯酋建議起飛前 3 小時到機場，也就是 10:40 前"] },
 
-    { date: "2027-03-17", title: "抵達台北", region: "sky",
+    { date: "2027-03-17", sunAt: "tw", title: "抵達台北", region: "sky",
       legs: [
         { t: "flight", carrier: "阿聯酋", no: "EK366",
           from: "杜拜 DXB", fromNote: "第三航廈", dep: "03:40",
@@ -376,28 +375,208 @@ window.TRIP = {
           tip: "戶外蕭邦音樂會只在 5 月中到 9 月底的週末，3 月沒有。", lat: 52.2146, lng: 21.0270 }
       ]
     },
-    osl: { name: "奧斯陸", region: "osl", places: ["oslo"] },
-    tos: { name: "特羅姆瑟", region: "tos", places: ["tromso"] },
-    lof: { name: "羅弗敦", region: "lof", places: ["lofoten"] },
-    bgo: { name: "卑爾根", region: "bgo", places: ["bergen", "nutshell"] },
-    gdn: { name: "格但斯克", region: "gdn", places: ["gdansk", "malbork", "sopot"] }
+    osl: {
+      name: "奧斯陸", region: "osl", mapCity: "Oslo",
+      intro: "挪威首都，現代建築、孟克和北歐精品咖啡。兩人會合的第一站，2/28 下午加 3/1 一整天。",
+      tips: [
+        "2/28 是週日：大型超市不開，只有小型的 Joker、Bunnpris 和便利商店有開，營業時間也較短。晚餐和隔天早餐要先想好。",
+        "3/1 是週一：國家博物館休館，孟克美術館週一照常開。May 2/28 中午就到，想看國家博物館可以當天下午去（週日開到 17:00）。",
+        "Grünerløkka 是奧斯陸精品咖啡的大本營，Tim Wendelboe 和 Supreme Roastworks 走路幾分鐘就到。",
+        "營業時間是 2025～2026 年的資料，出發前一個月再確認。"
+      ],
+      areas: [
+        { id: "bjorvika", name: "歌劇院一帶：Bjørvika", line: "中央車站南邊的港區，歌劇院和孟克美術館比鄰。" },
+        { id: "sentrum", name: "市中心：國家博物館、王宮", line: "卡爾約翰大街連接車站和王宮，國家博物館在港邊。" },
+        { id: "lokka", name: "Grünerløkka 咖啡區", line: "河東岸的文青街區，精品咖啡店最密集。" },
+        { id: "frogner", name: "維格蘭雕塑公園", line: "市區西北的大公園，兩百多座雕像，免費。" }
+      ],
+      pois: [
+        { id: "opera", area: "bjorvika", type: "sight", pri: "must", when: ["day", "eve"], name: "奧斯陸歌劇院", local: "Operahuset",
+          line: "白色大理石斜坡直接通到屋頂，走上去就能看港灣和城市，免費。", time: "1 小時",
+          tip: "冬天斜坡可能結冰濕滑，穿止滑的鞋。", lat: 59.9075, lng: 10.7531 },
+        { id: "munch", area: "bjorvika", type: "sight", pri: "must", when: ["day", "eve"], name: "孟克美術館", local: "MUNCH",
+          line: "收藏孟克作品最多的美術館，《吶喊》的其中一個版本一直有展出。", time: "2～3 小時",
+          hours: "週一、二、日 10:00–18:00，週三到週六開到 21:00",
+          tip: "少數週一有開的大型美術館，適合排在 3/1。", lat: 59.9062, lng: 10.7556 },
+        { id: "nasjonal", area: "sentrum", type: "sight", pri: "must", when: ["day"], name: "國家博物館", local: "Nasjonalmuseet",
+          line: "北歐最大的美術館，從古典大師到孟克都有，也有一版《吶喊》。", time: "至少 2 小時",
+          hours: "週二、三 10:00–20:00，週四到週日 10:00–17:00", closed: [1],
+          tip: "頂樓有可以看峽灣的咖啡廳。", lat: 59.9115, lng: 10.7289 },
+        { id: "akershus", area: "sentrum", type: "sight", pri: "maybe", when: ["day"], name: "阿克斯胡斯城堡", local: "Akershus festning",
+          line: "峽灣邊的中世紀要塞，城牆上散步可以看港口，戶外區域免費。", time: "1 小時", lat: 59.9070, lng: 10.7360 },
+        { id: "fuglen", area: "sentrum", type: "cafe", why: "老店", when: ["day", "eve"], name: "Fuglen", local: "Universitetsgata 2",
+          line: "1963 年開業的咖啡館，滿屋北歐中世紀家具，白天咖啡、晚上變酒吧。",
+          tip: "有旅人說這是整趟旅行喝過最好的濃縮咖啡。", lat: 59.9145, lng: 10.7350 },
+        { id: "wendelboe", area: "lokka", type: "cafe", why: "手沖", when: ["day"], name: "Tim Wendelboe", local: "Grüners gate 1",
+          line: "2004 年世界咖啡師冠軍開的店，北歐淺焙的代表，咖啡迷必朝聖。",
+          tip: "店內座位少、氣氛安靜，像在吧台看職人工作。", lat: 59.9233, lng: 10.7559 },
+        { id: "supreme", area: "lokka", type: "cafe", why: "手沖", when: ["day"], name: "Supreme Roastworks", local: "Thorvald Meyers gate 18A",
+          line: "離 Tim Wendelboe 幾個路口，品質不相上下，氣氛比較熱鬧，在地常客多。", lat: 59.9228, lng: 10.7590 },
+        { id: "vigeland", area: "frogner", type: "sight", pri: "maybe", when: ["day"], name: "維格蘭雕塑公園", local: "Vigelandsparken",
+          line: "雕塑家維格蘭一人創作的兩百多座雕像，中央是人體疊成的巨石柱，免費。", time: "1～1.5 小時",
+          tip: "冬天雪景裡的雕像別有味道，但天黑得早，要白天去。", lat: 59.9270, lng: 10.7008 }
+      ]
+    },
+    tos: {
+      name: "特羅姆瑟", region: "tos", mapCity: "Tromsø",
+      intro: "北極圈裡生活機能最好的城市。市中心在島上，走路就能逛完；北極大教堂和纜車在跨海大橋另一頭。",
+      tips: [
+        "白天短，戶外景點和纜車排在中午前後；晚上留給極光團。",
+        "Risø 週日公休，其他小店營業時間也常變動。",
+        "市中心光害大，極光大爆發時在橋上或纜車山頂也看得到，但效果不如跟團到郊外。",
+        "營業時間是 2025～2026 年的資料，出發前一個月再確認。"
+      ],
+      areas: [
+        { id: "centre", name: "市中心（島上）", line: "港邊、Storgata 和大教堂一帶，咖啡店、博物館都在走路範圍。" },
+        { id: "tromsdalen", name: "跨橋：北極大教堂與纜車", line: "過跨海大橋到對岸，可以走路過橋或搭公車。" }
+      ],
+      pois: [
+        { id: "polaria", area: "centre", type: "sight", pri: "maybe", when: ["day"], name: "Polaria 北極水族館", local: "Polaria",
+          line: "像傾倒冰塊的建築，主角是海豹，每天有固定的餵食和訓練時段。", time: "1～2 小時",
+          tip: "台灣交換生說館不大，但海豹訓練很可愛。", lat: 69.6427, lng: 18.9476 },
+        { id: "polarmuseum", area: "centre", type: "sight", pri: "maybe", when: ["day"], name: "極地博物館", local: "Polarmuseet",
+          line: "19 世紀木造倉庫裡，講阿蒙森等極地探險家和早期北極狩獵。", time: "1 小時", lat: 69.6517, lng: 18.9606 },
+        { id: "domkirke", area: "centre", type: "sight", pri: "maybe", when: ["day", "eve"], name: "特羅姆瑟大教堂", local: "Tromsø domkirke",
+          line: "市中心的新哥德式木造教堂，雪地裡很上相。", lat: 69.6489, lng: 18.9555 },
+        { id: "riso", area: "centre", type: "cafe", why: "手沖", when: ["day"], name: "Risø 咖啡", local: "Strandgata 32",
+          line: "旅人和咖啡迷公認特羅姆瑟最好的咖啡，肉桂捲也很有名。",
+          tip: "肉桂捲常常中午前就賣完；週日公休。", lat: 69.6491, lng: 18.9575 },
+        { id: "kaffebonna", area: "centre", type: "cafe", why: "在地老店", when: ["day"], name: "Kaffebønna", local: "Stortorget",
+          line: "在地老牌咖啡店，自家烘焙的麵包甜點多，招牌是卡士達椰子麵包 skolebrød。", lat: 69.6487, lng: 18.9563 },
+        { id: "raketten", area: "centre", type: "food", why: "邊走邊吃", when: ["day", "eve"], name: "Raketten 熱狗亭", local: "Raketten Bar & Pølse",
+          line: "港邊的小圓亭，招牌是馴鹿肉熱狗，配熱紅酒。", lat: 69.6493, lng: 18.9566 },
+        { id: "cathedral", area: "tromsdalen", type: "sight", pri: "must", when: ["day", "eve"], name: "北極大教堂", local: "Ishavskatedralen",
+          line: "1965 年的白色三角形教堂，背面有整面彩繪玻璃。", time: "1 小時",
+          tip: "常因婚禮、喪禮或音樂會不開放內部，看外觀就很值得。", lat: 69.6481, lng: 18.9876 },
+        { id: "fjellheisen", area: "tromsdalen", type: "sight", pri: "must", when: ["day", "eve"], name: "特羅姆瑟纜車", local: "Fjellheisen",
+          line: "上 421 公尺的觀景台，看整個市區、跨海大橋和峽灣。", time: "1～2 小時",
+          tip: "強風會停駛、山頂冷很多；天氣好時傍晚上去看日落轉夜景。", lat: 69.6406, lng: 18.9965 }
+      ]
+    },
+    lof: {
+      name: "羅弗敦", region: "lof", mapCity: "Lofoten",
+      intro: "一條 E10 公路串起整排島。先住西側雷訥一帶，再往東到亨寧斯韋爾、斯沃爾韋爾，最後回埃弗內斯還車。",
+      tips: [
+        "3/7 是週日：大型超市不開，偏遠地區週日營業的店更少。3/6 週六要先把 3/7 的食物買好。",
+        "冬天很多店和餐廳營業不穩定，有旅人說不一定照公告時間開門。想去的店前一天先查。",
+        "有車就能看天氣移動：雲量預報哪邊晴就往哪邊開。",
+        "北側海灘（烏塔克萊夫、Eggum、Gimsøy）面向北方、光害少，是看極光的好地點。"
+      ],
+      areas: [
+        { id: "west", name: "西側：雷訥一帶", line: "雷訥、哈姆諾伊、薩克里索伊、Å，羅弗敦最經典的畫面。" },
+        { id: "mid", name: "中段：海灘", line: "白天是雪山配海灘，晚上是看極光的地方。" },
+        { id: "east", name: "東側：亨寧斯韋爾", line: "建在小島群上的漁村，冬天正值鱈魚季。" }
+      ],
+      pois: [
+        { id: "reine", area: "west", type: "sight", pri: "must", when: ["day", "eve", "night"], name: "雷訥", local: "Reine",
+          line: "紅白漁屋配尖山倒影，羅弗敦最經典的明信片畫面。", lat: 67.9320, lng: 13.0890 },
+        { id: "hamnoy", area: "west", type: "sight", pri: "must", when: ["day", "eve"], name: "哈姆諾伊橋", local: "Hamnøy",
+          line: "橋上看紅色漁屋配背後的尖山，攝影師最愛的機位。", lat: 67.9470, lng: 13.1330 },
+        { id: "anita", area: "west", type: "food", why: "外帶", when: ["day"], name: "Anita's 海鮮", local: "Anita's Sjømat, Sakrisøy",
+          line: "黃色小村裡的海鮮小店，招牌是鱈魚漢堡，也賣在地起司、巧克力和魚乾。",
+          tip: "冬天營業時間不穩定，出發前查。", lat: 67.9420, lng: 13.1150 },
+        { id: "aa", area: "west", type: "food", why: "肉桂捲", when: ["day"], name: "Å 的老麵包店", local: "Å i Lofoten",
+          line: "E10 終點的老麵包店，在地人說是這一帶最好吃的肉桂捲。",
+          tip: "冬天營業日不固定，出發前查。", lat: 67.8790, lng: 12.9830 },
+        { id: "haukland", area: "mid", type: "sight", pri: "must", when: ["day", "night"], name: "豪克蘭海灘", local: "Haukland strand",
+          line: "白沙配雪山，晚上是看極光的經典地點。", lat: 68.1990, lng: 13.5520 },
+        { id: "uttakleiv", area: "mid", type: "sight", pri: "must", when: ["night"], name: "烏塔克萊夫海灘", local: "Uttakleiv",
+          line: "面向北方的海灘，光害少，極光倒映在潮池裡。", lat: 68.2140, lng: 13.5330 },
+        { id: "football", area: "east", type: "sight", pri: "maybe", when: ["day"], name: "亨寧斯韋爾足球場", local: "Henningsvær stadion",
+          line: "建在岩石小島上的球場，經典照片是空拍，站在地面看不太出來。", lat: 68.1530, lng: 14.2070 },
+        { id: "gallery", area: "east", type: "sight", pri: "must", when: ["day"], name: "羅弗敦美術館", local: "Galleri Lofoten",
+          line: "收藏挪威最大的北挪威 19 世紀繪畫之一，還有雕塑和當代作品。",
+          hours: "冬季開放時間出發前查", lat: 68.1550, lng: 14.2040 },
+        { id: "lysstoperi", area: "east", type: "cafe", why: "氣氛", when: ["day"], name: "Henningsvær 蠟燭坊咖啡", local: "Henningsvær Lysstøperi og Cafe",
+          line: "村子中心的小咖啡館，兼賣手工蠟燭和手作，熱巧克力很受歡迎。", lat: 68.1550, lng: 14.2050 }
+      ]
+    },
+    bgo: {
+      name: "卑爾根", region: "bgo", mapCity: "Bergen", places: ["nutshell"],
+      intro: "峽灣入口的港口城市，彩色木屋街是世界遺產。3/9 晚上到，3/10 走挪威縮影，3/11 市區或備用。",
+      tips: [
+        "KODE 美術館週一休館；你們的 3/11 是週四，剛好可以去。",
+        "挪威最常下雨的城市之一，雨具要帶。",
+        "營業時間是 2025～2026 年的資料，出發前一個月再確認。"
+      ],
+      areas: [
+        { id: "bryggen", name: "布呂根與港邊", line: "彩色木屋、魚市場和纜車站都在港邊走路範圍。" },
+        { id: "kode", name: "湖邊美術館區", line: "市中心南側的小湖 Lille Lungegårdsvann 沿岸，KODE 四棟美術館。" }
+      ],
+      pois: [
+        { id: "bryggen", area: "bryggen", type: "sight", pri: "must", when: ["day", "eve"], name: "布呂根", local: "Bryggen",
+          line: "漢薩同盟時期的木造商館，世界遺產；鑽進後巷看木板走道和老倉庫。", time: "1 小時", lat: 60.3975, lng: 5.3245 },
+        { id: "floyen", area: "bryggen", type: "sight", pri: "must", when: ["day", "eve"], name: "弗洛伊恩纜車", local: "Fløibanen",
+          line: "上山看整個港灣，晚上夜景很美。", time: "1～1.5 小時", lat: 60.3964, lng: 5.3285 },
+        { id: "fishmarket", area: "bryggen", type: "food", why: "坐下來吃", when: ["day"], name: "魚市場", local: "Fisketorget",
+          line: "港邊吃海鮮，價格偏高但是卑爾根經典。", lat: 60.3948, lng: 5.3253 },
+        { id: "kaffemisjonen", area: "bryggen", type: "cafe", why: "手沖", when: ["day"], name: "Kaffemisjonen", local: "Øvre Korskirkeallmenning 5",
+          line: "纜車站旁的精品咖啡店，在地人常推薦的卑爾根最好咖啡之一。", lat: 60.3956, lng: 5.3270 },
+        { id: "dlk", area: "bryggen", type: "cafe", why: "老店", when: ["day"], name: "Det Lille Kaffekompaniet", local: "Nedre Fjellsmug 2",
+          line: "1996 年開業，卑爾根最小也最老的精品咖啡店，在纜車站附近的小巷裡。", lat: 60.3963, lng: 5.3281 },
+        { id: "kodemuseum", area: "kode", type: "sight", pri: "must", when: ["day"], name: "KODE 美術館", local: "KODE",
+          line: "挪威第二大美術收藏，Rasmus Meyer 館有挪威黃金時代繪畫和世界第三大孟克收藏。", time: "2 小時",
+          closed: [1], tip: "有旅人提醒：部分孟克作品目前外借，展出內容出發前查。", lat: 60.3893, lng: 5.3265 }
+      ]
+    },
+    gdn: {
+      name: "格但斯克", region: "gdn", mapCity: "Gdańsk",
+      intro: "波羅的海邊的漢薩港口古城，冬天安靜又有氣氛。3/12 下午到，3/13 一整天可以去馬爾堡或索波特。",
+      tips: [
+        "長街一帶的牛奶吧和餃子店便宜又好吃，在地人和學生也常去，午餐和傍晚時段要排隊。",
+        "聖母聖殿的鐘樓有旅人說淡季不開放登頂，出發前查。",
+        "3/12 週五、3/13 週六，博物館和城堡都有開。",
+        "營業時間是 2025～2026 年的資料，出發前一個月再確認。"
+      ],
+      areas: [
+        { id: "main", name: "主城區：長街與長市場", line: "從金門到綠門的皇家之路，彩色山牆房屋和海神噴泉。" },
+        { id: "river", name: "河畔與穀倉島", line: "莫特瓦瓦河沿岸的老倉庫和中世紀起重機。" },
+        { id: "trips", name: "一日遊：馬爾堡、索波特", line: "搭火車就到，3/13 二選一。" }
+      ],
+      pois: [
+        { id: "longmarket", area: "main", type: "sight", pri: "must", when: ["day", "eve"], name: "長街與長市場", local: "Długa, Długi Targ",
+          line: "兩旁是彩色山牆商人房屋，中間是海神噴泉，格但斯克最經典的畫面。", time: "1 小時", lat: 54.3486, lng: 18.6533 },
+        { id: "mariacki", area: "main", type: "sight", pri: "must", when: ["day"], name: "聖母聖殿", local: "Bazylika Mariacka",
+          line: "世界最大的磚造教堂之一，內部高大明亮。", time: "1 小時",
+          tip: "鐘樓有 400 多階，淡季可能不開放。", lat: 54.3497, lng: 18.6532 },
+        { id: "mariacka", area: "main", type: "sight", pri: "maybe", when: ["day", "eve"], name: "瑪麗亞街", local: "ulica Mariacka",
+          line: "石階門廊和琥珀小店林立的窄街，從聖母聖殿走到河邊。", lat: 54.3502, lng: 18.6550 },
+        { id: "gdnmuseum", area: "main", type: "sight", pri: "must", when: ["day"], name: "國家博物館（格但斯克）", local: "Muzeum Narodowe w Gdańsku",
+          line: "收藏漢斯・梅姆林的祭壇畫《最後的審判》，喜歡古典繪畫一定要去。",
+          hours: "開放時間出發前查", lat: 54.3436, lng: 18.6560 },
+        { id: "neptun", area: "main", type: "food", why: "平價快吃", when: ["day"], name: "Neptun 牛奶吧", local: "Bar Mleczny Neptun, Długa",
+          line: "長街上最有名的牛奶吧，兩道菜不到 25 茲羅提（約台幣 200）。",
+          tip: "14:00 前去選擇最多，之後份量會變少。", lat: 54.3487, lng: 18.6510 },
+        { id: "mandu", area: "main", type: "food", why: "坐下來吃", when: ["day", "eve"], name: "Mandu 波蘭餃子", local: "Pierogarnia Mandu, Elżbietańska 4/8",
+          line: "常被選為格但斯克最好吃的餃子店，在火車站附近。", lat: 54.3555, lng: 18.6458 },
+        { id: "pyra", area: "main", type: "food", why: "平價快吃", when: ["day", "eve"], name: "Pyra Bar 烤馬鈴薯", local: "Pyra Bar",
+          line: "各式配料的烤馬鈴薯，一盤不到 40 茲羅提（約台幣 320）。", lat: 54.3505, lng: 18.6518 },
+        { id: "drukarnia", area: "main", type: "cafe", why: "氣氛", when: ["day", "eve"], name: "Drukarnia Café", local: "Mariacka 36",
+          line: "瑪麗亞街上的咖啡館，旅遊作家常推薦。", lat: 54.3501, lng: 18.6560 },
+        { id: "zuraw", area: "river", type: "sight", pri: "must", when: ["day", "eve"], name: "中世紀起重機", local: "Żuraw",
+          line: "河邊的木造起重機塔樓，格但斯克的地標。", lat: 54.3507, lng: 18.6574 },
+        { id: "stagiewna", area: "river", type: "food", why: "平價快吃", when: ["day"], name: "Stągiewna 牛奶吧", local: "Bar Mleczny Stągiewna, Stągiewna 15",
+          line: "老城和穀倉島之間的牛奶吧，一整餐不到 25 茲羅提。", lat: 54.3475, lng: 18.6585 },
+        { id: "malborkpoi", area: "trips", type: "sight", pri: "must", when: ["day"], name: "馬爾堡城堡", local: "Zamek w Malborku",
+          line: "世界最大的紅磚城堡，條頓騎士團總部，世界遺產。從格但斯克搭火車約 30～40 分鐘。", time: "半天",
+          hours: "冬季開放時間出發前查", lat: 54.0397, lng: 19.0277 },
+        { id: "sopotpoi", area: "trips", type: "sight", pri: "maybe", when: ["day"], name: "索波特海上棧橋", local: "Molo w Sopocie",
+          line: "歐洲最長的木造海上棧橋，從格但斯克搭通勤火車約 20～30 分鐘。", time: "半天", lat: 54.4466, lng: 18.5700 }
+      ]
+    }
   },
   cityOrder: ["waw", "osl", "tos", "lof", "bgo", "gdn"],
 
-  /* 給司機看：大字顯示當地名稱 */
-  drivers: {
-    pl: "Proszę zawieźć mnie pod ten adres.",
-    no: "Kan du kjøre meg til denne adressen?",
-    list: [
-      { lang: "pl", big: "Motel One Warsaw-Chopin", addr: "ul. Tamka 38, 00-355 Warszawa", sub: "華沙住處（2/26～2/27）" },
-      { lang: "pl", big: "Lotnisko Chopina", addr: "Terminal A", sub: "華沙機場" },
-      { lang: "pl", big: "Warszawa Centralna", addr: "", sub: "華沙中央車站" },
-      { lang: "pl", big: "Gdańsk Główny", addr: "", sub: "格但斯克火車總站" },
-      { lang: "no", big: "Oslo lufthavn", addr: "Gardermoen", sub: "奧斯陸機場" },
-      { lang: "no", big: "Tromsø lufthavn", addr: "", sub: "特羅姆瑟機場" },
-      { lang: "no", big: "Harstad/Narvik lufthavn", addr: "Evenes", sub: "埃弗內斯機場（取還車）" },
-      { lang: "no", big: "Bergen lufthavn", addr: "Flesland", sub: "卑爾根機場" }
-    ]
+  /* 地址卡：複製貼到 Bolt、Uber 或地圖；name 是要複製、給人看的當地名稱 */
+  addresses: {
+    "waw-air": { name: "Lotnisko Chopina", sub: "華沙蕭邦機場", city: "Warszawa", code: "WAW" },
+    "waw-st":  { name: "Warszawa Centralna", sub: "華沙中央車站", city: "Warszawa" },
+    "gdn-air": { name: "Port Lotniczy Gdańsk", sub: "格但斯克機場", city: "Gdańsk", code: "GDN" },
+    "gdn-st":  { name: "Gdańsk Główny", sub: "格但斯克火車總站", city: "Gdańsk" },
+    "osl-air": { name: "Oslo lufthavn Gardermoen", sub: "奧斯陸機場", city: "", code: "OSL" },
+    "tos-air": { name: "Tromsø lufthavn", sub: "特羅姆瑟機場", city: "", code: "TOS" },
+    "eve-air": { name: "Harstad/Narvik lufthavn Evenes", sub: "埃弗內斯機場（取還車）", city: "", code: "EVE" },
+    "bgo-air": { name: "Bergen lufthavn Flesland", sub: "卑爾根機場", city: "", code: "BGO" }
   },
 
   /* 極光分頁 */
