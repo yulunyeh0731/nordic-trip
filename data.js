@@ -45,7 +45,8 @@ window.TRIP = {
   ],
 
   days: [
-    { date: "2027-02-25", title: "Yulun 出發", region: "tw",
+    { date: "2027-02-25", title: "Yulun 出發",
+      alerts: ["Yulun 20:00 前到桃園第二航廈"], region: "tw",
       legs: [
         { who: "Y", t: "flight", carrier: "阿聯酋", no: "EK367",
           from: "台北 TPE", fromNote: "第二航廈", dep: "23:00",
@@ -55,7 +56,8 @@ window.TRIP = {
       ],
       notes: ["阿聯酋建議起飛前 3 小時到機場"] },
 
-    { date: "2027-02-26", title: "Yulun 抵達華沙", region: "waw", city: "waw",
+    { date: "2027-02-26", title: "Yulun 抵達華沙",
+      split: [{ k: "move", l: "抵達、到旅館", h: 2 }, { k: "free", l: "自由時段", h: 6 }], region: "waw", city: "waw",
       legs: [
         { who: "Y", t: "flight", carrier: "阿聯酋", no: "EK179",
           from: "杜拜 DXB", fromNote: "第三航廈", dep: "07:50",
@@ -65,7 +67,8 @@ window.TRIP = {
       ],
       free: [{ who: "Y", when: "下午～晚上", text: "抵達後在住處附近走走，調時差", areas: ["powisle", "old"] }] },
 
-    { date: "2027-02-27", title: "Yulun 華沙一日；May 深夜出發", region: "waw", city: "waw",
+    { date: "2027-02-27", title: "Yulun 華沙一日；May 深夜出發",
+      alerts: ["May 20:00 前到桃園第二航廈"], region: "waw", city: "waw",
       free: [{ who: "Y", when: "全天", text: "週六博物館都有開。May 這天還沒到，Yulun 自己想看的展館排在今天", areas: ["old", "powisle", "centrum"] }],
       legs: [
         { who: "M", t: "flight", carrier: "阿聯酋", no: "EK367",
@@ -74,7 +77,8 @@ window.TRIP = {
           status: "self", price: "參考價 NT$19,592（台新優惠價），原價 NT$21,342" }
       ] },
 
-    { date: "2027-02-28", title: "飛奧斯陸，兩人會合", region: "osl", places: ["oslo"],
+    { date: "2027-02-28", title: "飛奧斯陸，兩人會合",
+      alerts: ["May 12:10 抵達", "Yulun 14:25 起飛"], region: "osl", places: ["oslo"],
       legs: [
         { who: "M", t: "flight", carrier: "阿聯酋", no: "EK159",
           from: "杜拜 DXB", fromNote: "第三航廈", dep: "",
@@ -89,7 +93,8 @@ window.TRIP = {
     { date: "2027-03-01", title: "奧斯陸市區、咖啡", region: "osl", places: ["oslo"],
       plan: ["市區一日：歌劇院屋頂、精品咖啡（Tim Wendelboe、Fuglen）"] },
 
-    { date: "2027-03-02", title: "飛特羅姆瑟", region: "tos", places: ["tromso"],
+    { date: "2027-03-02", title: "飛特羅姆瑟",
+      alerts: ["10:30 起飛"], region: "tos", places: ["tromso"],
       legs: [
         { t: "flight", carrier: "挪威航空", no: "",
           from: "奧斯陸 OSL", dep: "10:30", to: "特羅姆瑟 TOS", arr: "12:30",
@@ -104,7 +109,9 @@ window.TRIP = {
     { date: "2027-03-04", title: "哈士奇雪橇", region: "tos", places: ["tromso"],
       plan: ["哈士奇雪橇", "極光團沒看到的話再報一次"] },
 
-    { date: "2027-03-05", title: "飛埃弗內斯取車，往西", region: "lof", places: ["lofoten"],
+    { date: "2027-03-05", title: "飛埃弗內斯取車，往西",
+      alerts: ["10:55 起飛", "機場取車"],
+      split: [{ k: "move", l: "飛機", h: 2 }, { k: "move", l: "開車往西", h: 4 }, { k: "free", l: "雷訥一帶", h: 3 }], region: "lof", places: ["lofoten"],
       legs: [
         { t: "flight", carrier: "Widerøe", no: "",
           from: "特羅姆瑟 TOS", dep: "10:55", to: "埃弗內斯 EVE", arr: "12:15", via: "安德內斯",
@@ -121,11 +128,14 @@ window.TRIP = {
         { t: "car", text: "往東移動，沿途可停烏塔克萊夫、豪克蘭海灘" }
       ] },
 
-    { date: "2027-03-08", title: "羅弗敦東側，新月", region: "lof", places: ["lofoten"],
+    { date: "2027-03-08", title: "羅弗敦東側，新月",
+      alerts: ["新月，整趟最暗的一夜"], region: "lof", places: ["lofoten"],
       plan: ["東側一日：亨寧斯韋爾漁村"],
       notes: ["新月，整趟最暗的一夜"] },
 
-    { date: "2027-03-09", title: "還車，飛卑爾根", region: "bgo", places: ["bergen"],
+    { date: "2027-03-09", title: "還車，飛卑爾根",
+      alerts: ["還車後 13:55 起飛"],
+      split: [{ k: "move", l: "開回機場", h: 2.5 }, { k: "move", l: "飛機", h: 3 }, { k: "free", l: "卑爾根晚上", h: 3 }], region: "bgo", places: ["bergen"],
       legs: [
         { t: "car", text: "開回埃弗內斯機場還車" },
         { t: "flight", carrier: "Widerøe", no: "",
@@ -134,7 +144,9 @@ window.TRIP = {
           price: "1,599 挪威克朗（約 NT$5,341）" }
       ] },
 
-    { date: "2027-03-10", title: "挪威縮影一日", region: "bgo", places: ["nutshell"],
+    { date: "2027-03-10", title: "挪威縮影一日",
+      alerts: ["08:29 火車出發"],
+      split: [{ k: "tour", l: "挪威縮影", h: 10 }, { k: "free", l: "晚上", h: 3 }], region: "bgo", places: ["nutshell"],
       legs: [
         { t: "tour", text: "挪威縮影一日來回", dep: "08:29", arr: "18:17", status: "pending",
           price: "兩人 4,976 挪威克朗（每人約 NT$8,310）" }
@@ -145,7 +157,9 @@ window.TRIP = {
       plan: ["卑爾根市區：布呂根、弗洛伊恩纜車、魚市場"],
       notes: ["挪威縮影如果停駛，改在這天走"] },
 
-    { date: "2027-03-12", title: "飛格但斯克", region: "gdn", places: ["gdansk"],
+    { date: "2027-03-12", title: "飛格但斯克",
+      alerts: ["13:40 起飛"],
+      split: [{ k: "free", l: "卑爾根早上", h: 3 }, { k: "move", l: "機場、飛機", h: 4 }, { k: "free", l: "格但斯克傍晚", h: 3 }], region: "gdn", places: ["gdansk"],
       legs: [
         { t: "flight", carrier: "Wizz Air", no: "",
           from: "卑爾根 BGO", dep: "13:40", to: "格但斯克 GDN", arr: "15:25",
@@ -157,7 +171,9 @@ window.TRIP = {
     { date: "2027-03-13", title: "馬爾堡或索波特", region: "gdn", places: ["malbork", "sopot"],
       plan: ["馬爾堡城堡，或索波特海上棧橋"] },
 
-    { date: "2027-03-14", title: "火車到華沙", region: "waw", city: "waw",
+    { date: "2027-03-14", title: "火車到華沙",
+      alerts: ["週日商店公休"],
+      split: [{ k: "move", l: "火車", h: 3 }, { k: "free", l: "自由時段", h: 5 }], region: "waw", city: "waw",
       legs: [
         { t: "train", text: "波蘭國鐵，格但斯克到華沙，約 2.5～3 小時", status: "pending",
           price: "約 19～32 英鎊，出發前約 30 天開賣" }
@@ -165,10 +181,12 @@ window.TRIP = {
       free: [{ when: "抵達後", text: "週日博物館有開、商店大多公休。兩人想一起看的展館排在今天", areas: ["old", "powisle"] }],
       notes: ["週日，超市大多公休；Żabka 便利商店通常有開，餐廳不受影響"] },
 
-    { date: "2027-03-15", title: "華沙一日", region: "waw", city: "waw",
+    { date: "2027-03-15", title: "華沙一日",
+      alerts: ["週一博物館休館"], region: "waw", city: "waw",
       free: [{ when: "全天", text: "週一王宮和國家博物館休館，適合公園、觀景台和市區散步", areas: ["centrum", "lazienki", "old"] }] },
 
-    { date: "2027-03-16", title: "華沙起飛回台", region: "sky",
+    { date: "2027-03-16", title: "華沙起飛回台",
+      alerts: ["10:40 前到機場"], region: "sky",
       legs: [
         { t: "flight", carrier: "阿聯酋", no: "EK180",
           from: "華沙 WAW", fromNote: "A 航廈", dep: "13:40",
@@ -276,6 +294,8 @@ window.TRIP = {
 
   /* 城市 → 區域 → 地點
      type：sight 景點、food 吃、cafe 咖啡
+     pri：must 必去、maybe 有空再去（景點用）；why：吃和咖啡的去的理由
+     when：適合的時段 day 白天、eve 傍晚、night 晚上
      closed：公休的星期（0 週日、1 週一 … 6 週六），手冊會自動標出「當天公休」
      lat、lng：大約座標，用來算離住處的直線距離 */
   cities: {
@@ -296,62 +316,62 @@ window.TRIP = {
         { id: "lazienki", name: "瓦津基公園", line: "王室夏宮和大公園，水上宮殿裡有國王的畫廊。" }
       ],
       pois: [
-        { id: "stor", area: "powisle", type: "cafe", name: "STOR Cafe", local: "ul. Tamka 33", q: "STOR Cafe Tamka 33 Warszawa",
+        { id: "stor", pri: "must", why: "手沖", when: ["day"], area: "powisle", type: "cafe", name: "STOR Cafe", local: "ul. Tamka 33", q: "STOR Cafe Tamka 33 Warszawa",
           line: "華沙最早的精品咖啡店之一，招牌是手沖，和住處同一條街。",
           tip: "華沙在地雜誌說，很多人覺得這是全波蘭最好的咖啡館。", lat: 52.2368, lng: 21.0228 },
-        { id: "natmuseum", area: "powisle", type: "sight", name: "國家博物館", local: "Muzeum Narodowe w Warszawie",
+        { id: "natmuseum", pri: "must", when: ["day"], area: "powisle", type: "sight", name: "國家博物館", local: "Muzeum Narodowe w Warszawie",
           line: "波蘭最大的美術館，有歐洲古典繪畫和波蘭歷史畫。", time: "2～3 小時",
           hours: "週二～週日 10:00–18:00，週五到 20:00", closed: [1], free: "週二常設展免費",
           tip: "馬泰伊科的巨幅歷史畫《格倫瓦德之戰》在這裡。", lat: 52.2316, lng: 21.0249 },
-        { id: "chopin", area: "powisle", type: "sight", name: "蕭邦博物館", local: "Muzeum Fryderyka Chopina",
+        { id: "chopin", pri: "maybe", area: "powisle", type: "sight", name: "蕭邦博物館", local: "Muzeum Fryderyka Chopina",
           line: "全世界最多蕭邦手稿和遺物的博物館，就在住處對面。", closed: [1], warn: "整修中",
           hours: "2026 年整修休館，預計 2027 年重開，日期未定",
           tip: "重開後採整點入場。出發前要確認 2 月底、3 月中有沒有開。", lat: 52.2366, lng: 21.0216 },
-        { id: "wedel", area: "powisle", type: "cafe", name: "Wedel 巧克力咖啡館", local: "Pijalnia Czekolady E. Wedel, Szpitalna 8",
+        { id: "wedel", why: "熱巧克力", when: ["day", "eve"], area: "powisle", type: "cafe", name: "Wedel 巧克力咖啡館", local: "Pijalnia Czekolady E. Wedel, Szpitalna 8",
           line: "1894 年開的熱巧克力老店，波蘭的國民巧克力品牌。", lat: 52.2344, lng: 21.0125 },
-        { id: "bristol", area: "old", type: "cafe", name: "Cafe Bristol", local: "Krakowskie Przedmieście 42/44", q: "Cafe Bristol Warszawa",
+        { id: "bristol", why: "百年老店", when: ["day"], area: "old", type: "cafe", name: "Cafe Bristol", local: "Krakowskie Przedmieście 42/44", q: "Cafe Bristol Warszawa",
           line: "1901 年開業的維也納風老咖啡館，在布里斯托飯店一樓。",
           tip: "招牌是維也納咖啡和奶油千層派（kremówka）。", lat: 52.2428, lng: 21.0153 },
-        { id: "castle", area: "old", type: "sight", name: "華沙王宮", local: "Zamek Królewski",
+        { id: "castle", pri: "must", when: ["day"], area: "old", type: "sight", name: "華沙王宮", local: "Zamek Królewski",
           line: "歷代國王的居所，有林布蘭的兩幅肖像，還有貝洛托畫的 23 幅華沙城景。", time: "2～3 小時",
           hours: "週二～週日開放；冬季時間各來源不一，週日較早關", closed: [1], free: "週三常設展免費",
           tip: "旅人說重建得非常逼真，慢慢看可以待到三小時。", lat: 52.2479, lng: 21.0143 },
-        { id: "oldsquare", area: "old", type: "sight", name: "老城廣場與甕城", local: "Rynek Starego Miasta, Barbakan",
+        { id: "oldsquare", pri: "must", when: ["day", "eve"], area: "old", type: "sight", name: "老城廣場與甕城", local: "Rynek Starego Miasta, Barbakan",
           line: "彩色山牆房屋圍成的廣場，中央是華沙美人魚像；往北走到紅磚甕城和新城。", time: "1 小時",
           hours: "戶外，隨時可去", lat: 52.2497, lng: 21.0122 },
-        { id: "muzwarszawy", area: "old", type: "sight", name: "華沙博物館", local: "Muzeum Warszawy",
+        { id: "muzwarszawy", pri: "maybe", when: ["day"], area: "old", type: "sight", name: "華沙博物館", local: "Muzeum Warszawy",
           line: "在老城廣場邊的 11 棟老房子裡，講華沙的城市史。", time: "1.5 小時",
           hours: "週二～週五 9:00–17:00（週四到 19:00），週末 11:00–18:00", closed: [1], free: "週四免費",
           lat: 52.2502, lng: 21.0121 },
-        { id: "concert", area: "old", type: "sight", name: "蕭邦音樂會", local: "Muzeum Archidiecezji Warszawskiej",
+        { id: "concert", pri: "maybe", when: ["eve"], area: "old", type: "sight", name: "蕭邦音樂會", local: "Muzeum Archidiecezji Warszawskiej",
           line: "總教區博物館每天 18:30 的蕭邦音樂會，票價 45 茲羅提（約台幣 360）。",
           tip: "蕭邦博物館整修期間的替代方案。這是 2026 年的資訊。", lat: 52.2486, lng: 21.0131 },
-        { id: "zapiecek", area: "old", type: "food", name: "Zapiecek 波蘭餃子", local: "Freta 18 等多家分店", q: "Zapiecek Freta 18 Warszawa",
+        { id: "zapiecek", why: "坐下來吃", when: ["day", "eve"], area: "old", type: "food", name: "Zapiecek 波蘭餃子", local: "Freta 18 等多家分店", q: "Zapiecek Freta 18 Warszawa",
           line: "連鎖波蘭餃子店，老城就有好幾家，台灣交換生最常推薦。",
           tip: "台灣學生推薦點煎的，不要點水煮的；觀光客多時要排隊。人均約台幣 400～500（2023 年記錄）。",
           lat: 52.2522, lng: 21.0093 },
-        { id: "barbakan", area: "old", type: "food", name: "Pod Barbakanem 牛奶吧", local: "Bar Mleczny Pod Barbakanem",
+        { id: "barbakan", why: "平價快吃", when: ["day"], area: "old", type: "food", name: "Pod Barbakanem 牛奶吧", local: "Bar Mleczny Pod Barbakanem",
           line: "老城牆邊的牛奶吧，用很低的價格吃家常波蘭菜。",
           tip: "牛奶吧是自己到櫃台點餐的平價食堂，吃完就走。", lat: 52.2509, lng: 21.0102 },
-        { id: "pkin", area: "centrum", type: "sight", name: "科學文化宮觀景台", local: "Pałac Kultury i Nauki，30 樓", q: "Pałac Kultury i Nauki Warszawa",
+        { id: "pkin", pri: "must", when: ["day", "eve"], area: "centrum", type: "sight", name: "科學文化宮觀景台", local: "Pałac Kultury i Nauki，30 樓", q: "Pałac Kultury i Nauki Warszawa",
           line: "在 30 樓看整個華沙，也是少數週一有開的景點。", time: "1 小時",
           hours: "每天 10:00–20:00（節日和活動時會變）",
           tip: "台灣交換生推薦離開華沙前上去道別；也有旅人覺得景色不錯但稱不上震撼。", lat: 52.2318, lng: 21.0060 },
-        { id: "prasowy", area: "centrum", type: "food", name: "Bar Prasowy 牛奶吧", local: "Marszałkowska 10/16", q: "Bar Prasowy Marszałkowska 10/16 Warszawa",
+        { id: "prasowy", why: "平價快吃", when: ["day"], area: "centrum", type: "food", name: "Bar Prasowy 牛奶吧", local: "Marszałkowska 10/16", q: "Bar Prasowy Marszałkowska 10/16 Warszawa",
           line: "1954 年開業的牛奶吧，裝潢翻新過，在地人和留學生最常推薦。",
           tip: "平日中午 12～14 點人最多。", lat: 52.2189, lng: 21.0181 },
-        { id: "koszyki", area: "centrum", type: "food", name: "Hala Koszyki 美食市場", local: "Koszykowa 63", q: "Hala Koszyki Warszawa",
+        { id: "koszyki", why: "美食街", when: ["day", "eve"], area: "centrum", type: "food", name: "Hala Koszyki 美食市場", local: "Koszykowa 63", q: "Hala Koszyki Warszawa",
           line: "老市場改建的美食街，約 30 個攤位，波蘭菜到亞洲菜都有。",
           tip: "兩人想吃的不一樣時很方便。", lat: 52.2226, lng: 21.0126 },
-        { id: "ministerstwo", area: "centrum", type: "cafe", name: "Ministerstwo Kawy", local: "Marszałkowska", q: "Ministerstwo Kawy Warszawa",
+        { id: "ministerstwo", why: "手沖", when: ["day"], area: "centrum", type: "cafe", name: "Ministerstwo Kawy", local: "Marszałkowska", q: "Ministerstwo Kawy Warszawa",
           line: "華沙知名的精品咖啡店，用瑞典烘豆商 Koppi 的豆子。", lat: 52.2237, lng: 21.0161 },
-        { id: "charlotte", area: "centrum", type: "cafe", name: "Charlotte", local: "Plac Zbawiciela", q: "Charlotte Plac Zbawiciela Warszawa",
+        { id: "charlotte", why: "早餐", when: ["day"], area: "centrum", type: "cafe", name: "Charlotte", local: "Plac Zbawiciela", q: "Charlotte Plac Zbawiciela Warszawa",
           line: "法式麵包店咖啡館，在市中心最熱鬧的廣場上，適合吃早餐。", lat: 52.2196, lng: 21.0172 },
-        { id: "palaceisle", area: "lazienki", type: "sight", name: "水上宮殿", local: "Pałac na Wyspie",
+        { id: "palaceisle", pri: "must", when: ["day"], area: "lazienki", type: "sight", name: "水上宮殿", local: "Pałac na Wyspie",
           line: "湖中的古典主義宮殿，裡面是末代國王收藏的畫廊。", time: "公園加宮殿 1.5～2 小時",
           hours: "內部開放時間出發前查官網",
           tip: "冬天最好下午 2 點前開始逛，天黑得早，地面也可能濕滑泥濘。", lat: 52.2150, lng: 21.0353 },
-        { id: "chopinmon", area: "lazienki", type: "sight", name: "蕭邦紀念碑", local: "Pomnik Fryderyka Chopina",
+        { id: "chopinmon", pri: "maybe", when: ["day"], area: "lazienki", type: "sight", name: "蕭邦紀念碑", local: "Pomnik Fryderyka Chopina",
           line: "公園入口附近的蕭邦雕像。",
           tip: "戶外蕭邦音樂會只在 5 月中到 9 月底的週末，3 月沒有。", lat: 52.2146, lng: 21.0270 }
       ]
@@ -364,6 +384,59 @@ window.TRIP = {
   },
   cityOrder: ["waw", "osl", "tos", "lof", "bgo", "gdn"],
 
+  /* 給司機看：大字顯示當地名稱 */
+  drivers: {
+    pl: "Proszę zawieźć mnie pod ten adres.",
+    no: "Kan du kjøre meg til denne adressen?",
+    list: [
+      { lang: "pl", big: "Motel One Warsaw-Chopin", addr: "ul. Tamka 38, 00-355 Warszawa", sub: "華沙住處（2/26～2/27）" },
+      { lang: "pl", big: "Lotnisko Chopina", addr: "Terminal A", sub: "華沙機場" },
+      { lang: "pl", big: "Warszawa Centralna", addr: "", sub: "華沙中央車站" },
+      { lang: "pl", big: "Gdańsk Główny", addr: "", sub: "格但斯克火車總站" },
+      { lang: "no", big: "Oslo lufthavn", addr: "Gardermoen", sub: "奧斯陸機場" },
+      { lang: "no", big: "Tromsø lufthavn", addr: "", sub: "特羅姆瑟機場" },
+      { lang: "no", big: "Harstad/Narvik lufthavn", addr: "Evenes", sub: "埃弗內斯機場（取還車）" },
+      { lang: "no", big: "Bergen lufthavn", addr: "Flesland", sub: "卑爾根機場" }
+    ]
+  },
+
+  /* 極光分頁 */
+  aurora: {
+    facts: [
+      "新月約在 3/8，剛好在羅弗敦。月亮越暗，淡的極光越看得清楚。",
+      "十一年雲量資料：特羅姆瑟 3 月每晚可用的夜約 28%；住 3 晚至少遇到一個可用夜約 51%。",
+      "整趟在極光區共 7 晚：特羅姆瑟 3 晚、羅弗敦 4 晚。換地點比在同一地多住更有效。",
+      "肉眼看到的極光多半是灰綠色的淡光帶，照片會比肉眼亮很多。"
+    ],
+    tour: [
+      "只報一次，沒看到再報。挑雲量預報最晴的那晚。",
+      "選小團、評價高、可改期的業者，報名前問清楚會不會跨境到芬蘭或瑞典追晴天。",
+      "候選 Flexitour：2018 年跟這家看到極光，官網每人約 1,590 挪威克朗起（約台幣 5,300），出發 24 小時前取消可退 95%。"
+    ],
+    lofoten: [
+      "有車就是追光工具：看雲量往晴的一側移動。",
+      "北側海灘地平線開闊、光害少：烏塔克萊夫、Eggum、Gimsøy。",
+      "村子裡的路燈會讓照片過曝，找村子邊緣暗一點的地方。"
+    ],
+    coming: ["極光和雲量預報 App", "拍照設定", "保暖穿著"]
+  },
+
+  /* 行前清單：勾選狀態只存在自己的手機 */
+  checklist: [
+    { id: "may-ticket", text: "May 訂阿聯酋機票", sub: "2/27 去程、3/16 和 Yulun 同班回程" },
+    { id: "lofoten", text: "決定羅弗敦 4 晚或 5 晚" },
+    { id: "osl-tos", text: "訂奧斯陸 → 特羅姆瑟", sub: "挪威航空 3/2 10:30" },
+    { id: "wideroe", text: "訂 Widerøe 兩段", sub: "3/5 特羅姆瑟 → 埃弗內斯、3/9 埃弗內斯 → 卑爾根" },
+    { id: "car", text: "訂埃弗內斯租車", sub: "四驅、自排、雪胎，同地取還" },
+    { id: "nutshell", text: "訂挪威縮影", sub: "3/10 卑爾根來回" },
+    { id: "wizz", text: "訂卑爾根 → 格但斯克", sub: "Wizz Air 3/12，含 20 公斤託運" },
+    { id: "stays", text: "訂各地住宿", sub: "奧斯陸、特羅姆瑟、羅弗敦兩段、卑爾根、格但斯克、華沙" },
+    { id: "metropol", text: "取消 Hotel Metropol", sub: "2/21 前免費取消" },
+    { id: "pkp", text: "買格但斯克 → 華沙火車票", sub: "出發前約 30 天開賣" },
+    { id: "entry", text: "查入境規定最新公告", sub: "歐盟 EES、ETIAS 上路時程" },
+    { id: "hours", text: "確認景點營業時間", sub: "出發前一個月，包括蕭邦博物館有沒有重開" },
+    { id: "offline", text: "手冊加到主畫面、測試離線", sub: "出發前兩週" }
+  ],
   info: {
     baggage: [
       { seg: "阿聯酋（Yulun）", text: "託運 25 公斤，手提 1 件 7 公斤" },

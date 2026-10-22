@@ -1,7 +1,7 @@
 /* 離線快取：有網路時抓最新版並更新快取，沒網路時用快取 */
-const CACHE = "nordic-trip-v2";
+const CACHE = "nordic-trip-v3";
 const ASSETS = ["./", "./index.html", "./data.js", "./manifest.webmanifest",
-                "./icon-192.png", "./icon-512.png", "./apple-touch-icon.png"];
+                "./fonts/serif.woff2", "./icon-192.png", "./icon-512.png", "./apple-touch-icon.png"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));
