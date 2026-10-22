@@ -4,15 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#15293A">
-<title>北境冬旅｜北歐＋波蘭行程與地點指南</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌌</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="北境冬旅">
+<title>北境冬旅｜旅遊手冊</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon-192.png">
 <style>
 :root{
   --night:#15293A;
-  --night-2:#1D3A52;
   --frost:#EEF2F4;
   --paper:#FBFCFC;
   --ink:#1F2A33;
@@ -21,792 +22,495 @@
   --line-soft:rgba(31,42,51,.08);
 
   --aurora:#1D8A68;
-  --aurora-soft:#5DCAA5;
-  --aurora-violet:#AFA9EC;
   --brick:#9A4A2F;
-  --amber:#B97F17;
   --fjord:#1F4E6B;
-  --ice:#4F7F9E;
-  --birch:#44546A;
   --rust:#A63A2C;
 
-  --t-must-bg:rgba(29,138,104,.13);  --t-must:#136B50;
-  --t-worth-bg:rgba(31,78,107,.11);  --t-worth:#1F4E6B;
-  --t-maybe-bg:rgba(185,127,23,.16); --t-maybe:#7E560C;
-  --t-skip-bg:rgba(166,58,44,.12);   --t-skip:#8E2F23;
+  --ok-bg:rgba(29,138,104,.13);   --ok:#136B50;
+  --wait-bg:rgba(185,127,23,.16); --wait:#7E560C;
+  --self-bg:rgba(31,78,107,.11);  --self:#1F4E6B;
+  --skip-bg:rgba(166,58,44,.12);  --skip:#8E2F23;
 
-  --serif:"Noto Serif TC","Songti TC","PMingLiU",serif;
-  --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei","Heiti TC",sans-serif;
+  --sky-ink:#EEF3F6; --sky-sub:#B9C8D3; --sky-dim:#9FB2C0;
+  --l1:#5DCAA5; --l2:#1D9E75; --l3:#AFA9EC;
+
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei","Heiti TC",sans-serif;
+  --head:"Songti TC","Noto Serif TC","PMingLiU",var(--sans);
+  color-scheme:light;
   box-sizing:border-box;
   padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --frost:#0E1C28;--paper:#15283A;--ink:#E6EDF2;--ink-dim:#A3B3C0;
+    color-scheme:dark;
+    --night:#0B1824;--frost:#0E1C28;--paper:#15283A;--ink:#E6EDF2;--ink-dim:#A3B3C0;
     --line:rgba(230,237,242,.14);--line-soft:rgba(230,237,242,.08);
-    --aurora:#5DCAA5;--brick:#D98A6C;--amber:#E2B25E;--fjord:#8DB9D6;--ice:#9CC3DC;--birch:#AFBCCB;--rust:#EE8B7C;
-    --t-must-bg:rgba(93,202,165,.16);--t-must:#8FE0C2;
-    --t-worth-bg:rgba(141,185,214,.16);--t-worth:#B5D4EA;
-    --t-maybe-bg:rgba(226,178,94,.18);--t-maybe:#F0CC8A;
-    --t-skip-bg:rgba(238,139,124,.16);--t-skip:#F4AFA4;
+    --aurora:#5DCAA5;--brick:#D98A6C;--fjord:#8DB9D6;--rust:#EE8B7C;
+    --ok-bg:rgba(93,202,165,.16);--ok:#8FE0C2;
+    --wait-bg:rgba(226,178,94,.18);--wait:#F0CC8A;
+    --self-bg:rgba(141,185,214,.16);--self:#B5D4EA;
+    --skip-bg:rgba(238,139,124,.16);--skip:#F4AFA4;
   }
 }
 :root[data-theme="dark"]{
-  --frost:#0E1C28;--paper:#15283A;--ink:#E6EDF2;--ink-dim:#A3B3C0;
+  color-scheme:dark;
+  --night:#0B1824;--frost:#0E1C28;--paper:#15283A;--ink:#E6EDF2;--ink-dim:#A3B3C0;
   --line:rgba(230,237,242,.14);--line-soft:rgba(230,237,242,.08);
-  --aurora:#5DCAA5;--brick:#D98A6C;--amber:#E2B25E;--fjord:#8DB9D6;--ice:#9CC3DC;--birch:#AFBCCB;--rust:#EE8B7C;
-  --t-must-bg:rgba(93,202,165,.16);--t-must:#8FE0C2;
-  --t-worth-bg:rgba(141,185,214,.16);--t-worth:#B5D4EA;
-  --t-maybe-bg:rgba(226,178,94,.18);--t-maybe:#F0CC8A;
-  --t-skip-bg:rgba(238,139,124,.16);--t-skip:#F4AFA4;
+  --aurora:#5DCAA5;--brick:#D98A6C;--fjord:#8DB9D6;--rust:#EE8B7C;
+  --ok-bg:rgba(93,202,165,.16);--ok:#8FE0C2;
+  --wait-bg:rgba(226,178,94,.18);--wait:#F0CC8A;
+  --self-bg:rgba(141,185,214,.16);--self:#B5D4EA;
+  --skip-bg:rgba(238,139,124,.16);--skip:#F4AFA4;
+}
+/* 極光觀測模式：全暗紅，晚上在戶外看手機不刺眼 */
+html:root[data-mode="red"]{
+  color-scheme:dark;
+  --night:#000;--frost:#000;--paper:#0A0101;--ink:#C2412F;--ink-dim:#7D2A1F;
+  --line:rgba(194,65,47,.28);--line-soft:rgba(194,65,47,.14);
+  --aurora:#C2412F;--brick:#C2412F;--fjord:#C2412F;--rust:#C2412F;
+  --ok-bg:rgba(194,65,47,.14);--ok:#C2412F;
+  --wait-bg:rgba(194,65,47,.14);--wait:#C2412F;
+  --self-bg:rgba(194,65,47,.14);--self:#C2412F;
+  --skip-bg:rgba(194,65,47,.14);--skip:#C2412F;
+  --sky-ink:#C2412F;--sky-sub:#8E2F23;--sky-dim:#7D2A1F;
+  --l1:#5A140D;--l2:#3E0E09;--l3:#4A110B;
 }
 *,*::before,*::after{box-sizing:inherit;-webkit-tap-highlight-color:transparent}
-html{scroll-padding-top:64px;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--frost);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.78;-webkit-font-smoothing:antialiased}
+html{scroll-padding-top:calc(60px + env(safe-area-inset-top,0px));-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--frost);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:inherit}
 .wrap{max-width:680px;margin:0 auto;padding:0 18px}
 
-/* ── 頂部：夜空與極光線 ── */
-.sky{background:var(--night);color:#EEF3F6;padding-top:env(safe-area-inset-top,0px);position:relative;overflow:hidden}
-.sky svg.lines{display:block;width:100%;height:120px}
-.sky .lines path{fill:none;stroke-linecap:round}
-.sky .drift{animation:drift 26s ease-in-out infinite alternate}
-.sky .drift2{animation:drift 34s ease-in-out infinite alternate-reverse}
+/* 頁首 */
+.sky{background:var(--night);color:var(--sky-ink);padding-top:env(safe-area-inset-top,0px);overflow:hidden}
+.sky svg{display:block;width:100%;height:96px}
+.sky path{fill:none;stroke-linecap:round}
+.sky .a1{stroke:var(--l1)} .sky .a2{stroke:var(--l2)} .sky .a3{stroke:var(--l3)}
+.drift{animation:drift 26s ease-in-out infinite alternate}
+.drift2{animation:drift 34s ease-in-out infinite alternate-reverse}
 @keyframes drift{from{transform:translateX(-14px)}to{transform:translateX(14px)}}
-@media (prefers-reduced-motion:reduce){.sky .drift,.sky .drift2{animation:none}}
-.sky .title{padding-top:0;padding-bottom:26px}
-.sky h1{font-family:var(--serif);font-weight:900;font-size:clamp(34px,10vw,48px);line-height:1.1;margin:0;letter-spacing:.08em}
-.sky .sub{margin:10px 0 0;font-size:15px;color:#B9C8D3;line-height:1.7}
-
-/* 路線 */
-.route{margin:22px 0 0;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
+@media (prefers-reduced-motion:reduce){.drift,.drift2{animation:none}}
+.sky .title{padding-bottom:24px}
+.sky h1{font-family:var(--head);font-weight:900;font-size:clamp(34px,10vw,46px);line-height:1.1;margin:0;letter-spacing:.08em}
+.sky .sub{margin:8px 0 0;font-size:15px;color:var(--sky-sub)}
+.status{margin:14px 0 0;font-size:15.5px;color:var(--sky-ink);border-left:2px solid var(--l1);padding-left:10px;line-height:1.6}
+.route{margin:20px 0 0;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
 .route::-webkit-scrollbar{display:none}
 .route ol{list-style:none;margin:0;padding:0;display:flex;min-width:max-content}
-.route li{position:relative;padding:22px 13px 0;text-align:center;white-space:nowrap}
-.route li::before{content:"";position:absolute;top:8px;left:0;right:0;height:1px;background:rgba(238,243,246,.35)}
+.route li{position:relative;padding:20px 12px 0;text-align:center;white-space:nowrap}
+.route li::before{content:"";position:absolute;top:8px;left:0;right:0;height:1px;background:var(--sky-dim);opacity:.5}
 .route li:first-child::before{left:50%}
 .route li:last-child::before{right:50%}
-.route li::after{content:"";position:absolute;top:4px;left:50%;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:#EEF3F6}
-.route li.polar::after{background:#5DCAA5;box-shadow:0 0 0 4px rgba(93,202,165,.18)}
-.route b{display:block;font-weight:500;font-size:14px;color:#EEF3F6}
-.route span{font-size:12px;color:#9FB2C0}
-.route-note{font-size:12.5px;color:#9FB2C0;margin:6px 0 0}
+.route li::after{content:"";position:absolute;top:4px;left:50%;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:var(--sky-ink)}
+.route li.polar::after{background:var(--l1);box-shadow:0 0 0 4px rgba(93,202,165,.18)}
+.route li.solo::after{background:var(--night);border:1.5px solid var(--sky-ink)}
+.route li.solo b{color:var(--sky-sub)}
+.route b{display:block;font-weight:500;font-size:14px}
+.route span{font-size:12px;color:var(--sky-dim)}
 
-/* 章節導覽 */
-nav.jump{position:sticky;top:0;z-index:10;background:var(--frost);padding-top:env(safe-area-inset-top,0px);border-bottom:1px solid var(--line)}
-nav.jump .wrap{display:flex;gap:8px;overflow-x:auto;padding-top:10px;padding-bottom:10px;scrollbar-width:none}
-nav.jump .wrap::-webkit-scrollbar{display:none}
-nav.jump a{flex:none;display:flex;align-items:center;gap:7px;min-height:36px;color:var(--ink);text-decoration:none;font-size:14.5px;padding:0 14px;border:1px solid var(--line);background:var(--paper);border-radius:3px}
-nav.jump a i{width:8px;height:8px;border-radius:50%;flex:none}
-nav.jump a:focus-visible{outline:2px solid var(--fjord);outline-offset:2px}
+/* 置頂列 */
+.bar{position:sticky;top:0;z-index:20;background:var(--frost);padding-top:env(safe-area-inset-top,0px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:6px;padding-top:9px;padding-bottom:9px}
+.bar nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+.bar nav::-webkit-scrollbar{display:none}
+.bar a,.bar button{flex:none;display:inline-flex;align-items:center;min-height:36px;padding:0 12px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font:inherit;font-size:14.5px;text-decoration:none;border-radius:3px;cursor:pointer}
+.bar a.today{border-color:var(--aurora);color:var(--aurora);font-weight:500}
+.bar button{gap:6px}
+.bar button i{width:9px;height:9px;border-radius:50%;background:#C2412F}
+.bar a:focus-visible,.bar button:focus-visible,.dates a:focus-visible,summary:focus-visible{outline:2px solid var(--fjord);outline-offset:2px}
 
-/* 分級說明 */
-.legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px;margin:22px 0 4px;font-size:14px;color:var(--ink-dim)}
-.legend div{display:flex;gap:8px;align-items:center}
-.tag{display:inline-block;font-size:12.5px;font-weight:500;letter-spacing:.12em;padding:2px 7px 2px 8px;white-space:nowrap;border-radius:2px}
-.t-must{background:var(--t-must-bg);color:var(--t-must)}
-.t-worth{background:var(--t-worth-bg);color:var(--t-worth)}
-.t-maybe{background:var(--t-maybe-bg);color:var(--t-maybe)}
-.t-skip{background:var(--t-skip-bg);color:var(--t-skip)}
+/* 章節 */
+section.sec{padding-top:36px}
+.sec-h{display:flex;align-items:baseline;gap:12px;margin:0 0 4px}
+.sec-h h2{font-family:var(--head);font-weight:900;font-size:28px;line-height:1.25;margin:0;letter-spacing:.06em}
+.sec-h span{font-size:14px;color:var(--ink-dim)}
+.lead{color:var(--ink-dim);font-size:15px;margin:6px 0 16px}
 
-/* 國家章節 */
-section.country{padding-top:40px}
-.c-head{display:flex;align-items:flex-end;gap:14px;margin-bottom:6px}
-.c-head h2{font-family:var(--serif);font-weight:900;font-size:30px;line-height:1.2;margin:0;letter-spacing:.06em}
-.c-head .motif{font-family:var(--serif);font-weight:500;font-size:15px;color:var(--c);padding-bottom:5px}
-.c-rule{height:3px;width:56px;background:var(--c);margin:8px 0 14px}
-.c-lead{color:var(--ink-dim);margin:0 0 16px;font-size:15.5px}
-#poland{--c:var(--brick)}
-#norway{--c:var(--fjord)}
-#sweden{--c:var(--ice)}
-#finland{--c:var(--birch)}
-#skip{--c:var(--rust)}
-#summary{--c:var(--ink-dim)}
+/* 日期條 */
+.dates{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:14px -18px 18px;padding:2px 18px 4px}
+.dates::-webkit-scrollbar{display:none}
+.dates a{flex:none;width:50px;text-align:center;text-decoration:none;padding:7px 0 6px;background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--c);border-radius:3px;line-height:1.25}
+.dates b{display:block;font-size:15px;font-weight:500}
+.dates small{font-size:11.5px;color:var(--ink-dim)}
+.dates a.is-today{background:var(--c);border-color:var(--c);color:var(--paper)}
+.dates a.is-today small{color:var(--paper)}
 
-/* 地點卡 */
-details.place{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--c);margin:0 0 12px}
-details.place.polar{border-left-color:var(--aurora)}
-details.place>summary{list-style:none;cursor:pointer;padding:15px 44px 15px 16px;position:relative;min-height:56px}
-details.place>summary::-webkit-details-marker{display:none}
-details.place>summary:focus-visible{outline:2px solid var(--fjord);outline-offset:2px}
-.s-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.s-top h3{font-family:var(--serif);font-weight:700;font-size:21px;margin:0;line-height:1.35}
-.s-line{margin:5px 0 0;color:var(--ink-dim);font-size:15px;line-height:1.65}
-.polar-mark{font-size:12px;color:var(--aurora);display:inline-flex;align-items:center;gap:5px}
-.polar-mark::before{content:"";width:14px;height:6px;border-top:1.5px solid var(--aurora);border-radius:50% 50% 0 0}
-.chev{position:absolute;right:18px;top:22px;width:9px;height:9px;border-right:1.5px solid var(--ink-dim);border-bottom:1.5px solid var(--ink-dim);transform:rotate(45deg);transition:transform .2s}
-details[open]>summary .chev{transform:rotate(-135deg);top:26px}
-@media (prefers-reduced-motion:reduce){.chev{transition:none}}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px;color:var(--ink-dim);margin:0 0 14px}
 
-.body{padding:2px 16px 18px;border-top:1px solid var(--line-soft)}
-.body h4{font-size:13.5px;font-weight:500;letter-spacing:.12em;color:var(--c);margin:18px 0 6px}
-details.place.polar .body h4{color:var(--aurora)}
-.body p{margin:0 0 10px}
-.body ul{margin:0 0 10px;padding-left:1.15em}
-.body li{margin:5px 0}
-.body li b{font-weight:500}
-.quote{border-left:2px solid var(--c);padding:2px 0 2px 12px;color:var(--ink-dim);margin:6px 0 12px;font-family:var(--serif);font-size:15.5px}
-details.place.polar .quote{border-left-color:var(--aurora)}
-.note{background:var(--t-maybe-bg);padding:11px 13px;margin:12px 0 2px;font-size:15px;line-height:1.7}
-.sub{border-top:1px solid var(--line-soft);padding:10px 0 2px;margin:4px 0}
-.sub b{display:block;font-weight:500;font-family:var(--serif);font-size:16.5px;margin-bottom:2px}
-.stops{list-style:none;padding:0;margin:8px 0 10px;counter-reset:s}
-.stops li{position:relative;padding:0 0 12px 32px;counter-increment:s;margin:0}
-.stops li::before{content:counter(s);position:absolute;left:0;top:3px;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--c);color:var(--c);font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center}
-.stops li:not(:last-child)::after{content:"";position:absolute;left:10.5px;top:27px;bottom:2px;width:1px;background:var(--line)}
+/* 狀態標籤 */
+.st{display:inline-block;font-size:12px;font-weight:500;letter-spacing:.04em;line-height:1.6;padding:0 7px;border-radius:2px;white-space:nowrap;vertical-align:1px}
+.st-booked{background:var(--ok-bg);color:var(--ok)}
+.st-pending{background:var(--wait-bg);color:var(--wait)}
+.st-self{background:var(--self-bg);color:var(--self)}
+.who{display:inline-block;font-size:12px;line-height:1.6;padding:0 6px;border:1px solid var(--line);border-radius:2px;color:var(--ink-dim);margin-right:6px;vertical-align:1px}
 
-/* 分隔：極光細線 */
-.divider{display:block;width:100%;height:26px;margin:34px 0 0}
-.divider path{fill:none;stroke:var(--aurora);stroke-width:1;opacity:.55}
+/* 每一天 */
+.day{background:var(--paper);border:1px solid var(--line);border-top:4px solid var(--c);margin:0 0 14px;scroll-margin-top:calc(64px + env(safe-area-inset-top,0px))}
+.day.is-today{box-shadow:0 0 0 2px var(--c)}
+.day-h{display:flex;align-items:flex-end;gap:14px;padding:12px 16px 10px;border-bottom:1px solid var(--line-soft)}
+.dd{font-family:var(--head);font-weight:900;font-size:30px;line-height:1;color:var(--c);letter-spacing:.02em}
+.dd small{font-family:var(--sans);font-weight:400;font-size:13px;color:var(--ink-dim);margin-left:6px;letter-spacing:0}
+.loc{margin-left:auto;text-align:right;line-height:1.35}
+.loc b{display:block;font-weight:500;font-size:16px}
+.loc span{font-size:12.5px;color:var(--ink-dim)}
+.day-b{padding:4px 16px 12px}
 
-/* 不推薦 */
-.skiplist{list-style:none;padding:0;margin:0}
-.skiplist li{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--rust);padding:15px 16px;margin:0 0 12px}
-.skiplist h3{font-family:var(--serif);font-weight:700;font-size:18.5px;margin:0 0 6px;line-height:1.4}
-.skiplist p{margin:0;font-size:15.5px}
-.skiplist .alt{margin-top:8px;font-size:15px;color:var(--t-must)}
+.evs{list-style:none;margin:0;padding:0}
+.ev{display:grid;grid-template-columns:48px 26px minmax(0,1fr);gap:0 8px;position:relative;padding:10px 0 8px}
+.ev-t{font-weight:500;font-size:15.5px;line-height:1.6;font-variant-numeric:tabular-nums;text-align:right}
+.ev-n{position:relative;display:flex;justify-content:center}
+.ev-n svg{width:24px;height:24px;padding:4px;border-radius:50%;background:var(--paper);border:1.5px solid var(--c);color:var(--c);position:relative;z-index:1;margin-top:1px}
+.ev:not(:last-child) .ev-n::after{content:"";position:absolute;top:26px;bottom:-14px;left:50%;width:1px;background:var(--line)}
+.ev-main{margin:0;font-size:16px;font-weight:500;line-height:1.55}
+.ev-sub{margin:2px 0 0;font-size:14.5px;color:var(--ink-dim);line-height:1.6}
+.ev-main .st{margin-left:6px}
 
-/* 總表 */
-.tbl{overflow-x:auto;background:var(--paper);border:1px solid var(--line)}
-table{border-collapse:collapse;width:100%;min-width:430px;font-size:15px}
-th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line-soft);vertical-align:top}
-th{font-weight:500;color:var(--ink-dim);font-size:13.5px;letter-spacing:.08em}
-tr:last-child td{border-bottom:none}
+.stay{margin:10px 0 2px;padding:10px 12px;border:1px dashed var(--line);display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 10px;align-items:start}
+.stay svg{width:20px;height:20px;color:var(--c);margin-top:3px}
+.stay p{margin:0;font-size:15px;line-height:1.6}
+.stay .s-sub{font-size:14px;color:var(--ink-dim)}
+.stay a{color:var(--fjord);text-underline-offset:3px}
 
-/* 行程 */
-#plan{--c:var(--aurora)}
-#transport{--c:var(--ink-dim)}
-.leg{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--c);margin:0 0 12px;padding:14px 16px 8px}
-.leg-h{display:flex;align-items:baseline;gap:4px 12px;flex-wrap:wrap}
-.leg-h h3{font-family:var(--serif);font-weight:700;font-size:21px;margin:0;line-height:1.35}
-.leg-h .n{font-size:14px;color:var(--ink-dim)}
-.days{list-style:none;margin:6px 0 0;padding:0}
-.days li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:0 12px;padding:9px 0;border-top:1px solid var(--line-soft)}
-.days .d{font-weight:500;font-size:15px;line-height:1.6;color:var(--c)}
-.days .d small{display:block;font-weight:400;font-size:12.5px;color:var(--ink-dim);line-height:1.3}
-.days p{margin:0;font-size:15.5px;line-height:1.7}
-.days p+p{margin-top:4px}
-.mv-k{display:inline-block;font-size:12px;letter-spacing:.06em;line-height:1.5;padding:0 6px;margin-right:7px;border:1px solid var(--line);border-radius:2px;color:var(--ink-dim);vertical-align:2px}
-.leg .note{margin:6px 0 8px}
+.plan{margin:10px 0 0;padding-left:1.1em;font-size:15.5px}
+.plan li{margin:3px 0}
+.dnote{background:var(--wait-bg);padding:9px 12px;margin:10px 0 0;font-size:14.5px;line-height:1.65}
+.plinks{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
+.plinks a{font-size:13.5px;text-decoration:none;color:var(--c);border:1px solid var(--line);padding:1px 9px;border-radius:2px}
 
 /* 交通 */
-.seg{background:var(--paper);border:1px solid var(--line);padding:12px 16px 13px;margin:0 0 10px}
+.seg{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--c);padding:11px 15px 12px;margin:0 0 10px}
 .seg-top{display:flex;justify-content:space-between;align-items:baseline;gap:2px 12px;flex-wrap:wrap}
-.seg-top b{font-family:var(--serif);font-weight:700;font-size:17.5px;line-height:1.4}
+.seg-top b{font-weight:500;font-size:16.5px}
 .seg-top span{font-size:13.5px;color:var(--ink-dim)}
-.seg dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:3px 14px;margin:8px 0 0;font-size:15px;line-height:1.65}
-.seg dt{color:var(--ink-dim);font-size:13.5px;line-height:1.85}
+.seg dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 14px;margin:6px 0 0;font-size:14.5px;line-height:1.65}
+.seg dt{color:var(--ink-dim);font-size:13px;line-height:1.85}
 .seg dd{margin:0}
-.seg .tag{font-size:11.5px;letter-spacing:.06em;margin-left:4px;vertical-align:1px}
-.sum{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--aurora);padding:13px 16px;margin:16px 0 0}
-.sum p{margin:0 0 6px;font-size:15px}
-.sum p:last-child{margin:0}
-.sum .big{font-family:var(--serif);font-weight:700;font-size:20px}
-.todo{margin:16px 0 0;background:var(--t-maybe-bg);padding:12px 14px 12px}
-.todo b{display:block;font-weight:500;margin-bottom:4px}
-.todo ul{margin:0;padding-left:1.15em;font-size:15px;line-height:1.7}
-.todo li{margin:4px 0}
 
-footer{margin-top:44px;background:var(--night);color:#9FB2C0;font-size:13.5px}
-footer .wrap{padding-top:22px;padding-bottom:30px}
+/* 地點卡 */
+details.place{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--c);margin:0 0 10px;scroll-margin-top:calc(64px + env(safe-area-inset-top,0px))}
+details.place>summary{list-style:none;cursor:pointer;padding:13px 42px 13px 15px;position:relative}
+details.place>summary::-webkit-details-marker{display:none}
+.p-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.p-top h3{font-family:var(--head);font-weight:700;font-size:20px;margin:0;line-height:1.35}
+.p-line{margin:4px 0 0;color:var(--ink-dim);font-size:14.5px;line-height:1.6}
+.tier{font-size:12px;font-weight:500;letter-spacing:.08em;padding:0 7px;border-radius:2px;line-height:1.6}
+.tier-must{background:var(--ok-bg);color:var(--ok)}
+.tier-worth{background:var(--self-bg);color:var(--self)}
+.tier-maybe{background:var(--wait-bg);color:var(--wait)}
+.polar-mark{font-size:12px;color:var(--aurora)}
+.chev{position:absolute;right:17px;top:20px;width:9px;height:9px;border-right:1.5px solid var(--ink-dim);border-bottom:1.5px solid var(--ink-dim);transform:rotate(45deg);transition:transform .2s}
+details[open]>summary .chev{transform:rotate(-135deg);top:24px}
+@media (prefers-reduced-motion:reduce){.chev{transition:none}}
+.body{padding:2px 15px 14px;border-top:1px solid var(--line-soft);font-size:15.5px}
+.body h4{font-size:13.5px;font-weight:500;letter-spacing:.1em;color:var(--c);margin:16px 0 4px}
+.body p{margin:0 0 8px}
+.body ul{margin:0 0 8px;padding-left:1.1em}
+.body li{margin:4px 0}
+.body b{font-weight:500}
+.quote{border-left:2px solid var(--c);padding:1px 0 1px 12px;color:var(--ink-dim);margin:6px 0 10px;font-family:var(--head)}
+.note{background:var(--wait-bg);padding:10px 12px;margin:10px 0 2px;font-size:14.5px;line-height:1.65}
+.subp{border-top:1px solid var(--line-soft);padding:9px 0 2px;margin:4px 0}
+.subp b{display:block;font-family:var(--head);font-weight:700;font-size:16px;margin-bottom:2px}
+.stops{list-style:none;padding:0;margin:8px 0 10px;counter-reset:s}
+.stops li{position:relative;padding:0 0 10px 32px;counter-increment:s;margin:0}
+.stops li::before{content:counter(s);position:absolute;left:0;top:3px;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--c);color:var(--c);font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center}
+
+/* 資訊、筆記 */
+.box{background:var(--paper);border:1px solid var(--line);padding:12px 15px;margin:0 0 12px}
+.box h3{font-size:16px;font-weight:500;margin:0 0 6px}
+.rows{margin:0;display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+.rows div{border-top:1px solid var(--line-soft);padding-top:7px}
+.rows div:first-child{border-top:none;padding-top:0}
+.rows dt{font-size:13.5px;color:var(--ink-dim)}
+.rows dd{margin:0;font-size:15px}
+.box ul{margin:0;padding-left:1.1em;font-size:15px}
+.box li{margin:4px 0}
+.coming{color:var(--ink-dim)}
+.skip li{margin:0 0 10px}
+.skip .alt{color:var(--ok)}
+
+footer{margin-top:40px;background:var(--night);color:var(--sky-dim);font-size:13px}
+footer .wrap{padding-top:20px;padding-bottom:28px}
 footer p{margin:0 0 6px}
-footer svg{display:block;width:100%;height:40px}
-footer svg path{fill:none;stroke-linecap:round}
 </style>
 </head>
 <body>
 
 <header class="sky">
-  <svg class="lines" viewBox="0 0 400 120" preserveAspectRatio="none" aria-hidden="true">
+  <svg viewBox="0 0 400 96" preserveAspectRatio="none" aria-hidden="true">
     <g class="drift">
-      <path d="M-30,86 C60,40 130,98 210,56 S330,20 430,48" stroke="#5DCAA5" stroke-width="2.4"/>
-      <path d="M-30,96 C70,54 140,108 220,68 S340,34 430,60" stroke="#1D9E75" stroke-width="1.4"/>
+      <path class="a1" d="M-30,70 C60,30 130,82 210,46 S330,16 430,40" stroke-width="2.4"/>
+      <path class="a2" d="M-30,80 C70,44 140,92 220,58 S340,28 430,52" stroke-width="1.4"/>
     </g>
     <g class="drift2">
-      <path d="M-30,74 C50,30 120,84 200,44 S320,8 430,34" stroke="#AFA9EC" stroke-width="1"/>
-      <path d="M-30,106 C90,70 150,116 230,82 S350,52 430,74" stroke="#5DCAA5" stroke-width=".8"/>
+      <path class="a3" d="M-30,60 C50,22 120,70 200,36 S320,6 430,28" stroke-width="1"/>
+      <path class="a1" d="M-30,88 C90,58 150,98 230,70 S350,44 430,64" stroke-width=".8"/>
     </g>
   </svg>
   <div class="wrap title">
     <h1>北境冬旅</h1>
-    <p class="sub">北歐＋波蘭行程與地點指南。2027 年 2 月 27 日深夜出發，3 月 17 日回台，歐洲 16 晚。<br>前面是每天的行程和交通，後面是每個地點的介紹和旅人經驗。</p>
-    <div class="route" aria-label="目前路線">
-      <ol>
-        <li><b>奧斯陸</b><span>2 晚</span></li>
-        <li class="polar"><b>特羅姆瑟</b><span>3 晚</span></li>
-        <li class="polar"><b>羅弗敦</b><span>4 晚</span></li>
-        <li><b>卑爾根</b><span>3 晚，含挪威縮影</span></li>
-        <li><b>格但斯克</b><span>2 晚</span></li>
-        <li><b>華沙</b><span>2 晚</span></li>
-      </ol>
-    </div>
-    <p class="route-note">目前的路線，綠點是極光區。左右滑動看完整路線。</p>
+    <p class="sub">北歐＋波蘭旅遊手冊，2027/2/25～3/17</p>
+    <p class="status" id="status"></p>
+    <div class="route" aria-label="路線"><ol id="route"></ol></div>
   </div>
 </header>
 
-<nav class="jump" aria-label="章節">
+<div class="bar">
   <div class="wrap">
-    <a href="#plan"><i style="background:var(--aurora)"></i>行程</a>
-    <a href="#transport"><i style="background:var(--ink-dim)"></i>交通</a>
-    <a href="#norway"><i style="background:var(--fjord)"></i>挪威</a>
-    <a href="#poland"><i style="background:var(--brick)"></i>波蘭</a>
-    <a href="#sweden"><i style="background:var(--ice)"></i>瑞典</a>
-    <a href="#finland"><i style="background:var(--birch)"></i>芬蘭</a>
-    <a href="#skip"><i style="background:var(--rust)"></i>不推薦</a>
-    <a href="#summary"><i style="background:var(--ink-dim)"></i>總表</a>
+    <nav aria-label="章節">
+      <a href="#plan" id="go-today" class="today">今天</a>
+      <a href="#plan">行程</a>
+      <a href="#transport">交通</a>
+      <a href="#places">地點</a>
+      <a href="#info">資訊</a>
+      <a href="#notes">筆記</a>
+    </nav>
+    <button type="button" id="mode" aria-pressed="false" title="極光觀測模式：暗紅色低亮度"><i></i>觀測</button>
   </div>
-</nav>
-
-<main class="wrap">
-
-<!-- 行程 -->
-<section class="country" id="plan">
-  <div class="c-head"><h2>行程</h2><span class="motif">挪威先，波蘭收尾</span></div>
-  <div class="c-rule"></div>
-  <p class="c-lead">目前的版本，機票、住宿、租車都還沒訂。羅弗敦還在考慮要不要從 4 晚改成 5 晚。</p>
-
-  <div class="leg" style="--c:var(--ink-dim)">
-    <div class="leg-h"><h3>出發</h3><span class="n">台北經杜拜到奧斯陸</span></div>
-    <ul class="days">
-      <li><span class="d">2/27<small>週六</small></span><div><p><span class="mv-k">飛機</span>23:00 台北起飛，阿聯酋 EK367 到杜拜轉機</p></div></li>
-    </ul>
-  </div>
-
-  <div class="leg" style="--c:var(--fjord)">
-    <div class="leg-h"><h3>奧斯陸</h3><span class="n">2 晚，2/28～3/1</span></div>
-    <ul class="days">
-      <li><span class="d">2/28<small>週日</small></span><div><p><span class="mv-k">飛機</span>12:10 抵奧斯陸（EK159）</p><p>下午進市區，輕鬆走走調時差</p></div></li>
-      <li><span class="d">3/1<small>週一</small></span><div><p>市區一日：歌劇院屋頂、精品咖啡（Tim Wendelboe、Fuglen）</p></div></li>
-    </ul>
-  </div>
-
-  <div class="leg" style="--c:var(--aurora)">
-    <div class="leg-h"><h3>特羅姆瑟</h3><span class="n">3 晚，3/2～3/4</span></div>
-    <ul class="days">
-      <li><span class="d">3/2<small>週二</small></span><div><p><span class="mv-k">飛機</span>挪威航空 10:30→12:30，奧斯陸到特羅姆瑟</p></div></li>
-      <li><span class="d">3/3<small>週三</small></span><div><p>看雲量預報，挑最晴的一晚報極光團（Flexitour 優先，出發 24 小時前取消可退 95%）</p></div></li>
-      <li><span class="d">3/4<small>週四</small></span><div><p>哈士奇雪橇；極光團沒看到的話再報一次</p></div></li>
-    </ul>
-  </div>
-
-  <div class="leg" style="--c:var(--aurora)">
-    <div class="leg-h"><h3>羅弗敦</h3><span class="n">4 晚，3/5～3/8，自駕</span></div>
-    <ul class="days">
-      <li><span class="d">3/5<small>週五</small></span><div><p><span class="mv-k">飛機</span>Widerøe 10:55→12:15，特羅姆瑟到埃弗內斯，中途停安德內斯</p><p><span class="mv-k">自駕</span>機場取車，往西開到雷訥一帶</p></div></li>
-      <li><span class="d">3/6<small>週六</small></span><div><p>西側一日：雷訥、哈姆諾伊、薩克里索伊、Å</p></div></li>
-      <li><span class="d">3/7<small>週日</small></span><div><p><span class="mv-k">自駕</span>往東移動，沿途可停烏塔克萊夫、豪克蘭海灘，晚上住亨寧斯韋爾或斯沃爾韋爾一帶</p></div></li>
-      <li><span class="d">3/8<small>週一</small></span><div><p>東側一日：亨寧斯韋爾漁村。這天新月，晚上是整趟最暗的夜</p></div></li>
-    </ul>
-    <div class="note">住宿：雷訥一帶 2 晚（3/5、3/6），亨寧斯韋爾或斯沃爾韋爾一帶 2 晚（3/7、3/8），都找有廚房的住處。</div>
-  </div>
-
-  <div class="leg" style="--c:var(--fjord)">
-    <div class="leg-h"><h3>卑爾根</h3><span class="n">3 晚，3/9～3/11</span></div>
-    <ul class="days">
-      <li><span class="d">3/9<small>週二</small></span><div><p><span class="mv-k">自駕</span>開回埃弗內斯機場還車</p><p><span class="mv-k">飛機</span>Widerøe 13:55→16:40，埃弗內斯到卑爾根，中途停特隆赫姆</p></div></li>
-      <li><span class="d">3/10<small>週三</small></span><div><p><span class="mv-k">一日遊</span>挪威縮影來回，08:29 出發，18:17 回到卑爾根</p></div></li>
-      <li><span class="d">3/11<small>週四</small></span><div><p>卑爾根市區：布呂根、弗洛伊恩纜車、魚市場。挪威縮影如果停駛，改在這天走</p></div></li>
-    </ul>
-  </div>
-
-  <div class="leg" style="--c:var(--brick)">
-    <div class="leg-h"><h3>格但斯克</h3><span class="n">2 晚，3/12～3/13</span></div>
-    <ul class="days">
-      <li><span class="d">3/12<small>週五</small></span><div><p><span class="mv-k">飛機</span>Wizz Air 13:40→15:25，卑爾根到格但斯克</p><p>傍晚逛老城長街、河畔</p></div></li>
-      <li><span class="d">3/13<small>週六</small></span><div><p>馬爾堡城堡，或索波特海上棧橋</p></div></li>
-    </ul>
-  </div>
-
-  <div class="leg" style="--c:var(--brick)">
-    <div class="leg-h"><h3>華沙</h3><span class="n">2 晚，3/14～3/15</span></div>
-    <ul class="days">
-      <li><span class="d">3/14<small>週日</small></span><div><p><span class="mv-k">火車</span>格但斯克到華沙，約 2.5～3 小時</p><p>週日大部分商店公休</p></div></li>
-      <li><span class="d">3/15<small>週一</small></span><div><p>老城與王宮、瓦津基公園；有剛好的表演再看</p></div></li>
-    </ul>
-  </div>
-
-  <div class="leg" style="--c:var(--ink-dim)">
-    <div class="leg-h"><h3>回程</h3><span class="n">華沙經杜拜回台北</span></div>
-    <ul class="days">
-      <li><span class="d">3/16<small>週二</small></span><div><p><span class="mv-k">飛機</span>13:40 華沙起飛，阿聯酋 EK180 到杜拜，轉 EK366</p></div></li>
-      <li><span class="d">3/17<small>週三</small></span><div><p>15:35 抵台北</p></div></li>
-    </ul>
-  </div>
-</section>
-
-<!-- 交通 -->
-<section class="country" id="transport">
-  <div class="c-head"><h2>交通</h2><span class="motif">每人價格，都還沒訂</span></div>
-  <div class="c-rule"></div>
-  <p class="c-lead">按搭乘順序排列。標「待確認」的是還沒查到或來源不一致的項目。</p>
-
-  <div class="seg">
-    <div class="seg-top"><b>台北 → 杜拜 → 奧斯陸</b><span>2/27～2/28</span></div>
-    <dl>
-      <dt>航班</dt><dd>阿聯酋 EK367＋EK159</dd>
-      <dt>時間</dt><dd>2/27 23:00 起飛，2/28 12:10 抵達<br>杜拜轉機時間<span class="tag t-maybe">待確認</span></dd>
-      <dt>票種</dt><dd>經濟艙彈性票價，30 公斤</dd>
-      <dt>價格</dt><dd>NT$19,592（台新優惠價）<span class="tag t-maybe">條件待確認</span><br>原價 NT$21,342</dd>
-    </dl>
-  </div>
-
-  <div class="seg">
-    <div class="seg-top"><b>奧斯陸 → 特羅姆瑟</b><span>3/2</span></div>
-    <dl>
-      <dt>航班</dt><dd>挪威航空<span class="tag t-maybe">班號待確認</span></dd>
-      <dt>時間</dt><dd>10:30→12:30，直飛</dd>
-      <dt>票種</dt><dd>LowFare+，含 23 公斤託運</dd>
-      <dt>價格</dt><dd>USD 137.30（約 NT$4,435）<span class="tag t-maybe">價格待更新</span></dd>
-    </dl>
-  </div>
-
-  <div class="seg">
-    <div class="seg-top"><b>特羅姆瑟 → 埃弗內斯</b><span>3/5</span></div>
-    <dl>
-      <dt>航班</dt><dd>Widerøe<span class="tag t-maybe">班號待確認</span></dd>
-      <dt>時間</dt><dd>10:55→12:15，中途停安德內斯</dd>
-      <dt>票種</dt><dd>Smart，含 1 件託運和登機箱</dd>
-      <dt>價格</dt><dd>749 挪威克朗（約 NT$2,502）<br>Full Flex 871 挪威克朗（約 NT$2,909），可改期可退</dd>
-    </dl>
-  </div>
-
-  <div class="seg">
-    <div class="seg-top"><b>埃弗內斯租車</b><span>3/5～3/9</span></div>
-    <dl>
-      <dt>條件</dt><dd>機場同地取還車，四驅、自排、雪胎</dd>
-      <dt>時間</dt><dd>3/5 中午取車，3/9 中午前還車</dd>
-      <dt>價格</dt><dd><span class="tag t-maybe">報價待查</span></dd>
-    </dl>
-  </div>
-
-  <div class="seg">
-    <div class="seg-top"><b>埃弗內斯 → 卑爾根</b><span>3/9</span></div>
-    <dl>
-      <dt>航班</dt><dd>Widerøe<span class="tag t-maybe">班號待確認</span></dd>
-      <dt>時間</dt><dd>13:55→16:40，中途停特隆赫姆</dd>
-      <dt>票種</dt><dd>Smart，含 1 件託運和登機箱</dd>
-      <dt>價格</dt><dd>1,599 挪威克朗（約 NT$5,341）</dd>
-    </dl>
-  </div>
-
-  <div class="seg">
-    <div class="seg-top"><b>挪威縮影</b><span>3/10</span></div>
-    <dl>
-      <dt>路線</dt><dd>卑爾根當天來回：火車、巴士、峽灣遊船、弗洛姆鐵路</dd>
-      <dt>時間</dt><dd>08:29 出發，18:17 回到卑爾根</dd>
-      <dt>價格</dt><dd>兩人 4,976 挪威克朗（每人約 NT$8,310）</dd>
-    </dl>
-  </div>
-
-  <div class="seg">
-    <div class="seg-top"><b>卑爾根 → 格但斯克</b><span>3/12</span></div>
-    <dl>
-      <dt>航班</dt><dd>Wizz Air<span class="tag t-maybe">班號待確認</span></dd>
-      <dt>時間</dt><dd>13:40→15:25，直飛</dd>
-      <dt>票種</dt><dd>基本票＋WIZZ Go，含 20 公斤託運</dd>
-      <dt>價格</dt><dd>1,006 挪威克朗（約 NT$3,361）</dd>
-    </dl>
-  </div>
-
-  <div class="seg">
-    <div class="seg-top"><b>格但斯克 → 華沙</b><span>3/14</span></div>
-    <dl>
-      <dt>交通</dt><dd>波蘭國鐵，約 2.5～3 小時</dd>
-      <dt>價格</dt><dd>約 19～32 英鎊<br>出發前約 30 天開賣，車次到時再查</dd>
-    </dl>
-  </div>
-
-  <div class="seg">
-    <div class="seg-top"><b>華沙 → 杜拜 → 台北</b><span>3/16～3/17</span></div>
-    <dl>
-      <dt>航班</dt><dd>阿聯酋 EK180＋EK366</dd>
-      <dt>時間</dt><dd>3/16 13:40 起飛；EK366 杜拜 03:40 起飛，3/17 15:35 抵台北</dd>
-      <dt>票種</dt><dd>經濟艙優惠票價，25 公斤</dd>
-      <dt>價格</dt><dd>NT$13,520（台新優惠價）<span class="tag t-maybe">條件待確認</span><br>原價 NT$14,020</dd>
-    </dl>
-  </div>
-
-  <div class="sum">
-    <p class="big">每人約 NT$57,061</p>
-    <p>上面所有航班＋挪威縮影，阿聯酋用台新優惠價；用原價約 NT$59,311。不含波蘭火車和租車。</p>
-  </div>
-
-  <div class="todo">
-    <b>還在等的決定</b>
-    <ul>
-      <li>羅弗敦要不要加到 5 晚：卑爾根改 2 晚（沒有備用日），或奧斯陸改 1 晚</li>
-      <li>阿聯酋現在訂，或等 11/6～9 的 ITF 旅展。台新優惠（代碼 TWTSB26）可以用到 12/31，但每筆訂單折扣金額、適用票種、開口票能不能用，都還要確認</li>
-      <li>May 能不能排到 2/27 晚上出發</li>
-    </ul>
-  </div>
-</section>
-
-<svg class="divider" viewBox="0 0 400 26" preserveAspectRatio="none" aria-hidden="true"><path d="M0,14 C80,4 150,22 220,12 S340,4 400,12"/></svg>
-
-<div class="legend" aria-label="分級說明">
-  <div><span class="tag t-must">必去</span>值得為它安排</div>
-  <div><span class="tag t-worth">值得</span>順路一定去</div>
-  <div><span class="tag t-maybe">看情況</span>有條件才值得</div>
-  <div><span class="tag t-skip">不推薦</span>可以跳過</div>
 </div>
 
-<!-- 挪威 -->
-<section class="country" id="norway">
-  <div class="c-head"><h2>挪威</h2><span class="motif">峽灣與極光</span></div>
-  <div class="c-rule"></div>
-  <p class="c-lead">不論選哪個方案都會保留的核心：北極圈的極光和雪山，加上西部的峽灣。</p>
-
-  <details class="place polar">
-    <summary>
-      <div class="s-top"><h3>特羅姆瑟</h3><span class="tag t-must">必去</span><span class="polar-mark">極光區</span></div>
-      <p class="s-line">北極圈裡生活機能最好的城市，極光團最成熟。</p>
-      <span class="chev" aria-hidden="true"></span>
-    </summary>
-    <div class="body">
-      <h4>是什麼</h4>
-      <p>挪威北部最大的城市，位在北極圈內約 350 公里的小島上，被稱為「北極門戶」。市中心走路就能逛完，餐廳、博物館、飯店都很完整。</p>
-      <h4>有什麼</h4>
-      <ul>
-        <li><b>極光團</b>：好的導遊會看雲量開到內陸，甚至越過邊境到芬蘭追晴天。2018 年就是跟 Flexitour 看到極光的，這家現在仍由同一位導遊經營，評價依然很好</li>
-        <li><b>狗拉雪橇</b>：營地在郊外的克瓦洛亞島，例如 Tromsø Wilderness Centre，有超過 300 隻狗，推薦選自己駕駛</li>
-        <li><b>纜車</b>：上 421 公尺的觀景台，天氣好時看得到約 70 公里外的林根阿爾卑斯山</li>
-        <li><b>北極大教堂</b>：三角形的白色教堂，是城市地標</li>
-      </ul>
-      <h4>旅人怎麼說</h4>
-      <p class="quote">很貴、極光不穩定、市中心比想像中小，但不代表不值得去。如果期待的是 IG 上隨時都有的極光，很可能會失望。</p>
-      <p>2025 年機場旅客量增加約 40%，冬天晚上觀光巴士塞滿港邊。飯店每晚約 2,400～3,800 挪威克朗（約台幣 7,200～11,400）。</p>
-      <div class="note">極光團品質落差很大，要選小團、評價高、可彈性改期的業者。3 月看不到鯨魚，賞鯨季是 11～1 月。</div>
+<main class="wrap">
+  <section class="sec" id="plan">
+    <div class="sec-h"><h2>行程</h2><span>每天的移動、住宿和安排</span></div>
+    <div class="dates" id="dates" aria-label="日期"></div>
+    <div class="legend">
+      <span><span class="st st-booked">已訂</span> 已經開票或訂好</span>
+      <span><span class="st st-pending">待訂</span> 還沒訂</span>
+      <span><span class="st st-self">May 自訂</span> May 自己處理</span>
     </div>
-  </details>
+    <div id="days"></div>
+  </section>
 
-  <details class="place polar">
-    <summary>
-      <div class="s-top"><h3>羅弗敦群島</h3><span class="tag t-must">必去</span><span class="polar-mark">極光區</span></div>
-      <p class="s-line">雪山直接從海裡拔起，山腳是紅色漁屋。挪威冬天風景的最高峰。</p>
-      <span class="chev" aria-hidden="true"></span>
-    </summary>
-    <div class="body">
-      <h4>是什麼</h4>
-      <p>挪威西北外海的一串群島，一條 E10 公路由東到西把所有島串起來。2～3 月是冬季最推薦的時段，因為白天變長，光線最漂亮。</p>
-      <h4>會去哪裡</h4>
-      <p>這次是先西後東：從埃弗內斯取車後直接往西，前 2 晚住雷訥一帶，後 2 晚住亨寧斯韋爾或斯沃爾韋爾一帶，最後開回埃弗內斯還車。下面依 E10 由東到西介紹。</p>
-      <div class="sub"><b>東側：斯沃爾韋爾、亨寧斯韋爾</b>斯沃爾韋爾是羅弗敦東側最大的鎮，生活機能最好。亨寧斯韋爾是建在小島群上的漁村，冬天正值鱈魚季，港口掛滿晾魚乾的木架。有名的海上足球場就在這裡，但經典照片是空拍，站在地面看不太出來。</div>
-      <div class="sub"><b>中段：烏塔克萊夫、豪克蘭海灘</b>白天是雪山配海灘，晚上是羅弗敦看極光的經典地點。</div>
-      <div class="sub"><b>西側：哈姆諾伊、薩克里索伊、雷訥、Å</b>整趟的精華。哈姆諾伊是紅色漁屋配尖山；過橋的薩克里索伊整村是黃色的；雷訥是羅弗敦最經典的明信片畫面；Å 是 E10 的終點。</div>
-      <h4>旅人怎麼說</h4>
-      <p class="quote">冬天絕對值得，但這時的羅弗敦比較安靜、陰鬱、難以預測。期待穩定的天氣就會失望。</p>
-      <p>3 月中去的旅客說主要道路清得很快，配釘胎慢慢開不難。中文平台上「冬天不適合自駕」的說法，多半來自推銷包團的業者。</p>
-      <div class="note">部分餐廳冬天會休息，超市選擇也少，建議住可以煮飯的小屋。雷訥布林根登山步道冬天很危險，不建議爬。租車選 SUV、確認有釘胎。</div>
+  <section class="sec" id="transport">
+    <div class="sec-h"><h2>交通</h2><span>按搭乘順序</span></div>
+    <p class="lead">價格是每人，查價當時的參考值，實際以官網和訂購時為準。</p>
+    <div id="segs"></div>
+  </section>
+
+  <section class="sec" id="places">
+    <div class="sec-h"><h2>地點</h2><span>路線上會去的地方</span></div>
+    <div id="placelist"></div>
+  </section>
+
+  <section class="sec" id="info">
+    <div class="sec-h"><h2>資訊</h2><span>出發前會陸續補齊</span></div>
+    <div class="box">
+      <h3>行李限額</h3>
+      <dl class="rows" id="baggage"></dl>
     </div>
-  </details>
-
-  <details class="place">
-    <summary>
-      <div class="s-top"><h3>挪威縮影</h3><span class="tag t-must">必去</span></div>
-      <p class="s-line">一天看完峽灣、高山鐵路和雪原。這次從卑爾根當天來回，不帶行李。</p>
-      <span class="chev" aria-hidden="true"></span>
-    </summary>
-    <div class="body">
-      <h4>是什麼</h4>
-      <p>一條把火車、巴士、峽灣遊船和登山鐵路串起來的經典路線。這次走卑爾根出發、卑爾根回來的一日版本，3/10 出發。</p>
-      <h4>依序會經過</h4>
-      <ol class="stops">
-        <li><b>卑爾根到沃斯</b>：08:29 搭火車，09:41 到沃斯，沿途湖泊和山谷</li>
-        <li><b>沃斯到古德旺恩</b>：10:10 轉巴士下山，11:10 到峽灣邊</li>
-        <li><b>納柔依峽灣遊船</b>：12:00 開船，14:00 到弗洛姆。世界遺產，兩岸峭壁非常窄</li>
-        <li><b>弗洛姆鐵路</b>：14:30 出發，15:14 到米達爾。約 20 公里爬升 800 多公尺，是世界上最陡的一般鐵路之一，會停在大瀑布旁</li>
-        <li><b>米達爾回卑爾根</b>：15:56 搭卑爾根鐵路，18:17 回到卑爾根</li>
-      </ol>
-      <h4>旅人怎麼說</h4>
-      <p>冬天評價兩極。有台灣旅人 3 月走，說雪景美到讓人忘記呼吸；也有人覺得冬天弗洛姆鐵路景色普通，瀑布整個結冰。還有人遇到火車取消，改坐好幾個小時的巴士。</p>
-      <div class="note">冬天遇到天氣不好或峽灣結冰，遊船會臨時改成從弗洛姆出發的來回航程，古德旺恩到弗洛姆改搭巴士。從古德旺恩出發的訂位改搭 12:00 的弗洛姆來回船，回到弗洛姆仍接得上 14:30 的鐵路。比較需要擔心的是卑爾根鐵路因冰雪延誤，所以 3/11 留作備用日。官方套票兩人 4,976 挪威克朗。</div>
+    <div class="box">
+      <h3>之後會加入</h3>
+      <ul class="coming" id="coming"></ul>
     </div>
-  </details>
+  </section>
 
-  <details class="place">
-    <summary>
-      <div class="s-top"><h3>卑爾根</h3><span class="tag t-worth">值得</span></div>
-      <p class="s-line">峽灣入口的港口城市，彩色木屋街是世界遺產。住 3 晚，含挪威縮影一日和一天備用。</p>
-      <span class="chev" aria-hidden="true"></span>
-    </summary>
-    <div class="body">
-      <ul>
-        <li><b>布呂根</b>：港邊一排彩色木造倉庫，漢薩同盟時期的商館，世界遺產</li>
-        <li><b>弗洛伊恩纜車</b>：上山看整個港灣，晚上夜景很美</li>
-        <li><b>魚市場</b>：港邊吃海鮮</li>
-      </ul>
-      <p>論壇上的評價是「值得待一天」。缺點是挪威最常下雨的城市之一。</p>
-    </div>
-  </details>
-
-  <details class="place">
-    <summary>
-      <div class="s-top"><h3>奧斯陸</h3><span class="tag t-worth">值得</span></div>
-      <p class="s-line">挪威首都，現代建築、孟克和北歐精品咖啡。1～2 天。</p>
-      <span class="chev" aria-hidden="true"></span>
-    </summary>
-    <div class="body">
-      <ul>
-        <li><b>歌劇院</b>：可以直接走上傾斜的屋頂看港灣，免費</li>
-        <li><b>孟克美術館</b>：收藏《吶喊》，每週三晚上 18～21 點免費，要提早預約</li>
-        <li><b>維格蘭雕塑公園</b>：兩百多座雕像，免費</li>
-        <li><b>精品咖啡</b>：Tim Wendelboe、Fuglen 等北歐咖啡代表店</li>
-      </ul>
-      <p>Time Out 曾把奧斯陸評為最佳北歐城市小旅行第一名；也有作者說它不像哥本哈根那麼漂亮。這次是抵達的第一站，住 2 晚，3/1 整天逛市區和喝咖啡。</p>
-    </div>
-  </details>
-</section>
-
-<svg class="divider" viewBox="0 0 400 26" preserveAspectRatio="none" aria-hidden="true"><path d="M0,10 C90,22 160,2 230,14 S350,22 400,8"/></svg>
-
-<!-- 波蘭 -->
-<section class="country" id="poland">
-  <div class="c-head"><h2>波蘭</h2><span class="motif">紅磚與琥珀海岸</span></div>
-  <div class="c-rule"></div>
-  <p class="c-lead">行程最後的城市段：從卑爾根飛格但斯克，搭火車到華沙，再從華沙飛回台灣。物價低，可以平衡挪威的高消費；古城風景和北極圈形成最大的反差。</p>
-
-  <details class="place">
-    <summary>
-      <div class="s-top"><h3>格但斯克</h3><span class="tag t-must">必去</span></div>
-      <p class="s-line">波羅的海邊的漢薩港口古城，冬天安靜又有氣氛。住 2 晚。</p>
-      <span class="chev" aria-hidden="true"></span>
-    </summary>
-    <div class="body">
-      <h4>是什麼</h4>
-      <p>波蘭北部的港口城市，中世紀時是漢薩同盟的重要商港，和旁邊的索波特、格丁尼亞合稱「三聯市」。風格跟南部的克拉科夫很不一樣，比較像北海沿岸的港口城市。</p>
-      <h4>有什麼</h4>
-      <ul>
-        <li><b>長街與長市場</b>：兩旁是彩色的山牆商人房屋，格但斯克最經典的畫面</li>
-        <li><b>莫特瓦瓦河畔</b>：老倉庫和中世紀木造起重機，傍晚散步很美</li>
-        <li><b>琥珀</b>：這一帶是波羅的海琥珀的產地，老城有很多琥珀店</li>
-      </ul>
-      <h4>旅人怎麼說</h4>
-      <p class="quote">冬天比華沙和克拉科夫更安靜、更有氣氛，窄巷和彩色建築在冬天有一層霜的光澤。有人冬天去了四次，結論是絕對值得。</p>
-      <p>天冷時通常不下雨，很適合逛老城；冬天人少，拍照很舒服。2024 年 2 月有人住老城旁的三星飯店，每晚約 220 茲羅提（約台幣 1,760）。</p>
-      <div class="note">海邊冬天風很大。3/12 下午從卑爾根飛到，3/13 一整天可以去馬爾堡城堡或索波特。</div>
-    </div>
-  </details>
-
-  <details class="place">
-    <summary>
-      <div class="s-top"><h3>馬爾堡城堡</h3><span class="tag t-must">必去</span></div>
-      <p class="s-line">世界最大的紅磚城堡，從格但斯克搭火車約 30～40 分鐘。</p>
-      <span class="chev" aria-hidden="true"></span>
-    </summary>
-    <div class="body">
-      <h4>是什麼</h4>
-      <p>13 世紀條頓騎士團建造的總部，是世界上面積最大的磚造城堡，列入世界遺產。</p>
-      <h4>為什麼值得</h4>
-      <p>規模非常驚人，被認為是波蘭最讓人震撼的景點之一。從格但斯克當天來回很輕鬆，室內展區多，冬天去也不怕冷。</p>
-    </div>
-  </details>
-
-  <details class="place">
-    <summary>
-      <div class="s-top"><h3>索波特</h3><span class="tag t-worth">值得</span></div>
-      <p class="s-line">格但斯克旁的海濱小鎮，有歐洲最長的木造海上棧橋。</p>
-      <span class="chev" aria-hidden="true"></span>
-    </summary>
-    <div class="body">
-      <p>從格但斯克搭通勤火車約 20～30 分鐘。冬天的波羅的海是灰藍色的，沿著棧橋走到海中央，適合排半天輕鬆逛。</p>
-    </div>
-  </details>
-
-  <details class="place">
-    <summary>
-      <div class="s-top"><h3>華沙</h3><span class="tag t-worth">值得</span></div>
-      <p class="s-line">二戰後依原貌重建的首都，歷史感很強，但不是驚艷型的城市。1～2 天就夠。</p>
-      <span class="chev" aria-hidden="true"></span>
-    </summary>
-    <div class="body">
-      <h4>是什麼</h4>
-      <p>波蘭首都，二戰時被摧毀超過 85%，戰後依照舊照片和畫作把老城一磚一瓦重建，重建的老城本身就列入世界遺產。</p>
-      <h4>有什麼</h4>
-      <ul>
-        <li><b>老城與王宮</b>：石板廣場和彩色建築</li>
-        <li><b>瓦津基公園</b>：有蕭邦紀念碑，冬天常有蕭邦音樂會</li>
-        <li><b>科學文化宮</b>：蘇聯「送」給波蘭的高樓，頂樓可以看整個華沙</li>
-        <li><b>華沙起義博物館</b>：對二戰歷史有興趣的人評價很高</li>
-      </ul>
-      <h4>旅人怎麼說</h4>
-      <p>評價兩極：有人直說是波蘭比較無聊的城市，也有人喜歡老城的書店咖啡館和人少的氣氛。台灣旅人普遍稱讚火車準點、刷卡普及、治安好。</p>
-      <div class="note">3/14 是週日，從格但斯克搭火車抵達。週日大部分商店公休，只有餐廳和少數便利商店營業。3/16 從這裡飛回台灣。</div>
-    </div>
-  </details>
-</section>
-
-<svg class="divider" viewBox="0 0 400 26" preserveAspectRatio="none" aria-hidden="true"><path d="M0,18 C80,4 150,24 220,12 S340,2 400,10"/></svg>
-
-<!-- 瑞典 -->
-<section class="country" id="sweden">
-  <div class="c-head"><h2>瑞典</h2><span class="motif">冰與內陸</span></div>
-  <div class="c-rule"></div>
-  <p class="c-lead">目前路線沒有排瑞典，留著當參考。真正值得為它改路線的，只有北部的拉普蘭。</p>
-
-  <details class="place polar">
-    <summary>
-      <div class="s-top"><h3>瑞典拉普蘭</h3><span class="tag t-must">若加瑞典必去</span><span class="polar-mark">極光區</span></div>
-      <p class="s-line">基律納、冰旅館和阿比斯庫。內陸晴天比挪威海岸多，等於替極光多買一份保險。</p>
-      <span class="chev" aria-hidden="true"></span>
-    </summary>
-    <div class="body">
-      <h4>拉普蘭是什麼</h4>
-      <p>拉普蘭是一個跨國的地區名稱，指挪威、瑞典、芬蘭北部的北極圈地帶，也是原住民薩米人的傳統居住地。所以特羅姆瑟其實也在廣義的拉普蘭裡。「瑞典拉普蘭」指的是瑞典北部這一大片區域。</p>
-      <h4>主要地點</h4>
-      <div class="sub"><b>基律納</b>瑞典最北的城市，也是交通中心，斯德哥爾摩直飛約 1.5 小時。因為地底鐵礦開採，整座城市正在搬遷，木造教堂 2025 年整棟移到新址，本身就很特別。</div>
-      <div class="sub"><b>尤卡斯耶爾維（冰旅館）</b>離基律納約 20 公里，每年冬天用河冰重建整座旅館。參觀門票約 395 瑞典克朗（約台幣 1,350），評價是絕對值得。</div>
-      <div class="sub"><b>阿比斯庫</b>基律納西北約 1.5 小時，國家公園旁是一座長長的冰湖。以「藍洞」晴空微氣候聞名，還有極光觀測站。台灣部落客住 4 晚看到 3 晚，香港旅人住 3 晚看到 2 晚。</div>
-      <h4>數據怎麼說</h4>
-      <p>十一年的雲量資料顯示，基律納住 3 晚遇到晴夜的機率約 71%，特羅姆瑟約 51%。阿比斯庫的藍洞太小，資料看不到，行銷說的高晴天比例目前無法驗證。</p>
-      <div class="note">除了看極光，活動比較少。交通不方便：從納爾維克出發的火車每天班次很少，建議用飛機進出基律納。</div>
-    </div>
-  </details>
-
-  <details class="place">
-    <summary>
-      <div class="s-top"><h3>斯德哥爾摩</h3><span class="tag t-worth">值得</span></div>
-      <p class="s-line">蓋在 14 座島上的首都，瓦薩博物館是必看。1～2 天。</p>
-      <span class="chev" aria-hidden="true"></span>
-    </summary>
-    <div class="body">
-      <ul>
-        <li><b>瓦薩沉船博物館</b>：1628 年處女航就沉沒的戰艦，在海底 333 年後幾乎完整被打撈上來。每年超過一百萬人參觀，多數第一次來的人都覺得值得，建議留 3 小時</li>
-        <li><b>地鐵藝術</b>：很多車站被做成岩洞般的藝術空間，有旅人說看過那麼多歐洲地鐵，只有這裡值得拍照，冬天在室內很適合</li>
-        <li><b>老城</b>：石板路、彩色建築和王宮</li>
-      </ul>
-      <div class="note">2 月白天只有約 8 小時，冬天不是童話雪景。適合當作進出點。</div>
-    </div>
-  </details>
-</section>
-
-<svg class="divider" viewBox="0 0 400 26" preserveAspectRatio="none" aria-hidden="true"><path d="M0,16 C70,6 140,22 210,10 S330,4 400,14"/></svg>
-
-<!-- 芬蘭 -->
-<section class="country" id="finland">
-  <div class="c-head"><h2>芬蘭</h2><span class="motif">森林與湖</span></div>
-  <div class="c-rule"></div>
-  <p class="c-lead">交通上最不順的一國。除非特別想去，否則可以不排。</p>
-
-  <details class="place">
-    <summary>
-      <div class="s-top"><h3>赫爾辛基</h3><span class="tag t-worth">值得</span></div>
-      <p class="s-line">設計感很強的首都，岩石教堂和芬蘭桑拿是亮點。一個長週末就夠。</p>
-      <span class="chev" aria-hidden="true"></span>
-    </summary>
-    <div class="body">
-      <ul>
-        <li><b>岩石教堂</b>：直接蓋在花崗岩裡，每年約 50 萬人參觀，有作者說比白色大教堂更令人難忘</li>
-        <li><b>議會廣場、赫爾辛基大教堂</b>：市中心最經典的畫面</li>
-        <li><b>Löyly 桑拿</b>：門票含毛巾，泡完可以直接下波羅的海，第一次體驗芬蘭桑拿的首選</li>
-        <li><b>過夜郵輪</b>：從斯德哥爾摩傍晚上船、隔天早上抵達，被形容是串連兩座城市最愉快的方式，費用約等於市中心飯店一晚</li>
-      </ul>
-      <p>冬天又暗又冷，但有桑拿和冬泳可以彌補。</p>
-    </div>
-  </details>
-
-  <details class="place polar">
-    <summary>
-      <div class="s-top"><h3>芬蘭拉普蘭</h3><span class="tag t-maybe">看情況</span><span class="polar-mark">極光區</span></div>
-      <p class="s-line">3 月晴天比例是資料中最高的，但從挪威、瑞典過去很繞。</p>
-      <span class="chev" aria-hidden="true"></span>
-    </summary>
-    <div class="body">
-      <h4>主要地點</h4>
-      <ul>
-        <li><b>伊納里、沙利色爾卡</b>：更北更安靜，伊納里是芬蘭薩米文化的中心，被認為是芬蘭看極光最好的據點之一</li>
-        <li><b>列維</b>：芬蘭最大的滑雪度假區</li>
-        <li><b>基爾皮斯耶爾維</b>：芬蘭最西北角，靠近三國交界</li>
-      </ul>
-      <h4>為什麼看情況</h4>
-      <p>雲量資料中，羅瓦涅米 3 月每晚晴天的比例約 50%，是所有地點最高的。但不開車的話，從伊納里到阿比斯庫要 15～16 小時，要經芬蘭南部繞一大圈。要去的話，選一個據點住 3 晚以上。</p>
-    </div>
-  </details>
-</section>
-
-<svg class="divider" viewBox="0 0 400 26" preserveAspectRatio="none" aria-hidden="true"><path d="M0,12 C80,20 150,4 220,16 S340,20 400,6"/></svg>
-
-<!-- 不推薦 -->
-<section class="country" id="skip">
-  <div class="c-head"><h2>不推薦</h2></div>
-  <div class="c-rule"></div>
-  <p class="c-lead">這些地方或安排常出現在行程建議裡，但旅人經驗顯示不值得，或有更好的替代。</p>
-  <ul class="skiplist">
-    <li>
-      <h3>羅瓦涅米聖誕老人村</h3>
-      <p>大量評論說是觀光陷阱：見聖誕老人免費，但拍照要 39.5 歐元（約台幣 1,400），可能要排兩小時，商店賣的東西都差不多。有人說只適合帶小孩的家庭，也有人說羅瓦涅米市區本身沒什麼可看。</p>
-      <p class="alt">替代：芬蘭拉普蘭改去伊納里或沙利色爾卡。</p>
-    </li>
-    <li>
-      <h3>住冰旅館的冰屋</h3>
-      <p>每晚約 320 美元起（約台幣 10,200）。住過的人形容是「非常昂貴的帳篷體驗」：白天那裡是博物館，大部分時間都在大廳等進房。</p>
-      <p class="alt">替代：買參觀門票就能看到全部冰雕房間。</p>
-    </li>
-    <li>
-      <h3>高價玻璃屋</h3>
-      <p>有人每人每晚超過 500 美元（約台幣 16,000），結果玻璃起霧、極光通知沒響；也有人入住時整個玻璃屋被雪蓋住，或連續兩晚下雪什麼都沒看到。陰天時就只是一間很貴的房間。</p>
-      <p class="alt">替代：住有桑拿的一般小木屋，極光出現時出門看。</p>
-    </li>
-    <li>
-      <h3>陰天去阿比斯庫極光觀測站</h3>
-      <p>有人兩人付了 1,190 瑞典克朗（約台幣 4,800），只有 20 分鐘纜椅、防寒衣和一個很小的展覽，覺得很浪費。陰天下山的人都很失望。</p>
-      <p class="alt">替代：只在新月、預報晴天的晚上去；或直接在山下旅客中心外面看。</p>
-    </li>
-    <li>
-      <h3>半夜的沿岸郵輪，特羅姆瑟到羅弗敦</h3>
-      <p>凌晨 1:30 開船、碼頭候船室夜間關閉、靠近引擎的艙房進出港時很吵、最後一天中午就要退房。峽灣遊船在挪威縮影也已經有了。</p>
-      <p class="alt">替代：特羅姆瑟飛埃弗內斯（Widerøe，中途停安德內斯，約 1 小時 20 分），在機場原地租還車。</p>
-    </li>
-    <li>
-      <h3>3 月去特羅姆瑟賞鯨</h3>
-      <p>賞鯨季是 11 月到 1 月，3 月已經看不到了。</p>
-    </li>
-    <li>
-      <h3>第一次體驗桑拿就去 Sompasauna</h3>
-      <p>免費、志工經營、很道地，但沒有廁所、沒有更衣室、沒有置物櫃，唯一的沖洗方式是跳進海裡。評論也說它不是給第一次體驗的人。</p>
-      <p class="alt">替代：Löyly。</p>
-    </li>
-    <li>
-      <h3>特羅姆瑟纜車＋北極大教堂套票</h3>
-      <p>大教堂常因婚禮或喪禮不開放，買套票可能浪費。纜車本身也常要排一小時、強風會停駛。</p>
-      <p class="alt">替代：大教堂順路看外觀；纜車看天氣好再現場買。</p>
-    </li>
-  </ul>
-</section>
-
-<!-- 總表 -->
-<section class="country" id="summary">
-  <div class="c-head"><h2>總表</h2></div>
-  <div class="c-rule"></div>
-  <div class="tbl">
-    <table>
-      <thead><tr><th>地點</th><th>分級</th><th>一句話</th></tr></thead>
-      <tbody>
-        <tr><td>特羅姆瑟</td><td><span class="tag t-must">必去</span></td><td>極光團最成熟</td></tr>
-        <tr><td>羅弗敦</td><td><span class="tag t-must">必去</span></td><td>冬季風景最高峰</td></tr>
-        <tr><td>挪威縮影</td><td><span class="tag t-must">必去</span></td><td>一天看完峽灣和高原</td></tr>
-        <tr><td>卑爾根、奧斯陸</td><td><span class="tag t-worth">值得</span></td><td>卑爾根 3 晚、奧斯陸 2 晚</td></tr>
-        <tr><td>格但斯克＋馬爾堡</td><td><span class="tag t-must">必去</span></td><td>冬天最有氣氛的波蘭古城</td></tr>
-        <tr><td>華沙</td><td><span class="tag t-worth">值得</span></td><td>重建的首都，住 2 晚</td></tr>
-        <tr><td>瑞典拉普蘭</td><td><span class="tag t-must">若加瑞典</span></td><td>替極光多一份保險</td></tr>
-        <tr><td>斯德哥爾摩、赫爾辛基</td><td><span class="tag t-worth">值得</span></td><td>城市選項，角色類似波蘭</td></tr>
-        <tr><td>芬蘭拉普蘭</td><td><span class="tag t-maybe">看情況</span></td><td>數據好但交通繞</td></tr>
-        <tr><td>聖誕老人村等</td><td><span class="tag t-skip">不推薦</span></td><td>見上方清單</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
+  <section class="sec" id="notes">
+    <div class="sec-h"><h2>規劃筆記</h2><span>決策過程留存</span></div>
+    <div class="box"><h3>還在等的決定</h3><ul id="pending"></ul></div>
+    <div class="box"><h3>交通費用（每人）</h3><ul id="cost"></ul></div>
+    <p class="lead">沒排進路線、但討論過的地方：</p>
+    <div id="otherplaces"></div>
+    <div class="box"><h3>不推薦</h3><ul class="skip" id="skip"></ul></div>
+  </section>
 </main>
 
 <footer>
-  <svg viewBox="0 0 400 40" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M-10,30 C70,8 150,34 230,16 S350,4 410,20" stroke="#5DCAA5" stroke-width="1.4"/>
-    <path d="M-10,36 C80,18 160,40 240,24 S360,14 410,28" stroke="#AFA9EC" stroke-width=".8"/>
-  </svg>
   <div class="wrap">
-    <p>地點資料整理於 2026 年 9 月，行程與交通更新於 2026 年 10 月 14 日。來源包括 TripAdvisor、PTT、背包客棧、旅遊部落客、各家官網與雲量統計資料。</p>
-    <p>目前機票、住宿、租車都還沒訂。價格為當時查到的參考值，挪威克朗以 1 克朗約台幣 3.34 元概算，實際以官網和訂購時為準。</p>
+    <p id="updated"></p>
+    <p>挪威克朗以 1 克朗約台幣 3.34 元概算。加到手機主畫面後，沒有網路也能打開。</p>
   </div>
 </footer>
 
+<script src="data.js"></script>
+<script>
+(function(){
+  var T = window.TRIP;
+  var WD = ["日","一","二","三","四","五","六"];
+  var COLOR = { ink:"var(--ink-dim)", brick:"var(--brick)", fjord:"var(--fjord)", aurora:"var(--aurora)" };
+  var ICON = {
+    flight:'<path fill="currentColor" d="M21 15.5v-1.7l-7.5-4.6V4.3a1.5 1.5 0 0 0-3 0v4.9L3 13.8v1.7l7.5-2.3v4.6l-2 1.4V20.5l3.5-1 3.5 1v-1.3l-2-1.4v-4.6z"/>',
+    train:'<g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="6" y="3.5" width="12" height="13" rx="2.5"/><path d="M6 11h12M9 20l-1.5 1.5M15 20l1.5 1.5"/><circle cx="9.5" cy="14" r=".6" fill="currentColor"/><circle cx="14.5" cy="14" r=".6" fill="currentColor"/></g>',
+    car:'<g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 16v-3.5l2-5h12l2 5V16z"/><path d="M4 12.5h16"/><circle cx="8" cy="16.5" r="1.6" fill="currentColor"/><circle cx="16" cy="16.5" r="1.6" fill="currentColor"/></g>',
+    taxi:'<g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 16v-3.5l2-5h12l2 5V16z"/><path d="M10 7.5V5.5h4v2"/><circle cx="8" cy="16.5" r="1.6" fill="currentColor"/><circle cx="16" cy="16.5" r="1.6" fill="currentColor"/></g>',
+    tour:'<g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M3 18l5.5-9 3.5 5 2.5-3.5L21 18z"/><path d="M3 21h18"/></g>',
+    bed:'<g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19V6M3 15h18v4M21 15v-3a3 3 0 0 0-3-3h-7v6"/><circle cx="7" cy="11.5" r="1.8"/></g>'
+  };
+  function svg(k){ return '<svg viewBox="0 0 24 24" aria-hidden="true">'+(ICON[k]||ICON.tour)+'</svg>'; }
+
+  function parse(iso){ var p = iso.split("-"); return new Date(+p[0], +p[1]-1, +p[2]); }
+  function md(iso){ var d = parse(iso); return (d.getMonth()+1)+"/"+d.getDate(); }
+  function wd(iso){ return "週"+WD[parse(iso).getDay()]; }
+  function dayDiff(a,b){ var x=parse(a), y=parse(b); return Math.round((Date.UTC(y.getFullYear(),y.getMonth(),y.getDate())-Date.UTC(x.getFullYear(),x.getMonth(),x.getDate()))/864e5); }
+  function addDays(iso,n){ var d=parse(iso); d.setDate(d.getDate()+n); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+  function todayISO(){ var d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+  function idOf(iso){ return "d-"+iso.slice(5).replace("-",""); }
+  function col(region){ var r=T.regions[region]; return COLOR[(r&&r.color)||"ink"]; }
+  function who(w){ return w ? '<span class="who">'+T.people[w]+'</span>' : ""; }
+  function st(s, text){
+    if(!s) return "";
+    var label = text || ({booked:"已訂", pending:"待訂", self:"May 自訂"})[s];
+    return '<span class="st st-'+s+'">'+label+'</span>';
+  }
+
+  /* 頁首狀態 */
+  var today = todayISO();
+  var inTrip = today >= T.start && today <= T.end;
+  var statusEl = document.getElementById("status");
+  if (today < T.start){
+    var y = dayDiff(today, T.departures.Y), m = dayDiff(today, T.departures.M);
+    statusEl.textContent = "距離出發：Yulun 還有 "+y+" 天，May 還有 "+m+" 天";
+  } else if (inTrip){
+    var td = T.days.filter(function(d){return d.date===today;})[0];
+    var place = td ? T.regions[td.region].name : "";
+    statusEl.textContent = "今天 "+md(today)+" "+wd(today)+"，旅程第 "+(dayDiff(T.start,today)+1)+" 天"+(place?"，在"+place:"");
+  } else {
+    statusEl.textContent = "旅程已結束，歡迎回家。";
+  }
+  document.getElementById("updated").textContent = "資料更新於 "+T.updated.replace(/-/g,"/")+"。訂位代號和確認號不放在這個公開頁面。";
+
+  /* 路線 */
+  document.getElementById("route").innerHTML = T.route.map(function(r){
+    return '<li class="'+(r.polar?"polar":"")+(r.solo?" solo":"")+'"><b>'+r.name+'</b><span>'+r.nights+'</span></li>';
+  }).join("");
+
+  /* 日期條 */
+  document.getElementById("dates").innerHTML = T.days.map(function(d){
+    return '<a href="#'+idOf(d.date)+'" style="--c:'+col(d.region)+'"'+(d.date===today?' class="is-today" aria-current="date"':"")+'><b>'+md(d.date)+'</b><small>'+wd(d.date).slice(1)+'</small></a>';
+  }).join("");
+
+  /* 每一天 */
+  function legHTML(l){
+    var time = l.dep || "—";
+    var main, subs = [];
+    if (l.t === "flight"){
+      main = who(l.who)+l.from+" → "+l.to;
+      var a = [l.carrier+(l.no?" "+l.no:"")];
+      if (l.fromNote || l.toNote) a.push((l.fromNote||"")+(l.fromNote&&l.toNote?" → ":"")+(l.toNote||""));
+      if (l.via) a.push("中途停"+l.via);
+      subs.push(a.join("，"));
+      subs.push((l.arr? l.arr+" 抵達"+(l.plus?"（隔天）":""):"") + (l.depNote? (l.arr?"，":"")+l.depNote:""));
+      if (l.bag) subs.push("行李："+l.bag);
+    } else {
+      main = who(l.who)+l.text;
+      if (l.arr) subs.push(l.arr+" 回到"+(l.t==="tour"?"卑爾根":""));
+    }
+    return '<li class="ev"><span class="ev-t">'+time+'</span><span class="ev-n">'+svg(l.t)+'</span><div><p class="ev-main">'+main+st(l.status,l.statusText)+'</p>'+
+      subs.filter(Boolean).map(function(s){return '<p class="ev-sub">'+s+'</p>';}).join("")+'</div></li>';
+  }
+  function staysOn(iso){
+    return T.stays.filter(function(s){ return iso >= s.from && iso < addDays(s.from, s.nights); });
+  }
+  function stayHTML(s, iso){
+    var n = dayDiff(s.from, iso)+1;
+    var title = who(s.who)+"住"+s.area+"，第 "+n+" 晚／共 "+s.nights+" 晚";
+    var lines = [];
+    if (s.name) lines.push(s.name);
+    if (s.address){
+      var q = encodeURIComponent((s.name?s.name+" ":"")+s.address);
+      lines.push('<a href="https://www.google.com/maps/search/?api=1&query='+q+'" target="_blank" rel="noopener">'+s.address+'</a>');
+    }
+    if (s.note && n === 1) lines.push(s.note);
+    return '<div class="stay">'+svg("bed")+'<div><p>'+title+' '+st(s.status)+'</p>'+lines.map(function(t){return '<p class="s-sub">'+t+'</p>';}).join("")+'</div></div>';
+  }
+  var placeName = {};
+  T.places.forEach(function(p){ placeName[p.id]=p.name; });
+
+  document.getElementById("days").innerHTML = T.days.map(function(d){
+    var c = col(d.region), html = "";
+    if (d.legs && d.legs.length) html += '<ol class="evs">'+d.legs.map(legHTML).join("")+'</ol>';
+    if (d.plan) html += '<ul class="plan">'+d.plan.map(function(p){return "<li>"+p+"</li>";}).join("")+'</ul>';
+    if (d.notes) html += d.notes.map(function(n){return '<p class="dnote">'+n+'</p>';}).join("");
+    staysOn(d.date).forEach(function(s){ html += stayHTML(s, d.date); });
+    if (d.places) html += '<div class="plinks">'+d.places.map(function(id){return '<a href="#p-'+id+'" data-open="'+id+'">'+placeName[id]+'介紹</a>';}).join("")+'</div>';
+    return '<article class="day'+(d.date===today?" is-today":"")+'" id="'+idOf(d.date)+'" style="--c:'+c+'">'+
+      '<div class="day-h"><div class="dd">'+md(d.date)+'<small>'+wd(d.date)+'</small></div>'+
+      '<div class="loc"><b>'+T.regions[d.region].name+'</b><span>第 '+(dayDiff(T.start,d.date)+1)+' 天</span></div></div>'+
+      '<div class="day-b">'+html+'</div></article>';
+  }).join("");
+
+  /* 交通 */
+  var segs = [];
+  T.days.forEach(function(d){ (d.legs||[]).forEach(function(l){ if (/flight|train|tour/.test(l.t)) segs.push({d:d,l:l}); }); });
+  document.getElementById("segs").innerHTML = segs.map(function(x){
+    var l = x.l, title = l.t==="flight" ? l.from+" → "+l.to : l.text;
+    var rows = [];
+    if (l.t==="flight") rows.push(["航班", l.carrier+(l.no?" "+l.no:"")+(l.via?"，中途停"+l.via:"")]);
+    rows.push(["時間", (l.dep||"—")+" → "+(l.arr||"—")+(l.plus?"（隔天）":"")]);
+    if (l.bag) rows.push(["行李", l.bag]);
+    rows.push(["狀態", st(l.status,l.statusText)]);
+    if (l.price) rows.push(["價格", l.price]);
+    return '<div class="seg" style="--c:'+col(x.d.region)+'"><div class="seg-top"><b>'+(l.who?who(l.who):"")+title+'</b><span>'+md(x.d.date)+" "+wd(x.d.date)+'</span></div><dl>'+
+      rows.map(function(r){return "<dt>"+r[0]+"</dt><dd>"+r[1]+"</dd>";}).join("")+'</dl></div>';
+  }).join("");
+
+  /* 地點 */
+  var TIER = { must:"必去", worth:"值得", maybe:"看情況" };
+  function blocksHTML(bs){
+    return bs.map(function(b){
+      var h = b.h ? "<h4>"+b.h+"</h4>" : "";
+      if (b.sub) return '<div class="subp"><b>'+b.sub+'</b>'+b.p+'</div>';
+      if (b.list) return h+"<ul>"+b.list.map(function(i){return "<li>"+i+"</li>";}).join("")+"</ul>";
+      if (b.stops) return h+'<ol class="stops">'+b.stops.map(function(i){return "<li>"+i+"</li>";}).join("")+"</ol>";
+      if (b.quote) return h+'<p class="quote">'+b.quote+'</p>';
+      if (b.note) return '<div class="note">'+b.note+'</div>';
+      return h+"<p>"+b.p+"</p>";
+    }).join("");
+  }
+  function placeHTML(p, prefix){
+    var c = p.region ? col(p.region) : (p.polar ? "var(--aurora)" : "var(--ink-dim)");
+    return '<details class="place" id="'+prefix+p.id+'" style="--c:'+c+'"><summary><div class="p-top"><h3>'+p.name+'</h3>'+
+      '<span class="tier tier-'+p.tier+'">'+TIER[p.tier]+'</span>'+(p.polar?'<span class="polar-mark">極光區</span>':"")+'</div>'+
+      '<p class="p-line">'+p.line+'</p><span class="chev" aria-hidden="true"></span></summary><div class="body">'+blocksHTML(p.blocks)+'</div></details>';
+  }
+  document.getElementById("placelist").innerHTML = T.places.map(function(p){return placeHTML(p,"p-");}).join("");
+
+  /* 資訊 */
+  document.getElementById("baggage").innerHTML = T.info.baggage.map(function(b){return "<div><dt>"+b.seg+"</dt><dd>"+b.text+"</dd></div>";}).join("");
+  document.getElementById("coming").innerHTML = T.info.coming.map(function(c){return "<li>"+c+"</li>";}).join("");
+
+  /* 筆記 */
+  function li(arr){ return arr.map(function(t){return "<li>"+t+"</li>";}).join(""); }
+  document.getElementById("pending").innerHTML = li(T.notes.pending);
+  document.getElementById("cost").innerHTML = li(T.notes.cost);
+  document.getElementById("otherplaces").innerHTML = T.notes.places.map(function(p){return placeHTML(p,"n-");}).join("");
+  document.getElementById("skip").innerHTML = T.notes.skip.map(function(s){
+    return "<li><b>"+s.name+"</b>："+s.text+(s.alt?'<br><span class="alt">替代：'+s.alt+"</span>":"")+"</li>";
+  }).join("");
+
+  /* 點地點連結時自動展開 */
+  document.addEventListener("click", function(e){
+    var a = e.target.closest("a[data-open]");
+    if (a){ var el = document.getElementById("p-"+a.getAttribute("data-open")); if (el) el.open = true; }
+  });
+
+  /* 今天 */
+  var goToday = document.getElementById("go-today");
+  if (inTrip){
+    goToday.href = "#"+idOf(today);
+    if (!location.hash) requestAnimationFrame(function(){ document.getElementById(idOf(today)).scrollIntoView(); });
+  } else if (today < T.start){
+    goToday.textContent = "第一天";
+    goToday.href = "#"+idOf(T.start);
+  } else {
+    goToday.style.display = "none";
+  }
+
+  /* 觀測模式 */
+  var btn = document.getElementById("mode"), root = document.documentElement;
+  function setMode(on){
+    if (on) root.setAttribute("data-mode","red"); else root.removeAttribute("data-mode");
+    btn.setAttribute("aria-pressed", on ? "true" : "false");
+    btn.lastChild.nodeValue = on ? "一般" : "觀測";
+    try { localStorage.setItem("mode", on ? "red" : ""); } catch(e){}
+  }
+  try { if (localStorage.getItem("mode")==="red") setMode(true); } catch(e){}
+  btn.addEventListener("click", function(){ setMode(root.getAttribute("data-mode")!=="red"); });
+
+  /* 離線 */
+  if ("serviceWorker" in navigator && location.protocol.indexOf("http")===0){
+    navigator.serviceWorker.register("sw.js").catch(function(){});
+  }
+})();
+</script>
 </body>
 </html>
