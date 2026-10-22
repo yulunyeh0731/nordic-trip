@@ -34,7 +34,7 @@ window.TRIP = {
 
   stays: [
     { id: "waw1", who: "Y", area: "華沙", name: "Motel One Warsaw-Chopin", from: "2027-02-26", nights: 2,
-      address: "ul. Tamka 38, 00-355 Warszawa", status: "booked", note: "房價不含早餐，現場付款" },
+      address: "ul. Tamka 38, 00-355 Warszawa", lat: 52.2370, lng: 21.0236, status: "booked", note: "房價不含早餐，現場付款" },
     { id: "osl", area: "奧斯陸", name: "", from: "2027-02-28", nights: 2, status: "pending" },
     { id: "tos", area: "特羅姆瑟", name: "", from: "2027-03-02", nights: 3, status: "pending" },
     { id: "lof1", area: "雷訥一帶", name: "", from: "2027-03-05", nights: 2, status: "pending", note: "找有廚房的住處" },
@@ -45,7 +45,7 @@ window.TRIP = {
   ],
 
   days: [
-    { date: "2027-02-25", region: "tw",
+    { date: "2027-02-25", title: "Yulun 出發", region: "tw",
       legs: [
         { who: "Y", t: "flight", carrier: "阿聯酋", no: "EK367",
           from: "台北 TPE", fromNote: "第二航廈", dep: "23:00",
@@ -55,7 +55,7 @@ window.TRIP = {
       ],
       notes: ["阿聯酋建議起飛前 3 小時到機場"] },
 
-    { date: "2027-02-26", region: "waw", places: ["warsaw"],
+    { date: "2027-02-26", title: "Yulun 抵達華沙", region: "waw", city: "waw",
       legs: [
         { who: "Y", t: "flight", carrier: "阿聯酋", no: "EK179",
           from: "杜拜 DXB", fromNote: "第三航廈", dep: "07:50",
@@ -63,10 +63,10 @@ window.TRIP = {
           bag: "託運 25 公斤，手提 7 公斤", status: "booked" },
         { who: "Y", t: "taxi", text: "Bolt 到旅館" }
       ],
-      plan: ["Yulun 下午輕鬆走走，調時差"] },
+      free: [{ who: "Y", when: "下午～晚上", text: "抵達後在住處附近走走，調時差", areas: ["powisle", "old"] }] },
 
-    { date: "2027-02-27", region: "waw", places: ["warsaw"],
-      plan: ["Yulun 華沙市區一日"],
+    { date: "2027-02-27", title: "Yulun 華沙一日；May 深夜出發", region: "waw", city: "waw",
+      free: [{ who: "Y", when: "全天", text: "週六博物館都有開。May 這天還沒到，Yulun 自己想看的展館排在今天", areas: ["old", "powisle", "centrum"] }],
       legs: [
         { who: "M", t: "flight", carrier: "阿聯酋", no: "EK367",
           from: "台北 TPE", fromNote: "第二航廈", dep: "23:00",
@@ -74,7 +74,7 @@ window.TRIP = {
           status: "self", price: "參考價 NT$19,592（台新優惠價），原價 NT$21,342" }
       ] },
 
-    { date: "2027-02-28", region: "osl", places: ["oslo"],
+    { date: "2027-02-28", title: "飛奧斯陸，兩人會合", region: "osl", places: ["oslo"],
       legs: [
         { who: "M", t: "flight", carrier: "阿聯酋", no: "EK159",
           from: "杜拜 DXB", fromNote: "第三航廈", dep: "",
@@ -86,10 +86,10 @@ window.TRIP = {
       ],
       notes: ["兩人都降落奧斯陸機場（Gardermoen），May 早到約 4 小時。在機場等，或先進市區 check-in，待決定"] },
 
-    { date: "2027-03-01", region: "osl", places: ["oslo"],
+    { date: "2027-03-01", title: "奧斯陸市區、咖啡", region: "osl", places: ["oslo"],
       plan: ["市區一日：歌劇院屋頂、精品咖啡（Tim Wendelboe、Fuglen）"] },
 
-    { date: "2027-03-02", region: "tos", places: ["tromso"],
+    { date: "2027-03-02", title: "飛特羅姆瑟", region: "tos", places: ["tromso"],
       legs: [
         { t: "flight", carrier: "挪威航空", no: "",
           from: "奧斯陸 OSL", dep: "10:30", to: "特羅姆瑟 TOS", arr: "12:30",
@@ -97,14 +97,14 @@ window.TRIP = {
           price: "USD 137.30（約 NT$4,435），價格待更新" }
       ] },
 
-    { date: "2027-03-03", region: "tos", places: ["tromso"],
+    { date: "2027-03-03", title: "特羅姆瑟，挑晴天報極光團", region: "tos", places: ["tromso"],
       plan: ["看雲量預報，挑最晴的一晚報極光團",
              "選小團、評價高、可改期的業者，報名前問清楚會不會跨境追晴天。Flexitour 是候選（出發 24 小時前取消可退 95%）"] },
 
-    { date: "2027-03-04", region: "tos", places: ["tromso"],
+    { date: "2027-03-04", title: "哈士奇雪橇", region: "tos", places: ["tromso"],
       plan: ["哈士奇雪橇", "極光團沒看到的話再報一次"] },
 
-    { date: "2027-03-05", region: "lof", places: ["lofoten"],
+    { date: "2027-03-05", title: "飛埃弗內斯取車，往西", region: "lof", places: ["lofoten"],
       legs: [
         { t: "flight", carrier: "Widerøe", no: "",
           from: "特羅姆瑟 TOS", dep: "10:55", to: "埃弗內斯 EVE", arr: "12:15", via: "安德內斯",
@@ -113,19 +113,19 @@ window.TRIP = {
         { t: "car", text: "埃弗內斯機場取車（四驅、自排、雪胎），往西開到雷訥一帶", status: "pending" }
       ] },
 
-    { date: "2027-03-06", region: "lof", places: ["lofoten"],
+    { date: "2027-03-06", title: "羅弗敦西側", region: "lof", places: ["lofoten"],
       plan: ["西側一日：雷訥、哈姆諾伊、薩克里索伊、Å"] },
 
-    { date: "2027-03-07", region: "lof", places: ["lofoten"],
+    { date: "2027-03-07", title: "往東移動", region: "lof", places: ["lofoten"],
       legs: [
         { t: "car", text: "往東移動，沿途可停烏塔克萊夫、豪克蘭海灘" }
       ] },
 
-    { date: "2027-03-08", region: "lof", places: ["lofoten"],
+    { date: "2027-03-08", title: "羅弗敦東側，新月", region: "lof", places: ["lofoten"],
       plan: ["東側一日：亨寧斯韋爾漁村"],
       notes: ["新月，整趟最暗的一夜"] },
 
-    { date: "2027-03-09", region: "bgo", places: ["bergen"],
+    { date: "2027-03-09", title: "還車，飛卑爾根", region: "bgo", places: ["bergen"],
       legs: [
         { t: "car", text: "開回埃弗內斯機場還車" },
         { t: "flight", carrier: "Widerøe", no: "",
@@ -134,18 +134,18 @@ window.TRIP = {
           price: "1,599 挪威克朗（約 NT$5,341）" }
       ] },
 
-    { date: "2027-03-10", region: "bgo", places: ["nutshell"],
+    { date: "2027-03-10", title: "挪威縮影一日", region: "bgo", places: ["nutshell"],
       legs: [
         { t: "tour", text: "挪威縮影一日來回", dep: "08:29", arr: "18:17", status: "pending",
           price: "兩人 4,976 挪威克朗（每人約 NT$8,310）" }
       ],
       notes: ["冬天遊船可能改航線，詳細時刻和備案見地點介紹"] },
 
-    { date: "2027-03-11", region: "bgo", places: ["bergen"],
+    { date: "2027-03-11", title: "卑爾根市區／備用日", region: "bgo", places: ["bergen"],
       plan: ["卑爾根市區：布呂根、弗洛伊恩纜車、魚市場"],
       notes: ["挪威縮影如果停駛，改在這天走"] },
 
-    { date: "2027-03-12", region: "gdn", places: ["gdansk"],
+    { date: "2027-03-12", title: "飛格但斯克", region: "gdn", places: ["gdansk"],
       legs: [
         { t: "flight", carrier: "Wizz Air", no: "",
           from: "卑爾根 BGO", dep: "13:40", to: "格但斯克 GDN", arr: "15:25",
@@ -154,20 +154,21 @@ window.TRIP = {
       ],
       plan: ["傍晚逛老城長街、河畔"] },
 
-    { date: "2027-03-13", region: "gdn", places: ["malbork", "sopot"],
+    { date: "2027-03-13", title: "馬爾堡或索波特", region: "gdn", places: ["malbork", "sopot"],
       plan: ["馬爾堡城堡，或索波特海上棧橋"] },
 
-    { date: "2027-03-14", region: "waw", places: ["warsaw"],
+    { date: "2027-03-14", title: "火車到華沙", region: "waw", city: "waw",
       legs: [
         { t: "train", text: "波蘭國鐵，格但斯克到華沙，約 2.5～3 小時", status: "pending",
           price: "約 19～32 英鎊，出發前約 30 天開賣" }
       ],
-      notes: ["週日，大部分商店公休，只有餐廳和少數便利商店營業"] },
+      free: [{ when: "抵達後", text: "週日博物館有開、商店大多公休。兩人想一起看的展館排在今天", areas: ["old", "powisle"] }],
+      notes: ["週日，超市大多公休；Żabka 便利商店通常有開，餐廳不受影響"] },
 
-    { date: "2027-03-15", region: "waw", places: ["warsaw"],
-      plan: ["老城與王宮、瓦津基公園；有剛好的表演再看"] },
+    { date: "2027-03-15", title: "華沙一日", region: "waw", city: "waw",
+      free: [{ when: "全天", text: "週一王宮和國家博物館休館，適合公園、觀景台和市區散步", areas: ["centrum", "lazienki", "old"] }] },
 
-    { date: "2027-03-16", region: "sky",
+    { date: "2027-03-16", title: "華沙起飛回台", region: "sky",
       legs: [
         { t: "flight", carrier: "阿聯酋", no: "EK180",
           from: "華沙 WAW", fromNote: "A 航廈", dep: "13:40",
@@ -175,9 +176,9 @@ window.TRIP = {
           bag: "託運 25 公斤，手提 7 公斤", status: "booked", statusText: "Yulun 已訂，May 自訂",
           price: "Yulun 含在來回票裡；May 參考價 NT$13,520（台新優惠價），原價 NT$14,020" }
       ],
-      notes: ["阿聯酋建議起飛前 3 小時到機場"] },
+      notes: ["阿聯酋建議起飛前 3 小時到機場，也就是 10:40 前"] },
 
-    { date: "2027-03-17", region: "sky",
+    { date: "2027-03-17", title: "抵達台北", region: "sky",
       legs: [
         { t: "flight", carrier: "阿聯酋", no: "EK366",
           from: "杜拜 DXB", fromNote: "第三航廈", dep: "03:40",
@@ -270,20 +271,98 @@ window.TRIP = {
       line: "格但斯克旁的海濱小鎮，有歐洲最長的木造海上棧橋。",
       blocks: [
         { p: "從格但斯克搭通勤火車約 20～30 分鐘。冬天的波羅的海是灰藍色的，適合排半天輕鬆逛。" }
-      ] },
-
-    { id: "warsaw", name: "華沙", region: "waw", tier: "worth",
-      line: "二戰後依原貌重建的首都，歷史感很強，但不是驚艷型的城市。",
-      blocks: [
-        { h: "有什麼", list: [
-          "<b>老城與王宮</b>：重建的老城本身就列入世界遺產",
-          "<b>瓦津基公園</b>：有蕭邦紀念碑，冬天常有蕭邦音樂會",
-          "<b>科學文化宮</b>：頂樓可以看整個華沙",
-          "<b>華沙起義博物館</b>：對二戰歷史有興趣的人評價很高" ] },
-        { h: "旅人怎麼說", p: "評價兩極：有人說是波蘭比較無聊的城市，也有人喜歡老城的書店咖啡館和人少的氣氛。台灣旅人普遍稱讚火車準點、刷卡普及、治安好。" },
-        { note: "Yulun 2/26、2/27 先住這裡。3/14 是週日，大部分商店公休。3/16 從這裡飛回台灣。" }
       ] }
   ],
+
+  /* 城市 → 區域 → 地點
+     type：sight 景點、food 吃、cafe 咖啡
+     closed：公休的星期（0 週日、1 週一 … 6 週六），手冊會自動標出「當天公休」
+     lat、lng：大約座標，用來算離住處的直線距離 */
+  cities: {
+    waw: {
+      name: "華沙", region: "waw", ref: "waw1", mapCity: "Warszawa",
+      intro: "二戰後依原貌重建的首都，老城列入世界遺產。不是驚艷型的城市，適合慢慢走、看美術館、坐咖啡館。",
+      tips: [
+        "週日商店公休：超市大多不開，Żabka 便利商店、藥局、麵包店、加油站例外，Żabka 多數開到 23:00。餐廳不受影響。",
+        "週一多數博物館休館（王宮、國家博物館、華沙博物館）。兩人一起在華沙的是 3/14 週日和 3/15 週一，想一起看的展館要排在 3/14。",
+        "老城廣場旁的餐廳偏貴、偏觀光，在地人吃家常菜多去牛奶吧。",
+        "華沙起義博物館、POLIN 猶太歷史博物館評價很高，但屬於戰爭和近代史主題，要有中文導覽才適合；有沒有中文語音導覽待查。",
+        "營業時間各來源常常不一致，標示的是 2025～2026 年的資料，出發前一個月再確認一次。"
+      ],
+      areas: [
+        { id: "powisle", name: "住處周邊：新世界街一帶", line: "Motel One 就在這區，走路就到新世界街和王宮之路。" },
+        { id: "old", name: "王宮之路與老城", line: "戰後重建、列入世界遺產的老城和王宮。" },
+        { id: "centrum", name: "市中心：科學文化宮、Marszałkowska", line: "蘇聯時期的地標和市中心商圈，平價餐廳和咖啡店多。" },
+        { id: "lazienki", name: "瓦津基公園", line: "王室夏宮和大公園，水上宮殿裡有國王的畫廊。" }
+      ],
+      pois: [
+        { id: "stor", area: "powisle", type: "cafe", name: "STOR Cafe", local: "ul. Tamka 33", q: "STOR Cafe Tamka 33 Warszawa",
+          line: "華沙最早的精品咖啡店之一，招牌是手沖，和住處同一條街。",
+          tip: "華沙在地雜誌說，很多人覺得這是全波蘭最好的咖啡館。", lat: 52.2368, lng: 21.0228 },
+        { id: "natmuseum", area: "powisle", type: "sight", name: "國家博物館", local: "Muzeum Narodowe w Warszawie",
+          line: "波蘭最大的美術館，有歐洲古典繪畫和波蘭歷史畫。", time: "2～3 小時",
+          hours: "週二～週日 10:00–18:00，週五到 20:00", closed: [1], free: "週二常設展免費",
+          tip: "馬泰伊科的巨幅歷史畫《格倫瓦德之戰》在這裡。", lat: 52.2316, lng: 21.0249 },
+        { id: "chopin", area: "powisle", type: "sight", name: "蕭邦博物館", local: "Muzeum Fryderyka Chopina",
+          line: "全世界最多蕭邦手稿和遺物的博物館，就在住處對面。", closed: [1], warn: "整修中",
+          hours: "2026 年整修休館，預計 2027 年重開，日期未定",
+          tip: "重開後採整點入場。出發前要確認 2 月底、3 月中有沒有開。", lat: 52.2366, lng: 21.0216 },
+        { id: "wedel", area: "powisle", type: "cafe", name: "Wedel 巧克力咖啡館", local: "Pijalnia Czekolady E. Wedel, Szpitalna 8",
+          line: "1894 年開的熱巧克力老店，波蘭的國民巧克力品牌。", lat: 52.2344, lng: 21.0125 },
+        { id: "bristol", area: "old", type: "cafe", name: "Cafe Bristol", local: "Krakowskie Przedmieście 42/44", q: "Cafe Bristol Warszawa",
+          line: "1901 年開業的維也納風老咖啡館，在布里斯托飯店一樓。",
+          tip: "招牌是維也納咖啡和奶油千層派（kremówka）。", lat: 52.2428, lng: 21.0153 },
+        { id: "castle", area: "old", type: "sight", name: "華沙王宮", local: "Zamek Królewski",
+          line: "歷代國王的居所，有林布蘭的兩幅肖像，還有貝洛托畫的 23 幅華沙城景。", time: "2～3 小時",
+          hours: "週二～週日開放；冬季時間各來源不一，週日較早關", closed: [1], free: "週三常設展免費",
+          tip: "旅人說重建得非常逼真，慢慢看可以待到三小時。", lat: 52.2479, lng: 21.0143 },
+        { id: "oldsquare", area: "old", type: "sight", name: "老城廣場與甕城", local: "Rynek Starego Miasta, Barbakan",
+          line: "彩色山牆房屋圍成的廣場，中央是華沙美人魚像；往北走到紅磚甕城和新城。", time: "1 小時",
+          hours: "戶外，隨時可去", lat: 52.2497, lng: 21.0122 },
+        { id: "muzwarszawy", area: "old", type: "sight", name: "華沙博物館", local: "Muzeum Warszawy",
+          line: "在老城廣場邊的 11 棟老房子裡，講華沙的城市史。", time: "1.5 小時",
+          hours: "週二～週五 9:00–17:00（週四到 19:00），週末 11:00–18:00", closed: [1], free: "週四免費",
+          lat: 52.2502, lng: 21.0121 },
+        { id: "concert", area: "old", type: "sight", name: "蕭邦音樂會", local: "Muzeum Archidiecezji Warszawskiej",
+          line: "總教區博物館每天 18:30 的蕭邦音樂會，票價 45 茲羅提（約台幣 360）。",
+          tip: "蕭邦博物館整修期間的替代方案。這是 2026 年的資訊。", lat: 52.2486, lng: 21.0131 },
+        { id: "zapiecek", area: "old", type: "food", name: "Zapiecek 波蘭餃子", local: "Freta 18 等多家分店", q: "Zapiecek Freta 18 Warszawa",
+          line: "連鎖波蘭餃子店，老城就有好幾家，台灣交換生最常推薦。",
+          tip: "台灣學生推薦點煎的，不要點水煮的；觀光客多時要排隊。人均約台幣 400～500（2023 年記錄）。",
+          lat: 52.2522, lng: 21.0093 },
+        { id: "barbakan", area: "old", type: "food", name: "Pod Barbakanem 牛奶吧", local: "Bar Mleczny Pod Barbakanem",
+          line: "老城牆邊的牛奶吧，用很低的價格吃家常波蘭菜。",
+          tip: "牛奶吧是自己到櫃台點餐的平價食堂，吃完就走。", lat: 52.2509, lng: 21.0102 },
+        { id: "pkin", area: "centrum", type: "sight", name: "科學文化宮觀景台", local: "Pałac Kultury i Nauki，30 樓", q: "Pałac Kultury i Nauki Warszawa",
+          line: "在 30 樓看整個華沙，也是少數週一有開的景點。", time: "1 小時",
+          hours: "每天 10:00–20:00（節日和活動時會變）",
+          tip: "台灣交換生推薦離開華沙前上去道別；也有旅人覺得景色不錯但稱不上震撼。", lat: 52.2318, lng: 21.0060 },
+        { id: "prasowy", area: "centrum", type: "food", name: "Bar Prasowy 牛奶吧", local: "Marszałkowska 10/16", q: "Bar Prasowy Marszałkowska 10/16 Warszawa",
+          line: "1954 年開業的牛奶吧，裝潢翻新過，在地人和留學生最常推薦。",
+          tip: "平日中午 12～14 點人最多。", lat: 52.2189, lng: 21.0181 },
+        { id: "koszyki", area: "centrum", type: "food", name: "Hala Koszyki 美食市場", local: "Koszykowa 63", q: "Hala Koszyki Warszawa",
+          line: "老市場改建的美食街，約 30 個攤位，波蘭菜到亞洲菜都有。",
+          tip: "兩人想吃的不一樣時很方便。", lat: 52.2226, lng: 21.0126 },
+        { id: "ministerstwo", area: "centrum", type: "cafe", name: "Ministerstwo Kawy", local: "Marszałkowska", q: "Ministerstwo Kawy Warszawa",
+          line: "華沙知名的精品咖啡店，用瑞典烘豆商 Koppi 的豆子。", lat: 52.2237, lng: 21.0161 },
+        { id: "charlotte", area: "centrum", type: "cafe", name: "Charlotte", local: "Plac Zbawiciela", q: "Charlotte Plac Zbawiciela Warszawa",
+          line: "法式麵包店咖啡館，在市中心最熱鬧的廣場上，適合吃早餐。", lat: 52.2196, lng: 21.0172 },
+        { id: "palaceisle", area: "lazienki", type: "sight", name: "水上宮殿", local: "Pałac na Wyspie",
+          line: "湖中的古典主義宮殿，裡面是末代國王收藏的畫廊。", time: "公園加宮殿 1.5～2 小時",
+          hours: "內部開放時間出發前查官網",
+          tip: "冬天最好下午 2 點前開始逛，天黑得早，地面也可能濕滑泥濘。", lat: 52.2150, lng: 21.0353 },
+        { id: "chopinmon", area: "lazienki", type: "sight", name: "蕭邦紀念碑", local: "Pomnik Fryderyka Chopina",
+          line: "公園入口附近的蕭邦雕像。",
+          tip: "戶外蕭邦音樂會只在 5 月中到 9 月底的週末，3 月沒有。", lat: 52.2146, lng: 21.0270 }
+      ]
+    },
+    osl: { name: "奧斯陸", region: "osl", places: ["oslo"] },
+    tos: { name: "特羅姆瑟", region: "tos", places: ["tromso"] },
+    lof: { name: "羅弗敦", region: "lof", places: ["lofoten"] },
+    bgo: { name: "卑爾根", region: "bgo", places: ["bergen", "nutshell"] },
+    gdn: { name: "格但斯克", region: "gdn", places: ["gdansk", "malbork", "sopot"] }
+  },
+  cityOrder: ["waw", "osl", "tos", "lof", "bgo", "gdn"],
 
   info: {
     baggage: [
