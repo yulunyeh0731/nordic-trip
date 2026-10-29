@@ -5,7 +5,7 @@
    訂位代號、確認號不要寫進來（網頁是公開的）。 */
 
 window.TRIP = {
-  updated: "2026-10-22",
+  updated: "2026-10-29",
   start: "2027-02-25",
   end: "2027-03-17",
   departures: { Y: "2027-02-25", M: "2027-02-27" },
@@ -26,8 +26,8 @@ window.TRIP = {
     { name: "華沙", nights: "2 晚，Yulun 先行", solo: true },
     { name: "奧斯陸", nights: "2 晚，會合" },
     { name: "特羅姆瑟", nights: "3 晚", polar: true },
-    { name: "羅弗敦", nights: "4 晚", polar: true },
-    { name: "卑爾根", nights: "3 晚" },
+    { name: "羅弗敦", nights: "5 晚", polar: true },
+    { name: "卑爾根", nights: "2 晚" },
     { name: "格但斯克", nights: "2 晚" },
     { name: "華沙", nights: "2 晚" }
   ],
@@ -37,9 +37,8 @@ window.TRIP = {
       address: "ul. Tamka 38, 00-355 Warszawa", lat: 52.2370, lng: 21.0236, status: "booked", note: "房價不含早餐，現場付款" },
     { id: "osl", area: "奧斯陸", name: "", from: "2027-02-28", nights: 2, status: "pending" },
     { id: "tos", area: "特羅姆瑟", name: "", from: "2027-03-02", nights: 3, status: "pending" },
-    { id: "lof1", area: "雷訥一帶", name: "", from: "2027-03-05", nights: 2, status: "pending", note: "找有廚房的住處" },
-    { id: "lof2", area: "亨寧斯韋爾或斯沃爾韋爾一帶", name: "", from: "2027-03-07", nights: 2, status: "pending", note: "找有廚房的住處" },
-    { id: "bgo", area: "卑爾根", name: "", from: "2027-03-09", nights: 3, status: "pending" },
+    { id: "lof", area: "羅弗敦", name: "", from: "2027-03-05", nights: 5, status: "pending", note: "先西後東，西側、東側各住幾晚待定；找有廚房的住處" },
+    { id: "bgo", area: "卑爾根", name: "", from: "2027-03-10", nights: 2, status: "pending" },
     { id: "gdn", area: "格但斯克", name: "", from: "2027-03-12", nights: 2, status: "pending" },
     { id: "waw2", area: "華沙", name: "", from: "2027-03-14", nights: 2, status: "pending" }
   ],
@@ -136,27 +135,27 @@ window.TRIP = {
       alerts: ["新月，整趟最暗的一夜"], region: "lof",
       free: [{ when: "全天", text: "東側慢慢逛；晚上新月，挑晴的方向去北側海灘", areas: ["east", "mid"] }] },
 
-    { date: "2027-03-09", region: "bgo", title: "還車，飛卑爾根", city: "bgo",
-      alerts: ["還車後 13:55 起飛"],
+    { date: "2027-03-09", title: "羅弗敦最後一天", region: "lof", city: "lof",
+      free: [{ when: "全天", text: "看天氣決定往哪邊走；隔天要開回埃弗內斯，可以往東側移動", areas: ["mid", "east"] }] },
+
+    { date: "2027-03-10", region: "bgo", title: "還車，飛卑爾根", city: "bgo",
+      alerts: ["還車後起飛（班次待查）"],
       legs: [
         { t: "car", text: "開回埃弗內斯機場還車" },
         { t: "flight", carrier: "Widerøe", no: "",
-          from: "埃弗內斯 EVE", dep: "13:55", to: "卑爾根 BGO", arr: "16:40", via: "特隆赫姆",
+          from: "埃弗內斯 EVE", dep: "", to: "卑爾根 BGO", arr: "", depNote: "3/10 班次待查",
           bag: "Smart：1 件託運＋登機箱", status: "pending",
-          price: "1,599 挪威克朗（約 NT$5,341）" }
+          price: "3/9 班次的參考價 1,599 挪威克朗（約 NT$5,341），3/10 待查" }
       ],
       free: [{ when: "晚上", text: "到卑爾根後港邊走走", areas: ["bryggen"] }] },
 
-    { date: "2027-03-10", region: "bgo", art: "nutshell", places: ["nutshell"], title: "挪威縮影一日", city: "bgo",
-      alerts: ["08:29 火車出發"],
+    { date: "2027-03-11", region: "bgo", art: "nutshell", places: ["nutshell"], title: "挪威縮影一日", city: "bgo",
+      alerts: ["08:29 火車出發", "沒有備用日"],
       legs: [
         { t: "tour", text: "挪威縮影一日來回", dep: "08:29", arr: "18:17", status: "pending",
           price: "兩人 4,976 挪威克朗（每人約 NT$8,310）" }
       ],
-      notes: ["冬天遊船可能改航線，詳細時刻和備案見地點介紹"] },
-
-    { date: "2027-03-11", title: "卑爾根市區／備用日", region: "bgo", city: "bgo",
-      free: [{ when: "全天", text: "週四 KODE 有開；挪威縮影如果停駛，改在這天走", areas: ["bryggen", "kode"] }] },
+      notes: ["冬天遊船可能改航線，不影響行程；比較要擔心的是卑爾根鐵路因冰雪延誤，這次沒有備用日。詳細時刻見地點介紹"] },
 
     { date: "2027-03-12", region: "gdn", title: "飛格但斯克", city: "gdn",
       alerts: ["13:40 起飛"],
@@ -254,7 +253,7 @@ window.TRIP = {
           "<b>弗洛姆鐵路</b>：14:30 出發，15:14 到米達爾，約 20 公里爬升 800 多公尺",
           "<b>米達爾回卑爾根</b>：15:56 搭卑爾根鐵路，18:17 回到卑爾根" ] },
         { h: "旅人怎麼說", p: "冬天評價兩極。有台灣旅人 3 月走，說雪景美到讓人忘記呼吸；也有人覺得冬天弗洛姆鐵路景色普通，瀑布整個結冰。還有人遇到火車取消，改坐好幾個小時的巴士。" },
-        { note: "天氣不好或峽灣結冰時，遊船會改成從弗洛姆出發的來回航程，古德旺恩到弗洛姆改搭巴士；改搭 12:00 的弗洛姆來回船，仍接得上 14:30 的鐵路。比較需要擔心的是卑爾根鐵路因冰雪延誤，所以 3/11 留作備用日。" }
+        { note: "天氣不好或峽灣結冰時，遊船會改成從弗洛姆出發的來回航程，古德旺恩到弗洛姆改搭巴士；改搭 12:00 的弗洛姆來回船，仍接得上 14:30 的鐵路。比較需要擔心的是卑爾根鐵路因冰雪延誤，這次沒有備用日。" }
       ] },
 
     { id: "bergen", name: "卑爾根", region: "bgo", tier: "worth",
@@ -455,7 +454,7 @@ window.TRIP = {
     },
     lof: {
       name: "羅弗敦", region: "lof", mapCity: "Lofoten",
-      intro: "一條 E10 公路串起整排島。先住西側雷訥一帶，再往東到亨寧斯韋爾、斯沃爾韋爾，最後回埃弗內斯還車。",
+      intro: "一條 E10 公路串起整排島。住 5 晚，先住西側雷訥一帶，再往東到亨寧斯韋爾、斯沃爾韋爾，3/10 回埃弗內斯還車。",
       tips: [
         "3/7 是週日：大型超市不開，偏遠地區週日營業的店更少。3/6 週六要先把 3/7 的食物買好。",
         "冬天很多店和餐廳營業不穩定，有旅人說不一定照公告時間開門。想去的店前一天先查。",
@@ -493,9 +492,9 @@ window.TRIP = {
     },
     bgo: {
       name: "卑爾根", region: "bgo", mapCity: "Bergen", places: ["nutshell"],
-      intro: "峽灣入口的港口城市，彩色木屋街是世界遺產。3/9 晚上到，3/10 走挪威縮影，3/11 市區或備用。",
+      intro: "峽灣入口的港口城市，彩色木屋街是世界遺產。3/10 晚上到，3/11 走挪威縮影，3/12 起飛前的上午可以再逛港邊。",
       tips: [
-        "KODE 美術館週一休館；你們的 3/11 是週四，剛好可以去。",
+        "這次只住 2 晚，KODE 美術館可以略過。",
         "挪威最常下雨的城市之一，雨具要帶。",
         "營業時間是 2025～2026 年的資料，出發前一個月再確認。"
       ],
@@ -584,7 +583,7 @@ window.TRIP = {
     facts: [
       "新月約在 3/8，剛好在羅弗敦。月亮越暗，淡的極光越看得清楚。",
       "十一年雲量資料：特羅姆瑟 3 月每晚可用的夜約 28%；住 3 晚至少遇到一個可用夜約 51%。",
-      "整趟在極光區共 7 晚：特羅姆瑟 3 晚、羅弗敦 4 晚。換地點比在同一地多住更有效。",
+      "整趟在極光區共 8 晚：特羅姆瑟 3 晚、羅弗敦 5 晚。換地點比在同一地多住更有效。",
       "肉眼看到的極光多半是灰綠色的淡光帶，照片會比肉眼亮很多。"
     ],
     tour: [
@@ -603,11 +602,11 @@ window.TRIP = {
   /* 行前清單：勾選狀態只存在自己的手機 */
   checklist: [
     { id: "may-ticket", text: "May 訂阿聯酋機票", sub: "2/27 去程、3/16 和 Yulun 同班回程" },
-    { id: "lofoten", text: "決定羅弗敦 4 晚或 5 晚" },
+    { id: "lofoten", text: "決定羅弗敦西側、東側各住幾晚", sub: "共 5 晚，3/5～3/9" },
     { id: "osl-tos", text: "訂奧斯陸 → 特羅姆瑟", sub: "挪威航空 3/2 10:30" },
-    { id: "wideroe", text: "訂 Widerøe 兩段", sub: "3/5 特羅姆瑟 → 埃弗內斯、3/9 埃弗內斯 → 卑爾根" },
-    { id: "car", text: "訂埃弗內斯租車", sub: "四驅、自排、雪胎，同地取還" },
-    { id: "nutshell", text: "訂挪威縮影", sub: "3/10 卑爾根來回" },
+    { id: "wideroe", text: "訂 Widerøe 兩段", sub: "3/5 特羅姆瑟 → 埃弗內斯、3/10 埃弗內斯 → 卑爾根（3/10 班次先查）" },
+    { id: "car", text: "訂埃弗內斯租車", sub: "3/5 取、3/10 還，四驅、自排、雪胎；留意是不是電動車" },
+    { id: "nutshell", text: "訂挪威縮影", sub: "3/11 卑爾根來回" },
     { id: "wizz", text: "訂卑爾根 → 格但斯克", sub: "Wizz Air 3/12，含 20 公斤託運" },
     { id: "stays", text: "訂各地住宿", sub: "奧斯陸、特羅姆瑟、羅弗敦兩段、卑爾根、格但斯克、華沙" },
     { id: "metropol", text: "取消 Hotel Metropol", sub: "2/21 前免費取消" },
@@ -629,7 +628,8 @@ window.TRIP = {
 
   notes: {
     pending: [
-      "羅弗敦要不要加到 5 晚：卑爾根改 2 晚（沒有備用日），或奧斯陸改 1 晚",
+      "3/10 埃弗內斯飛卑爾根的班次待查",
+      "羅弗敦 5 晚，西側、東側怎麼分",
       "May 的阿聯酋機票（她自己訂）：去程 2/27 EK367＋EK159，回程 3/16 和 Yulun 同班。台新優惠可以用到 12/31，條件還要確認",
       "2/28 在奧斯陸機場怎麼會合",
       "華沙飛奧斯陸的票價待補"

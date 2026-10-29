@@ -299,7 +299,7 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
 .ahero .wrap{padding-bottom:22px}
 .ahero h1{font-family:var(--serif);font-weight:700;font-size:56px;line-height:1;margin:0;letter-spacing:.1em}
 .ahero p{margin:10px 0 0;color:#B9C8D3;font-size:15px}
-.nights{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;margin-top:18px}
+.nights{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:4px;margin-top:18px}
 .nights a{text-decoration:none;text-align:center;padding:6px 0 5px;border-radius:2px;background:#1E3A50;color:#D7E2EA;font-size:11px;line-height:1.3}
 .nights a b{display:block;font-family:var(--serif);font-size:16px;color:#fff}
 .nights a.moon{background:var(--glow);color:#0B3A2C}
@@ -619,7 +619,7 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
     var A=T.aurora;
     var nights=T.days.filter(function(d){return d.region==="tos"||d.region==="lof";}).map(function(d){
       return '<a href="#/day/'+key(d.date)+'"'+(d.date==="2027-03-08"?' class="moon"':"")+'><b>'+md(d.date)+'</b>'+(d.date==="2027-03-08"?"新月":T.regions[d.region].name.slice(0,2))+'</a>'; }).join("");
-    return '<section class="ahero"><svg viewBox="0 0 400 110" preserveAspectRatio="none" aria-hidden="true"><g transform="translate(0,20)">'+LINES+'</g></svg><div class="wrap"><h1>極光</h1><p>北極圈裡的 7 個晚上，點日期看那天的安排</p><div class="nights">'+nights+'</div></div></section>'+
+    return '<section class="ahero"><svg viewBox="0 0 400 110" preserveAspectRatio="none" aria-hidden="true"><g transform="translate(0,20)">'+LINES+'</g></svg><div class="wrap"><h1>極光</h1><p>北極圈裡的 '+T.days.filter(function(d){return d.region==="tos"||d.region==="lof";}).length+' 個晚上，點日期看那天的安排</p><div class="nights">'+nights+'</div></div></section>'+
       '<main class="wrap"><h2 class="sec">機率與月相</h2><div class="card"><ul class="alist">'+li(A.facts)+'</ul></div>'+
       '<h2 class="sec">特羅姆瑟極光團</h2><div class="card"><ul class="alist">'+li(A.tour)+'</ul></div>'+
       '<h2 class="sec">羅弗敦自己追</h2><div class="card"><ul class="alist">'+li(A.lofoten)+'</ul></div>'+
