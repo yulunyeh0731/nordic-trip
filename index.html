@@ -153,9 +153,12 @@ summary{list-style:none;cursor:pointer} summary::-webkit-details-marker{display:
 .fbar span{display:block}
 .b-paid{background:var(--fjord)}
 .b-later{background:repeating-linear-gradient(135deg,var(--fjord) 0 3px,color-mix(in srgb,var(--fjord) 25%,var(--paper)) 3px 6px)}
-.b-est{background:color-mix(in srgb,var(--fjord) 28%,var(--paper))}
-.flegend{display:flex;flex-wrap:wrap;gap:2px 14px;margin:8px 0 0;font-size:13px;color:var(--ink2)}
-.flegend i{display:inline-block;width:12px;height:10px;margin-right:5px;vertical-align:-1px;border-radius:1px}
+.fov-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:6px 0 10px}
+.fov-2 span{display:block;font-size:13.5px;color:var(--ink2)}
+.fov-2 i{display:inline-block;width:12px;height:10px;margin-right:5px;vertical-align:-1px;border-radius:1px}
+.fov-2 b{display:block;font-family:var(--serif);font-weight:700;font-size:26px;line-height:1.2;font-variant-numeric:tabular-nums}
+.fov-t{display:flex;justify-content:space-between;align-items:baseline;margin:10px 0 0;padding-top:8px;border-top:2px solid var(--ink);font-size:15px}
+.fov-t b{font-family:var(--serif);font-weight:700;font-size:22px;font-variant-numeric:tabular-nums}
 .fcats{margin-top:12px;border-top:1px solid var(--line2)}
 .fcat{display:grid;grid-template-columns:3.2em minmax(0,1fr) auto;gap:2px 10px;align-items:center;padding:8px 0 6px;border-top:1px solid var(--line2);font-size:14.5px}
 .fcat:first-child{border-top:0}
@@ -638,11 +641,11 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
   function place(x){ var n=apt(x).n; return n&&n!=="機場"?n:x; }
   function inView(x,w){ var o=x.c.who; return w==="all"||!o||o===w; }
   function share(x,w){ if(x.v==null) return null; return (w!=="all"&&!x.c.who)?x.v/2:x.v; }
-  function origText(x){ var c=x.c; if (c.amt==null) return "金額未知";
+  function origText(x){ var c=x.c; if (c.amt==null) return "待補";
     return c.each?(c.note||c.cur+" "+num(c.amt)+" 每人"):c.cur+" "+num(c.amt); }
-  function amtText(v,ap){ return v==null?"金額未知":(ap?"約 "+nt(Math.round(v/10)*10):nt(v)); }
+  function amtText(v,ap){ return v==null?"台幣待補":(ap?"約 ":"")+nt(v); }
   function whoText(c){ return c.who?T.people[c.who]:"兩人"; }
-  var PAY={paid:"已付",later:"之後扣款",onsite:"現場付",est:"估計",unknown:"金額未知"};
+  var PAY={paid:"已付",later:"之後扣款",onsite:"現場付"};
   function payText(c){ return PAY[c.pay]+(c.payDate&&(c.pay==="paid"||c.pay==="later")?" "+md(c.payDate):""); }
   function untilText(u){ var p=u.split("T"); return md(p[0])+(p[1]?" "+p[1]:""); }
   function ruleTag(r){ if(!r) return "";
@@ -657,23 +660,24 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
     var w=feeWho, all=costItems().filter(function(x){return inView(x,w);});
     var sw='<div class="seg" role="group" aria-label="看誰的費用">'+[["Y","Yulun"],["M","May"],["all","兩人合計"]].map(function(o){
       return '<button type="button" data-fw="'+o[0]+'" aria-pressed="'+(w===o[0])+'">'+o[1]+'</button>'; }).join("")+'</div>';
-    var paid=0, later=0, est=0, unk=0, ap=false, CATS=["交通","住宿","租車","活動"], cat={};
-    CATS.forEach(function(k){ cat[k]={v:0,n:0,unk:0,ap:false,items:[]}; });
-    all.forEach(function(x){ var v=share(x,w), g=cat[x.c.cat]||(cat[x.c.cat]={v:0,n:0,unk:0,ap:false,items:[]});
+    var paid=0, later=0, unk=0, ap=false, lap=false, CATS=["交通","住宿","租車","活動"], cat={};
+    CATS.forEach(function(k){ cat[k]={v:0,n:0,ap:false,items:[]}; });
+    all.forEach(function(x){ var v=share(x,w), g=cat[x.c.cat]||(cat[x.c.cat]={v:0,n:0,ap:false,items:[]});
       g.n++; g.items.push(x);
-      if (v==null){ unk++; g.unk++; return; }
+      if (v==null){ unk++; return; }
       if (x.ap){ ap=true; g.ap=true; }
       g.v+=v;
-      if (x.c.pay==="paid") paid+=v; else if (x.c.pay==="later"||x.c.pay==="onsite") later+=v; else est+=v; });
-    var total=paid+later+est;
+      if (x.c.pay==="paid") paid+=v; else { later+=v; if (x.ap) lap=true; } });
+    var total=paid+later;
     var who=w==="all"?"兩人合計的旅費":T.people[w]+" 的旅費";
-    var ov='<div class="card fov"><p class="fov-k">'+who+'</p><p class="fov-n">'+amtText(total,ap)+'</p>'+
-      '<div class="fbar">'+(paid?'<span class="b-paid" style="flex:'+paid+'"></span>':"")+(later?'<span class="b-later" style="flex:'+later+'"></span>':"")+(est?'<span class="b-est" style="flex:'+est+'"></span>':"")+'</div>'+
-      '<div class="flegend"><span><i class="b-paid"></i>已付 '+nt(paid)+'</span><span><i class="b-later"></i>之後要付 '+amtText(later,later>0)+'</span><span><i class="b-est"></i>估計 '+amtText(est,est>0)+'</span></div>'+
+    var ov='<div class="card fov"><p class="fov-k">'+who+'</p>'+
+      '<div class="fov-2"><div><span><i class="b-paid"></i>已付</span><b>'+nt(paid)+'</b></div><div><span><i class="b-later"></i>還要付</span><b>'+amtText(later,lap)+'</b></div></div>'+
+      (total?'<div class="fbar">'+(paid?'<span class="b-paid" style="flex:'+paid+'"></span>':"")+(later?'<span class="b-later" style="flex:'+later+'"></span>':"")+'</div>':"")+
+      '<p class="fov-t"><span>合計</span><b>'+amtText(total,ap)+'</b></p>'+
       '<div class="fcats">'+CATS.map(function(k){ var g=cat[k]; if(!g.n) return "";
-        return '<div class="fcat"><span>'+k+'</span><b>'+(g.v?amtText(g.v,g.ap):"—")+'</b><div class="fcbar"><span style="width:'+(total?(g.v/total*100).toFixed(1):0)+'%"></span></div>'+
-          (g.unk?'<small>另有 '+g.unk+' 筆金額未知</small>':"")+'</div>'; }).join("")+'</div>'+
-      (unk?'<p class="fov-u">另有 '+unk+' 筆金額未知，沒有算進總額。</p>':"")+'</div>';
+        return '<div class="fcat"><span>'+k+'</span><b>'+amtText(g.v,g.ap)+'</b><div class="fcbar"><span style="width:'+(total?(g.v/total*100).toFixed(1):0)+'%"></span></div></div>'; }).join("")+'</div>'+
+      (unk?'<p class="fov-u">另有 '+unk+' 筆台幣待補，沒有算進合計。</p>':"")+
+      '<p class="fov-u">只列金額確定的項目。還沒付的外幣依匯率換算，標「約」。</p></div>';
     var due=all.filter(function(x){return x.c.pay==="later"||x.c.pay==="onsite";}).sort(function(a,b){return (a.c.payDate||a.date)<(b.c.payDate||b.date)?-1:1;});
     var dueH='<h2 class="sec">還要付的錢</h2><div class="card">'+(due.length?'<ul class="flist">'+due.map(function(x){
       return '<li><span class="due">'+md(x.c.payDate||x.date)+'</span><div><p>'+x.name+'</p><p class="s">'+origText(x)+(x.v!=null?"，"+amtText(x.v,x.ap):"")+'・'+PAY[x.c.pay]+'</p></div></li>'; }).join("")+'</ul>':'<p class="muted fempty">目前沒有</p>')+'</div>';
@@ -682,12 +686,12 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
     var ddlH='<h2 class="sec">取消期限 <small>免費取消到這個時間</small></h2><div class="card">'+(ddl.length?'<ul class="flist">'+ddl.map(function(x){ var r=x.c.rule;
       return '<li><span class="due">'+md(r.until.slice(0,10))+'</span><div><p>'+x.name+'</p><p class="s">'+untilText(r.until)+' 前（當地時間）'+(r.note?"，"+r.note:"")+'</p></div></li>'; }).join("")+'</ul>':'<p class="muted fempty">目前沒有</p>')+'</div>';
     var det='<h2 class="sec">明細 <small>點類別展開</small></h2>'+CATS.map(function(k){ var g=cat[k]; if(!g.n) return "";
-      return '<details class="card fold fgrp"><summary><b>'+k+'</b><small>'+g.n+' 筆</small><span class="fg-v">'+(g.v?amtText(g.v,g.ap):"金額未知")+'</span><span class="chev"></span></summary><div class="fg-in">'+
+      return '<details class="card fold fgrp"><summary><b>'+k+'</b><small>'+g.n+' 筆</small><span class="fg-v">'+amtText(g.v,g.ap)+'</span><span class="chev"></span></summary><div class="fg-in">'+
         g.items.map(function(x){ var c=x.c, v=share(x,w), half=w!=="all"&&!c.who&&x.v!=null;
           var rows=[];
           function row(a,b){ if(b) rows.push('<div><span>'+a+'</span><div>'+b+'</div></div>'); }
           row("原幣",origText(x));
-          row("台幣",x.v==null?"金額未知":(x.ap?"約 "+nt(Math.round(x.v/10)*10)+"（依匯率估算）":(c.cur==="TWD"?nt(x.v):"刷卡 "+nt(x.v)))+(half?"，兩人各一半":""));
+          row("台幣",x.v==null?"待補":(x.ap?"約 "+nt(x.v)+"（1 "+({NOK:"挪威克朗",EUR:"歐元",PLN:"茲羅提"})[c.cur]+"約 "+T.rates[c.cur]+" 元換算，付款後改成實際金額）":(c.cur==="TWD"?nt(x.v):"刷卡 "+nt(x.v)))+(half?"，兩人各一半":""));
           row("補充",c.note&&c.note!==origText(x)?c.note:"");
           row("票種",x.fare);
           row("付款",payText(c));
@@ -793,7 +797,7 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
     return '<section class="ihero"><div class="wrap"><h1>資料</h1><p>交通、住宿、地址、行李、費用和行前清單</p></div>'+strip("no","rgba(255,255,255,.16)","pi")+'</section>'+
       '<nav class="itabs" aria-label="資料分類"><div class="wrap">'+INFO.map(function(x){
         return '<a href="#/info/'+x[0]+'"'+(x[0]===tab[0]?' aria-current="page"':"")+'>'+x[1]+'</a>'; }).join("")+'</div></nav>'+
-      '<main class="wrap">'+body+(tab[0]!=="list"?'<p class="foot">資料更新於 '+T.updated.replace(/-/g,"/")+'。訂位代號不放在這個公開頁面。挪威克朗以 1 克朗約台幣 3.55 元、茲羅提以約台幣 8 元概算。</p>':"")+'</main>';
+      '<main class="wrap">'+body+(tab[0]!=="list"?'<p class="foot">資料更新於 '+T.updated.replace(/-/g,"/")+'。訂位代號不放在這個公開頁面。匯率：1 挪威克朗約台幣 '+T.rates.NOK+' 元、1 歐元約 '+T.rates.EUR+' 元、1 茲羅提約 '+T.rates.PLN+' 元。</p>':"")+'</main>';
   }
 
   /* ── 總覽 ── */
