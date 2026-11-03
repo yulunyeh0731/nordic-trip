@@ -993,9 +993,10 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
   function regionOn(iso){ var d=T.days.filter(function(x){return x.date===iso;})[0]; return d?d.region:"tw"; }
   function routeHTML(){
     var cells=T.route.map(function(r){
-      var s=stayById(r.stay); if(!s) return "";
-      var out=add(s.from,s.nights), on=inTrip&&today>=s.from&&today<out;
-      return '<a href="#/day/'+key(s.from)+'" style="--c:'+col(regionOn(s.from))+'"'+(on?' aria-current="true"':"")+'><b>'+r.name+'</b><span>'+md(s.from)+'–'+md(out)+'</span><span>'+s.nights+' 晚'+(s.who?'・'+T.people[s.who]:"")+'</span></a>';
+      var ss=[].concat(r.stay).map(stayById).filter(Boolean); if(!ss.length) return "";
+      var s=ss[0], last=ss[ss.length-1], nights=ss.reduce(function(n,x){return n+x.nights;},0);
+      var out=add(last.from,last.nights), on=inTrip&&today>=s.from&&today<out;
+      return '<a href="#/day/'+key(s.from)+'" style="--c:'+col(regionOn(s.from))+'"'+(on?' aria-current="true"':"")+'><b>'+r.name+'</b><span>'+md(s.from)+'–'+md(out)+'</span><span>'+nights+' 晚'+(s.who?'・'+T.people[s.who]:"")+'</span></a>';
     });
     var sky=T.days.filter(function(d){return d.region==="sky";}), first=sky[0]||T.days[T.days.length-1];
     var onSky=inTrip&&today>=first.date;

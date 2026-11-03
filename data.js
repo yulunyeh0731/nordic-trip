@@ -24,7 +24,7 @@
    訂位代號、確認號不要寫進來（網頁是公開的）。 */
 
 window.TRIP = {
-  updated: "2026-11-03",
+  updated: "2026-11-04",
   start: "2027-02-25",
   end: "2027-03-17",
   departures: { Y: "2027-02-25", M: "2027-02-27" },
@@ -47,7 +47,7 @@ window.TRIP = {
     { name: "華沙", nights: "2 晚，Yulun 先行", solo: true, stay: "waw1" },
     { name: "奧斯陸", nights: "2 晚，會合", stay: "osl" },
     { name: "特羅姆瑟", nights: "3 晚", polar: true, stay: "tos" },
-    { name: "羅弗敦", nights: "5 晚", polar: true, stay: "lof" },
+    { name: "羅弗敦", nights: "5 晚", polar: true, stay: ["lof1", "lof2", "lof3"] },
     { name: "卑爾根", nights: "2 晚", stay: "bgo" },
     { name: "格但斯克", nights: "2 晚", stay: "gdn" },
     { name: "華沙", nights: "2 晚", stay: "waw2" }
@@ -60,7 +60,21 @@ window.TRIP = {
       cost: { cat: "住宿", cur: "PLN", amt: 560, who: "Y", pay: "onsite", payDate: "2027-02-26", rule: { type: "free", until: "2027-02-26T18:00", note: "之後取消收 90%" } } },
     { id: "osl", area: "奧斯陸", name: "", from: "2027-02-28", nights: 2, status: "pending" },
     { id: "tos", area: "特羅姆瑟", name: "", from: "2027-03-02", nights: 3, status: "pending" },
-    { id: "lof", area: "羅弗敦", name: "", from: "2027-03-05", nights: 5, status: "pending", note: "西側、東側各住幾晚待定；找有廚房的住處" },
+    { id: "lof1", area: "羅弗敦", name: "Lofoten Links Lodges", from: "2027-03-05", nights: 1, status: "booked",
+      address: "Hov Tore Hjortsvei 389, 8314 Gimsøy", lat: 68.3404, lng: 14.1285,
+      room: "Luxury Standard Lodge，私人衛浴，共用廚房和客廳", kitchen: "共用廚房", breakfast: false, parking: true,
+      phone: "+47 76 07 20 02", checkin: "16:00", checkout: "11:00",
+      note: "餐廳冬季關閉，晚餐自己煮。門牌和高爾夫球場同號，導航用座標 68.3404, 14.1285",
+      cost: { cat: "住宿", cur: "NOK", amt: 1912.5, pay: "later", note: "Booking.com，含 12% 加值稅",
+        rule: { type: "free", until: "2027-02-02T23:59", note: "2/3 起取消收 50%，未入住收全額" } } },
+    { id: "lof2", area: "羅弗敦", name: "Sakrisøy Rorbuer", from: "2027-03-06", nights: 2, status: "booked",
+      address: "Sakrisøya 2, 8390 Reine", lat: 67.9409, lng: 13.1111,
+      room: "海景傳統小屋，附陽台", kitchen: "簡易廚房（灶台、烤箱、冰箱）", breakfast: false, parking: "免費（不可預約）",
+      phone: "+47 90 03 54 19", checkin: "15:00", checkout: "11:00",
+      note: "冬季入住時間和拿鑰匙方式待確認",
+      cost: { cat: "住宿", cur: "NOK", amt: 6356.79, pay: "later", note: "Booking.com，房價 NOK 6,980 扣掉 Booking.com 折抵 623.21；住宿開的發票會顯示全額",
+        rule: { type: "free", until: "2027-02-20T00:00", note: "入住 14 天前，確切時間看訂單頁；之後取消或未入住收全額" } } },
+    { id: "lof3", area: "羅弗敦", name: "", from: "2027-03-08", nights: 2, status: "pending", note: "找有廚房的住處" },
     { id: "bgo", area: "卑爾根", name: "", from: "2027-03-10", nights: 2, status: "pending" },
     { id: "gdn", area: "格但斯克", name: "", from: "2027-03-12", nights: 2, status: "pending" },
     { id: "waw2", area: "華沙", name: "", from: "2027-03-14", nights: 2, status: "pending" }
@@ -153,20 +167,20 @@ window.TRIP = {
           seatNote: "還沒選", aircraft: "DHC-8 螺旋槳小飛機",
           bag: { chkN: 1, chkKg: 23, chkCm: 158, cabDim: [55, 40, 20], smlDim: [40, 30, 15], sumKg: 8 }, status: "booked",
           fare: "Smart", cost: { cat: "交通", cur: "NOK", amt: 1324, twd: 4706, pay: "paid", payDate: "2026-11-02", note: "含服務費", rule: { type: "none", note: "不可退款、不可改票" } } },
-        { t: "car", text: "EVE 機場取車（四驅、自排、雪胎），沿 E10 開往今晚住處（住宿待訂）", status: "pending", short: "EVE 機場租車" }
+        { t: "car", text: "EVE 機場取車（四驅、自排、雪胎），沿 E10 開到 Gimsøy 的 Lofoten Links Lodges", status: "pending", short: "EVE 機場租車" }
       ],
       notes: ["DHC-8 螺旋槳小飛機，置物櫃小，登機箱可能在登機門被收去託運。證件、貴重物品、行動電源放隨身小包"],
-      free: [{ when: "傍晚", text: "到住處時天色已暗，沿路先採買再入住", areas: ["west", "mid", "east"] }] },
+      free: [{ when: "傍晚", text: "到住處時天色已暗，沿路先採買再入住（16:00 起）。小屋餐廳冬季關閉，晚餐用共用廚房自己煮", areas: ["west", "mid", "east"] }] },
 
     { date: "2027-03-06", title: "羅弗敦自駕，週六先採買", region: "lof", city: "lof",
-      free: [{ when: "全天", text: "看天氣決定往哪一側走。週六：記得把 3/7 週日的食物先買好", areas: ["west", "mid", "east"] }] },
+      free: [{ when: "全天", text: "11:00 前退房，往西開到薩克里索伊（Sakrisøy），15:00 起入住。週六：記得把 3/7 週日的食物先買好", areas: ["west", "mid", "east"] }] },
 
     { date: "2027-03-07", title: "羅弗敦，週日店家少", region: "lof", city: "lof",
       free: [{ when: "全天", text: "週日大型超市不開。看雲量往晴的一側開，中段的烏塔克萊夫（Uttakleiv）、豪克蘭海灘（Haukland）可以停一停", areas: ["west", "mid", "east"] }] },
 
     { date: "2027-03-08", title: "羅弗敦，新月", city: "lof",
       alerts: ["新月，整趟最暗的一夜"], region: "lof",
-      free: [{ when: "全天", text: "看天氣決定往西側或東側；晚上新月，挑晴的方向去北側海灘", areas: ["west", "mid", "east"] }] },
+      free: [{ when: "全天", text: "11:00 前退房，今晚住處待訂。看天氣決定往西側或東側；晚上新月，挑晴的方向去北側海灘", areas: ["west", "mid", "east"] }] },
 
     { date: "2027-03-09", title: "羅弗敦最後一天", region: "lof", city: "lof",
       free: [{ when: "全天", text: "看天氣決定往哪邊走。隔天中午前要開回 EVE 機場還車，機場在群島東邊，開車時間依住處而定（待查）", areas: ["west", "mid", "east"] }] },
@@ -268,7 +282,7 @@ window.TRIP = {
       line: "雪山直接從海裡拔起，山腳是紅色漁屋。挪威冬天風景的最高峰。",
       blocks: [
         { h: "是什麼", p: "挪威西北外海的一串群島，一條 E10 公路由東到西把所有島串起來。2～3 月白天變長，光線最漂亮。" },
-        { h: "會去哪裡", p: "從 EVE 機場（哈爾斯塔/納爾維克機場，Harstad/Narvik lufthavn Evenes）取車，沿 E10 公路玩西側和東側，最後開回 EVE 機場還車。住宿還沒訂，西側、東側各住幾晚待定。" },
+        { h: "會去哪裡", p: "從 EVE 機場（哈爾斯塔/納爾維克機場，Harstad/Narvik lufthavn Evenes）取車，沿 E10 公路玩西側和東側，最後開回 EVE 機場還車。先住中段 Gimsøy 一晚，再住西側薩克里索伊兩晚，最後兩晚住宿待訂。" },
         { sub: "西側：哈姆諾伊、薩克里索伊、雷訥、Å", p: "整趟的精華。哈姆諾伊是紅色漁屋配尖山；過橋的薩克里索伊整村是黃色的；雷訥是羅弗敦最經典的明信片畫面；Å 是 E10 的終點。" },
         { sub: "中段：烏塔克萊夫、豪克蘭海灘", p: "白天是雪山配海灘，晚上是看極光的經典地點。北側海灘面向北方，地平線開闊。" },
         { sub: "東側：斯沃爾韋爾、亨寧斯韋爾", p: "斯沃爾韋爾是東側最大的鎮，生活機能最好。亨寧斯韋爾是建在小島群上的漁村，冬天正值鱈魚季，港口掛滿晾魚乾的木架。有名的海上足球場經典照片是空拍，站在地面看不太出來。" },
@@ -485,7 +499,7 @@ window.TRIP = {
     },
     lof: {
       name: "羅弗敦", region: "lof", mapCity: "Lofoten",
-      intro: "一條 E10 公路串起整排島。住 5 晚，住宿待訂，西側、東側各住幾晚待定。3/10 回 EVE 機場還車。",
+      intro: "一條 E10 公路串起整排島。住 5 晚：3/5 中段 Gimsøy，3/6～3/8 西側薩克里索伊，3/8～3/10 待訂。3/10 回 EVE 機場還車。",
       tips: [
         { i: "shop", t: "3/7 週日大型超市不開", d: "偏遠地區週日營業的店更少。3/6 週六先把 3/7 的食物買好。" },
         { i: "clock", t: "冬天店家常不照公告開門", d: "有旅人說不一定照公告時間營業，想去的店前一天先查。" },
@@ -632,7 +646,7 @@ window.TRIP = {
   /* 行前清單：勾選狀態只存在自己的手機 */
   checklist: [
     { id: "meet", text: "決定 2/28 在奧斯陸機場怎麼會合", sub: "May 12:10 先到，Yulun 16:20 到；在機場等，或 May 先進市區 check-in" },
-    { id: "lofoten", text: "決定羅弗敦西側、東側各住幾晚", sub: "共 5 晚，3/5～3/9" },
+    { id: "lof-stay3", text: "訂羅弗敦 3/8～3/10 兩晚", sub: "3/5～3/8 已訂；找有廚房的住處" },
     { id: "car", text: "訂 EVE 機場租車", sub: "3/5 12:15 落地後取、3/10 中午前還，四驅、自排、雪胎；留意是不是電動車" },
     { id: "nutshell", text: "訂挪威縮影", sub: "3/11 卑爾根來回；買之前先看取消規定" },
     { id: "wf863-seat", text: "選 3/5 Widerøe WF863 座位", sub: "Widerøe 的 My trips，Smart 可免費選一般座位" },
@@ -640,7 +654,9 @@ window.TRIP = {
     { id: "wizz-bp", due: "2027-02-10", dueApprox: true, text: "確認 Wizz 登機證有沒有出來", sub: "WIZZ PLUS 有自動報到，兩個訂位代號都要看" },
     { id: "wizz-check", text: "確認 Wizz 訂單是 WIZZ PLUS", sub: "兩人各一個 Wizz 訂位代號（見 Trip.com 行程單），兩個都要登入 Wizz app 查" },
     { id: "bgo-stay", text: "訂卑爾根住宿", sub: "候選 Ole Bull：先確認房型有沒有廚房，官網 Flexible 3/10 16:00 前免費取消" },
-    { id: "stays", text: "訂其他住宿", sub: "奧斯陸、特羅姆瑟、羅弗敦兩段、格但斯克、華沙" },
+    { id: "stays", text: "訂其他住宿", sub: "奧斯陸、特羅姆瑟、格但斯克、華沙後段" },
+    { id: "lof-arrival", text: "告知 Lofoten Links Lodges 預計抵達時間", sub: "確認單要求事先告知；3/5 12:15 落地，取車後開過去" },
+    { id: "sakrisoy-checkin", text: "向 Sakrisøy Rorbuer 確認冬季入住時間、怎麼拿鑰匙" },
     { id: "metropol", due: "2027-02-21", text: "取消 Hotel Metropol", sub: "2/21 前免費取消" },
     { id: "pkp", due: "2027-02-12", dueApprox: true, text: "買格但斯克 → 華沙火車票", sub: "出發前約 30 天開賣" },
     { id: "entry", due: "2027-01-25", text: "查入境規定最新公告", sub: "歐盟 EES、ETIAS 上路時程" },
