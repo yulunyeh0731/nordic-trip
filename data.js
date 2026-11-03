@@ -2,12 +2,19 @@
    改行程只要改這個檔案，index.html 不用動。
    status：booked 已訂、pending 待訂、self May 自訂
    who：Y 只有 Yulun、M 只有 May，不寫代表兩人一起
-   費用欄位：fare 票種、cost { orig 原幣金額, twd 台幣刷卡金額（不知道寫 null）, pax 人數, note 補充, est 估計值 }、
-   rule 退改規則、seats 座位 [{ who, no 座位號, win 靠窗 }]、seatNote 座位補充、aircraft 機型、short 費用表和總覽待訂清單用的簡稱（非航班才需要）
+   fare 票種、seats 座位 [{ who, no 座位號, win 靠窗 }]、seatNote 座位補充、aircraft 機型、short 費用表和總覽待訂清單用的簡稱（非航班才需要）
    todo：兩人同班但有人還沒訂好時，寫那個人的狀態（例如「May 自訂，開票待確認」），總覽的準備進度就不算已訂
    bag 行李（不知道的欄位不寫，畫面顯示待補）：chkN 託運件數、chkKg 託運公斤、chkCm 託運長寬高合計上限（公分）、chkNote 託運補充（例如計重制）、
      cabN 登機箱件數、cabKg 登機箱公斤、cabDim 登機箱 [長, 寬, 高]（公分）、smlDim 座位下小包 [長, 寬, 高]、smlNote 小包補充、
      sumKg 登機箱＋小包合計公斤、tbd 還不知道時的說明；兩人限額不同時寫成 { Y: {...}, M: {...} }
+   cost 費用（交通段、住宿、activities 都可以帶，費用頁自動收集）：
+     cat 類別（交通、住宿、租車、活動）、cur 幣別（TWD、NOK、EUR、PLN、USD）、amt 原幣金額（不知道寫 null）、each: true 表示 amt 是每人、
+     twd 實際刷卡台幣（沒有就不寫，畫面用 rates 匯率估算並標「約」；美元沒有匯率，會顯示金額未知）、
+     who：Y 只有 Yulun、M 只有 May，不寫代表兩人共用、
+     pay 付款狀態：paid 已付、later 之後扣款、onsite 現場付、est 估計、unknown 金額未知；payDate 付款日或扣款日（YYYY-MM-DD）、
+     name 費用頁顯示的名稱（不寫就用航班或項目名稱）、note 補充（手續費、購買管道等）、
+     rule 退改 { type：free 免費取消、change 改期免費、paid 可付費更改、none 不可退、tbd 待確認；until 期限（YYYY-MM-DDTHH:MM，當地時間）；label 標籤文字（不寫就用預設）；note 補充 }
+   activities：沒有固定行程卡的活動（極光團、哈士奇等），date 是排序用的日期，dateText 是顯示的日期
    route.stay：對到 stays 的 id，總覽路線方塊的日期和晚數從這裡算
    checklist.due：期限或建議完成日（YYYY-MM-DD），dueApprox: true 表示是大約的日期
    訂位代號、確認號不要寫進來（網頁是公開的）。 */
@@ -18,6 +25,8 @@ window.TRIP = {
   end: "2027-03-17",
   departures: { Y: "2027-02-25", M: "2027-02-27" },
   people: { Y: "Yulun", M: "May" },
+  /* 1 單位外幣約多少台幣；美元沒有匯率，美元金額的台幣顯示金額未知 */
+  rates: { NOK: 3.55, EUR: 36.6, PLN: 8 },
 
   regions: {
     tw:  { name: "台灣",     color: "ink", lat: 25.08, lng: 121.23, tz: 8 },
@@ -42,13 +51,21 @@ window.TRIP = {
 
   stays: [
     { id: "waw1", who: "Y", area: "華沙", name: "Motel One Warsaw-Chopin", from: "2027-02-26", nights: 2,
-      address: "ul. Tamka 38, 00-355 Warszawa", lat: 52.2370, lng: 21.0236, status: "booked", note: "房價不含早餐，現場付款" },
-    { id: "osl", area: "奧斯陸", name: "", from: "2027-02-28", nights: 2, status: "pending" },
-    { id: "tos", area: "特羅姆瑟", name: "", from: "2027-03-02", nights: 3, status: "pending" },
-    { id: "lof", area: "羅弗敦", name: "", from: "2027-03-05", nights: 5, status: "pending", note: "住宿待訂；西側、東側各住幾晚待定；找有廚房的住處" },
-    { id: "bgo", area: "卑爾根", name: "", from: "2027-03-10", nights: 2, status: "pending" },
-    { id: "gdn", area: "格但斯克", name: "", from: "2027-03-12", nights: 2, status: "pending" },
-    { id: "waw2", area: "華沙", name: "", from: "2027-03-14", nights: 2, status: "pending" }
+      address: "ul. Tamka 38, 00-355 Warszawa", lat: 52.2370, lng: 21.0236, status: "booked", note: "房價不含早餐，現場付款",
+      cost: { cat: "住宿", cur: "PLN", amt: 560, who: "Y", pay: "onsite", payDate: "2027-02-26", rule: { type: "free", until: "2027-02-26T18:00", note: "之後取消收 90%" } } },
+    { id: "osl", area: "奧斯陸", name: "", from: "2027-02-28", nights: 2, status: "pending", cost: { cat: "住宿", cur: null, amt: null, pay: "unknown", rule: { type: "tbd" } } },
+    { id: "tos", area: "特羅姆瑟", name: "", from: "2027-03-02", nights: 3, status: "pending", cost: { cat: "住宿", cur: null, amt: null, pay: "unknown", rule: { type: "tbd" } } },
+    { id: "lof", area: "羅弗敦", name: "", from: "2027-03-05", nights: 5, status: "pending", note: "住宿待訂；西側、東側各住幾晚待定；找有廚房的住處", cost: { cat: "住宿", cur: null, amt: null, pay: "unknown", rule: { type: "tbd" } } },
+    { id: "bgo", area: "卑爾根", name: "", from: "2027-03-10", nights: 2, status: "pending", cost: { cat: "住宿", cur: null, amt: null, pay: "unknown", rule: { type: "tbd" } } },
+    { id: "gdn", area: "格但斯克", name: "", from: "2027-03-12", nights: 2, status: "pending", cost: { cat: "住宿", cur: null, amt: null, pay: "unknown", rule: { type: "tbd" } } },
+    { id: "waw2", area: "華沙", name: "", from: "2027-03-14", nights: 2, status: "pending", cost: { cat: "住宿", cur: null, amt: null, pay: "unknown", rule: { type: "tbd" } } }
+  ],
+
+  activities: [
+    { id: "aurora", name: "極光團（特羅姆瑟 Tromsø）", date: "2027-03-02", dateText: "3/2～3/4 挑一晚", status: "pending",
+      cost: { cat: "活動", cur: "NOK", amt: 1590, each: true, pay: "est", note: "每人 NOK 1,590 起", rule: { type: "paid", label: "取消可退 95%", note: "出發前 24 小時取消可退 95%" } } },
+    { id: "husky", name: "哈士奇雪橇", date: "2027-03-04", dateText: "3/4", status: "pending",
+      cost: { cat: "活動", cur: null, amt: null, pay: "unknown", rule: { type: "tbd" } } }
   ],
 
   days: [
@@ -59,7 +76,8 @@ window.TRIP = {
           from: "台北 TPE", fromNote: "第二航廈", dep: "23:00",
           to: "杜拜 DXB", toNote: "第三航廈", arr: "04:45", plus: 1,
           bag: { chkKg: 25, chkNote: "計重制", cabN: 1, cabKg: 7, cabDim: [55, 38, 22], smlNote: "票面只列 1 件手提" }, status: "booked",
-          fare: "Saver", cost: { orig: "NT$27,236", twd: 27236, pax: 1, note: "來回 4 段，含稅" } }
+          fare: "Saver",
+          cost: { cat: "交通", name: "阿聯酋 Yulun 來回 4 段", cur: "TWD", amt: 27236, twd: 27236, who: "Y", pay: "paid", payDate: "2026-10-18", note: "含稅", rule: { type: "tbd" } } }
       ],
       notes: ["阿聯酋建議起飛前 3 小時到機場"] },
 
@@ -80,7 +98,8 @@ window.TRIP = {
         { who: "M", t: "flight", carrier: "阿聯酋", no: "EK367",
           from: "台北 TPE", fromNote: "第二航廈", dep: "23:00",
           to: "杜拜 DXB", toNote: "第三航廈", arr: "04:45", plus: 1,
-          bag: { tbd: "依她的票種，待確認" }, status: "self", statusText: "May 自訂，開票待確認" }
+          bag: { tbd: "依她的票種，待確認" }, status: "self", statusText: "May 自訂，開票待確認",
+          cost: { cat: "交通", name: "阿聯酋 May 來回", cur: null, amt: null, who: "M", pay: "unknown", rule: { type: "tbd" } } }
       ] },
 
     { date: "2027-02-28", title: "飛奧斯陸，兩人會合", city: "osl",
@@ -95,7 +114,7 @@ window.TRIP = {
           from: "華沙 WAW", dep: "14:25", to: "奧斯陸 OSL", arr: "16:20",
           seats: [{ who: "Y", no: "8F" }],
           bag: { chkN: 1, chkKg: 23, cabDim: [55, 40, 23], smlDim: [30, 20, 40], sumKg: 10 }, status: "booked",
-          fare: "LowFare+", cost: { orig: "USD 129.48", twd: null, pax: 1, note: "含刷卡手續費 2.58" }, rule: "不可退款，可付費更改" }
+          fare: "LowFare+", cost: { cat: "交通", cur: "USD", amt: 129.48, who: "Y", pay: "paid", payDate: "2026-10-18", note: "含刷卡手續費 USD 2.58", rule: { type: "paid", note: "不可退款，可付費更改" } } }
       ],
       notes: ["兩人都降落奧斯陸機場（Gardermoen），May 早到約 4 小時。在機場等，或先進市區 check-in，待決定"],
       free: [{ who: "M", when: "下午", text: "May 先到：國家博物館週日開到 17:00，想看的話今天是機會", areas: ["sentrum", "bjorvika"] }, { when: "晚上", text: "會合後回住處，週日只有小超市開", areas: ["bjorvika"] }] },
@@ -110,7 +129,7 @@ window.TRIP = {
           from: "奧斯陸 OSL", dep: "10:30", to: "特羅姆瑟 TOS", arr: "12:30",
           seats: [{ who: "M", no: "8A", win: true }, { who: "Y", no: "8B" }],
           bag: { chkN: 1, chkKg: 23, cabDim: [55, 40, 23], smlDim: [30, 20, 40], sumKg: 10 }, status: "booked",
-          fare: "LowFare+", cost: { orig: "EUR 162.78", twd: 5962, pax: 2, note: "含刷卡手續費 3.62" }, rule: "不可退款，可付費更改" }
+          fare: "LowFare+", cost: { cat: "交通", cur: "EUR", amt: 162.78, twd: 5962, pay: "paid", payDate: "2026-11-02", note: "含刷卡手續費 EUR 3.62", rule: { type: "paid", note: "不可退款，可付費更改" } } }
       ],
       free: [{ when: "下午", text: "放好行李後市區走走、去超市採買", areas: ["centre"] }] },
 
@@ -131,8 +150,9 @@ window.TRIP = {
           from: "特羅姆瑟 TOS", dep: "10:55", to: "EVE 機場", toNote: "哈爾斯塔/納爾維克機場", arr: "12:15", addr: ["eve-air"], via: "安德內斯（20 分鐘，不換飛機）",
           seatNote: "還沒選", aircraft: "DHC-8 螺旋槳小飛機",
           bag: { chkN: 1, chkKg: 23, chkCm: 158, cabDim: [55, 40, 20], smlDim: [40, 30, 15], sumKg: 8 }, status: "booked",
-          fare: "Smart", cost: { orig: "NOK 1,324", twd: 4706, pax: 2, note: "含服務費" }, rule: "不可退款、不可改票" },
-        { t: "car", text: "EVE 機場取車（四驅、自排、雪胎），沿 E10 開往今晚住處（住宿待訂）", status: "pending", short: "EVE 機場租車" }
+          fare: "Smart", cost: { cat: "交通", cur: "NOK", amt: 1324, twd: 4706, pay: "paid", payDate: "2026-11-02", note: "含服務費", rule: { type: "none", note: "不可退款、不可改票" } } },
+        { t: "car", text: "EVE 機場取車（四驅、自排、雪胎），沿 E10 開往今晚住處（住宿待訂）", status: "pending", short: "EVE 機場租車",
+          cost: { cat: "租車", cur: null, amt: null, pay: "unknown", rule: { type: "tbd" } } }
       ],
       notes: ["DHC-8 螺旋槳小飛機，置物櫃小，登機箱可能在登機門被收去託運。證件、貴重物品、行動電源放隨身小包"],
       free: [{ when: "傍晚", text: "到住處時天色已暗，沿路先採買再入住", areas: ["west", "mid", "east"] }] },
@@ -158,7 +178,7 @@ window.TRIP = {
           from: "EVE 機場", fromNote: "哈爾斯塔/納爾維克機場", addr: ["eve-air"], dep: "13:55", to: "卑爾根 BGO", arr: "16:40", via: "特隆赫姆（25 分鐘，不換飛機）",
           seats: [{ who: "M", no: "12F", win: true }, { who: "Y", no: "12D" }], aircraft: "Embraer 190-E2 噴射機",
           bag: { chkN: 1, chkKg: 23, chkCm: 158, cabDim: [55, 40, 20], smlDim: [40, 30, 15], sumKg: 8 }, status: "booked",
-          fare: "Smart", cost: { orig: "NOK 2,144", twd: 7621, pax: 2, note: "含服務費" }, rule: "不可退款、不可改票" }
+          fare: "Smart", cost: { cat: "交通", cur: "NOK", amt: 2144, twd: 7621, pay: "paid", payDate: "2026-11-02", note: "含服務費", rule: { type: "none", note: "不可退款、不可改票" } } }
       ],
       notes: ["Embraer 190-E2 噴射機，中途停特隆赫姆時留在機上", "機場輕軌到市區終點站 Byparken 約 45 分鐘"],
       free: [{ when: "晚上", text: "搭弗洛伊恩纜車（Fløibanen）上山看夜景，末班時間出發前查", areas: ["bryggen"] }] },
@@ -167,7 +187,7 @@ window.TRIP = {
       alerts: ["08:29 火車出發", "沒有備用日"],
       legs: [
         { t: "tour", text: "挪威縮影一日來回", dep: "08:29", arr: "18:17", status: "pending",
-          cost: { orig: "NOK 4,976", twd: 17665, pax: 2, est: true, note: "之前查的價格，1 克朗以 3.55 台幣估算" }, rule: "買之前先看取消規定" }
+          cost: { cat: "活動", name: "挪威縮影", cur: "NOK", amt: 4976, pay: "est", rule: { type: "tbd" } } }
       ],
       notes: ["冬天遊船可能改航線，不影響行程；比較要擔心的是卑爾根鐵路因冰雪延誤，這次沒有備用日。詳細時刻見地點介紹"] },
 
@@ -177,7 +197,7 @@ window.TRIP = {
         { t: "flight", carrier: "Wizz Air", no: "W61746",
           from: "卑爾根 BGO", dep: "13:40", to: "格但斯克 GDN", arr: "15:25",
           bag: { chkN: 1, chkKg: 32, cabKg: 10, cabDim: [55, 40, 23], smlDim: [40, 30, 20] }, status: "booked",
-          fare: "WIZZ PLUS", cost: { orig: "TWD 7,998", twd: 7998, pax: 2, note: "Trip.com 購買，刷卡 7,965＋Trip Coins 33" }, rule: "退改透過 Trip.com：改期免費，退票手續費 TWD 1,466 起" }
+          fare: "WIZZ PLUS", cost: { cat: "交通", cur: "TWD", amt: 7998, twd: 7998, pay: "paid", payDate: "2026-11-02", note: "Trip.com 購買，刷卡 7,965＋Trip Coins 33", rule: { type: "change", note: "退票透過 Trip.com，手續費 TWD 1,466 起" } } }
       ],
       notes: ["出發前從卑爾根 Byparken 搭機場輕軌，到機場約 45 分鐘"],
       free: [{ when: "上午（卑爾根）", text: "退房後行李寄放旅館，逛布呂根（Bryggen）、魚市場（Fisketorget）。回旅館拿行李，約 11:00 搭輕軌去機場" },
@@ -190,7 +210,7 @@ window.TRIP = {
       alerts: ["週日商店公休"], region: "waw", city: "waw",
       legs: [
         { t: "train", text: "波蘭國鐵，格但斯克到華沙，約 2.5～3 小時", status: "pending", addr: ["gdn-st", "waw-st"], short: "格但斯克 → 華沙 火車",
-          cost: { orig: "待查", twd: null, pax: 1 }, rule: "出發前約 30 天開賣" }
+          cost: { cat: "交通", cur: null, amt: null, pay: "unknown", note: "出發前約 30 天開賣", rule: { type: "tbd" } } }
       ],
       free: [{ when: "抵達後", text: "週日博物館有開、商店大多公休。兩人想一起看的展館排在今天", areas: ["old", "powisle"] }],
       notes: ["週日，超市大多公休；Żabka 便利商店通常有開，餐廳不受影響"] },

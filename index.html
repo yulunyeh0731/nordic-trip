@@ -145,7 +145,54 @@ summary{list-style:none;cursor:pointer} summary::-webkit-details-marker{display:
 .itabs .wrap{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px}
 .itabs a{display:flex;align-items:center;justify-content:center;min-height:44px;text-decoration:none;font-size:14.5px;color:var(--ink2);background:var(--paper);border:1px solid var(--line);border-radius:3px;white-space:nowrap}
 .itabs a[aria-current="page"]{background:var(--ink);border-color:var(--ink);color:var(--paper);font-weight:600}
-.feebox{padding:4px 14px 12px}
+/* 資料：費用 */
+.fov{padding:14px 14px 12px;margin-bottom:4px}
+.fov-k{margin:0;font-size:14px;color:var(--ink2)}
+.fov-n{margin:2px 0 10px;font-family:var(--serif);font-weight:700;font-size:34px;line-height:1.15;font-variant-numeric:tabular-nums}
+.fbar{display:flex;height:14px;border-radius:2px;overflow:hidden;background:var(--line2);gap:2px}
+.fbar span{display:block}
+.b-paid{background:var(--fjord)}
+.b-later{background:repeating-linear-gradient(135deg,var(--fjord) 0 3px,color-mix(in srgb,var(--fjord) 25%,var(--paper)) 3px 6px)}
+.b-est{background:color-mix(in srgb,var(--fjord) 28%,var(--paper))}
+.flegend{display:flex;flex-wrap:wrap;gap:2px 14px;margin:8px 0 0;font-size:13px;color:var(--ink2)}
+.flegend i{display:inline-block;width:12px;height:10px;margin-right:5px;vertical-align:-1px;border-radius:1px}
+.fcats{margin-top:12px;border-top:1px solid var(--line2)}
+.fcat{display:grid;grid-template-columns:3.2em minmax(0,1fr) auto;gap:2px 10px;align-items:center;padding:8px 0 6px;border-top:1px solid var(--line2);font-size:14.5px}
+.fcat:first-child{border-top:0}
+.fcat b{font-family:var(--serif);font-weight:700;font-size:15.5px;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;grid-column:3}
+.fcbar{grid-column:2;grid-row:1;height:6px;background:var(--line2);border-radius:2px;overflow:hidden}
+.fcbar span{display:block;height:100%;background:var(--fjord)}
+.fcat small{grid-column:2/4;font-size:12.5px;color:var(--ink2)}
+.fov-u{margin:8px 0 0;font-size:13px;color:var(--ink2)}
+.flist{list-style:none;margin:0;padding:0}
+.flist li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;padding:11px 14px;border-top:1px solid var(--line2)}
+.flist li:first-child{border-top:0}
+.flist p{margin:0;font-size:15px;line-height:1.5}
+.flist .s{font-size:13px;color:var(--ink2);margin-top:2px}
+.fempty{margin:0;padding:12px 14px}
+details.fgrp>summary{min-height:52px}
+details.fgrp>summary b{font-family:var(--serif);font-size:17px}
+.fg-v{margin-left:auto;font-family:var(--serif);font-weight:700;font-size:15.5px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.fgrp .chev{margin-left:0}
+.fg-in{border-top:1px solid var(--line2)}
+details.fi{border-top:1px solid var(--line2)}
+details.fi:first-child{border-top:0}
+details.fi>summary{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:0 8px;align-items:center;min-height:48px;padding:6px 14px;font-size:14.5px;line-height:1.4}
+.fi-d{font-family:var(--serif);font-weight:700;font-size:14px;line-height:1.3;color:var(--ink2);max-width:4.6em;font-variant-numeric:tabular-nums}
+.fi-n{overflow-wrap:anywhere}
+.fi .who{margin:0}
+.fi-v{font-family:var(--serif);font-weight:700;white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums}
+.fi .mv-in{background:color-mix(in srgb,var(--line2) 35%,var(--paper))}
+/* 退改標籤 */
+.rt-tag{display:inline-block;font-size:12px;font-weight:600;line-height:1.6;padding:0 7px;border-radius:2px;white-space:nowrap;margin-right:6px}
+.rt-free{background:color-mix(in srgb,var(--aurora) 15%,var(--paper));color:var(--aurora)}
+.rt-change{background:color-mix(in srgb,var(--fjord) 15%,var(--paper));color:var(--fjord)}
+.rt-paid{background:color-mix(in srgb,#C9971C 22%,var(--paper));color:#7E5B0C}
+.rt-none{background:var(--line2);color:var(--ink2)}
+.rt-tbd{border:1px solid var(--line);color:var(--ink2);padding:0 6px}
+.rt-note{font-size:13px;color:var(--ink2)}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .rt-free{color:#7FD4B4} :root:not([data-theme="light"]) .rt-change{color:#8DB9D6} :root:not([data-theme="light"]) .rt-paid{color:#E7B95A} }
+:root[data-theme="dark"] .rt-free{color:#7FD4B4} :root[data-theme="dark"] .rt-change{color:#8DB9D6} :root[data-theme="dark"] .rt-paid{color:#E7B95A}
 
 .stays{list-style:none;margin:0;padding:0}
 .stays li{display:grid;grid-template-columns:5.4em minmax(0,1fr);gap:10px;padding:11px 14px;border-top:1px solid var(--line2);border-left:4px solid var(--c)}
@@ -224,18 +271,6 @@ details.mv>summary{display:grid;grid-template-columns:2.7em 3.5em minmax(0,1fr) 
 .btbl td b{font-weight:700}
 .btbl td.hl{background:color-mix(in srgb,#F2C14E 24%,var(--paper))}
 .btbl td.tbd{color:var(--ink2)}
-.fee{padding:11px 0;border-top:1px solid var(--line2)}
-.fee:first-child{border-top:0}
-.fee-top{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
-.fee-top b{font-weight:600;font-size:15px}
-.fee .amt{font-family:var(--serif);font-weight:700;font-size:17px;font-variant-numeric:tabular-nums;white-space:nowrap}
-.fee p{margin:2px 0 0;font-size:13.5px;color:var(--ink2);line-height:1.5}
-.fee .rule{color:var(--ink)}
-.fee.est .amt{color:var(--ink2)}
-.sum{margin:8px 0 0;border-top:2px solid var(--ink);padding-top:6px}
-.sum div{display:flex;justify-content:space-between;gap:12px;padding:5px 0;font-size:14px;line-height:1.5}
-.sum b{font-family:var(--serif);font-weight:700;font-size:16px;text-align:right;white-space:nowrap}
-.sum small{display:block;font-size:12.5px;color:var(--ink2)}
 details.fold{margin:0 0 10px}
 details.fold>summary{display:flex;align-items:center;gap:10px;padding:13px 14px;font-weight:500}
 details.fold>summary small{font-weight:400;color:var(--ink2);font-size:13px}
@@ -580,20 +615,86 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
   /* ── 共用：交通段、費用 ── */
   function apt(x){ var m=(x||"").match(/\b[A-Z]{3}\b/), c=m?m[0]:""; return {c:c, n:(x||"").replace(c,"").trim()}; }
   function allSegs(){ var segs=[]; T.days.forEach(function(d){ (d.legs||[]).forEach(function(l){ if(/flight|train|tour/.test(l.t)) segs.push({d:d,l:l}); }); }); return segs; }
+  /* ── 費用 ── */
   function nt(n){ return "NT$"+Math.round(n).toLocaleString("en-US"); }
-  function feeCalc(){
-    var shared=0, est=0, yOnly=0, yMiss=[];
-    var rows=allSegs().filter(function(x){return x.l.cost;}).map(function(x){
-      var l=x.l, c=l.cost, pax=c.pax||1;
-      var label=l.t==="flight"?apt(l.from).c+" → "+apt(l.to).c:(l.short||l.text);
-      if (c.twd!=null){ if (l.who==="Y") yOnly+=c.twd; else if (c.est) est+=c.twd/pax; else shared+=c.twd/pax; }
-      else if (l.who==="Y") yMiss.push(l.no||label);
-      var amt=c.twd!=null?(c.est?"約 ":"")+nt(c.est?Math.round(c.twd/10)*10:c.twd):(l.status==="pending"?"未定":"待補");
-      var line1=[l.who?T.people[l.who]:(pax===2?"兩人":"每人"), (l.t==="flight"?l.carrier+" ":"")+(l.fare||"")].filter(function(v){return v.trim();}).join("，");
-      return '<div class="fee'+(c.est?" est":"")+'"><div class="fee-top"><b>'+md(x.d.date)+'　'+label+'</b><span class="amt">'+amt+'</span></div>'+
-        '<p>'+line1+'；'+(/^NT\$/.test(c.orig)?"":c.orig)+(c.note?(/^NT\$/.test(c.orig)?c.note:"（"+c.note+"）"):"")+'</p>'+(l.rule?'<p class="rule">'+l.rule+'</p>':"")+'</div>';
-    }).join("");
-    return {rows:rows, shared:shared, est:est, yOnly:yOnly, yMiss:yMiss};
+  function num(n){ return (Math.round(n*100)/100).toLocaleString("en-US"); }
+  function costItems(){
+    var out=[];
+    T.days.forEach(function(d){ (d.legs||[]).forEach(function(l){ if(!l.cost) return;
+      var name=l.cost.name||(l.t==="flight"?(l.no||l.carrier)+" "+place(l.from)+"→"+place(l.to):(l.short||l.text));
+      out.push({c:l.cost, date:d.date, dl:md(d.date), name:name, fare:l.fare}); }); });
+    T.stays.forEach(function(s){ if(!s.cost) return;
+      out.push({c:s.cost, date:s.from, dl:md(s.from), name:s.cost.name||((s.name||s.area+"住宿")+" "+s.nights+" 晚")}); });
+    (T.activities||[]).forEach(function(a){ if(!a.cost) return;
+      out.push({c:a.cost, date:a.date, dl:a.dateText||md(a.date), name:a.cost.name||a.name}); });
+    out.forEach(function(x){ var c=x.c, n=c.each?2:1, tot=c.amt!=null?c.amt*n:null;
+      if (c.twd!=null){ x.v=c.twd; x.ap=false; }
+      else if (tot!=null&&c.cur==="TWD"){ x.v=tot; x.ap=false; }
+      else if (tot!=null&&T.rates[c.cur]){ x.v=tot*T.rates[c.cur]; x.ap=true; }
+      else { x.v=null; }
+      x.tot=tot; });
+    return out.sort(function(a,b){return a.date<b.date?-1:a.date>b.date?1:0;});
+  }
+  function place(x){ var n=apt(x).n; return n&&n!=="機場"?n:x; }
+  function inView(x,w){ var o=x.c.who; return w==="all"||!o||o===w; }
+  function share(x,w){ if(x.v==null) return null; return (w!=="all"&&!x.c.who)?x.v/2:x.v; }
+  function origText(x){ var c=x.c; if (c.amt==null) return "金額未知";
+    return c.each?(c.note||c.cur+" "+num(c.amt)+" 每人"):c.cur+" "+num(c.amt); }
+  function amtText(v,ap){ return v==null?"金額未知":(ap?"約 "+nt(Math.round(v/10)*10):nt(v)); }
+  function whoText(c){ return c.who?T.people[c.who]:"兩人"; }
+  var PAY={paid:"已付",later:"之後扣款",onsite:"現場付",est:"估計",unknown:"金額未知"};
+  function payText(c){ return PAY[c.pay]+(c.payDate&&(c.pay==="paid"||c.pay==="later")?" "+md(c.payDate):""); }
+  function untilText(u){ var p=u.split("T"); return md(p[0])+(p[1]?" "+p[1]:""); }
+  function ruleTag(r){ if(!r) return "";
+    var t=r.type||"tbd";
+    var txt=r.label||({free:"免費取消"+(r.until?"至 "+untilText(r.until):""),change:"改期免費",paid:"可付費更改",none:"不可退",tbd:"退改待確認"})[t];
+    return '<span class="rt-tag rt-'+t+'">'+txt+'</span>'; }
+  function ruleHTML(r){ if(!r) return ""; return ruleTag(r)+(r.note?'<span class="rt-note">'+r.note+'</span>':""); }
+  function freeSoon(days){ var lim=add(today,days);
+    return costItems().filter(function(x){ var r=x.c.rule; return r&&r.type==="free"&&r.until&&r.until.slice(0,10)>=today&&r.until.slice(0,10)<=lim; }); }
+  var feeWho="Y"; try{ feeWho=localStorage.getItem("feeWho")||"Y"; }catch(e){}
+  function infoFee(){
+    var w=feeWho, all=costItems().filter(function(x){return inView(x,w);});
+    var sw='<div class="seg" role="group" aria-label="看誰的費用">'+[["Y","Yulun"],["M","May"],["all","兩人合計"]].map(function(o){
+      return '<button type="button" data-fw="'+o[0]+'" aria-pressed="'+(w===o[0])+'">'+o[1]+'</button>'; }).join("")+'</div>';
+    var paid=0, later=0, est=0, unk=0, ap=false, CATS=["交通","住宿","租車","活動"], cat={};
+    CATS.forEach(function(k){ cat[k]={v:0,n:0,unk:0,ap:false,items:[]}; });
+    all.forEach(function(x){ var v=share(x,w), g=cat[x.c.cat]||(cat[x.c.cat]={v:0,n:0,unk:0,ap:false,items:[]});
+      g.n++; g.items.push(x);
+      if (v==null){ unk++; g.unk++; return; }
+      if (x.ap){ ap=true; g.ap=true; }
+      g.v+=v;
+      if (x.c.pay==="paid") paid+=v; else if (x.c.pay==="later"||x.c.pay==="onsite") later+=v; else est+=v; });
+    var total=paid+later+est;
+    var who=w==="all"?"兩人合計的旅費":T.people[w]+" 的旅費";
+    var ov='<div class="card fov"><p class="fov-k">'+who+'</p><p class="fov-n">'+amtText(total,ap)+'</p>'+
+      '<div class="fbar">'+(paid?'<span class="b-paid" style="flex:'+paid+'"></span>':"")+(later?'<span class="b-later" style="flex:'+later+'"></span>':"")+(est?'<span class="b-est" style="flex:'+est+'"></span>':"")+'</div>'+
+      '<div class="flegend"><span><i class="b-paid"></i>已付 '+nt(paid)+'</span><span><i class="b-later"></i>之後要付 '+amtText(later,later>0)+'</span><span><i class="b-est"></i>估計 '+amtText(est,est>0)+'</span></div>'+
+      '<div class="fcats">'+CATS.map(function(k){ var g=cat[k]; if(!g.n) return "";
+        return '<div class="fcat"><span>'+k+'</span><b>'+(g.v?amtText(g.v,g.ap):"—")+'</b><div class="fcbar"><span style="width:'+(total?(g.v/total*100).toFixed(1):0)+'%"></span></div>'+
+          (g.unk?'<small>另有 '+g.unk+' 筆金額未知</small>':"")+'</div>'; }).join("")+'</div>'+
+      (unk?'<p class="fov-u">另有 '+unk+' 筆金額未知，沒有算進總額。</p>':"")+'</div>';
+    var due=all.filter(function(x){return x.c.pay==="later"||x.c.pay==="onsite";}).sort(function(a,b){return (a.c.payDate||a.date)<(b.c.payDate||b.date)?-1:1;});
+    var dueH='<h2 class="sec">還要付的錢</h2><div class="card">'+(due.length?'<ul class="flist">'+due.map(function(x){
+      return '<li><span class="due">'+md(x.c.payDate||x.date)+'</span><div><p>'+x.name+'</p><p class="s">'+origText(x)+(x.v!=null?"，"+amtText(x.v,x.ap):"")+'・'+PAY[x.c.pay]+'</p></div></li>'; }).join("")+'</ul>':'<p class="muted fempty">目前沒有</p>')+'</div>';
+    var nowISO=today+"T00:00";
+    var ddl=all.filter(function(x){ var r=x.c.rule; return r&&r.type==="free"&&r.until&&r.until>=nowISO; }).sort(function(a,b){return a.c.rule.until<b.c.rule.until?-1:1;});
+    var ddlH='<h2 class="sec">取消期限 <small>免費取消到這個時間</small></h2><div class="card">'+(ddl.length?'<ul class="flist">'+ddl.map(function(x){ var r=x.c.rule;
+      return '<li><span class="due">'+md(r.until.slice(0,10))+'</span><div><p>'+x.name+'</p><p class="s">'+untilText(r.until)+' 前（當地時間）'+(r.note?"，"+r.note:"")+'</p></div></li>'; }).join("")+'</ul>':'<p class="muted fempty">目前沒有</p>')+'</div>';
+    var det='<h2 class="sec">明細 <small>點類別展開</small></h2>'+CATS.map(function(k){ var g=cat[k]; if(!g.n) return "";
+      return '<details class="card fold fgrp"><summary><b>'+k+'</b><small>'+g.n+' 筆</small><span class="fg-v">'+(g.v?amtText(g.v,g.ap):"金額未知")+'</span><span class="chev"></span></summary><div class="fg-in">'+
+        g.items.map(function(x){ var c=x.c, v=share(x,w), half=w!=="all"&&!c.who&&x.v!=null;
+          var rows=[];
+          function row(a,b){ if(b) rows.push('<div><span>'+a+'</span><div>'+b+'</div></div>'); }
+          row("原幣",origText(x));
+          row("台幣",x.v==null?"金額未知":(x.ap?"約 "+nt(Math.round(x.v/10)*10)+"（依匯率估算）":(c.cur==="TWD"?nt(x.v):"刷卡 "+nt(x.v)))+(half?"，兩人各一半":""));
+          row("補充",c.note&&c.note!==origText(x)?c.note:"");
+          row("票種",x.fare);
+          row("付款",payText(c));
+          row("退改",ruleHTML(c.rule));
+          return '<details class="fi"><summary><span class="fi-d">'+x.dl+'</span><span class="fi-n">'+x.name+'</span><span class="who">'+whoText(c)+'</span><span class="fi-v">'+amtText(v,x.ap)+'</span></summary><div class="mv-in">'+rows.join("")+'</div></details>'; }).join("")+
+        '</div></details>'; }).join("");
+    return '<h2 class="sec">費用</h2>'+sw+ov+dueH+ddlH+det;
   }
 
   /* ── 資料 ── */
@@ -618,7 +719,7 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
         row("座位",seatTags(l)); }
       else row("內容",l.text);
       row("行李",bagTag(l));
-      row("退改",l.rule);
+      if (l.cost) row("退改",ruleHTML(l.cost.rule));
       return '<details class="mv'+(l.status==="pending"?" pend":"")+'" style="--c:'+col(d.region)+'"><summary>'+
         '<span class="d"><b>'+md(d.date)+'</b><small>'+wd(d.date).slice(1)+'</small></span>'+
         '<span class="tm"><b>'+(l.dep||"—")+'</b><small>'+(l.arr?l.arr+(l.plus?"⁺¹":""):"")+'</small></span>'+
@@ -632,7 +733,7 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
     return '<h2 class="sec">住宿 <small>依入住日</small></h2><div class="card"><ul class="stays">'+T.stays.map(function(s){
       var reg = T.days.filter(function(d){return d.date===s.from;})[0];
       return '<li style="--c:'+col(reg?reg.region:"tw")+'"><span class="when">'+md(s.from)+'<small>'+s.nights+' 晚</small></span><div><p>'+who(s.who)+s.area+st(s.status)+'</p>'+
-        (s.name?'<p class="s">'+(s.address?'<a class="pin" href="'+mapURL(s.name+" "+s.address)+'" target="_blank" rel="noopener">'+s.name+'</a>':s.name)+'</p>':"")+(s.note?'<p class="s">'+s.note+'</p>':"")+'</div></li>';
+        (s.name?'<p class="s">'+(s.address?'<a class="pin" href="'+mapURL(s.name+" "+s.address)+'" target="_blank" rel="noopener">'+s.name+'</a>':s.name)+'</p>':"")+(s.note?'<p class="s">'+s.note+'</p>':"")+(s.cost&&s.cost.rule&&(s.status==="booked"||s.cost.rule.type!=="tbd")?'<p class="s">'+ruleHTML(s.cost.rule)+'</p>':"")+'</div></li>';
     }).join("")+'</ul></div>';
   }
   function infoAddr(){
@@ -676,14 +777,6 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
     var tbl='<h2 class="sec">各段限額 <small>每人</small></h2><div class="card btbl"><table><thead><tr><th scope="col">航空</th><th scope="col">託運</th><th scope="col">登機箱</th><th scope="col">小包</th></tr></thead><tbody>'+trs+'</tbody></table>'+
       '<p class="pk-note">淺黃底是那一欄最嚴的限制。尺寸單位是公分（長×寬×高）。合計是登機箱和座位下小包加起來的重量。</p></div>';
     return top+tbl;
-  }
-  function infoFee(){
-    var f=feeCalc();
-    var sum='<div class="sum"><div><span>每人合計（兩人同行、已訂）</span><b>'+nt(f.shared)+'</b></div>'+
-      '<div><span>Yulun 個人另付'+(f.yMiss.length?'<small>另有 '+f.yMiss.join("、")+'，台幣待補</small>':'')+'</span><b>'+nt(f.yOnly)+'</b></div>'+
-      (f.est?'<div><span>待訂估計（每人）</span><b>約 '+nt(Math.round(f.est/10)*10)+'</b></div>':"")+'</div>';
-    return '<h2 class="sec">費用與退改 <small>每人 '+nt(f.shared)+'（已訂）</small></h2><div class="card feebox">'+f.rows+sum+
-      '<p class="muted" style="margin:10px 0 0">台幣是實際刷卡金額，原幣和手續費寫在小字；估計值以 1 克朗約 3.55 台幣換算。</p></div>';
   }
   var done={}; try{ done=JSON.parse(localStorage.getItem("checklist")||"{}"); }catch(e){ done={}; }
   function infoList(){
@@ -742,12 +835,13 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
   }
   function nextHTML(){
     var open=T.checklist.filter(function(x){return !done[x.id];});
-    var dated=open.filter(function(x){return x.due;}).sort(function(a,b){return a.due<b.due?-1:a.due>b.due?1:0;});
+    var soon=freeSoon(7).map(function(x){ var r=x.c.rule; return {text:"免費取消期限："+x.name, sub:untilText(r.until)+" 前（當地時間）"+(r.note?"，"+r.note:""), due:r.until.slice(0,10), cancel:true}; });
+    var dated=open.filter(function(x){return x.due;}).concat(soon).sort(function(a,b){return a.due<b.due?-1:a.due>b.due?1:0;});
     var rest=open.filter(function(x){return !x.due;});
     var h='<h2 class="sec">下一步 <small>還沒勾的待辦</small></h2><div class="card nxt">';
-    if (!open.length) h+='<p class="muted" style="margin:0;padding:12px 14px">清單都完成了</p>';
+    if (!open.length&&!soon.length) h+='<p class="muted" style="margin:0;padding:12px 14px">清單都完成了</p>';
     if (dated.length) h+='<ul class="nx-d">'+dated.map(function(x){ var late=x.due<today;
-      return '<li><span class="due'+(late?" late":"")+'">'+dueText(x)+'</span><div><p>'+x.text+'</p>'+(late?'<p class="s late">已過期</p>':(x.sub?'<p class="s">'+x.sub+'</p>':""))+'</div></li>'; }).join("")+'</ul>';
+      return '<li><span class="due'+(late||x.cancel?" late":"")+'">'+dueText(x)+'</span><div><p>'+x.text+'</p>'+(late?'<p class="s late">已過期</p>':(x.sub?'<p class="s">'+x.sub+'</p>':""))+'</div></li>'; }).join("")+'</ul>';
     if (rest.length) h+='<div class="nx-t"><p class="s">沒有日期</p><div class="tags">'+rest.map(function(x){return '<span>'+x.text+'</span>';}).join("")+'</div></div>';
     return h+'<a class="more" href="#/info/list">看完整清單 ›</a></div>';
   }
@@ -947,6 +1041,7 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
   var drv=document.getElementById("drv");
   document.addEventListener("click", function(e){
     var f=e.target.closest("#filter button"); if (f){ filter=f.getAttribute("data-f"); applyFilter(); return; }
+    var fw=e.target.closest("[data-fw]"); if (fw){ feeWho=fw.getAttribute("data-fw"); try{localStorage.setItem("feeWho",feeWho);}catch(x){} route(); return; }
     var mv=e.target.closest("[data-mv]"); if (mv){ mvWho=mv.getAttribute("data-mv"); try{localStorage.setItem("moveWho",mvWho);}catch(x){} route(); return; }
     var c=e.target.closest("[data-copy]");
     if (c){ copyText(c.getAttribute("data-copy")); return; }

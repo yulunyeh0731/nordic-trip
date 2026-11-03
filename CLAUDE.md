@@ -36,7 +36,10 @@ GitHub Pages 靜態網站：https://yulunyeh0731.github.io/nordic-trip/
 - `status`：`booked` 已訂、`pending` 待訂、`self` May 自訂。
 - `who`：`Y` 只有 Yulun、`M` 只有 May，沒寫代表兩人一起。
 - 每日頁的機場地址卡，是用航班 `from`、`to` 欄位的第二個詞比對機場代碼（例如「特羅姆瑟 TOS」）。寫成「EVE 機場」這種格式時，要另外加 `addr: ["eve-air"]`。
-- 費用欄位：`fare` 票種；`cost` 底下是 `orig` 原幣金額、`twd` 台幣刷卡金額（不知道就寫 `null`）、`pax` 人數、`note` 補充、`est` 估計值；`rule` 退改規則；`seats` 座位清單（`who`、`no`、`win` 靠窗），`seatNote` 座位補充；`aircraft` 機型。
+- 航段欄位：`fare` 票種；`seats` 座位清單（`who`、`no`、`win` 靠窗），`seatNote` 座位補充；`aircraft` 機型。
+- 費用 `cost` 掛在各個交通段、住宿、`activities`（極光團、哈士奇等沒有行程卡的活動）上，費用頁自動收集，不另外維護費用清單。欄位：`cat` 類別（交通、住宿、租車、活動）、`cur` 幣別、`amt` 原幣金額（不知道寫 `null`）、`each` 每人價、`twd` 實際刷卡台幣、`who`（`Y`／`M`，不寫＝兩人共用）、`pay`（`paid` 已付、`later` 之後扣款、`onsite` 現場付、`est` 估計、`unknown` 金額未知）、`payDate`、`name`、`note`、`rule` 退改（`type`：`free` 免費取消、`change` 改期免費、`paid` 可付費更改、`none` 不可退、`tbd` 待確認；`until` 期限；`label` 標籤文字；`note`）。
+- 匯率只寫在 `data.js` 的 `rates`。沒有刷卡金額時用匯率估算並標「約」；美元沒有匯率，台幣顯示金額未知。
+- 費用頁可切換 Yulun／May／兩人合計：兩人共用的各算一半，個人的只算本人。免費取消期限在 7 天內的，會自動出現在總覽「下一步」。
 - 行李 `bag` 用欄位寫，不寫句子：`chkN`、`chkKg`、`chkCm` 託運件數／公斤／長寬高合計；`cabN`、`cabKg`、`cabDim` 登機箱；`smlDim` 小包尺寸；`chkNote`、`smlNote` 補充說明；`sumKg` 登機箱＋小包合計；不知道寫 `tbd` 說明。兩人不同時寫 `{ Y: {...}, M: {...} }`。資料頁「行李」的最嚴值和表格都從這些欄位算。
 
 ## 分頁與網址
