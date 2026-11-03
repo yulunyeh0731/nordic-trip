@@ -42,6 +42,11 @@ GitHub Pages 靜態網站：https://yulunyeh0731.github.io/nordic-trip/
 - 深色模式要正常，`prefers-color-scheme` 和 `data-theme` 兩種都要顧到。
 - 用 390 px 寬檢查：不能出現左右捲動，文字不能被截斷，可以點的東西至少 44 px 高。
 
+## 發布
+
+- 改完直接 commit 並 push 到 `main`，不要開 PR。網站由 `main` 發布，push 後幾分鐘就會更新。
+- 如果環境不允許 push 到 `main`，就推到工作分支並開 PR，並告訴我要手動合併。
+
 ## 完成前
 
 - 用手機尺寸實際打開各分頁檢查，有改到的頁面都要看。
