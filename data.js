@@ -3,7 +3,10 @@
    status：booked 已訂、pending 待訂、self May 自訂
    who：Y 只有 Yulun、M 只有 May，不寫代表兩人一起
    費用欄位：fare 票種、cost { orig 原幣金額, twd 台幣刷卡金額（不知道寫 null）, pax 人數, note 補充, est 估計值 }、
-   rule 退改規則、seat 座位、short 費用表用的簡稱（非航班才需要）
+   rule 退改規則、seat 座位、short 費用表和總覽待訂清單用的簡稱（非航班才需要）
+   todo：這段還有人沒訂好時寫原因（例如「May 的票待補」），總覽的準備進度就不算已訂
+   route.stay：對到 stays 的 id，總覽路線方塊的日期和晚數從這裡算
+   checklist.due：期限或建議完成日（YYYY-MM-DD），dueApprox: true 表示是大約的日期
    訂位代號、確認號不要寫進來（網頁是公開的）。 */
 
 window.TRIP = {
@@ -25,13 +28,13 @@ window.TRIP = {
   },
 
   route: [
-    { name: "華沙", nights: "2 晚，Yulun 先行", solo: true },
-    { name: "奧斯陸", nights: "2 晚，會合" },
-    { name: "特羅姆瑟", nights: "3 晚", polar: true },
-    { name: "羅弗敦", nights: "5 晚", polar: true },
-    { name: "卑爾根", nights: "2 晚" },
-    { name: "格但斯克", nights: "2 晚" },
-    { name: "華沙", nights: "2 晚" }
+    { name: "華沙", nights: "2 晚，Yulun 先行", solo: true, stay: "waw1" },
+    { name: "奧斯陸", nights: "2 晚，會合", stay: "osl" },
+    { name: "特羅姆瑟", nights: "3 晚", polar: true, stay: "tos" },
+    { name: "羅弗敦", nights: "5 晚", polar: true, stay: "lof" },
+    { name: "卑爾根", nights: "2 晚", stay: "bgo" },
+    { name: "格但斯克", nights: "2 晚", stay: "gdn" },
+    { name: "華沙", nights: "2 晚", stay: "waw2" }
   ],
 
   stays: [
@@ -125,7 +128,7 @@ window.TRIP = {
           seat: "還沒選",
           bag: "託運 1 件 23 公斤（長寬高合計 158 公分內）；登機箱 55×40×20 公分＋座位下小包，合計 8 公斤", status: "booked",
           fare: "Smart", cost: { orig: "NOK 1,324", twd: 4706, pax: 2, note: "含服務費" }, rule: "不可退款、不可改票" },
-        { t: "car", text: "EVE 機場取車（四驅、自排、雪胎），沿 E10 開往今晚住處（住宿待訂）", status: "pending" }
+        { t: "car", text: "EVE 機場取車（四驅、自排、雪胎），沿 E10 開往今晚住處（住宿待訂）", status: "pending", short: "EVE 機場租車" }
       ],
       notes: ["DHC-8 螺旋槳小飛機，置物櫃小，登機箱可能在登機門被收去託運。證件、貴重物品、行動電源放隨身小包"],
       free: [{ when: "傍晚", text: "到住處時天色已暗，沿路先採買再入住", areas: ["west", "mid", "east"] }] },
@@ -198,7 +201,7 @@ window.TRIP = {
         { t: "flight", carrier: "阿聯酋", no: "EK180",
           from: "華沙 WAW", fromNote: "A 航廈", dep: "13:40",
           to: "杜拜 DXB", toNote: "第三航廈", arr: "22:55",
-          bag: "Yulun：託運 25 公斤、手提 1 件 7 公斤；May：依她的票種，待確認", status: "booked", statusText: "Yulun 已訂、May 自訂" }
+          bag: "Yulun：託運 25 公斤、手提 1 件 7 公斤；May：依她的票種，待確認", status: "booked", statusText: "Yulun 已訂、May 自訂", todo: "May 的票待補" }
       ],
       notes: ["阿聯酋建議起飛前 3 小時到機場，也就是 10:40 前"] },
 
@@ -207,7 +210,7 @@ window.TRIP = {
         { t: "flight", carrier: "阿聯酋", no: "EK366",
           from: "杜拜 DXB", fromNote: "第三航廈", dep: "03:40",
           to: "台北 TPE", toNote: "第二航廈", arr: "15:35",
-          bag: "Yulun：託運 25 公斤、手提 1 件 7 公斤；May：依她的票種，待確認", status: "booked", statusText: "Yulun 已訂、May 自訂" }
+          bag: "Yulun：託運 25 公斤、手提 1 件 7 公斤；May：依她的票種，待確認", status: "booked", statusText: "Yulun 已訂、May 自訂", todo: "May 的票待補" }
       ] }
   ],
 
@@ -612,11 +615,11 @@ window.TRIP = {
     { id: "wizz-check", text: "確認 Wizz 訂單是 WIZZ PLUS", sub: "兩人各一個 Wizz 訂位代號（見 Trip.com 行程單），兩個都要登入 Wizz app 查" },
     { id: "bgo-stay", text: "訂卑爾根住宿", sub: "候選 Ole Bull：先確認房型有沒有廚房，官網 Flexible 3/10 16:00 前免費取消" },
     { id: "stays", text: "訂其他住宿", sub: "奧斯陸、特羅姆瑟、羅弗敦兩段、格但斯克、華沙" },
-    { id: "metropol", text: "取消 Hotel Metropol", sub: "2/21 前免費取消" },
-    { id: "pkp", text: "買格但斯克 → 華沙火車票", sub: "出發前約 30 天開賣" },
-    { id: "entry", text: "查入境規定最新公告", sub: "歐盟 EES、ETIAS 上路時程" },
-    { id: "hours", text: "確認景點營業時間", sub: "出發前一個月，包括蕭邦博物館有沒有重開" },
-    { id: "offline", text: "手冊加到主畫面、測試離線", sub: "出發前兩週" }
+    { id: "metropol", due: "2027-02-21", text: "取消 Hotel Metropol", sub: "2/21 前免費取消" },
+    { id: "pkp", due: "2027-02-12", dueApprox: true, text: "買格但斯克 → 華沙火車票", sub: "出發前約 30 天開賣" },
+    { id: "entry", due: "2027-01-25", text: "查入境規定最新公告", sub: "歐盟 EES、ETIAS 上路時程" },
+    { id: "hours", due: "2027-01-25", text: "確認景點營業時間", sub: "出發前一個月，包括蕭邦博物館有沒有重開" },
+    { id: "offline", due: "2027-02-11", text: "手冊加到主畫面、測試離線", sub: "出發前兩週" }
   ],
   info: {
     baggage: [
