@@ -39,7 +39,7 @@ window.TRIP = {
       address: "ul. Tamka 38, 00-355 Warszawa", lat: 52.2370, lng: 21.0236, status: "booked", note: "房價不含早餐，現場付款" },
     { id: "osl", area: "奧斯陸", name: "", from: "2027-02-28", nights: 2, status: "pending" },
     { id: "tos", area: "特羅姆瑟", name: "", from: "2027-03-02", nights: 3, status: "pending" },
-    { id: "lof", area: "羅弗敦", name: "", from: "2027-03-05", nights: 5, status: "pending", note: "先西後東，西側、東側各住幾晚待定；找有廚房的住處" },
+    { id: "lof", area: "羅弗敦", name: "", from: "2027-03-05", nights: 5, status: "pending", note: "住宿待訂；西側、東側各住幾晚待定；找有廚房的住處" },
     { id: "bgo", area: "卑爾根", name: "", from: "2027-03-10", nights: 2, status: "pending" },
     { id: "gdn", area: "格但斯克", name: "", from: "2027-03-12", nights: 2, status: "pending" },
     { id: "waw2", area: "華沙", name: "", from: "2027-03-14", nights: 2, status: "pending" }
@@ -81,7 +81,7 @@ window.TRIP = {
       alerts: ["May 12:10 抵達", "Yulun 14:25 起飛"], region: "osl",
       legs: [
         { who: "M", t: "flight", carrier: "阿聯酋", no: "EK159",
-          from: "杜拜 DXB", fromNote: "第三航廈", dep: "",
+          from: "杜拜 DXB", fromNote: "第三航廈", dep: "待補",
           to: "奧斯陸 OSL", arr: "12:10", status: "self" },
         { who: "Y", t: "taxi", text: "Bolt 到華沙機場" },
         { who: "Y", t: "flight", carrier: "挪威航空", no: "DY1019",
@@ -130,21 +130,18 @@ window.TRIP = {
       notes: ["DHC-8 螺旋槳小飛機，置物櫃小，登機箱可能在登機門被收去託運。證件、貴重物品、行動電源放隨身小包"],
       free: [{ when: "傍晚", text: "到雷訥一帶天色已暗，先採買、入住", areas: ["west"] }] },
 
-    { date: "2027-03-06", title: "羅弗敦西側", region: "lof", city: "lof",
-      free: [{ when: "全天", text: "週六：記得把 3/7 週日的食物先買好", areas: ["west"] }] },
+    { date: "2027-03-06", title: "羅弗敦自駕，週六先採買", region: "lof", city: "lof",
+      free: [{ when: "全天", text: "看天氣決定往哪一側走。週六：記得把 3/7 週日的食物先買好", areas: ["west", "mid", "east"] }] },
 
-    { date: "2027-03-07", title: "往東移動", region: "lof", city: "lof",
-      legs: [
-        { t: "car", text: "往東移動，沿途可停烏塔克萊夫、豪克蘭海灘" }
-      ],
-      free: [{ when: "全天", text: "沿 E10 往東，中段海灘停一停", areas: ["mid", "east"] }] },
+    { date: "2027-03-07", title: "羅弗敦，週日店家少", region: "lof", city: "lof",
+      free: [{ when: "全天", text: "週日大型超市不開。看雲量往晴的一側開，中段的烏塔克萊夫（Uttakleiv）、豪克蘭海灘（Haukland）可以停一停", areas: ["west", "mid", "east"] }] },
 
-    { date: "2027-03-08", title: "羅弗敦東側，新月", city: "lof",
+    { date: "2027-03-08", title: "羅弗敦，新月", city: "lof",
       alerts: ["新月，整趟最暗的一夜"], region: "lof",
-      free: [{ when: "全天", text: "東側慢慢逛；晚上新月，挑晴的方向去北側海灘", areas: ["east", "mid"] }] },
+      free: [{ when: "全天", text: "看天氣決定往西側或東側；晚上新月，挑晴的方向去北側海灘", areas: ["west", "mid", "east"] }] },
 
     { date: "2027-03-09", title: "羅弗敦最後一天", region: "lof", city: "lof",
-      free: [{ when: "全天", text: "看天氣決定往哪邊走；隔天中午前要開回 EVE 機場還車，可以往東側移動", areas: ["mid", "east"] }] },
+      free: [{ when: "全天", text: "看天氣決定往哪邊走。隔天中午前要開回 EVE 機場還車，機場在群島東邊，開車時間依住處而定（待查）", areas: ["west", "mid", "east"] }] },
 
     { date: "2027-03-10", region: "bgo", title: "還車，飛卑爾根", city: "bgo",
       alerts: ["中午前到 EVE 機場還車", "13:55 起飛"],
@@ -157,7 +154,7 @@ window.TRIP = {
           fare: "Smart", cost: { orig: "NOK 2,144", twd: 7621, pax: 2, note: "含服務費" }, rule: "不可退款、不可改票" }
       ],
       notes: ["Embraer 190-E2 噴射機，中途停特隆赫姆時留在機上", "機場輕軌到市區終點站 Byparken 約 45 分鐘"],
-      free: [{ when: "晚上", text: "到卑爾根後港邊走走", areas: ["bryggen"] }] },
+      free: [{ when: "晚上", text: "搭弗洛伊恩纜車（Fløibanen）上山看夜景，末班時間出發前查", areas: ["bryggen"] }] },
 
     { date: "2027-03-11", region: "bgo", art: "nutshell", places: ["nutshell"], title: "挪威縮影一日", city: "bgo",
       alerts: ["08:29 火車出發", "沒有備用日"],
@@ -176,7 +173,8 @@ window.TRIP = {
           fare: "WIZZ PLUS", cost: { orig: "TWD 7,998", twd: 7998, pax: 2, note: "Trip.com 購買，刷卡 7,965＋Trip Coins 33" }, rule: "退改透過 Trip.com：改期免費，退票手續費 TWD 1,466 起" }
       ],
       notes: ["出發前從卑爾根 Byparken 搭機場輕軌，到機場約 45 分鐘"],
-      free: [{ when: "傍晚", text: "逛老城長街、河畔", areas: ["main", "river"] }] },
+      free: [{ when: "上午（卑爾根）", text: "退房後行李寄放旅館，逛布呂根（Bryggen）、魚市場（Fisketorget）。回旅館拿行李，約 11:00 搭輕軌去機場" },
+             { when: "傍晚", text: "逛老城長街、河畔", areas: ["main", "river"] }] },
 
     { date: "2027-03-13", title: "馬爾堡或索波特", region: "gdn", city: "gdn",
       free: [{ when: "全天", text: "馬爾堡或索波特二選一，回來再逛老城", areas: ["trips", "main", "river"] }] },
@@ -185,7 +183,7 @@ window.TRIP = {
       alerts: ["週日商店公休"], region: "waw", city: "waw",
       legs: [
         { t: "train", text: "波蘭國鐵，格但斯克到華沙，約 2.5～3 小時", status: "pending", addr: ["gdn-st", "waw-st"], short: "格但斯克 → 華沙 火車",
-          cost: { orig: "約 19～32 英鎊", twd: null, pax: 1, est: true }, rule: "出發前約 30 天開賣" }
+          cost: { orig: "待查", twd: null, pax: 1 }, rule: "出發前約 30 天開賣" }
       ],
       free: [{ when: "抵達後", text: "週日博物館有開、商店大多公休。兩人想一起看的展館排在今天", areas: ["old", "powisle"] }],
       notes: ["週日，超市大多公休；Żabka 便利商店通常有開，餐廳不受影響"] },
@@ -200,7 +198,7 @@ window.TRIP = {
         { t: "flight", carrier: "阿聯酋", no: "EK180",
           from: "華沙 WAW", fromNote: "A 航廈", dep: "13:40",
           to: "杜拜 DXB", toNote: "第三航廈", arr: "22:55",
-          bag: "託運 25 公斤，手提 7 公斤", status: "booked" }
+          bag: "Yulun：託運 25 公斤、手提 1 件 7 公斤；May：依她的票種，待確認", status: "booked", statusText: "Yulun 已訂、May 自訂" }
       ],
       notes: ["阿聯酋建議起飛前 3 小時到機場，也就是 10:40 前"] },
 
@@ -209,7 +207,7 @@ window.TRIP = {
         { t: "flight", carrier: "阿聯酋", no: "EK366",
           from: "杜拜 DXB", fromNote: "第三航廈", dep: "03:40",
           to: "台北 TPE", toNote: "第二航廈", arr: "15:35",
-          status: "booked" }
+          bag: "Yulun：託運 25 公斤、手提 1 件 7 公斤；May：依她的票種，待確認", status: "booked", statusText: "Yulun 已訂、May 自訂" }
       ] }
   ],
 
@@ -244,7 +242,7 @@ window.TRIP = {
       line: "雪山直接從海裡拔起，山腳是紅色漁屋。挪威冬天風景的最高峰。",
       blocks: [
         { h: "是什麼", p: "挪威西北外海的一串群島，一條 E10 公路由東到西把所有島串起來。2～3 月白天變長，光線最漂亮。" },
-        { h: "會去哪裡", p: "先西後東：從 EVE 機場（哈爾斯塔/納爾維克機場）取車後直接往西，前 2 晚住雷訥一帶，後 2 晚住亨寧斯韋爾或斯沃爾韋爾一帶，最後開回 EVE 機場還車。" },
+        { h: "會去哪裡", p: "從 EVE 機場（哈爾斯塔/納爾維克機場，Harstad/Narvik lufthavn Evenes）取車，沿 E10 公路玩西側和東側，最後開回 EVE 機場還車。住宿還沒訂，西側、東側各住幾晚待定。" },
         { sub: "西側：哈姆諾伊、薩克里索伊、雷訥、Å", p: "整趟的精華。哈姆諾伊是紅色漁屋配尖山；過橋的薩克里索伊整村是黃色的；雷訥是羅弗敦最經典的明信片畫面；Å 是 E10 的終點。" },
         { sub: "中段：烏塔克萊夫、豪克蘭海灘", p: "白天是雪山配海灘，晚上是看極光的經典地點。北側海灘面向北方，地平線開闊。" },
         { sub: "東側：斯沃爾韋爾、亨寧斯韋爾", p: "斯沃爾韋爾是東側最大的鎮，生活機能最好。亨寧斯韋爾是建在小島群上的漁村，冬天正值鱈魚季，港口掛滿晾魚乾的木架。有名的海上足球場經典照片是空拍，站在地面看不太出來。" },
@@ -464,7 +462,7 @@ window.TRIP = {
     },
     lof: {
       name: "羅弗敦", region: "lof", mapCity: "Lofoten",
-      intro: "一條 E10 公路串起整排島。住 5 晚，先住西側雷訥一帶，再往東到亨寧斯韋爾、斯沃爾韋爾，3/10 回 EVE 機場還車。",
+      intro: "一條 E10 公路串起整排島。住 5 晚，住宿待訂，西側、東側各住幾晚待定。3/10 回 EVE 機場還車。",
       tips: [
         "3/7 是週日：大型超市不開，偏遠地區週日營業的店更少。3/6 週六要先把 3/7 的食物買好。",
         "冬天很多店和餐廳營業不穩定，有旅人說不一定照公告時間開門。想去的店前一天先查。",
@@ -504,13 +502,11 @@ window.TRIP = {
       name: "卑爾根", region: "bgo", mapCity: "Bergen", places: ["nutshell"],
       intro: "峽灣入口的港口城市，彩色木屋街是世界遺產。3/10 晚上到，3/11 走挪威縮影，3/12 起飛前的上午可以再逛港邊。",
       tips: [
-        "這次只住 2 晚，KODE 美術館可以略過。",
         "挪威最常下雨的城市之一，雨具要帶。",
         "營業時間是 2025～2026 年的資料，出發前一個月再確認。"
       ],
       areas: [
-        { id: "bryggen", name: "布呂根與港邊", line: "彩色木屋、魚市場和纜車站都在港邊走路範圍。" },
-        { id: "kode", name: "湖邊美術館區", line: "市中心南側的小湖 Lille Lungegårdsvann 沿岸，KODE 四棟美術館。" }
+        { id: "bryggen", name: "布呂根與港邊", line: "彩色木屋、魚市場和纜車站都在港邊走路範圍。" }
       ],
       pois: [
         { id: "bryggen", area: "bryggen", type: "sight", pri: "must", when: ["day", "eve"], name: "布呂根", local: "Bryggen",
@@ -522,10 +518,7 @@ window.TRIP = {
         { id: "kaffemisjonen", area: "bryggen", type: "cafe", why: "手沖", when: ["day"], name: "Kaffemisjonen", local: "Øvre Korskirkeallmenning 5",
           line: "纜車站旁的精品咖啡店，在地人常推薦的卑爾根最好咖啡之一。", lat: 60.3956, lng: 5.3270 },
         { id: "dlk", area: "bryggen", type: "cafe", why: "老店", when: ["day"], name: "Det Lille Kaffekompaniet", local: "Nedre Fjellsmug 2",
-          line: "1996 年開業，卑爾根最小也最老的精品咖啡店，在纜車站附近的小巷裡。", lat: 60.3963, lng: 5.3281 },
-        { id: "kodemuseum", area: "kode", type: "sight", pri: "must", when: ["day"], name: "KODE 美術館", local: "KODE",
-          line: "挪威第二大美術收藏，Rasmus Meyer 館有挪威黃金時代繪畫和世界第三大孟克收藏。", time: "2 小時",
-          closed: [1], tip: "有旅人提醒：部分孟克作品目前外借，展出內容出發前查。", lat: 60.3893, lng: 5.3265 }
+          line: "1996 年開業，卑爾根最小也最老的精品咖啡店，在纜車站附近的小巷裡。", lat: 60.3963, lng: 5.3281 }
       ]
     },
     gdn: {
@@ -628,7 +621,7 @@ window.TRIP = {
   info: {
     baggage: [
       { seg: "阿聯酋（Yulun）", text: "託運 25 公斤，手提 1 件 7 公斤" },
-      { seg: "阿聯酋（May）", text: "依她的票種；查價時的彈性票價是託運 30 公斤，手提 7 公斤" },
+      { seg: "阿聯酋（May）", text: "依她的票種，待確認（查價時的彈性票價是託運 30 公斤，手提 7 公斤）" },
       { seg: "挪威航空 華沙→奧斯陸、奧斯陸→特羅姆瑟", text: "託運 1 件，每件最多 23 公斤；座位下小包＋登機箱合計 10 公斤" },
       { seg: "Widerøe 兩段", text: "Smart：託運 1 件 23 公斤，長寬高合計 158 公分內；登機箱 55×40×20 公分＋座位下小包 40×30×15 公分，合計 8 公斤" },
       { seg: "Wizz Air 卑爾根→格但斯克", text: "WIZZ PLUS：託運 1 件 32 公斤；登機箱 55×40×23 公分 10 公斤＋座位下小包 40×30×20 公分" },

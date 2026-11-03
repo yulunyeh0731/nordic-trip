@@ -428,15 +428,22 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
     var blks=[];
     var TZ={TPE:8,DXB:4}, dayTz=(T.regions[d.sunAt||d.region]||{}).tz||1;
     function tzOf(x){ return TZ[(x||"").split(" ")[1]]||1; }
-    (d.legs||[]).forEach(function(l){ if(!l.dep||!l.arr) return; var a=toH(l.dep), b=toH(l.arr);
-      if (l.t==="flight"){ a-=tzOf(l.from)-dayTz; b-=tzOf(l.to)-dayTz; }
+    var HM=/^\d{1,2}:\d{2}$/;
+    (d.legs||[]).forEach(function(l){ if(!HM.test(l.arr||"")) return;
+      var who=l.who?T.people[l.who]+" ":"", b=toH(l.arr);
+      if (l.t==="flight") b-=tzOf(l.to)-dayTz;
+      /* 起飛時間待補：只畫到抵達時間，從時間軸左端開始 */
+      if (!HM.test(l.dep||"")){ if (l.dep) blks.push({a:null,b:b,t:l.t,label:who+l.arr+" 抵達"}); return; }
+      var a=toH(l.dep);
+      if (l.t==="flight") a-=tzOf(l.from)-dayTz;
       if (l.plus||b<a) b+=24;
-      blks.push({a:a,b:b,t:l.t,label:(l.who?T.people[l.who]+" ":"")+(l.no||l.text||"")}); });
+      blks.push({a:a,b:b,t:l.t,label:who+(l.no||l.text||"")}); });
     var reg=T.regions[d.sunAt||d.region], sun=reg&&reg.lat?sunTimes(d.date,reg.lat,reg.lng,reg.tz,90.833):null;
     var dusk=reg&&reg.polar?sunTimes(d.date,reg.lat,reg.lng,reg.tz,102):null;
     if (!blks.length && !sun) return "";
     var lo=6, hi=24;
-    blks.forEach(function(x){ lo=Math.min(lo,Math.floor(x.a)); hi=Math.max(hi,Math.ceil(x.b)); });
+    blks.forEach(function(x){ if (x.a!=null) lo=Math.min(lo,Math.floor(x.a)); hi=Math.max(hi,Math.ceil(x.b)); });
+    blks.forEach(function(x){ if (x.a==null) x.a=lo; });
     if (reg&&reg.polar) hi=Math.max(hi,26);
     hi=Math.min(hi,30); var span=hi-lo;
     function pct(h){ return ((Math.max(lo,Math.min(hi,h))-lo)/span*100).toFixed(2)+"%"; }
