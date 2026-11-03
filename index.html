@@ -175,24 +175,54 @@ summary{list-style:none;cursor:pointer} summary::-webkit-details-marker{display:
 .rows div{display:grid;gap:2px;padding:10px 14px;border-top:1px solid var(--line2);font-size:15px}
 .rows div:first-child{border-top:0}
 .rows span:first-child{font-size:13px;color:var(--ink2)}
-.tt{list-style:none;margin:0;padding:0}
-.tt>li{display:grid;grid-template-columns:3.4em minmax(0,1fr);gap:10px;padding:11px 14px 12px;border-top:1px solid var(--line2);border-left:4px solid var(--c)}
-.tt>li:first-child{border-top:0}
-.tt .when{font-family:var(--serif);font-weight:700;font-size:16px;line-height:1.25}
-.tt .when small{display:block;font-family:var(--sans);font-weight:400;font-size:12px;color:var(--ink2);margin-top:3px}
-.tt .hd{display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:20px}
-.tt .run{display:grid;grid-template-columns:auto minmax(28px,1fr) auto;align-items:start;gap:8px;margin:4px 0 2px}
-.tt .end b{display:block;font-family:var(--serif);font-weight:700;font-size:20px;line-height:1.2;font-variant-numeric:tabular-nums}
-.tt .end b sup{font-family:var(--sans);font-size:11px;font-weight:600;color:var(--ink2);margin-left:2px}
-.tt .end span{display:block;font-size:12.5px;color:var(--ink2);line-height:1.4}
-.tt .end span i{font-style:normal;font-weight:700;color:var(--ink);margin-right:4px}
-.tt .end:last-child{text-align:right}
-.tt .mid{position:relative;height:1px;background:var(--ink3);margin-top:12px}
-.tt .via{position:absolute;left:50%;top:-10px;transform:translateX(-50%);background:var(--paper);padding:0 5px;font-size:11.5px;line-height:20px;color:var(--ink2);white-space:nowrap}
-.tt .txt{margin:4px 0 0;font-size:15.5px;line-height:1.5}
-.tt .sm{margin:3px 0 0;font-size:13.5px;color:var(--ink2);line-height:1.5}
-.tt>li.pend{border-left-style:dashed}
-.tt>li.pend .end b,.tt>li.pend .txt{color:var(--ink2)}
+/* 資料：交通精簡列表 */
+.seg{display:inline-grid;grid-template-columns:repeat(3,auto);gap:0;margin:0 0 10px;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--paper)}
+.seg button{min-height:44px;min-width:76px;padding:0 14px;border:0;border-left:1px solid var(--line);background:none;font-size:14.5px;color:var(--ink2);cursor:pointer}
+.seg button:first-child{border-left:0}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper);font-weight:600}
+details.mv{border-top:1px solid var(--line2);border-left:4px solid var(--c)}
+details.mv:first-child{border-top:0}
+details.mv>summary{display:grid;grid-template-columns:2.7em 3.5em minmax(0,1fr) auto 9px;gap:0 8px;align-items:center;min-height:52px;padding:6px 12px 6px 10px}
+.mv summary b{display:block;font-family:var(--serif);font-weight:700;font-size:15.5px;line-height:1.25;font-variant-numeric:tabular-nums}
+.mv summary small{display:block;font-size:12px;line-height:1.35;color:var(--ink2);font-variant-numeric:tabular-nums}
+.mv .rt b{font-family:var(--sans);font-weight:600;font-size:14.5px;overflow-wrap:anywhere}
+.mv .ws{display:flex;flex-direction:column;align-items:flex-end;gap:3px;max-width:8.2em;text-align:right}
+.mv .ws .who{margin:0}
+.mv .ws .st{margin:0;white-space:normal;line-height:1.45}
+.mv.pend .tm b,.mv.pend .rt b{color:var(--ink2)}
+.mv-in{padding:2px 14px 0 14px;border-top:1px dashed var(--line2)}
+.mv-in>div{display:grid;grid-template-columns:3em minmax(0,1fr);gap:8px;padding:7px 0;border-top:1px solid var(--line2);font-size:14px;line-height:1.5}
+.mv-in>div:first-child{border-top:0}
+.mv-in>div>span{color:var(--ink2);font-size:13px}
+/* 座位、行李標籤 */
+.seats{display:inline-flex;flex-wrap:wrap;gap:4px;vertical-align:middle}
+.seat{display:inline-block;font-size:12.5px;line-height:1.6;padding:0 7px;border-radius:2px;background:var(--line2);color:var(--ink);white-space:nowrap}
+.seat.none{background:none;border:1px dashed var(--line);color:var(--ink2)}
+.tagl{display:inline-flex;align-items:center;min-height:44px;text-decoration:none;color:var(--ink);margin:-8px 0}
+.bagt{display:inline-flex;align-items:center;gap:5px;font-size:13px;line-height:1.5;padding:1px 8px 1px 6px;border:1px solid var(--line);border-radius:2px;background:var(--paper)}
+.bagt svg{width:15px;height:15px;color:var(--ink2);flex:none}
+/* 資料：行李 */
+.pack{padding:12px 14px}
+.pks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.pk{border:1px solid var(--line2);border-radius:3px;padding:8px 10px 9px;background:var(--page)}
+.pk span{display:block;font-size:13px;color:var(--ink2)}
+.pk b{display:block;font-family:var(--serif);font-weight:700;font-size:34px;line-height:1.15;font-variant-numeric:tabular-nums}
+.pk b small{font-family:var(--sans);font-weight:600;font-size:15px;margin-left:3px}
+.pk em{display:block;font-style:normal;font-size:12.5px;color:var(--ink2);line-height:1.4}
+.pk-sum{margin:10px 0 0;font-size:14.5px}
+.pk-sum b{font-family:var(--serif);font-size:17px}
+.pk-note{margin:8px 0 0;font-size:12.5px;color:var(--ink3)}
+.btbl{padding:0 0 10px}
+.btbl .pk-note{padding:0 12px}
+.btbl table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;line-height:1.45}
+.btbl th,.btbl td{padding:8px 6px;border-top:1px solid var(--line2);text-align:left;vertical-align:top;overflow-wrap:anywhere}
+.btbl thead th{border-top:0;font-size:12px;font-weight:600;color:var(--ink2)}
+.btbl th:first-child{width:28%;padding-left:12px}
+.btbl th[scope="row"] b{display:block;font-weight:600;font-size:13.5px}
+.btbl th[scope="row"] small{display:block;font-weight:400;font-size:12px;color:var(--ink2)}
+.btbl td b{font-weight:700}
+.btbl td.hl{background:color-mix(in srgb,#F2C14E 24%,var(--paper))}
+.btbl td.tbd{color:var(--ink2)}
 .fee{padding:11px 0;border-top:1px solid var(--line2)}
 .fee:first-child{border-top:0}
 .fee-top{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
@@ -226,7 +256,7 @@ details.fold>.in{border-top:1px solid var(--line2);padding:4px 14px 12px}
 .daybar{position:sticky;top:0;z-index:30;background:var(--page);border-bottom:1px solid var(--line);padding:8px 0}
 .chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:0 16px;scroll-padding:0 16px}
 .chips::-webkit-scrollbar{display:none}
-.chips a{flex:none;width:48px;text-align:center;text-decoration:none;border:1px solid var(--line);border-top:3px solid var(--c);background:var(--paper);border-radius:3px;padding:4px 0 3px;line-height:1.2;font-size:11.5px;color:var(--ink2)}
+.chips a{flex:none;width:48px;min-height:44px;text-align:center;text-decoration:none;border:1px solid var(--line);border-top:3px solid var(--c);background:var(--paper);border-radius:3px;padding:4px 0 3px;line-height:1.2;font-size:11.5px;color:var(--ink2)}
 .chips a b{display:block;font-size:15px;font-weight:600;color:var(--ink)}
 .chips a[aria-current="true"]{background:var(--c);border-color:var(--c);color:#fff}
 .chips a[aria-current="true"] b{color:#fff}
@@ -522,6 +552,24 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
 
   var LINES='<g class="drift"><path d="M-30,58 C60,24 130,68 210,38 S330,12 430,32" stroke="#5DCAA5" stroke-width="2.4"/><path d="M-30,66 C70,36 140,76 220,48 S340,22 430,42" stroke="#1D9E75" stroke-width="1.4"/></g><g class="drift2"><path d="M-30,50 C50,18 120,58 200,30 S320,4 430,22" stroke="#AFA9EC" stroke-width="1"/><path d="M-30,74 C90,46 150,84 230,58 S350,34 430,52" stroke="#5DCAA5" stroke-width=".8"/></g>';
 
+  /* ── 行李、座位 ── */
+  function bagEntries(l){ var b=l.bag; if(!b) return [];
+    if (b.Y||b.M) return ["Y","M"].filter(function(w){return b[w];}).map(function(w){return {who:w,b:b[w]};});
+    return [{who:l.who||null,b:b}]; }
+  function bagShort(b){
+    if (b.tbd) return "行李待確認";
+    var a=["託運 "+(b.chkKg?b.chkKg+" kg":"待補")];
+    if (b.sumKg) a.push("隨身合計 "+b.sumKg+" kg"); else if (b.cabKg) a.push("登機箱 "+b.cabKg+" kg");
+    return a.join("・"); }
+  function bagTag(l){ var es=bagEntries(l); if(!es.length) return "";
+    var multi=es.length>1;
+    return '<a class="tagl" href="#/info/bag"><span class="bagt">'+svg("bag")+es.map(function(e){return (multi?T.people[e.who]+" ":"")+bagShort(e.b);}).join("／")+'</span></a>'; }
+  function seatTags(l){
+    var h=(l.seats||[]).map(function(s){return '<span class="seat">'+T.people[s.who]+" "+s.no+(s.win?" 窗":"")+'</span>';}).join("");
+    if (l.seatNote) h+='<span class="seat none">座位'+l.seatNote+'</span>';
+    return h?'<span class="seats">'+h+'</span>':""; }
+  function dim(a){ return a?a.join("×"):""; }
+
   /* ── 共用：交通段、費用 ── */
   function apt(x){ var m=(x||"").match(/\b[A-Z]{3}\b/), c=m?m[0]:""; return {c:c, n:(x||"").replace(c,"").trim()}; }
   function allSegs(){ var segs=[]; T.days.forEach(function(d){ (d.legs||[]).forEach(function(l){ if(/flight|train|tour/.test(l.t)) segs.push({d:d,l:l}); }); }); return segs; }
@@ -543,22 +591,35 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
 
   /* ── 資料 ── */
   var INFO=[["move","交通","flight"],["stay","住宿","bed"],["addr","地址","pin"],["bag","行李","bag"],["fee","費用","fee"],["list","清單","list"]];
+  var mvWho="all"; try{ mvWho=localStorage.getItem("moveWho")||"all"; }catch(e){}
   function infoMove(){
-    function end(t,x,plus){ var a=apt(x); return '<div class="end"><b>'+(t||"—")+(plus?'<sup>+1</sup>':'')+'</b><span><i>'+a.c+'</i>'+a.n+'</span></div>'; }
-    return '<h2 class="sec">交通時刻 <small>依日期，含 May 自訂的航班</small></h2><div class="card"><ul class="tt">'+allSegs().map(function(x){
-      var l=x.l, d=x.d, run, meta=[];
-      if (l.t==="flight"){
-        run='<div class="run">'+end(l.dep,l.from)+'<div class="mid">'+(l.via?'<span class="via">停'+l.via.split("（")[0]+'</span>':"")+'</div>'+end(l.arr,l.to,l.plus)+'</div>';
-        meta.push(l.carrier+(l.no?" "+l.no:""));
-        if (l.seat) meta.push("座位 "+l.seat);
-      } else {
-        run='<p class="txt">'+l.text+'</p>';
-        if (l.dep) meta.push(l.dep+" 出發，"+l.arr+" 回到出發地");
-      }
-      return '<li class="'+(l.status==="pending"?"pend":"")+'" style="--c:'+col(d.region)+'"><span class="when">'+md(d.date)+'<small>'+wd(d.date)+'</small></span><div>'+
-        '<div class="hd">'+(l.who?who(l.who):"<span></span>")+st(l.status,l.statusText)+'</div>'+run+
-        (meta.length?'<p class="sm">'+meta.join("　")+'</p>':"")+'</div></li>';
-    }).join("")+'</ul></div>';
+    var segs=allSegs().filter(function(x){ var w=x.l.who; return mvWho==="all"||!w||w===mvWho; });
+    var sw='<div class="seg" role="group" aria-label="看誰的行程">'+[["all","兩人"],["Y","Yulun"],["M","May"]].map(function(o){
+      return '<button type="button" data-mv="'+o[0]+'" aria-pressed="'+(mvWho===o[0])+'">'+o[1]+'</button>'; }).join("")+'</div>';
+    var rows=segs.map(function(x){
+      var l=x.l, d=x.d, fl=l.t==="flight";
+      var stx=l.todo?(mvWho==="all"?st("booked","Yulun 已訂")+st("self"):st(mvWho==="Y"?"booked":"self")):st(l.status,l.statusText);
+      var whoTag=l.todo&&mvWho==="all"?"":'<span class="who">'+(l.who?T.people[l.who]:"兩人")+'</span>';
+      var route=fl?apt(l.from).c+"→"+apt(l.to).c:(l.short||l.text);
+      var sub=fl?(l.no||l.carrier):({train:"火車",tour:"一日遊"})[l.t]||"";
+      var info=[];
+      function row(k,v){ if(v) info.push('<div><span>'+k+'</span><div>'+v+'</div></div>'); }
+      if (fl){ row("航班",l.carrier+(l.no?" "+l.no:"")+(l.fare?"，"+l.fare:""));
+        row("路線",l.from+(l.fromNote?"（"+l.fromNote+"）":"")+" → "+l.to+(l.toNote?"（"+l.toNote+"）":""));
+        row("經停",l.via?"中途停"+l.via:"直飛");
+        row("機型",l.aircraft);
+        row("座位",seatTags(l)); }
+      else row("內容",l.text);
+      row("行李",bagTag(l));
+      row("退改",l.rule);
+      return '<details class="mv'+(l.status==="pending"?" pend":"")+'" style="--c:'+col(d.region)+'"><summary>'+
+        '<span class="d"><b>'+md(d.date)+'</b><small>'+wd(d.date).slice(1)+'</small></span>'+
+        '<span class="tm"><b>'+(l.dep||"—")+'</b><small>'+(l.arr?l.arr+(l.plus?"⁺¹":""):"")+'</small></span>'+
+        '<span class="rt"><b>'+route+'</b><small>'+sub+'</small></span>'+
+        '<span class="ws">'+whoTag+stx+'</span><span class="chev"></span></summary>'+
+        '<div class="mv-in">'+info.join("")+'<a class="more" href="#/day/'+key(d.date)+'">看 '+md(d.date)+' 每日行程 ›</a></div></details>';
+    }).join("");
+    return '<h2 class="sec">交通 <small>點一下看座位、行李、退改</small></h2>'+sw+'<div class="card mvs">'+rows+'</div>';
   }
   function infoStay(){
     return '<h2 class="sec">住宿 <small>依入住日</small></h2><div class="card"><ul class="stays">'+T.stays.map(function(s){
@@ -573,7 +634,39 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
     return '<h2 class="sec">常用地址 <small>住處、機場、車站</small></h2><p class="muted" style="margin:0 0 8px">複製貼到 Bolt、Uber，或直接開 Google 地圖導航。住處訂好後會陸續加入。</p><div class="card">'+addrs.map(addrRow).join("")+'</div>';
   }
   function infoBag(){
-    return '<h2 class="sec">行李限額 <small>打包以最嚴的為準</small></h2><div class="card rows">'+T.info.baggage.map(function(b){return '<div><span>'+b.seg+'</span><span>'+b.text+'</span></div>';}).join("")+'</div>';
+    var ents=[]; allSegs().forEach(function(x){ if(x.l.t!=="flight") return; bagEntries(x.l).forEach(function(e){ ents.push({d:x.d,l:x.l,who:e.who,b:e.b}); }); });
+    function lab(e){ var c=e.l.carrier, split=e.who&&ents.some(function(o){return o.l.carrier===c&&o.b.tbd;})||(e.b.tbd&&e.who);
+      return c+(split?"（"+T.people[e.who]+"）":""); }
+    function strict(get){ var v=null, who=[];
+      ents.forEach(function(e){ var x=get(e.b); if(x==null) return; if(v==null||x<v){v=x;who=[];} if(x===v&&who.indexOf(lab(e))<0) who.push(lab(e)); });
+      return {v:v,who:who}; }
+    var S={chk:strict(function(b){return b.chkKg;}), cab:strict(function(b){return b.cabKg;}),
+      cabH:strict(function(b){return b.cabDim&&b.cabDim[2];}), smlH:strict(function(b){return b.smlDim&&b.smlDim[2];}), sum:strict(function(b){return b.sumKg;})};
+    function box(name,s,unit){ return '<div class="pk"><span>'+name+'</span><b>'+(s.v!=null?s.v+'<small>'+unit+'</small>':"待補")+'</b><em>'+s.who.join("、")+'</em></div>'; }
+    var top='<h2 class="sec">照這個打包 <small>全程最嚴的限制</small></h2><div class="card pack"><div class="pks">'+
+      box("託運",S.chk,"kg")+box("登機箱",S.cab,"kg")+box("登機箱厚度",S.cabH,"cm")+box("小包厚度",S.smlH,"cm")+'</div>'+
+      (S.sum.v!=null?'<p class="pk-sum">登機箱＋小包合計最多 <b>'+S.sum.v+' kg</b>（'+S.sum.who.join("、")+'）</p>':"")+
+      (ents.some(function(e){return e.b.tbd;})?'<p class="pk-note">只算已知的數字。May 的阿聯酋行李待確認。</p>':"")+'</div>';
+    var groups=[], gk={};
+    ents.forEach(function(e){ var k=lab(e)+"|"+JSON.stringify(e.b); if(!gk[k]){ gk[k]={e:e,dates:[]}; groups.push(gk[k]); } if(gk[k].dates.indexOf(md(e.d.date))<0) gk[k].dates.push(md(e.d.date)); });
+    function hi(on,txt){ return on?'<b>'+txt+'</b>':txt; }
+    var trs=groups.map(function(g){ var b=g.e.b, l=g.e.l;
+      var head='<th scope="row"><b>'+lab(g.e)+'</b><small>'+g.dates.join("、")+(l.fare?"<br>"+l.fare:"")+'</small></th>';
+      if (b.tbd) return '<tr>'+head+'<td colspan="3" class="tbd">'+b.tbd+'</td></tr>';
+      var c1=b.chkKg===S.chk.v, c2=(b.cabKg!=null&&b.cabKg===S.cab.v)||(b.cabDim&&b.cabDim[2]===S.cabH.v)||(b.sumKg!=null&&b.sumKg===S.sum.v), c3=b.smlDim&&b.smlDim[2]===S.smlH.v;
+      var chk=[(b.chkN?b.chkN+" 件 ":"")+(b.chkKg?hi(c1,b.chkKg+" kg"):"待補")];
+      chk.push(b.chkCm?"長寬高合計 "+b.chkCm+" cm 內":(b.chkN?"":"件數待補"));
+      var cab=[];
+      if (b.cabKg) cab.push((b.cabN?b.cabN+" 件 ":"")+hi(b.cabKg===S.cab.v,b.cabKg+" kg"));
+      cab.push(b.cabDim?b.cabDim[0]+"×"+b.cabDim[1]+"×"+hi(b.cabDim[2]===S.cabH.v,b.cabDim[2])+"":"尺寸待補");
+      if (b.sumKg) cab.push("合計 "+hi(b.sumKg===S.sum.v,b.sumKg+" kg"));
+      var sml=[b.smlDim?b.smlDim[0]+"×"+b.smlDim[1]+"×"+hi(c3,b.smlDim[2]):"尺寸待補"];
+      function td(on,a){ return '<td'+(on?' class="hl"':"")+'>'+a.filter(Boolean).join("<br>")+'</td>'; }
+      return '<tr>'+head+td(c1,chk)+td(c2,cab)+td(c3,sml)+'</tr>';
+    }).join("");
+    var tbl='<h2 class="sec">各段限額 <small>每人</small></h2><div class="card btbl"><table><thead><tr><th scope="col">航空</th><th scope="col">託運</th><th scope="col">登機箱</th><th scope="col">小包</th></tr></thead><tbody>'+trs+'</tbody></table>'+
+      '<p class="pk-note">淺黃底是那一欄最嚴的限制。尺寸單位是公分（長×寬×高）。合計是登機箱和座位下小包加起來的重量。</p></div>';
+    return top+tbl;
   }
   function infoFee(){
     var f=feeCalc();
@@ -691,8 +784,8 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
       if (l.via) a.push("中途停"+l.via);
       s.push(a.join("，"));
       s.push((l.arr?l.arr+" 抵達"+(l.plus?"（隔天）":""):"")+(l.depNote?(l.arr?"，":"")+l.depNote:""));
-      if (l.seat) s.push("座位："+l.seat);
-      if (l.bag) s.push("行李："+l.bag);
+      if (l.seats||l.seatNote) s.push(seatTags(l));
+      if (l.bag) s.push(bagTag(l));
     } else { m=who(l.who)+l.text; if (l.arr) s.push(l.arr+" 回到出發地"); }
     return '<li class="ev"><span class="ev-t">'+(l.dep||"")+'</span><span class="ev-n">'+svg(l.t)+'</span><div><p class="ev-m">'+m+st(l.status,l.statusText)+'</p>'+
       s.filter(Boolean).map(function(x){return '<p class="ev-s">'+x+'</p>';}).join("")+'</div></li>';
@@ -845,6 +938,7 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
   var drv=document.getElementById("drv");
   document.addEventListener("click", function(e){
     var f=e.target.closest("#filter button"); if (f){ filter=f.getAttribute("data-f"); applyFilter(); return; }
+    var mv=e.target.closest("[data-mv]"); if (mv){ mvWho=mv.getAttribute("data-mv"); try{localStorage.setItem("moveWho",mvWho);}catch(x){} route(); return; }
     var c=e.target.closest("[data-copy]");
     if (c){ copyText(c.getAttribute("data-copy")); return; }
     var b=e.target.closest("[data-big]");
