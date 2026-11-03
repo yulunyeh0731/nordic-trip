@@ -186,9 +186,10 @@ details.mv>summary{display:grid;grid-template-columns:2.7em 3.5em minmax(0,1fr) 
 .mv summary b{display:block;font-family:var(--serif);font-weight:700;font-size:15.5px;line-height:1.25;font-variant-numeric:tabular-nums}
 .mv summary small{display:block;font-size:12px;line-height:1.35;color:var(--ink2);font-variant-numeric:tabular-nums}
 .mv .rt b{font-family:var(--sans);font-weight:600;font-size:14.5px;overflow-wrap:anywhere}
-.mv .ws{display:flex;flex-direction:column;align-items:flex-end;gap:3px;max-width:8.2em;text-align:right}
+.mv .rt.code b{white-space:nowrap}
+.mv .ws{display:flex;flex-direction:column;align-items:flex-end;gap:3px;max-width:6.6em;text-align:right}
 .mv .ws .who{margin:0}
-.mv .ws .st{margin:0;white-space:normal;line-height:1.45}
+.mv .ws .st{margin:0;white-space:normal;line-height:1.45;word-break:keep-all}
 .mv.pend .tm b,.mv.pend .rt b{color:var(--ink2)}
 .mv-in{padding:2px 14px 0 14px;border-top:1px dashed var(--line2)}
 .mv-in>div{display:grid;grid-template-columns:3em minmax(0,1fr);gap:8px;padding:7px 0;border-top:1px solid var(--line2);font-size:14px;line-height:1.5}
@@ -568,7 +569,13 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
     var h=(l.seats||[]).map(function(s){return '<span class="seat">'+T.people[s.who]+" "+s.no+(s.win?" 窗":"")+'</span>';}).join("");
     if (l.seatNote) h+='<span class="seat none">座位'+l.seatNote+'</span>';
     return h?'<span class="seats">'+h+'</span>':""; }
-  function dim(a){ return a?a.join("×"):""; }
+  function thick(a){ return a?Math.min.apply(null,a):null; }
+  /* 狀態標籤：兩人同班但有人還沒訂好（todo）時分開標 */
+  function legSt(l, view){
+    if (!l.todo) return st(l.status,l.statusText);
+    if (view==="Y") return st(l.status);
+    if (view==="M") return st("self",l.todo);
+    return st(l.status,T.people.Y+" 已訂")+st("self",l.todo); }
 
   /* ── 共用：交通段、費用 ── */
   function apt(x){ var m=(x||"").match(/\b[A-Z]{3}\b/), c=m?m[0]:""; return {c:c, n:(x||"").replace(c,"").trim()}; }
@@ -598,7 +605,7 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
       return '<button type="button" data-mv="'+o[0]+'" aria-pressed="'+(mvWho===o[0])+'">'+o[1]+'</button>'; }).join("")+'</div>';
     var rows=segs.map(function(x){
       var l=x.l, d=x.d, fl=l.t==="flight";
-      var stx=l.todo?(mvWho==="all"?st("booked","Yulun 已訂")+st("self"):st(mvWho==="Y"?"booked":"self")):st(l.status,l.statusText);
+      var stx=legSt(l,mvWho);
       var whoTag=l.todo&&mvWho==="all"?"":'<span class="who">'+(l.who?T.people[l.who]:"兩人")+'</span>';
       var route=fl?apt(l.from).c+"→"+apt(l.to).c:(l.short||l.text);
       var sub=fl?(l.no||l.carrier):({train:"火車",tour:"一日遊"})[l.t]||"";
@@ -615,7 +622,7 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
       return '<details class="mv'+(l.status==="pending"?" pend":"")+'" style="--c:'+col(d.region)+'"><summary>'+
         '<span class="d"><b>'+md(d.date)+'</b><small>'+wd(d.date).slice(1)+'</small></span>'+
         '<span class="tm"><b>'+(l.dep||"—")+'</b><small>'+(l.arr?l.arr+(l.plus?"⁺¹":""):"")+'</small></span>'+
-        '<span class="rt"><b>'+route+'</b><small>'+sub+'</small></span>'+
+        '<span class="rt'+(fl?" code":"")+'"><b>'+route+'</b><small>'+sub+'</small></span>'+
         '<span class="ws">'+whoTag+stx+'</span><span class="chev"></span></summary>'+
         '<div class="mv-in">'+info.join("")+'<a class="more" href="#/day/'+key(d.date)+'">看 '+md(d.date)+' 每日行程 ›</a></div></details>';
     }).join("");
@@ -641,7 +648,7 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
       ents.forEach(function(e){ var x=get(e.b); if(x==null) return; if(v==null||x<v){v=x;who=[];} if(x===v&&who.indexOf(lab(e))<0) who.push(lab(e)); });
       return {v:v,who:who}; }
     var S={chk:strict(function(b){return b.chkKg;}), cab:strict(function(b){return b.cabKg;}),
-      cabH:strict(function(b){return b.cabDim&&b.cabDim[2];}), smlH:strict(function(b){return b.smlDim&&b.smlDim[2];}), sum:strict(function(b){return b.sumKg;})};
+      cabH:strict(function(b){return thick(b.cabDim);}), smlH:strict(function(b){return thick(b.smlDim);}), sum:strict(function(b){return b.sumKg;})};
     function box(name,s,unit){ return '<div class="pk"><span>'+name+'</span><b>'+(s.v!=null?s.v+'<small>'+unit+'</small>':"待補")+'</b><em>'+s.who.join("、")+'</em></div>'; }
     var top='<h2 class="sec">照這個打包 <small>全程最嚴的限制</small></h2><div class="card pack"><div class="pks">'+
       box("託運",S.chk,"kg")+box("登機箱",S.cab,"kg")+box("登機箱厚度",S.cabH,"cm")+box("小包厚度",S.smlH,"cm")+'</div>'+
@@ -650,17 +657,19 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
     var groups=[], gk={};
     ents.forEach(function(e){ var k=lab(e)+"|"+JSON.stringify(e.b); if(!gk[k]){ gk[k]={e:e,dates:[]}; groups.push(gk[k]); } if(gk[k].dates.indexOf(md(e.d.date))<0) gk[k].dates.push(md(e.d.date)); });
     function hi(on,txt){ return on?'<b>'+txt+'</b>':txt; }
+    function dimHi(a,v){ var t=thick(a), done=false; return a.map(function(x){ if(x===t&&t===v&&!done){ done=true; return '<b>'+x+'</b>'; } return x; }).join("×"); }
     var trs=groups.map(function(g){ var b=g.e.b, l=g.e.l;
       var head='<th scope="row"><b>'+lab(g.e)+'</b><small>'+g.dates.join("、")+(l.fare?"<br>"+l.fare:"")+'</small></th>';
       if (b.tbd) return '<tr>'+head+'<td colspan="3" class="tbd">'+b.tbd+'</td></tr>';
-      var c1=b.chkKg===S.chk.v, c2=(b.cabKg!=null&&b.cabKg===S.cab.v)||(b.cabDim&&b.cabDim[2]===S.cabH.v)||(b.sumKg!=null&&b.sumKg===S.sum.v), c3=b.smlDim&&b.smlDim[2]===S.smlH.v;
+      var c1=b.chkKg===S.chk.v, c2=(b.cabKg!=null&&b.cabKg===S.cab.v)||(thick(b.cabDim)===S.cabH.v)||(b.sumKg!=null&&b.sumKg===S.sum.v), c3=thick(b.smlDim)===S.smlH.v;
       var chk=[(b.chkN?b.chkN+" 件 ":"")+(b.chkKg?hi(c1,b.chkKg+" kg"):"待補")];
-      chk.push(b.chkCm?"長寬高合計 "+b.chkCm+" cm 內":(b.chkN?"":"件數待補"));
+      chk.push(b.chkCm?"長寬高合計 "+b.chkCm+" cm 內":(b.chkNote||(b.chkN?"":"件數待補")));
       var cab=[];
       if (b.cabKg) cab.push((b.cabN?b.cabN+" 件 ":"")+hi(b.cabKg===S.cab.v,b.cabKg+" kg"));
-      cab.push(b.cabDim?b.cabDim[0]+"×"+b.cabDim[1]+"×"+hi(b.cabDim[2]===S.cabH.v,b.cabDim[2])+"":"尺寸待補");
+      cab.push(b.cabDim?dimHi(b.cabDim,S.cabH.v):"尺寸待補");
       if (b.sumKg) cab.push("合計 "+hi(b.sumKg===S.sum.v,b.sumKg+" kg"));
-      var sml=[b.smlDim?b.smlDim[0]+"×"+b.smlDim[1]+"×"+hi(c3,b.smlDim[2]):"尺寸待補"];
+      var sml=[b.smlDim?dimHi(b.smlDim,S.smlH.v):(b.smlNote||"尺寸待補")];
+      if (b.smlDim&&b.smlNote) sml.push(b.smlNote);
       function td(on,a){ return '<td'+(on?' class="hl"':"")+'>'+a.filter(Boolean).join("<br>")+'</td>'; }
       return '<tr>'+head+td(c1,chk)+td(c2,cab)+td(c3,sml)+'</tr>';
     }).join("");
@@ -725,9 +734,9 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
         '<a class="more" href="'+href+'">'+more+' ›</a></div>';
     }
     var mRows=mTodo.map(function(x){ var l=x.l;
-      return '<li><span class="d">'+md(x.d.date)+'</span><span>'+legLabel(l)+(l.todo?'<span class="st st-self">'+l.todo+'</span>':st(l.status))+'</span></li>'; });
+      return '<li><span class="d">'+md(x.d.date)+'</span><span>'+legLabel(l)+(l.todo?st("self",l.todo):st(l.status,l.statusText))+'</span></li>'; });
     var sRows=sTodo.map(function(s){ return '<li><span class="d">'+md(s.from)+'</span><span>'+who(s.who)+s.area+" "+s.nights+' 晚'+st(s.status)+'</span></li>'; });
-    return '<h2 class="sec">準備進度 <small>依 data.js 的訂位狀態</small></h2><div class="card prep">'+
+    return '<h2 class="sec">準備進度</h2><div class="card prep">'+
       block("交通", mDone.length, moves.length, mRows, "#/info/move", "看交通時刻")+
       block("住宿", sDone.length, T.stays.length, sRows, "#/info/stay", "看住宿")+'</div>';
   }
@@ -787,7 +796,7 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
       if (l.seats||l.seatNote) s.push(seatTags(l));
       if (l.bag) s.push(bagTag(l));
     } else { m=who(l.who)+l.text; if (l.arr) s.push(l.arr+" 回到出發地"); }
-    return '<li class="ev"><span class="ev-t">'+(l.dep||"")+'</span><span class="ev-n">'+svg(l.t)+'</span><div><p class="ev-m">'+m+st(l.status,l.statusText)+'</p>'+
+    return '<li class="ev"><span class="ev-t">'+(l.dep||"")+'</span><span class="ev-n">'+svg(l.t)+'</span><div><p class="ev-m">'+m+legSt(l)+'</p>'+
       s.filter(Boolean).map(function(x){return '<p class="ev-s">'+x+'</p>';}).join("")+'</div></li>';
   }
   function poiHTML(p, ctx){
