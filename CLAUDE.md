@@ -29,6 +29,7 @@ GitHub Pages 靜態網站：https://yulunyeh0731.github.io/nordic-trip/
 8. 價格寫原幣，再加台幣。已付款的寫實際刷卡的台幣金額；估計值要標明是估計。目前匯率：1 挪威克朗約 NT$3.55、1 歐元約 NT$36.6、1 茲羅提約 NT$8。
 9. 不確定的資料寫「待確認」或「待補」，不要猜，也不要自己補數字。
 10. 日期的星期要對得上 2027 年。整趟都是冬令時間 UTC+1（台灣 UTC+8、杜拜 UTC+4）。
+11. 畫面上的文字是給旅人看的，不能出現檔名、程式用語、欄位名稱，也不能放規劃過程的筆記。
 
 ## 資料慣例
 
@@ -36,7 +37,7 @@ GitHub Pages 靜態網站：https://yulunyeh0731.github.io/nordic-trip/
 - `who`：`Y` 只有 Yulun、`M` 只有 May，沒寫代表兩人一起。
 - 每日頁的機場地址卡，是用航班 `from`、`to` 欄位的第二個詞比對機場代碼（例如「特羅姆瑟 TOS」）。寫成「EVE 機場」這種格式時，要另外加 `addr: ["eve-air"]`。
 - 費用欄位：`fare` 票種；`cost` 底下是 `orig` 原幣金額、`twd` 台幣刷卡金額（不知道就寫 `null`）、`pax` 人數、`note` 補充、`est` 估計值；`rule` 退改規則；`seats` 座位清單（`who`、`no`、`win` 靠窗），`seatNote` 座位補充；`aircraft` 機型。
-- 行李 `bag` 用欄位寫，不寫句子：`chkN`、`chkKg`、`chkCm` 託運件數／公斤／長寬高合計；`cabN`、`cabKg`、`cabDim` 登機箱；`smlDim` 小包尺寸；`sumKg` 登機箱＋小包合計；不知道寫 `tbd` 說明。兩人不同時寫 `{ Y: {...}, M: {...} }`。資料頁「行李」的最嚴值和表格都從這些欄位算。
+- 行李 `bag` 用欄位寫，不寫句子：`chkN`、`chkKg`、`chkCm` 託運件數／公斤／長寬高合計；`cabN`、`cabKg`、`cabDim` 登機箱；`smlDim` 小包尺寸；`chkNote`、`smlNote` 補充說明；`sumKg` 登機箱＋小包合計；不知道寫 `tbd` 說明。兩人不同時寫 `{ Y: {...}, M: {...} }`。資料頁「行李」的最嚴值和表格都從這些欄位算。
 
 ## 分頁與網址
 

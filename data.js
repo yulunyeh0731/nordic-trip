@@ -4,9 +4,9 @@
    who：Y 只有 Yulun、M 只有 May，不寫代表兩人一起
    費用欄位：fare 票種、cost { orig 原幣金額, twd 台幣刷卡金額（不知道寫 null）, pax 人數, note 補充, est 估計值 }、
    rule 退改規則、seats 座位 [{ who, no 座位號, win 靠窗 }]、seatNote 座位補充、aircraft 機型、short 費用表和總覽待訂清單用的簡稱（非航班才需要）
-   todo：這段還有人沒訂好時寫原因（例如「May 的票待補」），總覽的準備進度就不算已訂
-   bag 行李（不知道的欄位不寫，畫面顯示待補）：chkN 託運件數、chkKg 託運公斤、chkCm 託運長寬高合計上限（公分）、
-     cabN 登機箱件數、cabKg 登機箱公斤、cabDim 登機箱 [長, 寬, 高]（公分）、smlDim 座位下小包 [長, 寬, 高]、
+   todo：兩人同班但有人還沒訂好時，寫那個人的狀態（例如「May 自訂，開票待確認」），總覽的準備進度就不算已訂
+   bag 行李（不知道的欄位不寫，畫面顯示待補）：chkN 託運件數、chkKg 託運公斤、chkCm 託運長寬高合計上限（公分）、chkNote 託運補充（例如計重制）、
+     cabN 登機箱件數、cabKg 登機箱公斤、cabDim 登機箱 [長, 寬, 高]（公分）、smlDim 座位下小包 [長, 寬, 高]、smlNote 小包補充、
      sumKg 登機箱＋小包合計公斤、tbd 還不知道時的說明；兩人限額不同時寫成 { Y: {...}, M: {...} }
    route.stay：對到 stays 的 id，總覽路線方塊的日期和晚數從這裡算
    checklist.due：期限或建議完成日（YYYY-MM-DD），dueApprox: true 表示是大約的日期
@@ -58,7 +58,7 @@ window.TRIP = {
         { who: "Y", t: "flight", carrier: "阿聯酋", no: "EK367",
           from: "台北 TPE", fromNote: "第二航廈", dep: "23:00",
           to: "杜拜 DXB", toNote: "第三航廈", arr: "04:45", plus: 1,
-          bag: { chkKg: 25, cabN: 1, cabKg: 7 }, status: "booked",
+          bag: { chkKg: 25, chkNote: "計重制", cabN: 1, cabKg: 7, cabDim: [55, 38, 22], smlNote: "票面只列 1 件手提" }, status: "booked",
           fare: "Saver", cost: { orig: "NT$27,236", twd: 27236, pax: 1, note: "來回 4 段，含稅" } }
       ],
       notes: ["阿聯酋建議起飛前 3 小時到機場"] },
@@ -68,7 +68,7 @@ window.TRIP = {
         { who: "Y", t: "flight", carrier: "阿聯酋", no: "EK179",
           from: "杜拜 DXB", fromNote: "第三航廈", dep: "07:50",
           to: "華沙 WAW", toNote: "A 航廈", arr: "11:30",
-          bag: { chkKg: 25, cabN: 1, cabKg: 7 }, status: "booked" },
+          bag: { chkKg: 25, chkNote: "計重制", cabN: 1, cabKg: 7, cabDim: [55, 38, 22], smlNote: "票面只列 1 件手提" }, status: "booked" },
         { who: "Y", t: "taxi", text: "Bolt 到旅館" }
       ],
       free: [{ who: "Y", when: "下午～晚上", text: "抵達後在住處附近走走，調時差", areas: ["powisle", "old"] }] },
@@ -80,7 +80,7 @@ window.TRIP = {
         { who: "M", t: "flight", carrier: "阿聯酋", no: "EK367",
           from: "台北 TPE", fromNote: "第二航廈", dep: "23:00",
           to: "杜拜 DXB", toNote: "第三航廈", arr: "04:45", plus: 1,
-          bag: { tbd: "依她的票種，待確認（查價時的彈性票價是託運 30 公斤，手提 7 公斤）" }, status: "self" }
+          bag: { tbd: "依她的票種，待確認（查價時的彈性票價是託運 30 公斤，手提 7 公斤）" }, status: "self", statusText: "May 自訂，開票待確認" }
       ] },
 
     { date: "2027-02-28", title: "飛奧斯陸，兩人會合", city: "osl",
@@ -89,12 +89,12 @@ window.TRIP = {
         { who: "M", t: "flight", carrier: "阿聯酋", no: "EK159",
           from: "杜拜 DXB", fromNote: "第三航廈", dep: "待補",
           to: "奧斯陸 OSL", arr: "12:10",
-          bag: { tbd: "依她的票種，待確認（查價時的彈性票價是託運 30 公斤，手提 7 公斤）" }, status: "self" },
+          bag: { tbd: "依她的票種，待確認（查價時的彈性票價是託運 30 公斤，手提 7 公斤）" }, status: "self", statusText: "May 自訂，開票待確認" },
         { who: "Y", t: "taxi", text: "Bolt 到華沙機場" },
         { who: "Y", t: "flight", carrier: "挪威航空", no: "DY1019",
           from: "華沙 WAW", dep: "14:25", to: "奧斯陸 OSL", arr: "16:20",
           seats: [{ who: "Y", no: "8F" }],
-          bag: { chkN: 1, chkKg: 23, sumKg: 10 }, status: "booked",
+          bag: { chkN: 1, chkKg: 23, cabDim: [55, 40, 23], smlDim: [30, 20, 40], sumKg: 10 }, status: "booked",
           fare: "LowFare+", cost: { orig: "USD 129.48", twd: null, pax: 1, note: "含刷卡手續費 2.58" }, rule: "不可退款，可付費更改" }
       ],
       notes: ["兩人都降落奧斯陸機場（Gardermoen），May 早到約 4 小時。在機場等，或先進市區 check-in，待決定"],
@@ -109,7 +109,7 @@ window.TRIP = {
         { t: "flight", carrier: "挪威航空", no: "DY372",
           from: "奧斯陸 OSL", dep: "10:30", to: "特羅姆瑟 TOS", arr: "12:30",
           seats: [{ who: "M", no: "8A", win: true }, { who: "Y", no: "8B" }],
-          bag: { chkN: 1, chkKg: 23, sumKg: 10 }, status: "booked",
+          bag: { chkN: 1, chkKg: 23, cabDim: [55, 40, 23], smlDim: [30, 20, 40], sumKg: 10 }, status: "booked",
           fare: "LowFare+", cost: { orig: "EUR 162.78", twd: 5962, pax: 2, note: "含刷卡手續費 3.62" }, rule: "不可退款，可付費更改" }
       ],
       free: [{ when: "下午", text: "放好行李後市區走走、去超市採買", areas: ["centre"] }] },
@@ -205,7 +205,7 @@ window.TRIP = {
         { t: "flight", carrier: "阿聯酋", no: "EK180",
           from: "華沙 WAW", fromNote: "A 航廈", dep: "13:40",
           to: "杜拜 DXB", toNote: "第三航廈", arr: "22:55",
-          bag: { Y: { chkKg: 25, cabN: 1, cabKg: 7 }, M: { tbd: "依她的票種，待確認（查價時的彈性票價是託運 30 公斤，手提 7 公斤）" } }, status: "booked", statusText: "Yulun 已訂、May 自訂", todo: "May 的票待補" }
+          bag: { Y: { chkKg: 25, chkNote: "計重制", cabN: 1, cabKg: 7, cabDim: [55, 38, 22], smlNote: "票面只列 1 件手提" }, M: { tbd: "依她的票種，待確認（查價時的彈性票價是託運 30 公斤，手提 7 公斤）" } }, status: "booked", todo: "May 自訂，開票待確認" }
       ],
       notes: ["阿聯酋建議起飛前 3 小時到機場，也就是 10:40 前"] },
 
@@ -214,7 +214,7 @@ window.TRIP = {
         { t: "flight", carrier: "阿聯酋", no: "EK366",
           from: "杜拜 DXB", fromNote: "第三航廈", dep: "03:40",
           to: "台北 TPE", toNote: "第二航廈", arr: "15:35",
-          bag: { Y: { chkKg: 25, cabN: 1, cabKg: 7 }, M: { tbd: "依她的票種，待確認（查價時的彈性票價是託運 30 公斤，手提 7 公斤）" } }, status: "booked", statusText: "Yulun 已訂、May 自訂", todo: "May 的票待補" }
+          bag: { Y: { chkKg: 25, chkNote: "計重制", cabN: 1, cabKg: 7, cabDim: [55, 38, 22], smlNote: "票面只列 1 件手提" }, M: { tbd: "依她的票種，待確認（查價時的彈性票價是託運 30 公斤，手提 7 公斤）" } }, status: "booked", todo: "May 自訂，開票待確認" }
       ] }
   ],
 
@@ -584,7 +584,7 @@ window.TRIP = {
     "gdn-st":  { name: "Gdańsk Główny", sub: "格但斯克火車總站", city: "Gdańsk" },
     "osl-air": { name: "Oslo lufthavn Gardermoen", sub: "奧斯陸機場", city: "", code: "OSL" },
     "tos-air": { name: "Tromsø lufthavn", sub: "特羅姆瑟機場", city: "", code: "TOS" },
-    "eve-air": { name: "Harstad/Narvik lufthavn Evenes", sub: "EVE 機場，中文網站多寫哈爾斯塔/納爾維克機場（取還車）", city: "", code: "EVE" },
+    "eve-air": { name: "Harstad/Narvik lufthavn Evenes", sub: "哈爾斯塔/納爾維克機場，取車、還車", city: "", code: "EVE" },
     "bgo-air": { name: "Bergen lufthavn Flesland", sub: "卑爾根機場", city: "", code: "BGO" }
   },
 
@@ -616,6 +616,8 @@ window.TRIP = {
     { id: "car", text: "訂 EVE 機場租車", sub: "3/5 12:15 落地後取、3/10 中午前還，四驅、自排、雪胎；留意是不是電動車" },
     { id: "nutshell", text: "訂挪威縮影", sub: "3/11 卑爾根來回；買之前先看取消規定" },
     { id: "wf863-seat", text: "選 3/5 Widerøe WF863 座位", sub: "Widerøe 的 My trips，Smart 可免費選一般座位" },
+    { id: "ek-may", text: "跟 May 確認阿聯酋機票開票了沒" },
+    { id: "wizz-bp", due: "2027-02-10", dueApprox: true, text: "確認 Wizz 登機證有沒有出來", sub: "WIZZ PLUS 有自動報到，兩個訂位代號都要看" },
     { id: "wizz-check", text: "確認 Wizz 訂單是 WIZZ PLUS", sub: "兩人各一個 Wizz 訂位代號（見 Trip.com 行程單），兩個都要登入 Wizz app 查" },
     { id: "bgo-stay", text: "訂卑爾根住宿", sub: "候選 Ole Bull：先確認房型有沒有廚房，官網 Flexible 3/10 16:00 前免費取消" },
     { id: "stays", text: "訂其他住宿", sub: "奧斯陸、特羅姆瑟、羅弗敦兩段、格但斯克、華沙" },
@@ -626,6 +628,6 @@ window.TRIP = {
     { id: "offline", due: "2027-02-11", text: "手冊加到主畫面、測試離線", sub: "出發前兩週" }
   ],
   info: {
-    coming: ["緊急電話與駐外館處", "App 清單（交通、叫車、極光預報）", "貨幣與付款", "挪威冬季自駕", "入境規定（出發前一個月查最新公告）", "穿著與裝備", "行前待辦"]
+    coming: ["緊急電話與駐外館處", "App 清單（交通、叫車、極光預報）", "貨幣與付款", "挪威冬季自駕", "入境規定（出發前一個月查最新公告）", "穿著與裝備"]
   }
 };
