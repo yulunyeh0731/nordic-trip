@@ -80,7 +80,7 @@ window.TRIP = {
         { who: "M", t: "flight", carrier: "阿聯酋", no: "EK367",
           from: "台北 TPE", fromNote: "第二航廈", dep: "23:00",
           to: "杜拜 DXB", toNote: "第三航廈", arr: "04:45", plus: 1,
-          bag: { tbd: "依她的票種，待確認（查價時的彈性票價是託運 30 公斤，手提 7 公斤）" }, status: "self", statusText: "May 自訂，開票待確認" }
+          bag: { tbd: "依她的票種，待確認" }, status: "self", statusText: "May 自訂，開票待確認" }
       ] },
 
     { date: "2027-02-28", title: "飛奧斯陸，兩人會合", city: "osl",
@@ -89,7 +89,7 @@ window.TRIP = {
         { who: "M", t: "flight", carrier: "阿聯酋", no: "EK159",
           from: "杜拜 DXB", fromNote: "第三航廈", dep: "待補",
           to: "奧斯陸 OSL", arr: "12:10",
-          bag: { tbd: "依她的票種，待確認（查價時的彈性票價是託運 30 公斤，手提 7 公斤）" }, status: "self", statusText: "May 自訂，開票待確認" },
+          bag: { tbd: "依她的票種，待確認" }, status: "self", statusText: "May 自訂，開票待確認" },
         { who: "Y", t: "taxi", text: "Bolt 到華沙機場" },
         { who: "Y", t: "flight", carrier: "挪威航空", no: "DY1019",
           from: "華沙 WAW", dep: "14:25", to: "奧斯陸 OSL", arr: "16:20",
@@ -205,7 +205,7 @@ window.TRIP = {
         { t: "flight", carrier: "阿聯酋", no: "EK180",
           from: "華沙 WAW", fromNote: "A 航廈", dep: "13:40",
           to: "杜拜 DXB", toNote: "第三航廈", arr: "22:55",
-          bag: { Y: { chkKg: 25, chkNote: "計重制", cabN: 1, cabKg: 7, cabDim: [55, 38, 22], smlNote: "票面只列 1 件手提" }, M: { tbd: "依她的票種，待確認（查價時的彈性票價是託運 30 公斤，手提 7 公斤）" } }, status: "booked", todo: "May 自訂，開票待確認" }
+          bag: { Y: { chkKg: 25, chkNote: "計重制", cabN: 1, cabKg: 7, cabDim: [55, 38, 22], smlNote: "票面只列 1 件手提" }, M: { tbd: "依她的票種，待確認" } }, status: "booked", todo: "May 自訂，開票待確認" }
       ],
       notes: ["阿聯酋建議起飛前 3 小時到機場，也就是 10:40 前"] },
 
@@ -214,7 +214,7 @@ window.TRIP = {
         { t: "flight", carrier: "阿聯酋", no: "EK366",
           from: "杜拜 DXB", fromNote: "第三航廈", dep: "03:40",
           to: "台北 TPE", toNote: "第二航廈", arr: "15:35",
-          bag: { Y: { chkKg: 25, chkNote: "計重制", cabN: 1, cabKg: 7, cabDim: [55, 38, 22], smlNote: "票面只列 1 件手提" }, M: { tbd: "依她的票種，待確認（查價時的彈性票價是託運 30 公斤，手提 7 公斤）" } }, status: "booked", todo: "May 自訂，開票待確認" }
+          bag: { Y: { chkKg: 25, chkNote: "計重制", cabN: 1, cabKg: 7, cabDim: [55, 38, 22], smlNote: "票面只列 1 件手提" }, M: { tbd: "依她的票種，待確認" } }, status: "booked", todo: "May 自訂，開票待確認" }
       ] }
   ],
 
