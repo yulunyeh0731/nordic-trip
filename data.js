@@ -2,6 +2,8 @@
    改行程只要改這個檔案，index.html 不用動。
    status：booked 已訂、pending 待訂、self May 自訂
    who：Y 只有 Yulun、M 只有 May，不寫代表兩人一起
+   費用欄位：fare 票種、cost { orig 原幣金額, twd 台幣刷卡金額（不知道寫 null）, pax 人數, note 補充, est 估計值 }、
+   rule 退改規則、seat 座位、short 費用表用的簡稱（非航班才需要）
    訂位代號、確認號不要寫進來（網頁是公開的）。 */
 
 window.TRIP = {
@@ -51,7 +53,7 @@ window.TRIP = {
           from: "台北 TPE", fromNote: "第二航廈", dep: "23:00",
           to: "杜拜 DXB", toNote: "第三航廈", arr: "04:45", plus: 1,
           bag: "託運 25 公斤，手提 7 公斤", status: "booked",
-          price: "來回 NT$27,236（含稅）" }
+          fare: "Saver", cost: { orig: "NT$27,236", twd: 27236, pax: 1, note: "來回 4 段，含稅" } }
       ],
       notes: ["阿聯酋建議起飛前 3 小時到機場"] },
 
@@ -72,7 +74,7 @@ window.TRIP = {
         { who: "M", t: "flight", carrier: "阿聯酋", no: "EK367",
           from: "台北 TPE", fromNote: "第二航廈", dep: "23:00",
           to: "杜拜 DXB", toNote: "第三航廈", arr: "04:45", plus: 1,
-          status: "self", price: "參考價 NT$19,592（台新優惠價），原價 NT$21,342" }
+          status: "self" }
       ] },
 
     { date: "2027-02-28", title: "飛奧斯陸，兩人會合", city: "osl",
@@ -80,11 +82,13 @@ window.TRIP = {
       legs: [
         { who: "M", t: "flight", carrier: "阿聯酋", no: "EK159",
           from: "杜拜 DXB", fromNote: "第三航廈", dep: "",
-          to: "奧斯陸 OSL", arr: "12:10", status: "self", depNote: "杜拜起飛時間待確認" },
+          to: "奧斯陸 OSL", arr: "12:10", status: "self" },
         { who: "Y", t: "taxi", text: "Bolt 到華沙機場" },
         { who: "Y", t: "flight", carrier: "挪威航空", no: "DY1019",
           from: "華沙 WAW", dep: "14:25", to: "奧斯陸 OSL", arr: "16:20",
-          bag: "託運 1 件 23 公斤；兩件手提合計 10 公斤", status: "booked", price: "待補" }
+          seat: "8F",
+          bag: "託運 1 件 23 公斤；座位下小包＋登機箱合計 10 公斤", status: "booked",
+          fare: "LowFare+", cost: { orig: "USD 129.48", twd: null, pax: 1, note: "含刷卡手續費 2.58" }, rule: "不可退款，可付費更改" }
       ],
       notes: ["兩人都降落奧斯陸機場（Gardermoen），May 早到約 4 小時。在機場等，或先進市區 check-in，待決定"],
       free: [{ who: "M", when: "下午", text: "May 先到：國家博物館週日開到 17:00，想看的話今天是機會", areas: ["sentrum", "bjorvika"] }, { when: "晚上", text: "會合後回住處，週日只有小超市開", areas: ["bjorvika"] }] },
@@ -97,9 +101,9 @@ window.TRIP = {
       legs: [
         { t: "flight", carrier: "挪威航空", no: "DY372",
           from: "奧斯陸 OSL", dep: "10:30", to: "特羅姆瑟 TOS", arr: "12:30",
-          depNote: "座位 8A（May，靠窗）、8B（Yulun）",
-          bag: "LowFare+：託運 1 件 23 公斤；座位下小包＋登機箱合計 10 公斤", status: "booked",
-          price: "兩人 EUR 162.78（含刷卡手續費），刷卡 NT$5,962（每人 NT$2,981）；不可退款，可付費更改" }
+          seat: "8A（May，靠窗）、8B（Yulun）",
+          bag: "託運 1 件 23 公斤；座位下小包＋登機箱合計 10 公斤", status: "booked",
+          fare: "LowFare+", cost: { orig: "EUR 162.78", twd: 5962, pax: 2, note: "含刷卡手續費 3.62" }, rule: "不可退款，可付費更改" }
       ],
       free: [{ when: "下午", text: "放好行李後市區走走、去超市採買", areas: ["centre"] }] },
 
@@ -118,9 +122,9 @@ window.TRIP = {
       legs: [
         { t: "flight", carrier: "Widerøe", no: "WF863",
           from: "特羅姆瑟 TOS", dep: "10:55", to: "EVE 機場", toNote: "哈爾斯塔/納爾維克機場", arr: "12:15", addr: ["eve-air"], via: "安德內斯（20 分鐘，不換飛機）",
-          depNote: "座位還沒選",
-          bag: "Smart：託運 1 件 23 公斤（長寬高合計 158 公分內）；登機箱 55×40×20 公分＋座位下小包，合計 8 公斤", status: "booked",
-          price: "兩人 NOK 1,324（含服務費），刷卡 NT$4,706（每人 NT$2,353）；不可退款、不可改票" },
+          seat: "還沒選",
+          bag: "託運 1 件 23 公斤（長寬高合計 158 公分內）；登機箱 55×40×20 公分＋座位下小包，合計 8 公斤", status: "booked",
+          fare: "Smart", cost: { orig: "NOK 1,324", twd: 4706, pax: 2, note: "含服務費" }, rule: "不可退款、不可改票" },
         { t: "car", text: "EVE 機場取車（四驅、自排、雪胎），往西開到雷訥一帶", status: "pending" }
       ],
       notes: ["DHC-8 螺旋槳小飛機，置物櫃小，登機箱可能在登機門被收去託運。證件、貴重物品、行動電源放隨身小包"],
@@ -148,9 +152,9 @@ window.TRIP = {
         { t: "car", text: "開回 EVE 機場還車" },
         { t: "flight", carrier: "Widerøe", no: "WF1365",
           from: "EVE 機場", fromNote: "哈爾斯塔/納爾維克機場", addr: ["eve-air"], dep: "13:55", to: "卑爾根 BGO", arr: "16:40", via: "特隆赫姆（25 分鐘，不換飛機）",
-          depNote: "座位 12F（May，靠窗）、12D（Yulun）",
-          bag: "Smart：託運 1 件 23 公斤（長寬高合計 158 公分內）；登機箱 55×40×20 公分＋座位下小包，合計 8 公斤", status: "booked",
-          price: "兩人 NOK 2,144（含服務費），刷卡 NT$7,621（每人約 NT$3,811）；不可退款、不可改票" }
+          seat: "12F（May，靠窗）、12D（Yulun）",
+          bag: "託運 1 件 23 公斤（長寬高合計 158 公分內）；登機箱 55×40×20 公分＋座位下小包，合計 8 公斤", status: "booked",
+          fare: "Smart", cost: { orig: "NOK 2,144", twd: 7621, pax: 2, note: "含服務費" }, rule: "不可退款、不可改票" }
       ],
       notes: ["Embraer 190-E2 噴射機，中途停特隆赫姆時留在機上", "機場輕軌到市區終點站 Byparken 約 45 分鐘"],
       free: [{ when: "晚上", text: "到卑爾根後港邊走走", areas: ["bryggen"] }] },
@@ -159,7 +163,7 @@ window.TRIP = {
       alerts: ["08:29 火車出發", "沒有備用日"],
       legs: [
         { t: "tour", text: "挪威縮影一日來回", dep: "08:29", arr: "18:17", status: "pending",
-          price: "兩人 4,976 挪威克朗（每人約 NT$8,830）" }
+          cost: { orig: "NOK 4,976", twd: 17665, pax: 2, est: true, note: "之前查的價格，1 克朗以 3.55 台幣估算" }, rule: "買之前先看取消規定" }
       ],
       notes: ["冬天遊船可能改航線，不影響行程；比較要擔心的是卑爾根鐵路因冰雪延誤，這次沒有備用日。詳細時刻見地點介紹"] },
 
@@ -168,8 +172,8 @@ window.TRIP = {
       legs: [
         { t: "flight", carrier: "Wizz Air", no: "W61746",
           from: "卑爾根 BGO", dep: "13:40", to: "格但斯克 GDN", arr: "15:25",
-          bag: "WIZZ PLUS：託運 1 件 32 公斤；登機箱 55×40×23 公分 10 公斤＋座位下小包 40×30×20 公分", status: "booked", statusText: "已訂（Trip.com）",
-          price: "兩人 TWD 7,998（每人 3,999），在 Trip.com 購買，退改要透過 Trip.com" }
+          bag: "託運 1 件 32 公斤；登機箱 55×40×23 公分 10 公斤＋座位下小包 40×30×20 公分", status: "booked",
+          fare: "WIZZ PLUS", cost: { orig: "TWD 7,998", twd: 7998, pax: 2, note: "Trip.com 購買，刷卡 7,965＋Trip Coins 33" }, rule: "退改透過 Trip.com：改期免費，退票手續費 TWD 1,466 起" }
       ],
       notes: ["出發前從卑爾根 Byparken 搭機場輕軌，到機場約 45 分鐘"],
       free: [{ when: "傍晚", text: "逛老城長街、河畔", areas: ["main", "river"] }] },
@@ -180,8 +184,8 @@ window.TRIP = {
     { date: "2027-03-14", title: "火車到華沙",
       alerts: ["週日商店公休"], region: "waw", city: "waw",
       legs: [
-        { t: "train", text: "波蘭國鐵，格但斯克到華沙，約 2.5～3 小時", status: "pending", addr: ["gdn-st", "waw-st"],
-          price: "約 19～32 英鎊，出發前約 30 天開賣" }
+        { t: "train", text: "波蘭國鐵，格但斯克到華沙，約 2.5～3 小時", status: "pending", addr: ["gdn-st", "waw-st"], short: "格但斯克 → 華沙 火車",
+          cost: { orig: "約 19～32 英鎊", twd: null, pax: 1, est: true }, rule: "出發前約 30 天開賣" }
       ],
       free: [{ when: "抵達後", text: "週日博物館有開、商店大多公休。兩人想一起看的展館排在今天", areas: ["old", "powisle"] }],
       notes: ["週日，超市大多公休；Żabka 便利商店通常有開，餐廳不受影響"] },
@@ -196,8 +200,7 @@ window.TRIP = {
         { t: "flight", carrier: "阿聯酋", no: "EK180",
           from: "華沙 WAW", fromNote: "A 航廈", dep: "13:40",
           to: "杜拜 DXB", toNote: "第三航廈", arr: "22:55",
-          bag: "託運 25 公斤，手提 7 公斤", status: "booked", statusText: "Yulun 已訂，May 自訂",
-          price: "Yulun 含在來回票裡；May 參考價 NT$13,520（台新優惠價），原價 NT$14,020" }
+          bag: "託運 25 公斤，手提 7 公斤", status: "booked" }
       ],
       notes: ["阿聯酋建議起飛前 3 小時到機場，也就是 10:40 前"] },
 
@@ -206,7 +209,7 @@ window.TRIP = {
         { t: "flight", carrier: "阿聯酋", no: "EK366",
           from: "杜拜 DXB", fromNote: "第三航廈", dep: "03:40",
           to: "台北 TPE", toNote: "第二航廈", arr: "15:35",
-          status: "booked", statusText: "Yulun 已訂，May 自訂" }
+          status: "booked" }
       ] }
   ],
 
@@ -608,13 +611,14 @@ window.TRIP = {
 
   /* 行前清單：勾選狀態只存在自己的手機 */
   checklist: [
-    { id: "may-ticket", text: "May 訂阿聯酋機票", sub: "2/27 去程、3/16 和 Yulun 同班回程" },
+    { id: "meet", text: "決定 2/28 在奧斯陸機場怎麼會合", sub: "May 12:10 先到，Yulun 16:20 到；在機場等，或 May 先進市區 check-in" },
     { id: "lofoten", text: "決定羅弗敦西側、東側各住幾晚", sub: "共 5 晚，3/5～3/9" },
     { id: "car", text: "訂 EVE 機場租車", sub: "3/5 12:15 落地後取、3/10 中午前還，四驅、自排、雪胎；留意是不是電動車" },
     { id: "nutshell", text: "訂挪威縮影", sub: "3/11 卑爾根來回；買之前先看取消規定" },
     { id: "wf863-seat", text: "選 3/5 Widerøe WF863 座位", sub: "Widerøe 的 My trips，Smart 可免費選一般座位" },
-    { id: "wizz-check", text: "確認 Wizz 訂單是 WIZZ PLUS", sub: "用 Trip.com 給的 Wizz 訂位代號登入 Wizz app 查" },
-    { id: "stays", text: "訂各地住宿", sub: "奧斯陸、特羅姆瑟、羅弗敦兩段、卑爾根、格但斯克、華沙" },
+    { id: "wizz-check", text: "確認 Wizz 訂單是 WIZZ PLUS", sub: "兩人各一個 Wizz 訂位代號（見 Trip.com 行程單），兩個都要登入 Wizz app 查" },
+    { id: "bgo-stay", text: "訂卑爾根住宿", sub: "候選 Ole Bull：先確認房型有沒有廚房，官網 Flexible 3/10 16:00 前免費取消" },
+    { id: "stays", text: "訂其他住宿", sub: "奧斯陸、特羅姆瑟、羅弗敦兩段、格但斯克、華沙" },
     { id: "metropol", text: "取消 Hotel Metropol", sub: "2/21 前免費取消" },
     { id: "pkp", text: "買格但斯克 → 華沙火車票", sub: "出發前約 30 天開賣" },
     { id: "entry", text: "查入境規定最新公告", sub: "歐盟 EES、ETIAS 上路時程" },
@@ -631,47 +635,5 @@ window.TRIP = {
       { seg: "打包原則", text: "託運以 23 公斤為準；登機箱 7 公斤以內（阿聯酋），厚度 20 公分以內（Widerøe）" }
     ],
     coming: ["緊急電話與駐外館處", "App 清單（交通、叫車、極光預報）", "貨幣與付款", "挪威冬季自駕", "入境規定（出發前一個月查最新公告）", "穿著與裝備", "行前待辦"]
-  },
-
-  notes: {
-    pending: [
-      "羅弗敦 5 晚，西側、東側怎麼分",
-      "May 的阿聯酋機票（她自己訂）：去程 2/27 EK367＋EK159，回程 3/16 和 Yulun 同班。台新優惠可以用到 12/31，條件還要確認",
-      "2/28 在奧斯陸機場怎麼會合",
-      "華沙飛奧斯陸的票價待補",
-      "卑爾根住宿：候選 Ole Bull Hotel & Apartments，先確認房型有沒有廚房再訂"
-    ],
-    cost: [
-      "兩人同行的段落每人約 NT$21,970：奧斯陸飛特羅姆瑟 2,981、兩段 Widerøe 2,353＋3,811、卑爾根飛格但斯克 3,999（以上已訂，刷卡金額）、挪威縮影約 8,830（未訂）。不含波蘭火車和租車",
-      "Yulun 另加阿聯酋來回 NT$27,236，以及華沙飛奧斯陸（金額待補）",
-      "May 另加阿聯酋開口票，參考價 NT$33,112（台新優惠價）或 NT$35,362（原價）"
-    ],
-    places: [
-      { id: "sweden-lapland", name: "瑞典拉普蘭", tier: "maybe", polar: true,
-        line: "基律納、冰旅館和阿比斯庫。目前路線沒有排。",
-        blocks: [
-          { p: "阿比斯庫以「藍洞」晴空微氣候聞名，但強調這點的大多是業者和觀光單位，雲量資料解析度不夠，無法驗證。旅人經驗偏正面，也有住兩晚完全沒看到的例子。" },
-          { p: "十一年的雲量資料顯示，基律納住 3 晚遇到晴夜的機率約 71%，特羅姆瑟約 51%。" },
-          { note: "從 EVE 機場一帶開過去要翻越 Bjørnfjell 山口，冬天強風加降雪時 E10 會封路或改車隊通行。" }
-        ] },
-      { id: "stockholm", name: "斯德哥爾摩", tier: "worth",
-        line: "蓋在 14 座島上的首都，瓦薩博物館是必看。",
-        blocks: [ { p: "瓦薩沉船博物館、地鐵藝術、老城。2 月白天只有約 8 小時，適合當作進出點。" } ] },
-      { id: "helsinki", name: "赫爾辛基", tier: "worth",
-        line: "設計感很強的首都，岩石教堂和芬蘭桑拿是亮點。",
-        blocks: [ { p: "岩石教堂、議會廣場、Löyly 桑拿；從斯德哥爾摩可搭過夜郵輪。" } ] },
-      { id: "finland-lapland", name: "芬蘭拉普蘭", tier: "maybe", polar: true,
-        line: "3 月晴天比例是資料中最高的，但從挪威、瑞典過去很繞。",
-        blocks: [ { p: "羅瓦涅米 3 月每晚晴天的比例約 50%。要去的話選一個據點住 3 晚以上，伊納里、沙利色爾卡比較安靜。" } ] }
-    ],
-    skip: [
-      { name: "羅瓦涅米聖誕老人村", text: "大量評論說是觀光陷阱，拍照要 39.5 歐元（約台幣 1,400）。", alt: "改去伊納里或沙利色爾卡" },
-      { name: "住冰旅館的冰屋", text: "每晚約 320 美元起（約台幣 10,200），住過的人形容是很昂貴的帳篷體驗。", alt: "買參觀門票就能看到全部冰雕房間" },
-      { name: "高價玻璃屋", text: "玻璃起霧、被雪蓋住，陰天時就只是一間很貴的房間。", alt: "住有桑拿的一般小木屋" },
-      { name: "陰天去阿比斯庫極光觀測站", text: "有人兩人付了 1,190 瑞典克朗（約台幣 4,800），陰天下山很失望。", alt: "只在新月、預報晴天的晚上去" },
-      { name: "半夜的沿岸郵輪", text: "凌晨 1:30 開船、候船室夜間關閉、靠引擎的艙房很吵。", alt: "特羅姆瑟飛 EVE 機場，機場原地租還車" },
-      { name: "3 月去特羅姆瑟賞鯨", text: "賞鯨季是 11 月到 1 月。" },
-      { name: "第一次體驗桑拿就去 Sompasauna", text: "沒有廁所、更衣室、置物櫃，唯一的沖洗方式是跳進海裡。", alt: "Löyly" }
-    ]
   }
 };

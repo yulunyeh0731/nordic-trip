@@ -108,13 +108,6 @@ summary{list-style:none;cursor:pointer} summary::-webkit-details-marker{display:
 .route b{display:block;font-weight:500;font-size:14px}
 .route span{font-size:12px;color:#8FA6B6}
 
-.ledger dl{margin:0;display:grid;grid-template-columns:4.2em minmax(0,1fr)}
-.ledger dt,.ledger dd{margin:0;padding:12px 14px;border-top:1px solid var(--line2);font-size:15px}
-.ledger dt:first-of-type,.ledger dd:first-of-type{border-top:0}
-.ledger dt{font-family:var(--serif);font-weight:700;color:var(--c,var(--ink2));padding-right:0}
-.ledger .fl{display:block;font-size:15px;line-height:1.5;margin-bottom:6px}
-.ledger .fl b{display:block;font-family:var(--serif);font-weight:700;font-size:16px}
-.ledger .s{display:block;font-size:13.5px;color:var(--ink2)}
 .stays{list-style:none;margin:0;padding:0}
 .stays li{display:grid;grid-template-columns:5.4em minmax(0,1fr);gap:10px;padding:11px 14px;border-top:1px solid var(--line2);border-left:4px solid var(--c)}
 .stays li:first-child{border-top:0}
@@ -143,16 +136,40 @@ summary{list-style:none;cursor:pointer} summary::-webkit-details-marker{display:
 .rows div{display:grid;gap:2px;padding:10px 14px;border-top:1px solid var(--line2);font-size:15px}
 .rows div:first-child{border-top:0}
 .rows span:first-child{font-size:13px;color:var(--ink2)}
+.tt{list-style:none;margin:0;padding:0}
+.tt>li{display:grid;grid-template-columns:3.4em minmax(0,1fr);gap:10px;padding:11px 14px 12px;border-top:1px solid var(--line2);border-left:4px solid var(--c)}
+.tt>li:first-child{border-top:0}
+.tt .when{font-family:var(--serif);font-weight:700;font-size:16px;line-height:1.25}
+.tt .when small{display:block;font-family:var(--sans);font-weight:400;font-size:12px;color:var(--ink2);margin-top:3px}
+.tt .hd{display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:20px}
+.tt .run{display:grid;grid-template-columns:auto minmax(28px,1fr) auto;align-items:start;gap:8px;margin:4px 0 2px}
+.tt .end b{display:block;font-family:var(--serif);font-weight:700;font-size:20px;line-height:1.2;font-variant-numeric:tabular-nums}
+.tt .end b sup{font-family:var(--sans);font-size:11px;font-weight:600;color:var(--ink2);margin-left:2px}
+.tt .end span{display:block;font-size:12.5px;color:var(--ink2);line-height:1.4}
+.tt .end span i{font-style:normal;font-weight:700;color:var(--ink);margin-right:4px}
+.tt .end:last-child{text-align:right}
+.tt .mid{position:relative;height:1px;background:var(--ink3);margin-top:12px}
+.tt .via{position:absolute;left:50%;top:-10px;transform:translateX(-50%);background:var(--paper);padding:0 5px;font-size:11.5px;line-height:20px;color:var(--ink2);white-space:nowrap}
+.tt .txt{margin:4px 0 0;font-size:15.5px;line-height:1.5}
+.tt .sm{margin:3px 0 0;font-size:13.5px;color:var(--ink2);line-height:1.5}
+.tt>li.pend{border-left-style:dashed}
+.tt>li.pend .end b,.tt>li.pend .txt{color:var(--ink2)}
+.fee{padding:11px 0;border-top:1px solid var(--line2)}
+.fee:first-child{border-top:0}
+.fee-top{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.fee-top b{font-weight:600;font-size:15px}
+.fee .amt{font-family:var(--serif);font-weight:700;font-size:17px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.fee p{margin:2px 0 0;font-size:13.5px;color:var(--ink2);line-height:1.5}
+.fee .rule{color:var(--ink)}
+.fee.est .amt{color:var(--ink2)}
+.sum{margin:8px 0 0;border-top:2px solid var(--ink);padding-top:6px}
+.sum div{display:flex;justify-content:space-between;gap:12px;padding:5px 0;font-size:14px;line-height:1.5}
+.sum b{font-family:var(--serif);font-weight:700;font-size:16px;text-align:right;white-space:nowrap}
+.sum small{display:block;font-size:12.5px;color:var(--ink2)}
 details.fold{margin:0 0 10px}
 details.fold>summary{display:flex;align-items:center;gap:10px;padding:13px 14px;font-weight:500}
 details.fold>summary small{font-weight:400;color:var(--ink2);font-size:13px}
 details.fold>.in{border-top:1px solid var(--line2);padding:4px 14px 12px}
-.seg{padding:11px 0;border-top:1px solid var(--line2)}
-.seg:first-child{border-top:0}
-.seg-top{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
-.seg-top b{font-weight:500;font-size:15.5px}
-.seg-top span{font-size:12.5px;color:var(--ink2);white-space:nowrap}
-.seg p{margin:2px 0 0;font-size:14px;color:var(--ink2)}
 .in ul{margin:8px 0;padding-left:1.1em;font-size:15px}
 .in li{margin:4px 0}
 .in h4{font-size:14px;margin:14px 0 4px;color:var(--ink2);font-weight:600}
@@ -463,15 +480,24 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
     else if (inTrip) count='<span class="count">旅程第 <b>'+(diff(T.start,today)+1)+'</b> 天</span>';
     else count='<span class="count">旅程已結束</span>';
     var route=T.route.map(function(r){return '<li class="'+(r.polar?"polar":"")+(r.solo?" solo":"")+'"><b>'+r.name+'</b><span>'+r.nights+'</span></li>';}).join("");
-    var flights=[], segs=[];
+    var segs=[];
     T.days.forEach(function(d){ (d.legs||[]).forEach(function(l){ if(/flight|train|tour/.test(l.t)) segs.push({d:d,l:l}); }); });
-    var ek=segs.filter(function(x){return x.l.carrier==="阿聯酋";});
-    function fl(x){ var l=x.l; return '<span class="fl"><b>'+md(x.d.date)+'　'+l.no+'</b>'+l.from.split(" ")[0]+" "+(l.dep||"")+" → "+l.to.split(" ")[0]+" "+l.arr+(l.plus?"（隔天）":"")+'</span>'; }
-    var ledger='<div class="card ledger"><dl>'+
-      '<dt style="--c:var(--slate)">Yulun</dt><dd>'+fl(ek[0])+fl(ek[1])+'<span class="s">已訂。台北第二航廈出發，杜拜轉機約 3 小時</span></dd>'+
-      '<dt style="--c:var(--fjord)">May</dt><dd>'+fl(ek[2])+fl(ek[3])+'<span class="s">May 自己訂</span></dd>'+
-      '<dt style="--c:var(--brick)">回程</dt><dd>'+fl(ek[4])+fl(ek[5])+'<span class="s">兩人同班；10:40 前到華沙機場</span></dd>'+
-      '<dt>會合</dt><dd>2/28 奧斯陸機場<span class="s">May 12:10 先到，Yulun 16:20 到（DY1019）</span></dd></dl></div>';
+    function apt(x){ var m=(x||"").match(/\b[A-Z]{3}\b/), c=m?m[0]:""; return {c:c, n:(x||"").replace(c,"").trim()}; }
+    function end(t,x,plus){ var a=apt(x); return '<div class="end"><b>'+(t||"—")+(plus?'<sup>+1</sup>':'')+'</b><span><i>'+a.c+'</i>'+a.n+'</span></div>'; }
+    var tt='<div class="card"><ul class="tt">'+segs.map(function(x){
+      var l=x.l, d=x.d, run, meta=[];
+      if (l.t==="flight"){
+        run='<div class="run">'+end(l.dep,l.from)+'<div class="mid">'+(l.via?'<span class="via">停'+l.via.split("（")[0]+'</span>':"")+'</div>'+end(l.arr,l.to,l.plus)+'</div>';
+        meta.push(l.carrier+(l.no?" "+l.no:""));
+        if (l.seat) meta.push("座位 "+l.seat);
+      } else {
+        run='<p class="txt">'+l.text+'</p>';
+        if (l.dep) meta.push(l.dep+" 出發，"+l.arr+" 回到出發地");
+      }
+      return '<li class="'+(l.status==="pending"?"pend":"")+'" style="--c:'+col(d.region)+'"><span class="when">'+md(d.date)+'<small>'+wd(d.date)+'</small></span><div>'+
+        '<div class="hd">'+(l.who?who(l.who):"<span></span>")+st(l.status,l.statusText)+'</div>'+run+
+        (meta.length?'<p class="sm">'+meta.join("　")+'</p>':"")+'</div></li>';
+    }).join("")+'</ul></div>';
     var stays='<div class="card"><ul class="stays">'+T.stays.map(function(s){
       var reg = T.days.filter(function(d){return d.date===s.from;})[0];
       return '<li style="--c:'+col(reg?reg.region:"tw")+'"><span class="when">'+md(s.from)+'<small>'+s.nights+' 晚</small></span><div><p>'+who(s.who)+s.area+st(s.status)+'</p>'+
@@ -481,23 +507,30 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
     Object.keys(T.addresses).forEach(function(k){ addrs.push(T.addresses[k]); });
     var drivers='<p class="muted" style="margin:0 0 8px">複製貼到 Bolt、Uber，或直接開 Google 地圖導航。住處訂好後會陸續加入。</p><div class="card">'+addrs.map(addrRow).join("")+'</div>';
     var bag='<div class="card rows">'+T.info.baggage.map(function(b){return '<div><span>'+b.seg+'</span><span>'+b.text+'</span></div>';}).join("")+'</div>';
-    var tr='<details class="card fold"><summary>交通總表 <small>'+segs.length+' 段，含價格</small><span class="chev"></span></summary><div class="in">'+segs.map(function(x){
-      var l=x.l, t=l.t==="flight"?l.from+" → "+l.to:l.text, sub=[];
-      if (l.t==="flight") sub.push(l.carrier+(l.no?" "+l.no:"")+"，"+(l.dep||"—")+" → "+(l.arr||"—")+(l.via?"，停"+l.via:""));
-      else if (l.dep) sub.push(l.dep+" → "+l.arr);
-      if (l.price) sub.push(l.price);
-      return '<div class="seg"><div class="seg-top"><b>'+who(l.who)+t+st(l.status,l.statusText)+'</b><span>'+md(x.d.date)+" "+wd(x.d.date)+'</span></div>'+sub.map(function(s){return "<p>"+s+"</p>";}).join("")+'</div>'; }).join("")+'</div></details>';
-    var notes='<details class="card fold"><summary>規劃筆記 <small>行程定案後刪除</small><span class="chev"></span></summary><div class="in">'+
-      '<h4>還在等的決定</h4><ul>'+li(T.notes.pending)+'</ul><h4>交通費用（每人）</h4><ul>'+li(T.notes.cost)+'</ul>'+
-      '<h4>沒排進路線的地方</h4>'+T.notes.places.map(function(p){return '<p style="margin:6px 0"><b>'+p.name+'</b>：'+p.line+'</p>';}).join("")+
-      '<h4>不推薦</h4><ul>'+T.notes.skip.map(function(s){return "<li><b>"+s.name+"</b>："+s.text+(s.alt?"替代："+s.alt:"")+"</li>";}).join("")+'</ul></div></details>';
+    function nt(n){ return "NT$"+Math.round(n).toLocaleString("en-US"); }
+    var shared=0, est=0, yOnly=0, yMiss=[];
+    var feeRows=segs.filter(function(x){return x.l.cost;}).map(function(x){
+      var l=x.l, c=l.cost, pax=c.pax||1;
+      var label=l.t==="flight"?apt(l.from).c+" → "+apt(l.to).c:(l.short||l.text);
+      if (c.twd!=null){ if (l.who==="Y") yOnly+=c.twd; else if (c.est) est+=c.twd/pax; else shared+=c.twd/pax; }
+      else if (l.who==="Y") yMiss.push(l.no||label);
+      var amt=c.twd!=null?(c.est?"約 ":"")+nt(c.est?Math.round(c.twd/10)*10:c.twd):(l.status==="pending"?"未定":"待補");
+      var line1=[l.who?T.people[l.who]:(pax===2?"兩人":"每人"), (l.t==="flight"?l.carrier+" ":"")+(l.fare||"")].filter(function(v){return v.trim();}).join("，");
+      return '<div class="fee'+(c.est?" est":"")+'"><div class="fee-top"><b>'+md(x.d.date)+'　'+label+'</b><span class="amt">'+amt+'</span></div>'+
+        '<p>'+line1+'；'+(/^NT\$/.test(c.orig)?"":c.orig)+(c.note?(/^NT\$/.test(c.orig)?c.note:"（"+c.note+"）"):"")+'</p>'+(l.rule?'<p class="rule">'+l.rule+'</p>':"")+'</div>';
+    }).join("");
+    var sum='<div class="sum"><div><span>每人合計（兩人同行、已訂）</span><b>'+nt(shared)+'</b></div>'+
+      '<div><span>Yulun 個人另付'+(yMiss.length?'<small>另有 '+yMiss.join("、")+'，台幣待補</small>':'')+'</span><b>'+nt(yOnly)+'</b></div>'+
+      (est?'<div><span>待訂估計（每人）</span><b>約 '+nt(Math.round(est/10)*10)+'</b></div>':"")+'</div>';
+    var fee='<details class="card fold"><summary>費用與退改 <small>每人 '+nt(shared)+'（已訂）</small><span class="chev"></span></summary><div class="in">'+
+      feeRows+sum+'<p class="muted" style="margin:10px 0 0">台幣是實際刷卡金額，原幣和手續費寫在小字；估計值以 1 克朗約 3.55 台幣換算。</p></div></details>';
     return '<section class="hero"><svg class="lines" viewBox="0 0 400 84" preserveAspectRatio="none" aria-hidden="true">'+LINES+'</svg><div class="wrap">'+
       '<p class="kicker">北歐＋波蘭　冬季旅行手冊</p><h1>北境冬旅</h1><p class="dates">2027／2.25 — 3.17</p>'+count+'<div class="route"><ol>'+route+'</ol></div></div>'+strip("no","rgba(255,255,255,.16)","pn")+'</section>'+
-      '<main class="wrap"><h2 class="sec">航班 <small>阿聯酋，杜拜轉機</small></h2>'+ledger+
+      '<main class="wrap"><h2 class="sec">交通時刻 <small>依日期，含 May 自訂的航班</small></h2>'+tt+
       '<h2 class="sec">住宿 <small>依入住日</small></h2>'+stays+
       '<h2 class="sec">常用地址 <small>住處、機場、車站</small></h2>'+drivers+
       '<h2 class="sec">行李限額 <small>打包以最嚴的為準</small></h2>'+bag+
-      '<h2 class="sec">更多</h2>'+tr+notes+
+      '<h2 class="sec">費用 <small>規劃用，平常收合</small></h2>'+fee+
       '<p class="foot">資料更新於 '+T.updated.replace(/-/g,"/")+'。訂位代號不放在這個公開頁面。挪威克朗以 1 克朗約台幣 3.55 元、茲羅提以約台幣 8 元概算。</p></main>';
   }
 
@@ -511,6 +544,7 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
       if (l.via) a.push("中途停"+l.via);
       s.push(a.join("，"));
       s.push((l.arr?l.arr+" 抵達"+(l.plus?"（隔天）":""):"")+(l.depNote?(l.arr?"，":"")+l.depNote:""));
+      if (l.seat) s.push("座位："+l.seat);
       if (l.bag) s.push("行李："+l.bag);
     } else { m=who(l.who)+l.text; if (l.arr) s.push(l.arr+" 回到出發地"); }
     return '<li class="ev"><span class="ev-t">'+(l.dep||"")+'</span><span class="ev-n">'+svg(l.t)+'</span><div><p class="ev-m">'+m+st(l.status,l.statusText)+'</p>'+

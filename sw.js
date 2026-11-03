@@ -1,5 +1,5 @@
 /* 離線快取：有網路時抓最新版並更新快取，沒網路時用快取 */
-const CACHE = "nordic-trip-v6";
+const CACHE = "nordic-trip-v7";
 const ASSETS = ["./", "./index.html", "./data.js", "./manifest.webmanifest",
                 "./fonts/serif.woff2", "./icon-192.png", "./icon-512.png", "./apple-touch-icon.png"];
 
