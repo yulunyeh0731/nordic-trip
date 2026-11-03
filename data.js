@@ -117,7 +117,7 @@ window.TRIP = {
       notes: ["隔天 10:55 要搭飛機。極光團常常半夜才回到市區，第一次報團最好排 3/2 或 3/3，今晚留給沒看到時再報"],
       free: [{ when: "白天", text: "沒排哈士奇的時段，可以上纜車或逛市區", areas: ["tromsdalen", "centre"] }] },
 
-    { date: "2027-03-05", region: "lof", title: "飛 EVE 機場取車，往西", city: "lof",
+    { date: "2027-03-05", region: "lof", title: "飛 EVE 機場取車，進羅弗敦", city: "lof",
       alerts: ["10:55 起飛", "12:15 落地後取車"],
       legs: [
         { t: "flight", carrier: "Widerøe", no: "WF863",
@@ -125,10 +125,10 @@ window.TRIP = {
           seat: "還沒選",
           bag: "託運 1 件 23 公斤（長寬高合計 158 公分內）；登機箱 55×40×20 公分＋座位下小包，合計 8 公斤", status: "booked",
           fare: "Smart", cost: { orig: "NOK 1,324", twd: 4706, pax: 2, note: "含服務費" }, rule: "不可退款、不可改票" },
-        { t: "car", text: "EVE 機場取車（四驅、自排、雪胎），往西開到雷訥一帶", status: "pending" }
+        { t: "car", text: "EVE 機場取車（四驅、自排、雪胎），沿 E10 開往今晚住處（住宿待訂）", status: "pending" }
       ],
       notes: ["DHC-8 螺旋槳小飛機，置物櫃小，登機箱可能在登機門被收去託運。證件、貴重物品、行動電源放隨身小包"],
-      free: [{ when: "傍晚", text: "到雷訥一帶天色已暗，先採買、入住", areas: ["west"] }] },
+      free: [{ when: "傍晚", text: "到住處時天色已暗，沿路先採買再入住", areas: ["west", "mid", "east"] }] },
 
     { date: "2027-03-06", title: "羅弗敦自駕，週六先採買", region: "lof", city: "lof",
       free: [{ when: "全天", text: "看天氣決定往哪一側走。週六：記得把 3/7 週日的食物先買好", areas: ["west", "mid", "east"] }] },
