@@ -33,6 +33,16 @@ GitHub Pages 靜態網站：https://yulunyeh0731.github.io/nordic-trip/
 - 每日頁的機場地址卡，是用航班 `from`、`to` 欄位的第二個詞比對機場代碼（例如「特羅姆瑟 TOS」）。寫成「EVE 機場」這種格式時，要另外加 `addr: ["eve-air"]`。
 - 費用欄位：`fare` 票種；`cost` 底下是 `orig` 原幣金額、`twd` 台幣刷卡金額（不知道就寫 `null`）、`pax` 人數、`note` 補充、`est` 估計值；`rule` 退改規則；`seat` 座位。
 
+## 分頁與網址
+
+- 總覽 `#/`：封面、路線方塊、出發前的「準備進度」和「下一步」（旅途中改成「今天」）、查資料按鈕。
+- 每日 `#/day/MMDD`（例如 `#/day/0305`）。
+- 城市 `#/city`、`#/city/<id>`；地點介紹 `#/place/<id>`。
+- 極光 `#/aurora`。
+- 資料 `#/info/<分類>`：`move` 交通、`stay` 住宿、`addr` 地址、`bag` 行李、`fee` 費用、`list` 清單。只打 `#/info` 會進交通；舊網址 `#/list` 會轉到 `#/info/list`。
+- 準備進度從 `data.js` 算：交通計算有 `status` 的航班、火車、一日遊、租車，`booked` 且沒有 `todo` 才算已訂（`self` May 自訂不算）；住宿看 `stays` 的 `status`。
+- 下一步的日期來自 `checklist` 的 `due`。
+
 ## 設計
 
 - 色彩變數在 `index.html` 的 `:root`。區域色：波蘭用 `--brick`，挪威城市用 `--fjord`，極光區用 `--aurora`。

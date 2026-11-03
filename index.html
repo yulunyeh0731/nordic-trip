@@ -96,17 +96,56 @@ summary{list-style:none;cursor:pointer} summary::-webkit-details-marker{display:
 .hero .dates{font-family:var(--serif);font-weight:700;font-size:21px;margin:10px 0 0;color:#D7E2EA}
 .count{display:inline-flex;align-items:baseline;gap:8px;margin:16px 0 0;padding:8px 12px;border:1px solid #33536B;border-radius:3px;font-size:14px;color:#C4D3DE}
 .count b{font-family:var(--serif);font-size:26px;color:#fff;line-height:1}
-.route{margin:20px 0 0;overflow-x:auto;scrollbar-width:none}
-.route::-webkit-scrollbar{display:none}
-.route ol{list-style:none;margin:0;padding:0;display:flex;min-width:max-content}
-.route li{position:relative;padding:20px 11px 0;text-align:center;white-space:nowrap}
-.route li::before{content:"";position:absolute;top:8px;left:0;right:0;height:1px;background:#4A6579}
-.route li:first-child::before{left:50%} .route li:last-child::before{right:50%}
-.route li::after{content:"";position:absolute;top:4px;left:50%;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:#EEF3F6}
-.route li.polar::after{background:var(--glow);box-shadow:0 0 0 4px rgba(93,202,165,.2)}
-.route li.solo::after{background:var(--night);border:1.5px solid #EEF3F6}
-.route b{display:block;font-weight:500;font-size:14px}
-.route span{font-size:12px;color:#8FA6B6}
+/* 總覽：路線方塊 */
+.rgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.rgrid a{display:block;min-width:0;min-height:44px;text-decoration:none;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:3px;padding:7px 7px 8px}
+.rgrid b{display:block;font-family:var(--serif);font-weight:700;font-size:15px;line-height:1.3;white-space:nowrap}
+.rgrid span{display:block;font-size:12px;line-height:1.45;color:var(--ink2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.rgrid a[aria-current="true"]{background:var(--c);border-color:var(--c);color:#fff}
+.rgrid a[aria-current="true"] span{color:#fff;opacity:.9}
+/* 總覽：準備進度、下一步 */
+.pg{padding:13px 14px 4px;border-top:1px solid var(--line2)}
+.pg:first-child{border-top:0}
+.pg-hd{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px}
+.pg-hd b{font-family:var(--serif);font-weight:700;font-size:18px}
+.pg-hd span{font-size:13.5px;color:var(--ink2)}
+.pg-hd em{font-style:normal;font-family:var(--serif);font-weight:700;font-size:20px;color:var(--ink)}
+.pg .bar{height:8px}
+.pg .bar span{background:var(--aurora)}
+.pg-todo{list-style:none;margin:8px 0 0;padding:0}
+.pg-todo li{display:grid;grid-template-columns:3em minmax(0,1fr);gap:8px;padding:4px 0;font-size:14.5px;line-height:1.5}
+.pg-todo .d{font-family:var(--serif);font-weight:700;color:var(--ink2);font-variant-numeric:tabular-nums}
+.more{display:flex;align-items:center;justify-content:flex-end;min-height:44px;font-size:14px;font-weight:500;color:var(--fjord);text-decoration:none}
+.nxt .more{padding:0 14px;border-top:1px solid var(--line2)}
+.nx-d{list-style:none;margin:0;padding:0}
+.nx-d li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;padding:11px 14px;border-top:1px solid var(--line2)}
+.nx-d li:first-child{border-top:0}
+.nx-d p{margin:0;font-size:15px;line-height:1.5}
+.nxt .s{font-size:13px;color:var(--ink2);margin:2px 0 0}
+.nxt .s.late{color:var(--alert);font-weight:600}
+.due{display:inline-block;min-width:4.4em;text-align:center;font-family:var(--serif);font-weight:700;font-size:14px;line-height:1;padding:6px 6px 5px;border-radius:2px;background:var(--fjord);color:#fff;white-space:nowrap;font-variant-numeric:tabular-nums}
+.due.late{background:var(--alert)}
+.due-s{display:inline-block;font-style:normal;font-size:12px;font-weight:600;color:var(--fjord);border:1px solid currentColor;border-radius:2px;padding:0 5px;margin-left:6px;line-height:1.5;vertical-align:1px;white-space:nowrap}
+.nx-t{padding:11px 14px;border-top:1px solid var(--line2)}
+.nx-d+.nx-t{border-top:1px solid var(--line2)}
+.nxt>.nx-t:first-child{border-top:0}
+.nx-t .s{margin:0 0 6px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-size:13px;line-height:1.45;padding:3px 8px;border:1px solid var(--line);border-radius:2px;background:var(--page);color:var(--ink)}
+/* 總覽：查資料 */
+.qk{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin-bottom:8px}
+.qk a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:68px;text-decoration:none;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:3px;font-size:13.5px}
+.qk svg{width:24px;height:24px;color:var(--fjord)}
+/* 資料 */
+.ihero{background:var(--night);color:#EEF3F6}
+.ihero .wrap{padding-top:24px;padding-bottom:16px}
+.ihero h1{font-family:var(--serif);font-weight:700;font-size:44px;line-height:1.1;margin:0;letter-spacing:.08em}
+.ihero p{margin:8px 0 0;font-size:14.5px;color:#B9C8D3}
+.itabs{position:sticky;top:0;z-index:30;background:var(--page);border-bottom:1px solid var(--line);padding:8px 0}
+.itabs .wrap{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px}
+.itabs a{display:flex;align-items:center;justify-content:center;min-height:44px;text-decoration:none;font-size:14.5px;color:var(--ink2);background:var(--paper);border:1px solid var(--line);border-radius:3px;white-space:nowrap}
+.itabs a[aria-current="page"]{background:var(--ink);border-color:var(--ink);color:var(--paper);font-weight:600}
+.feebox{padding:4px 14px 12px}
 
 .stays{list-style:none;margin:0;padding:0}
 .stays li{display:grid;grid-template-columns:5.4em minmax(0,1fr);gap:10px;padding:11px 14px;border-top:1px solid var(--line2);border-left:4px solid var(--c)}
@@ -341,7 +380,7 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
 .prog .bar{flex:1;height:8px}
 .prog .bar span{background:var(--aurora)}
 .prog b{font-family:var(--serif);font-size:20px}
-.reset{border:1px solid var(--line);background:var(--paper);border-radius:3px;padding:4px 12px;font-size:13px;color:var(--ink2);cursor:pointer}
+.reset{min-height:44px;border:1px solid var(--line);background:var(--paper);border-radius:3px;padding:4px 12px;font-size:13px;color:var(--ink2);cursor:pointer}
 </style>
 </head>
 <body>
@@ -362,7 +401,7 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
     <a href="#/day" data-tab="day"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="1.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>每日</a>
     <a href="#/city" data-tab="city"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>城市</a>
     <a href="#/aurora" data-tab="aurora"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2.5 15c4-6 7-6 9.5-2s5.5 4 9.5-2"/><path d="M2.5 10c4-5 7-5 9.5-1.5s5.5 3.5 9.5-1.5" opacity=".55"/><path d="M3 20h18"/></svg>極光</a>
-    <a href="#/list" data-tab="list"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6.5h11M9 12h11M9 17.5h11"/><path d="M3.5 6.5l1.3 1.3 2.2-2.4M3.5 12l1.3 1.3 2.2-2.4M3.5 17.5l1.3 1.3 2.2-2.4"/></svg>清單</a>
+    <a href="#/info" data-tab="info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M3.5 6.5a1.5 1.5 0 0 1 1.5-1.5h4.5l2 2.5H19a1.5 1.5 0 0 1 1.5 1.5v9.5A1.5 1.5 0 0 1 19 20H5a1.5 1.5 0 0 1-1.5-1.5z"/><path d="M3.5 10.5h17"/></svg>資料</a>
   </div>
 </nav>
 
@@ -381,6 +420,10 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
     taxi:'<g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 16v-3.5l2-5h12l2 5V16z"/><path d="M10 7.5V5.5h4v2"/></g>',
     tour:'<g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M3 18l5.5-9 3.5 5 2.5-3.5L21 18z"/></g>',
     bed:'<g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19V6M3 15h18v4M21 15v-3a3 3 0 0 0-3-3h-7v6"/><circle cx="7" cy="11.5" r="1.8"/></g>',
+    pin:'<g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></g>',
+    bag:'<g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><rect x="5" y="7.5" width="14" height="12.5" rx="1.5"/><path d="M9 7.5V4.5h6v3M9 11v5.5M15 11v5.5M8 20v1.5M16 20v1.5"/></g>',
+    fee:'<g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><rect x="3" y="6" width="18" height="12.5" rx="1.5"/><circle cx="12" cy="12.25" r="2.6"/><path d="M6.5 9.5v.01M17.5 15v.01"/></g>',
+    list:'<g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6.5h10M10 12h10M10 17.5h10"/><path d="M3.5 6.5l1.5 1.5 2.5-3M3.5 12l1.5 1.5 2.5-3M3.5 17.5l1.5 1.5 2.5-3"/></g>',
     check:'<path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7.5"/>'
   };
   function svg(k){ return '<svg viewBox="0 0 24 24" aria-hidden="true">'+(ICON[k]||ICON.tour)+'</svg>'; }
@@ -479,19 +522,30 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
 
   var LINES='<g class="drift"><path d="M-30,58 C60,24 130,68 210,38 S330,12 430,32" stroke="#5DCAA5" stroke-width="2.4"/><path d="M-30,66 C70,36 140,76 220,48 S340,22 430,42" stroke="#1D9E75" stroke-width="1.4"/></g><g class="drift2"><path d="M-30,50 C50,18 120,58 200,30 S320,4 430,22" stroke="#AFA9EC" stroke-width="1"/><path d="M-30,74 C90,46 150,84 230,58 S350,34 430,52" stroke="#5DCAA5" stroke-width=".8"/></g>';
 
-  /* ── 總覽 ── */
-  function pageHome(){
-    setTitle("總覽");
-    var count;
-    if (today<T.start) count='<span class="count">Yulun 出發還有 <b>'+diff(today,T.departures.Y)+'</b> 天，May <b>'+diff(today,T.departures.M)+'</b> 天</span>';
-    else if (inTrip) count='<span class="count">旅程第 <b>'+(diff(T.start,today)+1)+'</b> 天</span>';
-    else count='<span class="count">旅程已結束</span>';
-    var route=T.route.map(function(r){return '<li class="'+(r.polar?"polar":"")+(r.solo?" solo":"")+'"><b>'+r.name+'</b><span>'+r.nights+'</span></li>';}).join("");
-    var segs=[];
-    T.days.forEach(function(d){ (d.legs||[]).forEach(function(l){ if(/flight|train|tour/.test(l.t)) segs.push({d:d,l:l}); }); });
-    function apt(x){ var m=(x||"").match(/\b[A-Z]{3}\b/), c=m?m[0]:""; return {c:c, n:(x||"").replace(c,"").trim()}; }
+  /* ── 共用：交通段、費用 ── */
+  function apt(x){ var m=(x||"").match(/\b[A-Z]{3}\b/), c=m?m[0]:""; return {c:c, n:(x||"").replace(c,"").trim()}; }
+  function allSegs(){ var segs=[]; T.days.forEach(function(d){ (d.legs||[]).forEach(function(l){ if(/flight|train|tour/.test(l.t)) segs.push({d:d,l:l}); }); }); return segs; }
+  function nt(n){ return "NT$"+Math.round(n).toLocaleString("en-US"); }
+  function feeCalc(){
+    var shared=0, est=0, yOnly=0, yMiss=[];
+    var rows=allSegs().filter(function(x){return x.l.cost;}).map(function(x){
+      var l=x.l, c=l.cost, pax=c.pax||1;
+      var label=l.t==="flight"?apt(l.from).c+" → "+apt(l.to).c:(l.short||l.text);
+      if (c.twd!=null){ if (l.who==="Y") yOnly+=c.twd; else if (c.est) est+=c.twd/pax; else shared+=c.twd/pax; }
+      else if (l.who==="Y") yMiss.push(l.no||label);
+      var amt=c.twd!=null?(c.est?"約 ":"")+nt(c.est?Math.round(c.twd/10)*10:c.twd):(l.status==="pending"?"未定":"待補");
+      var line1=[l.who?T.people[l.who]:(pax===2?"兩人":"每人"), (l.t==="flight"?l.carrier+" ":"")+(l.fare||"")].filter(function(v){return v.trim();}).join("，");
+      return '<div class="fee'+(c.est?" est":"")+'"><div class="fee-top"><b>'+md(x.d.date)+'　'+label+'</b><span class="amt">'+amt+'</span></div>'+
+        '<p>'+line1+'；'+(/^NT\$/.test(c.orig)?"":c.orig)+(c.note?(/^NT\$/.test(c.orig)?c.note:"（"+c.note+"）"):"")+'</p>'+(l.rule?'<p class="rule">'+l.rule+'</p>':"")+'</div>';
+    }).join("");
+    return {rows:rows, shared:shared, est:est, yOnly:yOnly, yMiss:yMiss};
+  }
+
+  /* ── 資料 ── */
+  var INFO=[["move","交通","flight"],["stay","住宿","bed"],["addr","地址","pin"],["bag","行李","bag"],["fee","費用","fee"],["list","清單","list"]];
+  function infoMove(){
     function end(t,x,plus){ var a=apt(x); return '<div class="end"><b>'+(t||"—")+(plus?'<sup>+1</sup>':'')+'</b><span><i>'+a.c+'</i>'+a.n+'</span></div>'; }
-    var tt='<div class="card"><ul class="tt">'+segs.map(function(x){
+    return '<h2 class="sec">交通時刻 <small>依日期，含 May 自訂的航班</small></h2><div class="card"><ul class="tt">'+allSegs().map(function(x){
       var l=x.l, d=x.d, run, meta=[];
       if (l.t==="flight"){
         run='<div class="run">'+end(l.dep,l.from)+'<div class="mid">'+(l.via?'<span class="via">停'+l.via.split("（")[0]+'</span>':"")+'</div>'+end(l.arr,l.to,l.plus)+'</div>';
@@ -505,40 +559,126 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
         '<div class="hd">'+(l.who?who(l.who):"<span></span>")+st(l.status,l.statusText)+'</div>'+run+
         (meta.length?'<p class="sm">'+meta.join("　")+'</p>':"")+'</div></li>';
     }).join("")+'</ul></div>';
-    var stays='<div class="card"><ul class="stays">'+T.stays.map(function(s){
+  }
+  function infoStay(){
+    return '<h2 class="sec">住宿 <small>依入住日</small></h2><div class="card"><ul class="stays">'+T.stays.map(function(s){
       var reg = T.days.filter(function(d){return d.date===s.from;})[0];
       return '<li style="--c:'+col(reg?reg.region:"tw")+'"><span class="when">'+md(s.from)+'<small>'+s.nights+' 晚</small></span><div><p>'+who(s.who)+s.area+st(s.status)+'</p>'+
         (s.name?'<p class="s">'+(s.address?'<a class="pin" href="'+mapURL(s.name+" "+s.address)+'" target="_blank" rel="noopener">'+s.name+'</a>':s.name)+'</p>':"")+(s.note?'<p class="s">'+s.note+'</p>':"")+'</div></li>';
     }).join("")+'</ul></div>';
+  }
+  function infoAddr(){
     var addrs=[]; T.stays.forEach(function(s){ var a=stayAddr(s); if(a) addrs.push(a); });
     Object.keys(T.addresses).forEach(function(k){ addrs.push(T.addresses[k]); });
-    var drivers='<p class="muted" style="margin:0 0 8px">複製貼到 Bolt、Uber，或直接開 Google 地圖導航。住處訂好後會陸續加入。</p><div class="card">'+addrs.map(addrRow).join("")+'</div>';
-    var bag='<div class="card rows">'+T.info.baggage.map(function(b){return '<div><span>'+b.seg+'</span><span>'+b.text+'</span></div>';}).join("")+'</div>';
-    function nt(n){ return "NT$"+Math.round(n).toLocaleString("en-US"); }
-    var shared=0, est=0, yOnly=0, yMiss=[];
-    var feeRows=segs.filter(function(x){return x.l.cost;}).map(function(x){
-      var l=x.l, c=l.cost, pax=c.pax||1;
-      var label=l.t==="flight"?apt(l.from).c+" → "+apt(l.to).c:(l.short||l.text);
-      if (c.twd!=null){ if (l.who==="Y") yOnly+=c.twd; else if (c.est) est+=c.twd/pax; else shared+=c.twd/pax; }
-      else if (l.who==="Y") yMiss.push(l.no||label);
-      var amt=c.twd!=null?(c.est?"約 ":"")+nt(c.est?Math.round(c.twd/10)*10:c.twd):(l.status==="pending"?"未定":"待補");
-      var line1=[l.who?T.people[l.who]:(pax===2?"兩人":"每人"), (l.t==="flight"?l.carrier+" ":"")+(l.fare||"")].filter(function(v){return v.trim();}).join("，");
-      return '<div class="fee'+(c.est?" est":"")+'"><div class="fee-top"><b>'+md(x.d.date)+'　'+label+'</b><span class="amt">'+amt+'</span></div>'+
-        '<p>'+line1+'；'+(/^NT\$/.test(c.orig)?"":c.orig)+(c.note?(/^NT\$/.test(c.orig)?c.note:"（"+c.note+"）"):"")+'</p>'+(l.rule?'<p class="rule">'+l.rule+'</p>':"")+'</div>';
-    }).join("");
-    var sum='<div class="sum"><div><span>每人合計（兩人同行、已訂）</span><b>'+nt(shared)+'</b></div>'+
-      '<div><span>Yulun 個人另付'+(yMiss.length?'<small>另有 '+yMiss.join("、")+'，台幣待補</small>':'')+'</span><b>'+nt(yOnly)+'</b></div>'+
-      (est?'<div><span>待訂估計（每人）</span><b>約 '+nt(Math.round(est/10)*10)+'</b></div>':"")+'</div>';
-    var fee='<details class="card fold"><summary>費用與退改 <small>每人 '+nt(shared)+'（已訂）</small><span class="chev"></span></summary><div class="in">'+
-      feeRows+sum+'<p class="muted" style="margin:10px 0 0">台幣是實際刷卡金額，原幣和手續費寫在小字；估計值以 1 克朗約 3.55 台幣換算。</p></div></details>';
+    return '<h2 class="sec">常用地址 <small>住處、機場、車站</small></h2><p class="muted" style="margin:0 0 8px">複製貼到 Bolt、Uber，或直接開 Google 地圖導航。住處訂好後會陸續加入。</p><div class="card">'+addrs.map(addrRow).join("")+'</div>';
+  }
+  function infoBag(){
+    return '<h2 class="sec">行李限額 <small>打包以最嚴的為準</small></h2><div class="card rows">'+T.info.baggage.map(function(b){return '<div><span>'+b.seg+'</span><span>'+b.text+'</span></div>';}).join("")+'</div>';
+  }
+  function infoFee(){
+    var f=feeCalc();
+    var sum='<div class="sum"><div><span>每人合計（兩人同行、已訂）</span><b>'+nt(f.shared)+'</b></div>'+
+      '<div><span>Yulun 個人另付'+(f.yMiss.length?'<small>另有 '+f.yMiss.join("、")+'，台幣待補</small>':'')+'</span><b>'+nt(f.yOnly)+'</b></div>'+
+      (f.est?'<div><span>待訂估計（每人）</span><b>約 '+nt(Math.round(f.est/10)*10)+'</b></div>':"")+'</div>';
+    return '<h2 class="sec">費用與退改 <small>每人 '+nt(f.shared)+'（已訂）</small></h2><div class="card feebox">'+f.rows+sum+
+      '<p class="muted" style="margin:10px 0 0">台幣是實際刷卡金額，原幣和手續費寫在小字；估計值以 1 克朗約 3.55 台幣換算。</p></div>';
+  }
+  var done={}; try{ done=JSON.parse(localStorage.getItem("checklist")||"{}"); }catch(e){ done={}; }
+  function infoList(){
+    var n=T.checklist.filter(function(x){return done[x.id];}).length, tot=T.checklist.length;
+    return '<h2 class="sec">行前清單</h2><div class="prog"><b>'+n+'／'+tot+'</b><div class="bar"><span style="flex:'+n+'"></span><span style="flex:'+(tot-n)+';background:none"></span></div></div>'+
+      '<div class="card"><ul class="check">'+T.checklist.map(function(x){
+        return '<li><label><input type="checkbox" data-id="'+x.id+'"'+(done[x.id]?" checked":"")+'><span class="bx">'+svg("check")+'</span><span class="txt">'+x.text+(x.due?'<em class="due-s">'+dueText(x)+'</em>':"")+(x.sub?'<small>'+x.sub+'</small>':"")+'</span></label></li>'; }).join("")+'</ul></div>'+
+      '<p class="foot" style="display:flex;justify-content:space-between;align-items:center;gap:10px"><span>勾選只存在這支手機，May 的手機要自己勾。</span><button type="button" class="reset" id="reset">全部清除</button></p>';
+  }
+  function pageInfo(cat){
+    var tab=INFO.filter(function(x){return x[0]===cat;})[0]||INFO[0];
+    setTitle(tab[1]);
+    var body={move:infoMove,stay:infoStay,addr:infoAddr,bag:infoBag,fee:infoFee,list:infoList}[tab[0]]();
+    return '<section class="ihero"><div class="wrap"><h1>資料</h1><p>交通、住宿、地址、行李、費用和行前清單</p></div>'+strip("no","rgba(255,255,255,.16)","pi")+'</section>'+
+      '<nav class="itabs" aria-label="資料分類"><div class="wrap">'+INFO.map(function(x){
+        return '<a href="#/info/'+x[0]+'"'+(x[0]===tab[0]?' aria-current="page"':"")+'>'+x[1]+'</a>'; }).join("")+'</div></nav>'+
+      '<main class="wrap">'+body+(tab[0]!=="list"?'<p class="foot">資料更新於 '+T.updated.replace(/-/g,"/")+'。訂位代號不放在這個公開頁面。挪威克朗以 1 克朗約台幣 3.55 元、茲羅提以約台幣 8 元概算。</p>':"")+'</main>';
+  }
+
+  /* ── 總覽 ── */
+  function dueText(x){ return (x.dueApprox?"約 ":"")+md(x.due); }
+  function stayById(id){ return T.stays.filter(function(s){return s.id===id;})[0]; }
+  function regionOn(iso){ var d=T.days.filter(function(x){return x.date===iso;})[0]; return d?d.region:"tw"; }
+  function routeHTML(){
+    var cells=T.route.map(function(r){
+      var s=stayById(r.stay); if(!s) return "";
+      var out=add(s.from,s.nights), on=inTrip&&today>=s.from&&today<out;
+      return '<a href="#/day/'+key(s.from)+'" style="--c:'+col(regionOn(s.from))+'"'+(on?' aria-current="true"':"")+'><b>'+r.name+'</b><span>'+md(s.from)+'–'+md(out)+'</span><span>'+s.nights+' 晚'+(s.who?'・'+T.people[s.who]:"")+'</span></a>';
+    });
+    var sky=T.days.filter(function(d){return d.region==="sky";}), first=sky[0]||T.days[T.days.length-1];
+    var onSky=inTrip&&today>=first.date;
+    cells.push('<a href="#/day/'+key(first.date)+'" style="--c:'+col("sky")+'"'+(onSky?' aria-current="true"':"")+'><b>回台北</b><span>'+md(first.date)+'–'+md(T.end)+'</span><span>回程</span></a>');
+    return '<h2 class="sec">路線 <small>點一下看那一段的第一天</small></h2><div class="rgrid">'+cells.join("")+'</div>';
+  }
+  function legLabel(l){
+    if (l.t==="flight") return (l.who?T.people[l.who]+" ":"")+(l.no||l.carrier)+" "+apt(l.from).c+"→"+apt(l.to).c;
+    return (l.who?T.people[l.who]+" ":"")+(l.short||l.text);
+  }
+  function prepHTML(){
+    var moves=[]; T.days.forEach(function(d){ (d.legs||[]).forEach(function(l){ if(/flight|train|tour|car/.test(l.t)&&l.status) moves.push({d:d,l:l}); }); });
+    var mDone=moves.filter(function(x){return x.l.status==="booked"&&!x.l.todo;});
+    var mTodo=moves.filter(function(x){return !(x.l.status==="booked"&&!x.l.todo);});
+    var sDone=T.stays.filter(function(s){return s.status==="booked";}), sTodo=T.stays.filter(function(s){return s.status!=="booked";});
+    function block(name, a, tot, rows, href, more){
+      return '<div class="pg"><div class="pg-hd"><b>'+name+'</b><span><em>'+a+'</em>／'+tot+' 段已訂</span></div>'+
+        '<div class="bar"><span style="flex:'+a+'"></span><span style="flex:'+(tot-a)+';background:none"></span></div>'+
+        (rows.length?'<ul class="pg-todo">'+rows.join("")+'</ul>':'<p class="muted" style="margin:8px 0 0">全部訂好了</p>')+
+        '<a class="more" href="'+href+'">'+more+' ›</a></div>';
+    }
+    var mRows=mTodo.map(function(x){ var l=x.l;
+      return '<li><span class="d">'+md(x.d.date)+'</span><span>'+legLabel(l)+(l.todo?'<span class="st st-self">'+l.todo+'</span>':st(l.status))+'</span></li>'; });
+    var sRows=sTodo.map(function(s){ return '<li><span class="d">'+md(s.from)+'</span><span>'+who(s.who)+s.area+" "+s.nights+' 晚'+st(s.status)+'</span></li>'; });
+    return '<h2 class="sec">準備進度 <small>依 data.js 的訂位狀態</small></h2><div class="card prep">'+
+      block("交通", mDone.length, moves.length, mRows, "#/info/move", "看交通時刻")+
+      block("住宿", sDone.length, T.stays.length, sRows, "#/info/stay", "看住宿")+'</div>';
+  }
+  function nextHTML(){
+    var open=T.checklist.filter(function(x){return !done[x.id];});
+    var dated=open.filter(function(x){return x.due;}).sort(function(a,b){return a.due<b.due?-1:a.due>b.due?1:0;});
+    var rest=open.filter(function(x){return !x.due;});
+    var h='<h2 class="sec">下一步 <small>還沒勾的待辦</small></h2><div class="card nxt">';
+    if (!open.length) h+='<p class="muted" style="margin:0;padding:12px 14px">清單都完成了</p>';
+    if (dated.length) h+='<ul class="nx-d">'+dated.map(function(x){ var late=x.due<today;
+      return '<li><span class="due'+(late?" late":"")+'">'+dueText(x)+'</span><div><p>'+x.text+'</p>'+(late?'<p class="s late">已過期</p>':(x.sub?'<p class="s">'+x.sub+'</p>':""))+'</div></li>'; }).join("")+'</ul>';
+    if (rest.length) h+='<div class="nx-t"><p class="s">沒有日期</p><div class="tags">'+rest.map(function(x){return '<span>'+x.text+'</span>';}).join("")+'</div></div>';
+    return h+'<a class="more" href="#/info/list">看完整清單 ›</a></div>';
+  }
+  function todayHTML(){
+    var d=T.days.filter(function(x){return x.date===today;})[0]; if(!d) return "";
+    var nx=T.days.filter(function(x){return x.date===add(today,1);})[0];
+    var stays=staysOn(today), c=col(d.region);
+    var where=stays.length?stays.map(function(s){return (s.who?T.people[s.who]+" ":"")+s.area;}).join("、"):"";
+    var head=where?"今晚在 "+where:(today===T.end?"今天回到台北":"今晚搭夜間航班");
+    var b="";
+    if (d.alerts) b+='<div class="alerts">'+d.alerts.map(function(a){return '<span class="alert">'+a+'</span>';}).join("")+'</div>';
+    b+='<div class="blk"><span class="lab" style="--c:var(--slate)">固定行程</span>'+(d.legs?'<ol class="evs">'+d.legs.map(legHTML).join("")+'</ol>':'<p class="muted" style="margin:8px 0 0">今天沒有固定行程，看每日頁的自由時段</p>')+'</div>';
+    if (stays.length) b+='<div class="blk"><span class="lab ghost">今晚住</span>'+stays.map(function(s){
+      var a=stayAddr(s), n=diff(s.from,today)+1;
+      return '<div class="stay" style="margin-top:8px">'+svg("bed")+'<div><p>'+who(s.who)+s.area+(s.name?"，"+s.name:"")+'，第 '+n+' 晚／共 '+s.nights+' 晚'+st(s.status)+'</p></div></div>'+(a?'<div class="card" style="margin-top:6px">'+addrRow(a)+'</div>':"");
+    }).join("")+'</div>';
+    if (nx&&nx.alerts) b+='<div class="blk"><span class="lab ghost">明天 '+md(nx.date)+' '+wd(nx.date)+'</span><div class="alerts" style="margin:8px 0 0">'+nx.alerts.map(function(a){return '<span class="alert">'+a+'</span>';}).join("")+'</div></div>';
+    b+='<a class="more" href="#/day/'+key(today)+'">看今天完整安排 ›</a>';
+    return '<h2 class="sec">今天</h2><section style="--c:'+c+'"><div class="band">'+art(artKey(d))+'<p class="k">'+T.regions[d.region].name+'</p><span class="num">第 '+(diff(T.start,today)+1)+' 天</span>'+
+      '<div class="row1"><span class="dt">'+md(today)+'</span><span class="wd">'+wd(today)+'</span></div><h2>'+head+'</h2></div><div class="daybody">'+b+'</div></section>';
+  }
+  function pageHome(){
+    setTitle("總覽");
+    var count;
+    if (today<T.start) count='<span class="count">Yulun 出發還有 <b>'+diff(today,T.departures.Y)+'</b> 天，May <b>'+diff(today,T.departures.M)+'</b> 天</span>';
+    else if (inTrip) count='<span class="count">旅程第 <b>'+(diff(T.start,today)+1)+'</b> 天</span>';
+    else count='<span class="count">旅程已結束</span>';
+    var mid=today<T.start?prepHTML()+nextHTML():(inTrip?todayHTML():"");
+    var quick='<h2 class="sec">查資料</h2><div class="qk">'+INFO.slice(0,5).map(function(x){
+      return '<a href="#/info/'+x[0]+'">'+svg(x[2])+'<span>'+x[1]+'</span></a>'; }).join("")+'</div>';
     return '<section class="hero"><svg class="lines" viewBox="0 0 400 84" preserveAspectRatio="none" aria-hidden="true">'+LINES+'</svg><div class="wrap">'+
-      '<p class="kicker">北歐＋波蘭　冬季旅行手冊</p><h1>北境冬旅</h1><p class="dates">2027／2.25 — 3.17</p>'+count+'<div class="route"><ol>'+route+'</ol></div></div>'+strip("no","rgba(255,255,255,.16)","pn")+'</section>'+
-      '<main class="wrap"><h2 class="sec">交通時刻 <small>依日期，含 May 自訂的航班</small></h2>'+tt+
-      '<h2 class="sec">住宿 <small>依入住日</small></h2>'+stays+
-      '<h2 class="sec">常用地址 <small>住處、機場、車站</small></h2>'+drivers+
-      '<h2 class="sec">行李限額 <small>打包以最嚴的為準</small></h2>'+bag+
-      '<h2 class="sec">費用 <small>規劃用，平常收合</small></h2>'+fee+
-      '<p class="foot">資料更新於 '+T.updated.replace(/-/g,"/")+'。訂位代號不放在這個公開頁面。挪威克朗以 1 克朗約台幣 3.55 元、茲羅提以約台幣 8 元概算。</p></main>';
+      '<p class="kicker">北歐＋波蘭　冬季旅行手冊</p><h1>北境冬旅</h1><p class="dates">2027／2.25 — 3.17</p>'+count+'</div>'+strip("no","rgba(255,255,255,.16)","pn")+'</section>'+
+      '<main class="wrap">'+routeHTML()+mid+quick+'</main>';
   }
 
   /* ── 每日 ── */
@@ -667,28 +807,17 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
       '<h2 class="sec">之後會加入</h2><div class="card"><ul class="alist">'+li(A.coming)+'</ul></div></main>';
   }
 
-  /* ── 清單 ── */
-  var done={}; try{ done=JSON.parse(localStorage.getItem("checklist")||"{}"); }catch(e){ done={}; }
-  function pageList(){
-    setTitle("清單");
-    var n=T.checklist.filter(function(x){return done[x.id];}).length, tot=T.checklist.length;
-    return '<main class="wrap"><h2 class="sec" style="margin-top:22px">行前清單</h2><div class="prog"><b>'+n+'／'+tot+'</b><div class="bar"><span style="flex:'+n+'"></span><span style="flex:'+(tot-n)+';background:none"></span></div></div>'+
-      '<div class="card"><ul class="check">'+T.checklist.map(function(x){
-        return '<li><label><input type="checkbox" data-id="'+x.id+'"'+(done[x.id]?" checked":"")+'><span class="bx">'+svg("check")+'</span><span class="txt">'+x.text+(x.sub?'<small>'+x.sub+'</small>':"")+'</span></label></li>'; }).join("")+'</ul></div>'+
-      '<p class="foot" style="display:flex;justify-content:space-between;align-items:center;gap:10px"><span>勾選只存在這支手機，May 的手機要自己勾。</span><button type="button" class="reset" id="reset">全部清除</button></p></main>';
-  }
-
   /* ── 路由 ── */
   var cur="";
   function route(){
     var h=location.hash.replace(/^#\/?/,""), p=h.split("/"), tab, html;
-    if (!h && inTrip){ p=["day",key(today)]; }
+    if (p[0]==="list"){ p=["info","list"]; h="info/list"; try{ history.replaceState(null,"","#/info/list"); }catch(x){} }
     switch(p[0]){
       case "day": tab="day"; html=pageDay(p[1]||lastDay); break;
       case "city": tab="city"; html=p[1]?pageCity(p[1]):pageCities(); break;
       case "place": tab="city"; html=pagePlace(p[1]); break;
       case "aurora": tab="aurora"; html=pageAurora(); break;
-      case "list": tab="list"; html=pageList(); break;
+      case "info": tab="info"; html=pageInfo(p[1]); break;
       default: tab="home"; html=pageHome();
     }
     if (drv) drv.hidden=true;
