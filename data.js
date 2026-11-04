@@ -19,6 +19,7 @@
      room 房型、phone 電話、getThere 怎麼去、access 入住方式（自助入住、鑰匙盒等），不知道就不寫
    cities.tips：{ i 圖示（shop、museum、food、cup、sun、aurora、clock、car、rain）, t 一句重點, d 補充說明 }
    activities：沒有固定行程卡的活動（極光團、哈士奇等），date 是排序用的日期，dateText 是顯示的日期
+   stays.via：訂房平台（例如 Booking.com、Airbnb、官網），資料頁住宿卡會顯示
    route.stay：對到 stays 的 id，總覽路線方塊的日期和晚數從這裡算
    checklist.due：期限或建議完成日（YYYY-MM-DD），dueApprox: true 表示是大約的日期
    訂位代號、確認號不要寫進來（網頁是公開的）。 */
@@ -55,24 +56,35 @@ window.TRIP = {
 
   stays: [
     { id: "waw1", who: "Y", area: "華沙", name: "Motel One Warsaw-Chopin", from: "2027-02-26", nights: 2,
-      address: "ul. Tamka 38, 00-355 Warszawa", lat: 52.2370, lng: 21.0236, status: "booked", room: "The One", breakfast: false, phone: "+48 22 417 60 01",
+      address: "ul. Tamka 38, 00-355 Warszawa", lat: 52.2370, lng: 21.0236, status: "booked", via: "官網", room: "The One", breakfast: false, phone: "+48 22 417 60 01",
       note: "晚上 6 點後抵達也會保留房間（信用卡擔保），住宿費現場付",
       cost: { cat: "住宿", cur: "PLN", amt: 560, who: "Y", pay: "onsite", payDate: "2027-02-26", rule: { type: "free", until: "2027-02-26T18:00", note: "之後取消收 90%" } } },
-    { id: "osl", area: "奧斯陸", name: "", from: "2027-02-28", nights: 2, status: "pending" },
-    { id: "tos", area: "特羅姆瑟", name: "", from: "2027-03-02", nights: 3, status: "pending" },
-    { id: "lof1", area: "羅弗敦", name: "Lofoten Links Lodges", from: "2027-03-05", nights: 1, status: "booked",
+    { id: "osl", area: "奧斯陸", name: "Bob W Oslo Sentralen", from: "2027-02-28", nights: 2, status: "booked", via: "Klook",
+      address: "Kirkegata 30, 0153 Oslo", lat: 59.911, lng: 10.745,
+      room: "雙人房，1 張大床", kitchen: "沒有廚房，有熱水壺", breakfast: false,
+      phone: "+47 23 50 70 98", checkin: "15:00", checkout: "11:00",
+      note: "自助入住：先線上報到，用手機開房門",
+      cost: { cat: "住宿", cur: "TWD", amt: 5529, twd: 5529, pay: "paid", payDate: "2026-11-04", note: "Klook", rule: { type: "none", note: "不可退款" } } },
+    { id: "tos", area: "特羅姆瑟", name: "Sjøparken 獨立房間", from: "2027-03-02", nights: 3, status: "booked", via: "Airbnb",
+      address: "Strandvegen 114B, 9006 Tromsø", lat: 69.6361, lng: 18.9351,
+      room: "獨立房間，浴室和房東共用", kitchen: "廚房設備齊全", breakfast: false,
+      phone: "+47 41 34 07 10", checkin: "15:00", checkout: "12:00",
+      note: "房東 Hans-Erik，入住前 2～3 天傳入住資訊；房東同意約 12:30 抵達",
+      cost: { cat: "住宿", cur: "TWD", amt: 17710.79, pay: "later", payDate: "2027-02-17", note: "Airbnb",
+        rule: { type: "free", until: "2027-02-25T15:00", note: "3/2 15:00 前取消可拿回部分退款" } } },
+    { id: "lof1", area: "羅弗敦", name: "Lofoten Links Lodges", from: "2027-03-05", nights: 1, status: "booked", via: "Booking.com",
       address: "Hov Tore Hjortsvei 389, 8314 Gimsøy", lat: 68.3404, lng: 14.1285,
       room: "Luxury Standard Lodge，私人衛浴，共用廚房和客廳", kitchen: "共用廚房", breakfast: false, parking: true,
       phone: "+47 76 07 20 02", checkin: "16:00", checkout: "11:00",
       note: "餐廳冬季關閉，晚餐自己煮。門牌和高爾夫球場同號，導航用座標 68.3404, 14.1285",
-      cost: { cat: "住宿", cur: "NOK", amt: 1912.5, pay: "later", note: "Booking.com，含 12% 加值稅",
+      cost: { cat: "住宿", cur: "NOK", amt: 1912.5, pay: "later", note: "含 12% 加值稅",
         rule: { type: "free", until: "2027-02-02T23:59", note: "2/3 起取消收 50%，未入住收全額" } } },
-    { id: "lof2", area: "羅弗敦", name: "Sakrisøy Rorbuer", from: "2027-03-06", nights: 2, status: "booked",
+    { id: "lof2", area: "羅弗敦", name: "Sakrisøy Rorbuer", from: "2027-03-06", nights: 2, status: "booked", via: "Booking.com",
       address: "Sakrisøya 2, 8390 Reine", lat: 67.9409, lng: 13.1111,
       room: "海景傳統小屋，附陽台", kitchen: "簡易廚房（灶台、烤箱、冰箱）", breakfast: false, parking: "免費（不可預約）",
       phone: "+47 90 03 54 19", checkin: "15:00", checkout: "11:00",
       note: "冬季入住時間和拿鑰匙方式待確認",
-      cost: { cat: "住宿", cur: "NOK", amt: 6356.79, pay: "later", note: "Booking.com，房價 NOK 6,980 扣掉 Booking.com 折抵 623.21；住宿開的發票會顯示全額",
+      cost: { cat: "住宿", cur: "NOK", amt: 6356.79, pay: "later", note: "房價 NOK 6,980 扣掉 Booking.com 折抵 623.21；住宿開的發票會顯示全額",
         rule: { type: "free", until: "2027-02-20T00:00", note: "入住 14 天前，確切時間看訂單頁；之後取消或未入住收全額" } } },
     { id: "lof3", area: "羅弗敦", name: "", from: "2027-03-08", nights: 2, status: "pending", note: "找有廚房的住處" },
     { id: "bgo", area: "卑爾根", name: "", from: "2027-03-10", nights: 2, status: "pending" },
@@ -422,7 +434,7 @@ window.TRIP = {
       ]
     },
     osl: {
-      name: "奧斯陸", region: "osl", mapCity: "Oslo",
+      name: "奧斯陸", region: "osl", ref: "osl", mapCity: "Oslo",
       intro: "挪威首都，現代建築、孟克和北歐精品咖啡。兩人會合的第一站，2/28 下午加 3/1 一整天。",
       tips: [
         { i: "shop", t: "2/28 週日大型超市不開", d: "只有 Joker、Bunnpris 和便利商店，營業時間較短。晚餐和隔天早餐先想好。" },
@@ -463,7 +475,7 @@ window.TRIP = {
       ]
     },
     tos: {
-      name: "特羅姆瑟", region: "tos", mapCity: "Tromsø",
+      name: "特羅姆瑟", region: "tos", ref: "tos", mapCity: "Tromsø",
       intro: "北極圈裡生活機能最好的城市。市中心在島上，走路就能逛完；北極大教堂和纜車在跨海大橋另一頭。",
       tips: [
         { i: "sun", t: "白天短，戶外行程排中午前後", d: "晚上留給極光團。" },
@@ -654,7 +666,7 @@ window.TRIP = {
     { id: "wizz-bp", due: "2027-02-10", dueApprox: true, text: "確認 Wizz 登機證有沒有出來", sub: "WIZZ PLUS 有自動報到，兩個訂位代號都要看" },
     { id: "wizz-check", text: "確認 Wizz 訂單是 WIZZ PLUS", sub: "兩人各一個 Wizz 訂位代號（見 Trip.com 行程單），兩個都要登入 Wizz app 查" },
     { id: "bgo-stay", text: "訂卑爾根住宿", sub: "候選 Ole Bull：先確認房型有沒有廚房，官網 Flexible 3/10 16:00 前免費取消" },
-    { id: "stays", text: "訂其他住宿", sub: "奧斯陸、特羅姆瑟、格但斯克、華沙後段" },
+    { id: "stays", text: "訂其他住宿", sub: "格但斯克、華沙後段" },
     { id: "lof-arrival", text: "告知 Lofoten Links Lodges 預計抵達時間", sub: "確認單要求事先告知；3/5 12:15 落地，取車後開過去" },
     { id: "sakrisoy-checkin", text: "向 Sakrisøy Rorbuer 確認冬季入住時間、怎麼拿鑰匙" },
     { id: "metropol", due: "2027-02-21", text: "取消 Hotel Metropol", sub: "2/21 前免費取消" },

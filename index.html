@@ -510,7 +510,7 @@ details.fgrp>summary .kic{margin-right:-2px}
 .sty-in{border-top:1px dashed var(--line2);padding:4px 14px 12px}
 .sty-in .addr{padding:10px 0;grid-template-columns:minmax(0,1fr)}
 .sty-in .addr b{font-size:14px}
-.sty-in .rws>div{display:grid;grid-template-columns:3.6em minmax(0,1fr);gap:8px;padding:7px 0;border-top:1px solid var(--line2);font-size:14px;line-height:1.55}
+.sty-in .rws>div{display:grid;grid-template-columns:4.6em minmax(0,1fr);gap:8px;padding:7px 0;border-top:1px solid var(--line2);font-size:14px;line-height:1.55}
 .sty-in .rws>div>span{color:var(--ink2);font-size:13px}
 .sty .pnote{margin:4px 0 0;font-size:13.5px;color:var(--ink2)}
 .sty.pend .nm{color:var(--ink2)}
@@ -914,6 +914,7 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
     if (!bk) return '<div class="sty pend" style="--c:'+c+'"><div class="sh">'+when+head+'</div></div>';
     var a=stayAddr(s), rows=[];
     function row(k,v){ if(v) rows.push('<div><span>'+k+'</span><div>'+v+'</div></div>'); }
+    row("訂房平台", s.via);
     row("電話", s.phone?'<a href="tel:'+s.phone.replace(/\s/g,"")+'">'+s.phone+'</a>':"");
     row("怎麼去", s.getThere);
     row("入住方式", s.access);
