@@ -25,7 +25,7 @@
    訂位代號、確認號不要寫進來（網頁是公開的）。 */
 
 window.TRIP = {
-  updated: "2026-11-04",
+  updated: "2026-11-05",
   start: "2027-02-25",
   end: "2027-03-17",
   departures: { Y: "2027-02-25", M: "2027-02-27" },
@@ -86,9 +86,19 @@ window.TRIP = {
       note: "冬季入住時間和拿鑰匙方式待確認",
       cost: { cat: "住宿", cur: "NOK", amt: 6356.79, pay: "later", note: "房價 NOK 6,980 扣掉 Booking.com 折抵 623.21；住宿開的發票會顯示全額",
         rule: { type: "free", until: "2027-02-20T00:00", note: "入住 14 天前，確切時間看訂單頁；之後取消或未入住收全額" } } },
-    { id: "lof3", area: "羅弗敦", name: "", from: "2027-03-08", nights: 2, status: "pending", note: "找有廚房的住處" },
+    { id: "lof3", area: "羅弗敦", name: "Laukvik Suites", from: "2027-03-08", nights: 2, status: "booked", via: "Booking.com",
+      address: "Laukvikveien 3B, 8315 Laukvik", lat: 68.3874, lng: 14.4121,
+      room: "單臥室公寓，私人衛浴", kitchen: "廚房（灶台、烤箱、洗碗機）", breakfast: false, parking: true,
+      phone: "+47 93 45 81 79", checkin: "15:00", checkout: "12:00",
+      note: "入住 15:00～22:00；有洗衣機、烘衣機",
+      cost: { cat: "住宿", cur: "NOK", amt: 2575.8, pay: "paid", payDate: "2026-11-04", note: "含 12% 加值稅", rule: { type: "none", note: "不可退款、不可改日期" } } },
     { id: "bgo", area: "卑爾根", name: "", from: "2027-03-10", nights: 2, status: "pending" },
-    { id: "gdn", area: "格但斯克", name: "", from: "2027-03-12", nights: 2, status: "pending" },
+    { id: "gdn", area: "格但斯克", name: "Craft Beer Central Hotel", from: "2027-03-12", nights: 2, status: "booked", via: "Klook",
+      address: "Podwale Grodzkie 4, 80-895 Gdańsk", lat: 54.354, lng: 18.645,
+      room: "雙人或雙床房（Pils），已要求 2 張單人床", breakfast: false,
+      phone: "+48 58 351 09 10", checkin: "15:00", checkout: "11:00",
+      note: "24 小時櫃台，可寄放行李；走到中央車站約 4 分鐘。城市稅到店付（每人每晚約 PLN 3.3～3.5）",
+      cost: { cat: "住宿", cur: "TWD", amt: 4734, twd: 4734, pay: "paid", payDate: "2026-11-05", note: "合計 4,983 扣掉 Klook 付款優惠 249", rule: { type: "none", note: "不可更改或取消" } } },
     { id: "waw2", area: "華沙", name: "", from: "2027-03-14", nights: 2, status: "pending" }
   ],
 
@@ -192,7 +202,7 @@ window.TRIP = {
 
     { date: "2027-03-08", title: "羅弗敦，新月", city: "lof",
       alerts: ["新月，整趟最暗的一夜"], region: "lof",
-      free: [{ when: "全天", text: "11:00 前退房，今晚住處待訂。看天氣決定往西側或東側；晚上新月，挑晴的方向去北側海灘", areas: ["west", "mid", "east"] }] },
+      free: [{ when: "全天", text: "11:00 前退房，今晚住東北岸的 Laukvik Suites（15:00～22:00 入住）。看天氣決定往西側或東側；晚上新月，挑晴的方向去北側海灘", areas: ["west", "mid", "east"] }] },
 
     { date: "2027-03-09", title: "羅弗敦最後一天", region: "lof", city: "lof",
       free: [{ when: "全天", text: "看天氣決定往哪邊走。隔天中午前要開回 EVE 機場還車，機場在群島東邊，開車時間依住處而定（待查）", areas: ["west", "mid", "east"] }] },
@@ -294,7 +304,7 @@ window.TRIP = {
       line: "雪山直接從海裡拔起，山腳是紅色漁屋。挪威冬天風景的最高峰。",
       blocks: [
         { h: "是什麼", p: "挪威西北外海的一串群島，一條 E10 公路由東到西把所有島串起來。2～3 月白天變長，光線最漂亮。" },
-        { h: "會去哪裡", p: "從 EVE 機場（哈爾斯塔/納爾維克機場，Harstad/Narvik lufthavn Evenes）取車，沿 E10 公路玩西側和東側，最後開回 EVE 機場還車。先住中段 Gimsøy 一晚，再住西側薩克里索伊兩晚，最後兩晚住宿待訂。" },
+        { h: "會去哪裡", p: "從 EVE 機場（哈爾斯塔/納爾維克機場，Harstad/Narvik lufthavn Evenes）取車，沿 E10 公路玩西側和東側，最後開回 EVE 機場還車。先住中段 Gimsøy 一晚，再住西側薩克里索伊兩晚，最後兩晚住東北岸 Laukvik。" },
         { sub: "西側：哈姆諾伊、薩克里索伊、雷訥、Å", p: "整趟的精華。哈姆諾伊是紅色漁屋配尖山；過橋的薩克里索伊整村是黃色的；雷訥是羅弗敦最經典的明信片畫面；Å 是 E10 的終點。" },
         { sub: "中段：烏塔克萊夫、豪克蘭海灘", p: "白天是雪山配海灘，晚上是看極光的經典地點。北側海灘面向北方，地平線開闊。" },
         { sub: "東側：斯沃爾韋爾、亨寧斯韋爾", p: "斯沃爾韋爾是東側最大的鎮，生活機能最好。亨寧斯韋爾是建在小島群上的漁村，冬天正值鱈魚季，港口掛滿晾魚乾的木架。有名的海上足球場經典照片是空拍，站在地面看不太出來。" },
@@ -511,7 +521,7 @@ window.TRIP = {
     },
     lof: {
       name: "羅弗敦", region: "lof", mapCity: "Lofoten",
-      intro: "一條 E10 公路串起整排島。住 5 晚：3/5 中段 Gimsøy，3/6～3/8 西側薩克里索伊，3/8～3/10 待訂。3/10 回 EVE 機場還車。",
+      intro: "一條 E10 公路串起整排島。住 5 晚：3/5 中段 Gimsøy，3/6～3/8 西側薩克里索伊，3/8～3/10 東北岸 Laukvik。3/10 回 EVE 機場還車。",
       tips: [
         { i: "shop", t: "3/7 週日大型超市不開", d: "偏遠地區週日營業的店更少。3/6 週六先把 3/7 的食物買好。" },
         { i: "clock", t: "冬天店家常不照公告開門", d: "有旅人說不一定照公告時間營業，想去的店前一天先查。" },
@@ -570,7 +580,7 @@ window.TRIP = {
       ]
     },
     gdn: {
-      name: "格但斯克", region: "gdn", mapCity: "Gdańsk",
+      name: "格但斯克", region: "gdn", ref: "gdn", mapCity: "Gdańsk",
       intro: "波羅的海邊的漢薩港口古城，冬天安靜又有氣氛。3/12 下午到，3/13 一整天可以去馬爾堡或索波特。",
       tips: [
         { i: "food", t: "長街一帶的牛奶吧和餃子店", d: "便宜好吃，在地人和學生常去，午餐和傍晚要排隊。" },
@@ -658,7 +668,6 @@ window.TRIP = {
   /* 行前清單：勾選狀態只存在自己的手機 */
   checklist: [
     { id: "meet", text: "決定 2/28 在奧斯陸機場怎麼會合", sub: "May 12:10 先到，Yulun 16:20 到；在機場等，或 May 先進市區 check-in" },
-    { id: "lof-stay3", text: "訂羅弗敦 3/8～3/10 兩晚", sub: "3/5～3/8 已訂；找有廚房的住處" },
     { id: "car", text: "訂 EVE 機場租車", sub: "3/5 12:15 落地後取、3/10 中午前還，四驅、自排、雪胎；留意是不是電動車" },
     { id: "nutshell", text: "訂挪威縮影", sub: "3/11 卑爾根來回；買之前先看取消規定" },
     { id: "wf863-seat", text: "選 3/5 Widerøe WF863 座位", sub: "Widerøe 的 My trips，Smart 可免費選一般座位" },
@@ -666,8 +675,10 @@ window.TRIP = {
     { id: "wizz-bp", due: "2027-02-10", dueApprox: true, text: "確認 Wizz 登機證有沒有出來", sub: "WIZZ PLUS 有自動報到，兩個訂位代號都要看" },
     { id: "wizz-check", text: "確認 Wizz 訂單是 WIZZ PLUS", sub: "兩人各一個 Wizz 訂位代號（見 Trip.com 行程單），兩個都要登入 Wizz app 查" },
     { id: "bgo-stay", text: "訂卑爾根住宿", sub: "候選 Ole Bull：先確認房型有沒有廚房，官網 Flexible 3/10 16:00 前免費取消" },
-    { id: "stays", text: "訂其他住宿", sub: "格但斯克、華沙後段" },
+    { id: "stays", text: "訂其他住宿", sub: "華沙後段" },
     { id: "lof-arrival", text: "告知 Lofoten Links Lodges 預計抵達時間", sub: "確認單要求事先告知；3/5 12:15 落地，取車後開過去" },
+    { id: "laukvik-arrival", text: "告知 Laukvik Suites 預計抵達時間", sub: "確認單要求事先告知；3/8 從 Sakrisøy 開過去" },
+    { id: "bobw-call", due: "2027-02-14", text: "打電話給 Bob W 安排入住", sub: "抵達前 14 天；同時完成線上登記（要上傳護照照片），問 May 2/28 約 14:00 能不能寄放行李" },
     { id: "sakrisoy-checkin", text: "向 Sakrisøy Rorbuer 確認冬季入住時間、怎麼拿鑰匙" },
     { id: "metropol", due: "2027-02-21", text: "取消 Hotel Metropol", sub: "2/21 前免費取消" },
     { id: "pkp", due: "2027-02-12", dueApprox: true, text: "買格但斯克 → 華沙火車票", sub: "出發前約 30 天開賣" },
