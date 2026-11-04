@@ -15,13 +15,17 @@
      pay 付款狀態：paid 已付、later 之後扣款、onsite 現場付；payDate 付款日或扣款日（YYYY-MM-DD）、
      name 費用頁顯示的名稱（不寫就用航班或項目名稱）、note 補充（手續費、購買管道等）、
      rule 退改 { type：free 免費取消、change 改期免費、paid 可付費更改、none 不可退、tbd 待確認；until 期限（YYYY-MM-DDTHH:MM，當地時間）；label 標籤文字（不寫就用預設）；note 補充 }
+   stays 住宿：checkin、checkout 入住和退房時間（HH:MM）；kitchen、breakfast、parking、laundry 設施（true 有、false 沒有，也可以寫文字如「含早餐」，不知道就不寫）；
+     room 房型、phone 電話、getThere 怎麼去、access 入住方式（自助入住、鑰匙盒等），不知道就不寫
+   cities.tips：{ i 圖示（shop、museum、food、cup、sun、aurora、clock、car、rain）, t 一句重點, d 補充說明 }
    activities：沒有固定行程卡的活動（極光團、哈士奇等），date 是排序用的日期，dateText 是顯示的日期
+   stays.via：訂房平台（例如 Booking.com、Airbnb、官網），資料頁住宿卡會顯示
    route.stay：對到 stays 的 id，總覽路線方塊的日期和晚數從這裡算
    checklist.due：期限或建議完成日（YYYY-MM-DD），dueApprox: true 表示是大約的日期
    訂位代號、確認號不要寫進來（網頁是公開的）。 */
 
 window.TRIP = {
-  updated: "2026-11-03",
+  updated: "2026-11-04",
   start: "2027-02-25",
   end: "2027-03-17",
   departures: { Y: "2027-02-25", M: "2027-02-27" },
@@ -44,7 +48,7 @@ window.TRIP = {
     { name: "華沙", nights: "2 晚，Yulun 先行", solo: true, stay: "waw1" },
     { name: "奧斯陸", nights: "2 晚，會合", stay: "osl" },
     { name: "特羅姆瑟", nights: "3 晚", polar: true, stay: "tos" },
-    { name: "羅弗敦", nights: "5 晚", polar: true, stay: "lof" },
+    { name: "羅弗敦", nights: "5 晚", polar: true, stay: ["lof1", "lof2", "lof3"] },
     { name: "卑爾根", nights: "2 晚", stay: "bgo" },
     { name: "格但斯克", nights: "2 晚", stay: "gdn" },
     { name: "華沙", nights: "2 晚", stay: "waw2" }
@@ -52,11 +56,37 @@ window.TRIP = {
 
   stays: [
     { id: "waw1", who: "Y", area: "華沙", name: "Motel One Warsaw-Chopin", from: "2027-02-26", nights: 2,
-      address: "ul. Tamka 38, 00-355 Warszawa", lat: 52.2370, lng: 21.0236, status: "booked", note: "房價不含早餐，現場付款",
+      address: "ul. Tamka 38, 00-355 Warszawa", lat: 52.2370, lng: 21.0236, status: "booked", via: "官網", room: "The One", breakfast: false, phone: "+48 22 417 60 01",
+      note: "晚上 6 點後抵達也會保留房間（信用卡擔保），住宿費現場付",
       cost: { cat: "住宿", cur: "PLN", amt: 560, who: "Y", pay: "onsite", payDate: "2027-02-26", rule: { type: "free", until: "2027-02-26T18:00", note: "之後取消收 90%" } } },
-    { id: "osl", area: "奧斯陸", name: "", from: "2027-02-28", nights: 2, status: "pending" },
-    { id: "tos", area: "特羅姆瑟", name: "", from: "2027-03-02", nights: 3, status: "pending" },
-    { id: "lof", area: "羅弗敦", name: "", from: "2027-03-05", nights: 5, status: "pending", note: "住宿待訂；西側、東側各住幾晚待定；找有廚房的住處" },
+    { id: "osl", area: "奧斯陸", name: "Bob W Oslo Sentralen", from: "2027-02-28", nights: 2, status: "booked", via: "Klook",
+      address: "Kirkegata 30, 0153 Oslo", lat: 59.911, lng: 10.745,
+      room: "雙人房，1 張大床", kitchen: "沒有廚房，有熱水壺", breakfast: false,
+      phone: "+47 23 50 70 98", checkin: "15:00", checkout: "11:00",
+      note: "自助入住：先線上報到，用手機開房門",
+      cost: { cat: "住宿", cur: "TWD", amt: 5529, twd: 5529, pay: "paid", payDate: "2026-11-04", note: "Klook", rule: { type: "none", note: "不可退款" } } },
+    { id: "tos", area: "特羅姆瑟", name: "Sjøparken 獨立房間", from: "2027-03-02", nights: 3, status: "booked", via: "Airbnb",
+      address: "Strandvegen 114B, 9006 Tromsø", lat: 69.6361, lng: 18.9351,
+      room: "獨立房間，浴室和房東共用", kitchen: "廚房設備齊全", breakfast: false,
+      phone: "+47 41 34 07 10", checkin: "15:00", checkout: "12:00",
+      note: "房東 Hans-Erik，入住前 2～3 天傳入住資訊；房東同意約 12:30 抵達",
+      cost: { cat: "住宿", cur: "TWD", amt: 17710.79, pay: "later", payDate: "2027-02-17", note: "Airbnb",
+        rule: { type: "free", until: "2027-02-25T15:00", note: "3/2 15:00 前取消可拿回部分退款" } } },
+    { id: "lof1", area: "羅弗敦", name: "Lofoten Links Lodges", from: "2027-03-05", nights: 1, status: "booked", via: "Booking.com",
+      address: "Hov Tore Hjortsvei 389, 8314 Gimsøy", lat: 68.3404, lng: 14.1285,
+      room: "Luxury Standard Lodge，私人衛浴，共用廚房和客廳", kitchen: "共用廚房", breakfast: false, parking: true,
+      phone: "+47 76 07 20 02", checkin: "16:00", checkout: "11:00",
+      note: "餐廳冬季關閉，晚餐自己煮。門牌和高爾夫球場同號，導航用座標 68.3404, 14.1285",
+      cost: { cat: "住宿", cur: "NOK", amt: 1912.5, pay: "later", note: "含 12% 加值稅",
+        rule: { type: "free", until: "2027-02-02T23:59", note: "2/3 起取消收 50%，未入住收全額" } } },
+    { id: "lof2", area: "羅弗敦", name: "Sakrisøy Rorbuer", from: "2027-03-06", nights: 2, status: "booked", via: "Booking.com",
+      address: "Sakrisøya 2, 8390 Reine", lat: 67.9409, lng: 13.1111,
+      room: "海景傳統小屋，附陽台", kitchen: "簡易廚房（灶台、烤箱、冰箱）", breakfast: false, parking: "免費（不可預約）",
+      phone: "+47 90 03 54 19", checkin: "15:00", checkout: "11:00",
+      note: "冬季入住時間和拿鑰匙方式待確認",
+      cost: { cat: "住宿", cur: "NOK", amt: 6356.79, pay: "later", note: "房價 NOK 6,980 扣掉 Booking.com 折抵 623.21；住宿開的發票會顯示全額",
+        rule: { type: "free", until: "2027-02-20T00:00", note: "入住 14 天前，確切時間看訂單頁；之後取消或未入住收全額" } } },
+    { id: "lof3", area: "羅弗敦", name: "", from: "2027-03-08", nights: 2, status: "pending", note: "找有廚房的住處" },
     { id: "bgo", area: "卑爾根", name: "", from: "2027-03-10", nights: 2, status: "pending" },
     { id: "gdn", area: "格但斯克", name: "", from: "2027-03-12", nights: 2, status: "pending" },
     { id: "waw2", area: "華沙", name: "", from: "2027-03-14", nights: 2, status: "pending" }
@@ -149,20 +179,20 @@ window.TRIP = {
           seatNote: "還沒選", aircraft: "DHC-8 螺旋槳小飛機",
           bag: { chkN: 1, chkKg: 23, chkCm: 158, cabDim: [55, 40, 20], smlDim: [40, 30, 15], sumKg: 8 }, status: "booked",
           fare: "Smart", cost: { cat: "交通", cur: "NOK", amt: 1324, twd: 4706, pay: "paid", payDate: "2026-11-02", note: "含服務費", rule: { type: "none", note: "不可退款、不可改票" } } },
-        { t: "car", text: "EVE 機場取車（四驅、自排、雪胎），沿 E10 開往今晚住處（住宿待訂）", status: "pending", short: "EVE 機場租車" }
+        { t: "car", text: "EVE 機場取車（四驅、自排、雪胎），沿 E10 開到 Gimsøy 的 Lofoten Links Lodges", status: "pending", short: "EVE 機場租車" }
       ],
       notes: ["DHC-8 螺旋槳小飛機，置物櫃小，登機箱可能在登機門被收去託運。證件、貴重物品、行動電源放隨身小包"],
-      free: [{ when: "傍晚", text: "到住處時天色已暗，沿路先採買再入住", areas: ["west", "mid", "east"] }] },
+      free: [{ when: "傍晚", text: "到住處時天色已暗，沿路先採買再入住（16:00 起）。小屋餐廳冬季關閉，晚餐用共用廚房自己煮", areas: ["west", "mid", "east"] }] },
 
     { date: "2027-03-06", title: "羅弗敦自駕，週六先採買", region: "lof", city: "lof",
-      free: [{ when: "全天", text: "看天氣決定往哪一側走。週六：記得把 3/7 週日的食物先買好", areas: ["west", "mid", "east"] }] },
+      free: [{ when: "全天", text: "11:00 前退房，往西開到薩克里索伊（Sakrisøy），15:00 起入住。週六：記得把 3/7 週日的食物先買好", areas: ["west", "mid", "east"] }] },
 
     { date: "2027-03-07", title: "羅弗敦，週日店家少", region: "lof", city: "lof",
       free: [{ when: "全天", text: "週日大型超市不開。看雲量往晴的一側開，中段的烏塔克萊夫（Uttakleiv）、豪克蘭海灘（Haukland）可以停一停", areas: ["west", "mid", "east"] }] },
 
     { date: "2027-03-08", title: "羅弗敦，新月", city: "lof",
       alerts: ["新月，整趟最暗的一夜"], region: "lof",
-      free: [{ when: "全天", text: "看天氣決定往西側或東側；晚上新月，挑晴的方向去北側海灘", areas: ["west", "mid", "east"] }] },
+      free: [{ when: "全天", text: "11:00 前退房，今晚住處待訂。看天氣決定往西側或東側；晚上新月，挑晴的方向去北側海灘", areas: ["west", "mid", "east"] }] },
 
     { date: "2027-03-09", title: "羅弗敦最後一天", region: "lof", city: "lof",
       free: [{ when: "全天", text: "看天氣決定往哪邊走。隔天中午前要開回 EVE 機場還車，機場在群島東邊，開車時間依住處而定（待查）", areas: ["west", "mid", "east"] }] },
@@ -264,7 +294,7 @@ window.TRIP = {
       line: "雪山直接從海裡拔起，山腳是紅色漁屋。挪威冬天風景的最高峰。",
       blocks: [
         { h: "是什麼", p: "挪威西北外海的一串群島，一條 E10 公路由東到西把所有島串起來。2～3 月白天變長，光線最漂亮。" },
-        { h: "會去哪裡", p: "從 EVE 機場（哈爾斯塔/納爾維克機場，Harstad/Narvik lufthavn Evenes）取車，沿 E10 公路玩西側和東側，最後開回 EVE 機場還車。住宿還沒訂，西側、東側各住幾晚待定。" },
+        { h: "會去哪裡", p: "從 EVE 機場（哈爾斯塔/納爾維克機場，Harstad/Narvik lufthavn Evenes）取車，沿 E10 公路玩西側和東側，最後開回 EVE 機場還車。先住中段 Gimsøy 一晚，再住西側薩克里索伊兩晚，最後兩晚住宿待訂。" },
         { sub: "西側：哈姆諾伊、薩克里索伊、雷訥、Å", p: "整趟的精華。哈姆諾伊是紅色漁屋配尖山；過橋的薩克里索伊整村是黃色的；雷訥是羅弗敦最經典的明信片畫面；Å 是 E10 的終點。" },
         { sub: "中段：烏塔克萊夫、豪克蘭海灘", p: "白天是雪山配海灘，晚上是看極光的經典地點。北側海灘面向北方，地平線開闊。" },
         { sub: "東側：斯沃爾韋爾、亨寧斯韋爾", p: "斯沃爾韋爾是東側最大的鎮，生活機能最好。亨寧斯韋爾是建在小島群上的漁村，冬天正值鱈魚季，港口掛滿晾魚乾的木架。有名的海上足球場經典照片是空拍，站在地面看不太出來。" },
@@ -331,11 +361,10 @@ window.TRIP = {
       name: "華沙", region: "waw", ref: "waw1", mapCity: "Warszawa",
       intro: "二戰後依原貌重建的首都，老城列入世界遺產。不是驚艷型的城市，適合慢慢走、看美術館、坐咖啡館。",
       tips: [
-        "週日商店公休：超市大多不開，Żabka 便利商店、藥局、麵包店、加油站例外，Żabka 多數開到 23:00。餐廳不受影響。",
-        "週一多數博物館休館（王宮、國家博物館、華沙博物館）。兩人一起在華沙的是 3/14 週日和 3/15 週一，想一起看的展館要排在 3/14。",
-        "老城廣場旁的餐廳偏貴、偏觀光，在地人吃家常菜多去牛奶吧。",
-        "華沙起義博物館、POLIN 猶太歷史博物館評價很高，但屬於戰爭和近代史主題，要有中文導覽才適合；有沒有中文語音導覽待查。",
-        "營業時間各來源常常不一致，標示的是 2025～2026 年的資料，出發前一個月再確認一次。"
+        { i: "shop", t: "週日超市大多不開", d: "Żabka 便利商店、藥局、麵包店、加油站例外，Żabka 多數開到 23:00。餐廳照常營業。" },
+        { i: "museum", t: "週一多數博物館休館", d: "王宮、國家博物館、華沙博物館都休。兩人一起在華沙的是 3/14 週日和 3/15 週一，想一起看的展館排 3/14。" },
+        { i: "food", t: "家常菜去牛奶吧", d: "老城廣場旁的餐廳偏貴、偏觀光。" },
+        { i: "museum", t: "戰爭主題的博物館要有中文導覽", d: "華沙起義博物館、POLIN 猶太歷史博物館評價很高；有沒有中文語音導覽待查。" }
       ],
       areas: [
         { id: "powisle", name: "住處周邊：新世界街一帶", line: "Motel One 就在這區，走路就到新世界街和王宮之路。" },
@@ -405,13 +434,12 @@ window.TRIP = {
       ]
     },
     osl: {
-      name: "奧斯陸", region: "osl", mapCity: "Oslo",
+      name: "奧斯陸", region: "osl", ref: "osl", mapCity: "Oslo",
       intro: "挪威首都，現代建築、孟克和北歐精品咖啡。兩人會合的第一站，2/28 下午加 3/1 一整天。",
       tips: [
-        "2/28 是週日：大型超市不開，只有小型的 Joker、Bunnpris 和便利商店有開，營業時間也較短。晚餐和隔天早餐要先想好。",
-        "3/1 是週一：國家博物館休館，孟克美術館週一照常開。May 2/28 中午就到，想看國家博物館可以當天下午去（週日開到 17:00）。",
-        "Grünerløkka 是奧斯陸精品咖啡的大本營，Tim Wendelboe 和 Supreme Roastworks 走路幾分鐘就到。",
-        "營業時間是 2025～2026 年的資料，出發前一個月再確認。"
+        { i: "shop", t: "2/28 週日大型超市不開", d: "只有 Joker、Bunnpris 和便利商店，營業時間較短。晚餐和隔天早餐先想好。" },
+        { i: "museum", t: "3/1 週一國家博物館休館", d: "孟克美術館照常開。May 2/28 中午就到，可以當天下午去國家博物館（週日開到 17:00）。" },
+        { i: "cup", t: "精品咖啡去 Grünerløkka", d: "Tim Wendelboe 和 Supreme Roastworks 走路幾分鐘就到。" }
       ],
       areas: [
         { id: "bjorvika", name: "歌劇院一帶：Bjørvika", line: "中央車站南邊的港區，歌劇院和孟克美術館比鄰。" },
@@ -447,13 +475,12 @@ window.TRIP = {
       ]
     },
     tos: {
-      name: "特羅姆瑟", region: "tos", mapCity: "Tromsø",
+      name: "特羅姆瑟", region: "tos", ref: "tos", mapCity: "Tromsø",
       intro: "北極圈裡生活機能最好的城市。市中心在島上，走路就能逛完；北極大教堂和纜車在跨海大橋另一頭。",
       tips: [
-        "白天短，戶外景點和纜車排在中午前後；晚上留給極光團。",
-        "Risø 週日公休，其他小店營業時間也常變動。",
-        "市中心光害大，極光大爆發時在橋上或纜車山頂也看得到，但效果不如跟團到郊外。",
-        "營業時間是 2025～2026 年的資料，出發前一個月再確認。"
+        { i: "sun", t: "白天短，戶外行程排中午前後", d: "晚上留給極光團。" },
+        { i: "cup", t: "Risø 週日公休", d: "其他小店營業時間也常變動。" },
+        { i: "aurora", t: "市區光害大", d: "極光大爆發時在橋上或纜車山頂也看得到，但效果不如跟團到郊外。" }
       ],
       areas: [
         { id: "centre", name: "市中心（島上）", line: "港邊、Storgata 和大教堂一帶，咖啡店、博物館都在走路範圍。" },
@@ -484,12 +511,12 @@ window.TRIP = {
     },
     lof: {
       name: "羅弗敦", region: "lof", mapCity: "Lofoten",
-      intro: "一條 E10 公路串起整排島。住 5 晚，住宿待訂，西側、東側各住幾晚待定。3/10 回 EVE 機場還車。",
+      intro: "一條 E10 公路串起整排島。住 5 晚：3/5 中段 Gimsøy，3/6～3/8 西側薩克里索伊，3/8～3/10 待訂。3/10 回 EVE 機場還車。",
       tips: [
-        "3/7 是週日：大型超市不開，偏遠地區週日營業的店更少。3/6 週六要先把 3/7 的食物買好。",
-        "冬天很多店和餐廳營業不穩定，有旅人說不一定照公告時間開門。想去的店前一天先查。",
-        "有車就能看天氣移動：雲量預報哪邊晴就往哪邊開。",
-        "北側海灘（烏塔克萊夫、Eggum、Gimsøy）面向北方、光害少，是看極光的好地點。"
+        { i: "shop", t: "3/7 週日大型超市不開", d: "偏遠地區週日營業的店更少。3/6 週六先把 3/7 的食物買好。" },
+        { i: "clock", t: "冬天店家常不照公告開門", d: "有旅人說不一定照公告時間營業，想去的店前一天先查。" },
+        { i: "car", t: "看雲量開車追晴天", d: "雲量預報哪邊晴就往哪邊開。" },
+        { i: "aurora", t: "北側海灘看極光", d: "烏塔克萊夫（Uttakleiv）、Eggum、Gimsøy 面向北方、光害少。" }
       ],
       areas: [
         { id: "west", name: "西側：雷訥一帶", line: "雷訥、哈姆諾伊、薩克里索伊、Å，羅弗敦最經典的畫面。" },
@@ -524,8 +551,7 @@ window.TRIP = {
       name: "卑爾根", region: "bgo", mapCity: "Bergen", places: ["nutshell"],
       intro: "峽灣入口的港口城市，彩色木屋街是世界遺產。3/10 晚上到，3/11 走挪威縮影，3/12 起飛前的上午可以再逛港邊。",
       tips: [
-        "挪威最常下雨的城市之一，雨具要帶。",
-        "營業時間是 2025～2026 年的資料，出發前一個月再確認。"
+        { i: "rain", t: "雨具要帶", d: "挪威最常下雨的城市之一。" }
       ],
       areas: [
         { id: "bryggen", name: "布呂根與港邊", line: "彩色木屋、魚市場和纜車站都在港邊走路範圍。" }
@@ -547,10 +573,9 @@ window.TRIP = {
       name: "格但斯克", region: "gdn", mapCity: "Gdańsk",
       intro: "波羅的海邊的漢薩港口古城，冬天安靜又有氣氛。3/12 下午到，3/13 一整天可以去馬爾堡或索波特。",
       tips: [
-        "長街一帶的牛奶吧和餃子店便宜又好吃，在地人和學生也常去，午餐和傍晚時段要排隊。",
-        "聖母聖殿的鐘樓有旅人說淡季不開放登頂，出發前查。",
-        "3/12 週五、3/13 週六，博物館和城堡都有開。",
-        "營業時間是 2025～2026 年的資料，出發前一個月再確認。"
+        { i: "food", t: "長街一帶的牛奶吧和餃子店", d: "便宜好吃，在地人和學生常去，午餐和傍晚要排隊。" },
+        { i: "museum", t: "聖母聖殿鐘樓淡季可能不開", d: "有旅人說淡季不開放登頂，出發前查。" },
+        { i: "museum", t: "3/12、3/13 博物館和城堡都有開", d: "3/12 週五、3/13 週六。" }
       ],
       areas: [
         { id: "main", name: "主城區：長街與長市場", line: "從金門到綠門的皇家之路，彩色山牆房屋和海神噴泉。" },
@@ -605,10 +630,16 @@ window.TRIP = {
 
   /* 極光分頁 */
   aurora: {
+    newMoon: "2027-03-08",
+    stats: [
+      { n: "17", u: "%", t: "特羅姆瑟：一個晚上天空夠乾淨的機率" },
+      { n: "33", u: "%", t: "羅弗敦：開車往晴的一側追，一個晚上天空夠乾淨的機率" },
+      { n: "79", u: "%", t: "8 晚（特羅姆瑟 3 晚、羅弗敦 5 晚）至少 1 晚天空夠乾淨" }
+    ],
     facts: [
       "新月約在 3/8，剛好在羅弗敦。月亮越暗，淡的極光越看得清楚。",
-      "十一年雲量資料：特羅姆瑟 3 月每晚可用的夜約 28%；住 3 晚至少遇到一個可用夜約 51%。",
-      "整趟在極光區共 8 晚：特羅姆瑟 3 晚、羅弗敦 5 晚。換地點比在同一地多住更有效。",
+      "「天空夠乾淨」是指天黑後連續 2 小時雲量在 30% 以下。數字來自 2015～2025 年 3 月的雲量資料，只代表天氣晴不晴，不代表當晚有沒有極光。",
+      "羅弗敦有車，可以往晴的一側開，機率比只待在一個地方高。8 晚平均約有 2 晚天空夠乾淨。",
       "肉眼看到的極光多半是灰綠色的淡光帶，照片會比肉眼亮很多。"
     ],
     tour: [
@@ -621,13 +652,13 @@ window.TRIP = {
       "北側海灘地平線開闊、光害少：烏塔克萊夫、Eggum、Gimsøy。",
       "村子裡的路燈會讓照片過曝，找村子邊緣暗一點的地方。"
     ],
-    coming: ["極光和雲量預報 App", "拍照設定", "保暖穿著"]
+    coming: []
   },
 
   /* 行前清單：勾選狀態只存在自己的手機 */
   checklist: [
     { id: "meet", text: "決定 2/28 在奧斯陸機場怎麼會合", sub: "May 12:10 先到，Yulun 16:20 到；在機場等，或 May 先進市區 check-in" },
-    { id: "lofoten", text: "決定羅弗敦西側、東側各住幾晚", sub: "共 5 晚，3/5～3/9" },
+    { id: "lof-stay3", text: "訂羅弗敦 3/8～3/10 兩晚", sub: "3/5～3/8 已訂；找有廚房的住處" },
     { id: "car", text: "訂 EVE 機場租車", sub: "3/5 12:15 落地後取、3/10 中午前還，四驅、自排、雪胎；留意是不是電動車" },
     { id: "nutshell", text: "訂挪威縮影", sub: "3/11 卑爾根來回；買之前先看取消規定" },
     { id: "wf863-seat", text: "選 3/5 Widerøe WF863 座位", sub: "Widerøe 的 My trips，Smart 可免費選一般座位" },
@@ -635,7 +666,9 @@ window.TRIP = {
     { id: "wizz-bp", due: "2027-02-10", dueApprox: true, text: "確認 Wizz 登機證有沒有出來", sub: "WIZZ PLUS 有自動報到，兩個訂位代號都要看" },
     { id: "wizz-check", text: "確認 Wizz 訂單是 WIZZ PLUS", sub: "兩人各一個 Wizz 訂位代號（見 Trip.com 行程單），兩個都要登入 Wizz app 查" },
     { id: "bgo-stay", text: "訂卑爾根住宿", sub: "候選 Ole Bull：先確認房型有沒有廚房，官網 Flexible 3/10 16:00 前免費取消" },
-    { id: "stays", text: "訂其他住宿", sub: "奧斯陸、特羅姆瑟、羅弗敦兩段、格但斯克、華沙" },
+    { id: "stays", text: "訂其他住宿", sub: "格但斯克、華沙後段" },
+    { id: "lof-arrival", text: "告知 Lofoten Links Lodges 預計抵達時間", sub: "確認單要求事先告知；3/5 12:15 落地，取車後開過去" },
+    { id: "sakrisoy-checkin", text: "向 Sakrisøy Rorbuer 確認冬季入住時間、怎麼拿鑰匙" },
     { id: "metropol", due: "2027-02-21", text: "取消 Hotel Metropol", sub: "2/21 前免費取消" },
     { id: "pkp", due: "2027-02-12", dueApprox: true, text: "買格但斯克 → 華沙火車票", sub: "出發前約 30 天開賣" },
     { id: "entry", due: "2027-01-25", text: "查入境規定最新公告", sub: "歐盟 EES、ETIAS 上路時程" },
