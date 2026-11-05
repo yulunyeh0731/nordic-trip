@@ -19,6 +19,8 @@
      room 房型、phone 電話、getThere 怎麼去、access 入住方式（自助入住、鑰匙盒等），不知道就不寫
    cities.tips：{ i 圖示（shop、museum、food、cup、sun、aurora、clock、car、rain）, t 一句重點, d 補充說明 }
    activities：沒有固定行程卡的活動（極光團、哈士奇等），date 是排序用的日期，dateText 是顯示的日期
+   stays.short：住處簡稱（名稱太長時用，例如城市頁的距離說明）
+   cities.ref：城市頁算景點距離用的住處 id，同一城市住兩段時寫成陣列（例如 ["waw1", "waw2"]）
    stays.via：訂房平台（例如 Booking.com、Airbnb、官網），資料頁住宿卡會顯示
    route.stay：對到 stays 的 id，總覽路線方塊的日期和晚數從這裡算
    checklist.due：期限或建議完成日（YYYY-MM-DD），dueApprox: true 表示是大約的日期
@@ -55,7 +57,7 @@ window.TRIP = {
   ],
 
   stays: [
-    { id: "waw1", who: "Y", area: "華沙", name: "Mercure Warszawa Centrum", from: "2027-02-26", nights: 2,
+    { id: "waw1", who: "Y", area: "華沙", name: "Mercure Warszawa Centrum", short: "Mercure", from: "2027-02-26", nights: 2,
       address: "Złota 48/54, 00-120 Warszawa", lat: 52.23095, lng: 21.00123, status: "booked", via: "Agoda",
       room: "Classic Standard Double，22 平方公尺，1 張大床", breakfast: false, phone: "+48 22 697 3999",
       checkin: "15:00", checkout: "12:00",
@@ -381,7 +383,7 @@ window.TRIP = {
      lat、lng：大約座標，用來算離住處的直線距離 */
   cities: {
     waw: {
-      name: "華沙", region: "waw", ref: "waw1", mapCity: "Warszawa",
+      name: "華沙", region: "waw", ref: ["waw1", "waw2"], mapCity: "Warszawa",
       intro: "二戰後依原貌重建的首都，老城列入世界遺產。不是驚艷型的城市，適合慢慢走、看美術館、坐咖啡館。",
       tips: [
         { i: "shop", t: "週日超市大多不開", d: "Żabka 便利商店、藥局、麵包店、加油站例外，Żabka 多數開到 23:00。餐廳照常營業。" },
@@ -397,14 +399,14 @@ window.TRIP = {
       ],
       pois: [
         { id: "stor", pri: "must", why: "手沖", when: ["day"], area: "powisle", type: "cafe", name: "STOR Cafe", local: "ul. Tamka 33", q: "STOR Cafe Tamka 33 Warszawa",
-          line: "華沙最早的精品咖啡店之一，招牌是手沖，和住處同一條街。",
+          line: "華沙最早的精品咖啡店之一，招牌是手沖。",
           tip: "華沙在地雜誌說，很多人覺得這是全波蘭最好的咖啡館。", lat: 52.2368, lng: 21.0228 },
         { id: "natmuseum", pri: "must", when: ["day"], area: "powisle", type: "sight", name: "國家博物館", local: "Muzeum Narodowe w Warszawie",
           line: "波蘭最大的美術館，有歐洲古典繪畫和波蘭歷史畫。", time: "2～3 小時",
           hours: "週二～週日 10:00–18:00，週五到 20:00", closed: [1], free: "週二常設展免費",
           tip: "馬泰伊科的巨幅歷史畫《格倫瓦德之戰》在這裡。", lat: 52.2316, lng: 21.0249 },
         { id: "chopin", pri: "maybe", area: "powisle", type: "sight", name: "蕭邦博物館", local: "Muzeum Fryderyka Chopina",
-          line: "全世界最多蕭邦手稿和遺物的博物館，就在住處對面。", closed: [1], warn: "整修中",
+          line: "全世界最多蕭邦手稿和遺物的博物館。", closed: [1], warn: "整修中",
           hours: "2026 年整修休館，預計 2027 年重開，日期未定",
           tip: "重開後採整點入場。出發前要確認 2 月底、3 月中有沒有開。", lat: 52.2366, lng: 21.0216 },
         { id: "wedel", why: "熱巧克力", when: ["day", "eve"], area: "powisle", type: "cafe", name: "Wedel 巧克力咖啡館", local: "Pijalnia Czekolady E. Wedel, Szpitalna 8",
