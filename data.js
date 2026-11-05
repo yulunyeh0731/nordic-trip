@@ -92,14 +92,24 @@ window.TRIP = {
       phone: "+47 93 45 81 79", checkin: "15:00", checkout: "12:00",
       note: "入住 15:00～22:00；有洗衣機、烘衣機",
       cost: { cat: "住宿", cur: "NOK", amt: 2575.8, pay: "paid", payDate: "2026-11-04", note: "含 12% 加值稅", rule: { type: "none", note: "不可退款、不可改日期" } } },
-    { id: "bgo", area: "卑爾根", name: "", from: "2027-03-10", nights: 2, status: "pending" },
+    { id: "bgo", area: "卑爾根", name: "Ole Bull Hotel & Apartments", from: "2027-03-10", nights: 2, status: "booked", via: "Agoda",
+      address: "Øvre Ole Bulls plass 3, 5012 Bergen", lat: 60.392, lng: 5.322,
+      room: "Standard Twin Room，已要求 2 張單人床", kitchen: "有廚房（住客評價）", breakfast: false,
+      phone: "+47 55 23 16 13", checkin: "15:00", checkout: "11:00",
+      note: "走到輕軌 Byparken 站約 3 分鐘；可寄放行李",
+      cost: { cat: "住宿", cur: "TWD", amt: 6198.94, twd: 6198.94, pay: "paid", payDate: "2026-11-05", note: "含稅，Agoda 促銷 12%", rule: { type: "none", note: "不可退款、不可更改" } } },
     { id: "gdn", area: "格但斯克", name: "Craft Beer Central Hotel", from: "2027-03-12", nights: 2, status: "booked", via: "Klook",
       address: "Podwale Grodzkie 4, 80-895 Gdańsk", lat: 54.354, lng: 18.645,
       room: "雙人或雙床房（Pils），已要求 2 張單人床", breakfast: false,
       phone: "+48 58 351 09 10", checkin: "15:00", checkout: "11:00",
       note: "24 小時櫃台，可寄放行李；走到中央車站約 4 分鐘。城市稅到店付（每人每晚約 PLN 3.3～3.5）",
       cost: { cat: "住宿", cur: "TWD", amt: 4734, twd: 4734, pay: "paid", payDate: "2026-11-05", note: "合計 4,983 扣掉 Klook 付款優惠 249", rule: { type: "none", note: "不可更改或取消" } } },
-    { id: "waw2", area: "華沙", name: "", from: "2027-03-14", nights: 2, status: "pending" }
+    { id: "waw2", area: "華沙", name: "Chopin Boutique", from: "2027-03-14", nights: 2, status: "booked", via: "Agoda",
+      address: "Smolna 14, 00-375 Warszawa", lat: 52.233, lng: 21.024,
+      room: "高級雙人房，已要求 2 張單人床", breakfast: true,
+      checkin: "15:00", checkout: "11:00",
+      note: "1910 年老建築，走到國家博物館約 2 分鐘。館內 Chopin Salon 每晚 19:00 蕭邦音樂會（房客 PLN 70，常客滿，建議提早訂）。Email info@bbwarsaw.com",
+      cost: { cat: "住宿", cur: "TWD", amt: 7708.76, twd: 7708.76, pay: "paid", payDate: "2026-11-05", note: "含稅，Agoda 促銷 12%", rule: { type: "none", note: "不可退款、不可更改" } } }
   ],
 
   activities: [
@@ -558,7 +568,7 @@ window.TRIP = {
       ]
     },
     bgo: {
-      name: "卑爾根", region: "bgo", mapCity: "Bergen", places: ["nutshell"],
+      name: "卑爾根", region: "bgo", ref: "bgo", mapCity: "Bergen", places: ["nutshell"],
       intro: "峽灣入口的港口城市，彩色木屋街是世界遺產。3/10 晚上到，3/11 走挪威縮影，3/12 起飛前的上午可以再逛港邊。",
       tips: [
         { i: "rain", t: "雨具要帶", d: "挪威最常下雨的城市之一。" }
@@ -675,7 +685,6 @@ window.TRIP = {
     { id: "wizz-bp", due: "2027-02-10", dueApprox: true, text: "確認 Wizz 登機證有沒有出來", sub: "WIZZ PLUS 有自動報到，兩個訂位代號都要看" },
     { id: "wizz-check", text: "確認 Wizz 訂單是 WIZZ PLUS", sub: "兩人各一個 Wizz 訂位代號（見 Trip.com 行程單），兩個都要登入 Wizz app 查" },
     { id: "bgo-stay", text: "訂卑爾根住宿", sub: "候選 Ole Bull：先確認房型有沒有廚房，官網 Flexible 3/10 16:00 前免費取消" },
-    { id: "stays", text: "訂其他住宿", sub: "華沙後段" },
     { id: "lof-arrival", text: "告知 Lofoten Links Lodges 預計抵達時間", sub: "確認單要求事先告知；3/5 12:15 落地，取車後開過去" },
     { id: "laukvik-arrival", text: "告知 Laukvik Suites 預計抵達時間", sub: "確認單要求事先告知；3/8 從 Sakrisøy 開過去" },
     { id: "bobw-call", due: "2027-02-14", text: "打電話給 Bob W 安排入住", sub: "抵達前 14 天；同時完成線上登記（要上傳護照照片），問 May 2/28 約 14:00 能不能寄放行李" },
