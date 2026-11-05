@@ -478,7 +478,7 @@ details.fgrp>summary .kic{margin-right:-2px}
 /* 住宿：覆蓋條 */
 .cov{padding:12px 14px 10px}
 .cov-g{display:grid;gap:2px;grid-auto-rows:auto}
-.cov-n{font-size:12px;line-height:1.3;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:clip;padding-bottom:3px;border-bottom:2px solid var(--c)}
+.cov-n{font-size:12px;line-height:16px;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:clip;padding-bottom:3px;border-bottom:2px solid var(--c)}
 .cv{height:24px;border-radius:2px;background:var(--c);color:#fff;font-size:10.5px;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1}
 .cv.p{background:none;box-shadow:inset 0 0 0 1.5px var(--c);color:var(--c)}
 .cov-d{font-size:11px;color:var(--ink3);line-height:1.3;white-space:nowrap;font-variant-numeric:tabular-nums}
@@ -892,7 +892,7 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
     T.stays.forEach(function(s){ for(var i=0;i<s.nights;i++) nights.push({s:s,date:add(s.from,i)}); });
     var n=nights.length, cols='style="grid-template-columns:repeat('+n+',minmax(0,1fr))"';
     var heads=T.stays.map(function(s){ var c=col(regionOn(s.from));
-      return '<span class="cov-n" style="grid-column:span '+s.nights+';--c:'+c+'" title="'+s.area+'">'+(s.nights<3?s.area.slice(0,2):s.area)+'</span>'; }).join("");
+      return '<span class="cov-n" style="grid-column:span '+s.nights+';--c:'+c+'" title="'+s.area+'" data-full="'+s.area+'" data-code="'+regionOn(s.from).toUpperCase()+'">'+s.area+'</span>'; }).join("");
     var cells=nights.map(function(x){ var c=col(regionOn(x.date)), bk=x.s.status==="booked";
       return '<span class="cv'+(bk?"":" p")+'" style="--c:'+c+'" title="'+md(x.date)+' '+x.s.area+'">'+(x.s.who?T.people[x.s.who].slice(0,1):"")+'</span>'; }).join("");
     var ticks=T.stays.map(function(s){ return '<span class="cov-d" style="grid-column:span '+s.nights+'">'+md(s.from)+'</span>'; }).join("");
@@ -1255,6 +1255,7 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
     }
     if (drv) drv.hidden=true;
     view.innerHTML=html;
+    fitCov();
     if (document.getElementById("filter")) applyFilter();
     document.querySelectorAll(".nav a").forEach(function(a){ if(a.getAttribute("data-tab")===tab) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
     var dayLink=document.querySelector('.nav a[data-tab="day"]'); dayLink.setAttribute("href","#/day/"+lastDay);
@@ -1265,6 +1266,18 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
     if (on){ var box=document.getElementById("chips"); box.scrollLeft = on.offsetLeft - box.clientWidth/2 + on.clientWidth/2; }
   }
   window.addEventListener("hashchange", route);
+  /* 住宿格城市名：先放完整中文，放不下的格子改成英文代號 */
+  function fitCov(){
+    var els=document.querySelectorAll(".cov-n"); if(!els.length) return;
+    els.forEach(function(e){ e.textContent=e.getAttribute("data-full"); e.style.fontSize=""; });
+    var cut=[]; els.forEach(function(e){ if(e.scrollWidth>e.clientWidth) cut.push(e); });
+    cut.forEach(function(e){ e.textContent=e.getAttribute("data-code"); });
+    /* 英文代號還是放不下（例如只住 1 晚的格子），把字縮小到放得下，最小 8 px */
+    var tight=cut.filter(function(e){ return e.scrollWidth>e.clientWidth; }).map(function(e){ return [e,e.clientWidth/e.scrollWidth,parseFloat(getComputedStyle(e).fontSize)]; });
+    tight.forEach(function(x){ x[0].style.fontSize=Math.max(8,Math.floor(x[2]*x[1]*10)/10)+"px"; });
+  }
+  var fitT; window.addEventListener("resize", function(){ clearTimeout(fitT); fitT=setTimeout(fitCov,120); });
+  if (document.fonts&&document.fonts.ready) document.fonts.ready.then(fitCov);
 
   /* 複製 */
   var toast=document.createElement("div"); toast.className="toast"; toast.setAttribute("role","status"); document.body.appendChild(toast);
