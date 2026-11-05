@@ -169,7 +169,7 @@ window.TRIP = {
           bag: { chkN: 1, chkKg: 23, cabDim: [55, 40, 23], smlDim: [30, 20, 40], sumKg: 10 }, status: "booked",
           fare: "LowFare+", cost: { cat: "交通", cur: "USD", amt: 129.48, who: "Y", pay: "paid", payDate: "2026-10-18", twd: 4204, note: "含刷卡手續費 USD 2.58", rule: { type: "paid", note: "不可退款，可付費更改" } } }
       ],
-      notes: ["兩人都降落奧斯陸機場（Gardermoen），May 早到約 4 小時。在機場等，或先進市區 check-in，待決定"],
+      notes: ["兩人都降落奧斯陸機場（Gardermoen），May 早到約 4 小時。May 會比 Yulun 早到，先自己進市區。"],
       free: [{ who: "M", when: "下午", text: "May 先到：國家博物館週日開到 17:00，想看的話今天是機會", areas: ["sentrum", "bjorvika"] }, { when: "晚上", text: "會合後回住處，週日只有小超市開", areas: ["bjorvika"] }] },
 
     { date: "2027-03-01", title: "奧斯陸市區、咖啡", region: "osl", city: "osl",
@@ -220,7 +220,7 @@ window.TRIP = {
       free: [{ when: "全天", text: "11:00 前退房，今晚住東北岸的 Laukvik Suites（15:00～22:00 入住）。看天氣決定往西側或東側；晚上新月，挑晴的方向去北側海灘", areas: ["west", "mid", "east"] }] },
 
     { date: "2027-03-09", title: "羅弗敦最後一天", region: "lof", city: "lof",
-      free: [{ when: "全天", text: "看天氣決定往哪邊走。隔天中午前要開回 EVE 機場還車，機場在群島東邊，開車時間依住處而定（待查）", areas: ["west", "mid", "east"] }] },
+      free: [{ when: "全天", text: "看天氣決定往哪邊走。隔天中午前要開回 EVE 機場還車。Laukvik 到 EVE 機場約 167 公里，正常路況 2.5～3 小時；3/10 計畫 08:00 出發。", areas: ["west", "mid", "east"] }] },
 
     { date: "2027-03-10", region: "bgo", title: "還車，飛卑爾根", city: "bgo",
       alerts: ["中午前到 EVE 機場還車", "13:55 起飛"],
@@ -682,7 +682,6 @@ window.TRIP = {
 
   /* 行前清單：勾選狀態只存在自己的手機 */
   checklist: [
-    { id: "meet", text: "決定 2/28 在奧斯陸機場怎麼會合", sub: "May 12:10 先到，Yulun 16:20 到；在機場等，或 May 先進市區 check-in" },
     { id: "car", text: "訂 EVE 機場租車", sub: "3/5 12:15 落地後取、3/10 中午前還，四驅、自排、雪胎；留意是不是電動車" },
     { id: "nutshell", text: "訂挪威縮影", sub: "3/11 卑爾根來回；買之前先看取消規定" },
     { id: "wf863-seat", text: "選 3/5 Widerøe WF863 座位", sub: "Widerøe 的 My trips，Smart 可免費選一般座位" },
@@ -693,11 +692,19 @@ window.TRIP = {
     { id: "laukvik-arrival", text: "告知 Laukvik Suites 預計抵達時間", sub: "確認單要求事先告知；3/8 從 Sakrisøy 開過去" },
     { id: "bobw-call", due: "2027-02-14", text: "打電話給 Bob W 安排入住", sub: "抵達前 14 天；同時完成線上登記（要上傳護照照片），問 May 2/28 約 14:00 能不能寄放行李" },
     { id: "sakrisoy-checkin", text: "向 Sakrisøy Rorbuer 確認冬季入住時間、怎麼拿鑰匙" },
-    { id: "metropol", due: "2027-02-21", text: "取消 Hotel Metropol", sub: "2/21 前免費取消" },
     { id: "pkp", due: "2027-02-12", dueApprox: true, text: "買格但斯克 → 華沙火車票", sub: "出發前約 30 天開賣" },
     { id: "entry", due: "2027-01-25", text: "查入境規定最新公告", sub: "歐盟 EES、ETIAS 上路時程" },
     { id: "hours", due: "2027-01-25", text: "確認景點營業時間", sub: "出發前一個月，包括蕭邦博物館有沒有重開" },
-    { id: "offline", due: "2027-02-11", text: "手冊加到主畫面、測試離線", sub: "出發前兩週" }
+    { id: "offline", due: "2027-02-11", text: "手冊加到主畫面、測試離線", sub: "出發前兩週" },
+    { id: "sjoparken-bath", due: "2027-02-25", text: "跟 May 確認能不能接受 Sjøparken 和房東共用浴室", sub: "不行的話 2/25 15:00（當地時間）前取消" },
+    { id: "chopin-reply", text: "等 Chopin Boutique 回信，確認飯店收到訂單" },
+    { id: "mercure-charge", text: "確認 Mercure 只扣款一次", sub: "帳單出現兩筆的話，拿取消信找 Agoda" },
+    { id: "ruter-strike", due: "2027-02-18", text: "用 Ruter app 查 2/28 地鐵停駛範圍" },
+    { id: "drive-offline", due: "2027-02-11", text: "雲端硬碟裡的電子機票、住宿確認單設成「離線可用」" },
+    { id: "gmaps-offline", due: "2027-02-18", text: "下載 Google 地圖離線地圖（羅弗敦、特羅姆瑟）" },
+    { id: "aurora-app", due: "2027-02-18", text: "裝好極光 App 並開通知", sub: "見極光頁「今晚判斷」" },
+    { id: "mofa-reg", due: "2027-02-18", text: "外交部出國登錄", sub: "外交部領事事務局網站" },
+    { id: "sos-phones", text: "查好保險公司、發卡銀行的海外緊急電話", sub: "之後加進資料頁「緊急」" }
   ],
   info: {
     coming: ["緊急電話與駐外館處", "App 清單（交通、叫車、極光預報）", "貨幣與付款", "挪威冬季自駕", "入境規定（出發前一個月查最新公告）", "穿著與裝備"]

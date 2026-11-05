@@ -212,7 +212,16 @@ details.fi>summary{display:grid;grid-template-columns:auto minmax(0,1fr) auto au
 .addr b{display:block;font-weight:600;font-size:15px;word-break:break-word;line-height:1.4}
 .addr span{display:block;font-size:13px;color:var(--ink2);line-height:1.45}
 .acts{display:flex;gap:6px}
-.acts button,.acts a{min-width:44px;min-height:34px;display:inline-flex;align-items:center;justify-content:center;padding:0 9px;border:1px solid var(--line);background:var(--paper);border-radius:3px;font-size:13px;text-decoration:none;color:var(--ink);cursor:pointer;white-space:nowrap}
+.acts button,.acts a{min-width:52px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;padding:0 10px;border:1px solid var(--line);background:var(--paper);border-radius:3px;font-size:14px;text-decoration:none;color:var(--ink);cursor:pointer;white-space:nowrap}
+/* 外部連結：小的網路圖示＋「需要網路」 */
+a.ext{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;line-height:1.15;text-decoration:none}
+a.ext .net{display:inline-flex;align-items:center;gap:2px;font-size:10px;font-weight:400;color:var(--ink3);white-space:nowrap;letter-spacing:0}
+.neti{width:11px;height:11px;flex:none}
+.callb{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:48px;min-width:52px;padding:0 12px;border:1px solid var(--line);background:var(--paper);border-radius:3px;font-size:14px;text-decoration:none;color:var(--ink);white-space:nowrap}
+.callb svg{width:17px;height:17px;color:var(--aurora)}
+.rws .callb{margin:4px 0 0}
+/* 有新版本 */
+.upd{position:fixed;left:0;right:0;bottom:calc(var(--navh) + env(safe-area-inset-bottom,0px));z-index:45;width:100%;min-height:48px;border:0;border-top:1px solid var(--line);background:var(--fjord);color:#fff;font-size:15px;font-weight:600;cursor:pointer}
 .toast{position:fixed;left:50%;bottom:calc(var(--navh) + env(safe-area-inset-bottom,0px) + 14px);transform:translateX(-50%);background:var(--ink);color:var(--paper);font-size:14px;padding:8px 14px;border-radius:3px;z-index:70;opacity:0;transition:opacity .2s;pointer-events:none}
 .toast.on{opacity:1}
 .strip{display:block;width:100%;height:30px}
@@ -292,7 +301,7 @@ details.fold>.in{border-top:1px solid var(--line2);padding:4px 14px 12px}
 .drv .big{font-size:clamp(34px,10vw,52px);font-weight:700;line-height:1.15;margin:14px 0 0;word-break:break-word}
 .drv .addr{font-size:clamp(22px,6.5vw,30px);line-height:1.3;margin:12px 0 0}
 .drv .ask{font-size:20px;margin:auto 0 0;padding-top:20px;border-top:1px solid var(--line)}
-.drv button{margin-top:16px;min-height:50px;border:1px solid var(--line);background:var(--page);border-radius:4px;font-size:16px;cursor:pointer}
+.drv button{margin-top:16px;min-height:52px;border:1px solid var(--line);background:var(--page);border-radius:4px;font-size:16px;cursor:pointer}
 
 /* 每日 */
 .daybar{position:sticky;top:0;z-index:30;background:var(--page);border-bottom:1px solid var(--line);padding:8px 0}
@@ -540,7 +549,7 @@ details.poi>summary p{margin:4px 0 0;font-size:14.5px;line-height:1.55;color:var
 details.poi .ph b{font-size:16px;font-weight:600}
 .pb{padding:0 0 12px}
 .pb .loc{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0;font-size:13px;color:var(--ink2)}
-.pb .loc a{flex:none;min-height:34px;display:inline-flex;align-items:center;padding:0 10px;border:1px solid var(--line);border-radius:3px;text-decoration:none;color:var(--ink);font-size:13px}
+.pb .loc a{flex:none;min-height:48px;display:inline-flex;align-items:center;padding:0 12px;border:1px solid var(--line);border-radius:3px;text-decoration:none;color:var(--ink);font-size:13px}
 .wk{display:flex;align-items:center;gap:3px;margin:8px 0 2px}
 .wk i{font-style:normal;width:26px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12.5px;border-radius:2px;background:color-mix(in srgb,var(--aurora) 12%,var(--paper));color:var(--ink)}
 .wk i.x{background:var(--line2);color:var(--ink3);text-decoration:line-through}
@@ -644,7 +653,9 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
   function dow(iso){ return parse(iso).getDay(); }
   function diff(a,b){ var x=parse(a),y=parse(b); return Math.round((Date.UTC(y.getFullYear(),y.getMonth(),y.getDate())-Date.UTC(x.getFullYear(),x.getMonth(),x.getDate()))/864e5); }
   function add(iso,n){ var d=parse(iso); d.setDate(d.getDate()+n); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
-  function todayISO(){ var d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+  /* 換日時間凌晨 3:00：手機當地時間減 3 小時的日期才算「今天」 */
+  function nowD(){ return new Date(Date.now()-3*3600e3); }
+  function todayISO(){ var d=nowD(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
   function key(iso){ return iso.slice(5).replace("-",""); }
   function byKey(k){ return T.days.filter(function(d){return key(d.date)===k;})[0]; }
   function col(r){ var x=T.regions[r]; return COLOR[(x&&x.color)||"ink"]; }
@@ -652,6 +663,13 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
   function st(s,t){ return s?'<span class="st st-'+s+'">'+(t||({booked:"已訂",pending:"待訂",self:"May 自訂"})[s])+'</span>':""; }
   function km(a,b){ var r=Math.PI/180,dl=(b.lat-a.lat)*r,dn=(b.lng-a.lng)*r,h=Math.sin(dl/2)*Math.sin(dl/2)+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dn/2)*Math.sin(dn/2); return 2*6371*Math.asin(Math.sqrt(h)); }
   function mapURL(q){ return "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q); }
+  /* 導航：有座標就用座標，沒有才用名稱＋地址 */
+  function navURL(o, q){ return o&&o.lat!=null&&o.lng!=null ? "https://www.google.com/maps/dir/?api=1&destination="+o.lat+","+o.lng : "https://www.google.com/maps/dir/?api=1&destination="+encodeURIComponent(q||""); }
+  var NET='<svg class="neti" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2.5 9a14 14 0 0 1 19 0M5.8 12.5a9 9 0 0 1 12.4 0M9.2 16a4 4 0 0 1 5.6 0"/><circle cx="12" cy="19.3" r="1.2" fill="currentColor" stroke="none"/></g></svg>';
+  /* 外部連結：開新分頁，並標「需要網路」 */
+  function ext(href, label, cls){ return '<a class="ext'+(cls?" "+cls:"")+'" href="'+href+'" target="_blank" rel="noopener"><span class="xl">'+label+'</span><span class="net">'+NET+'需要網路</span></a>'; }
+  function telHref(p){ return "tel:"+p.replace(/[^\d+]/g,""); }
+  function telBtn(p, label){ return '<a class="callb" href="'+telHref(p)+'">'+svg("phone")+'<span>'+(label||"撥號")+'</span></a>'; }
   function li(a){ return a.map(function(t){return "<li>"+t+"</li>";}).join(""); }
   var today=todayISO(), inTrip=today>=T.start&&today<=T.end;
   var lastDay = key(inTrip?today:T.start);
@@ -725,10 +743,10 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
     var copy=a.addr||a.name, q=a.name+(a.addr?" "+a.addr:"")+(a.city?" "+a.city:"");
     return '<div class="addr"><div><b>'+a.name+'</b><span>'+a.sub+(a.addr?"，"+a.addr:"")+'</span></div><div class="acts">'+
       '<button type="button" data-copy="'+copy.replace(/"/g,"&quot;")+'">複製</button>'+
-      '<a href="https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(q)+'" target="_blank" rel="noopener">導航</a>'+
+      ext(navURL(a,q),"導航")+
       '<button type="button" data-big="'+encodeURIComponent(JSON.stringify({n:a.name,s:a.sub,a:a.addr||""}))+'">大字</button></div></div>';
   }
-  function stayAddr(s){ return s.address?{name:s.name, addr:s.address, sub:s.area+"住處"}:null; }
+  function stayAddr(s){ return s.address?{name:s.name, addr:s.address, sub:s.area+"住處", lat:s.lat, lng:s.lng}:null; }
   function dayAddrs(d){
     var list=[], seen={};
     function push(k){ if(k&&!seen[k]&&T.addresses[k]){ seen[k]=1; list.push(T.addresses[k]); } }
@@ -918,7 +936,7 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
     var a=stayAddr(s), rows=[];
     function row(k,v){ if(v) rows.push('<div><span>'+k+'</span><div>'+v+'</div></div>'); }
     row("訂房平台", s.via);
-    row("電話", s.phone?'<a href="tel:'+s.phone.replace(/\s/g,"")+'">'+s.phone+'</a>':"");
+    row("電話", s.phone?telBtn(s.phone,s.phone):"");
     row("怎麼去", s.getThere);
     row("入住方式", s.access);
     if (s.cost){ var x=costItems().filter(function(i){return i.c===s.cost;})[0];
@@ -1117,9 +1135,9 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
       if (ctx.froms.length===1) meta.push("離 "+ctx.froms[0].name+" 直線約 "+km(ctx.froms[0],p).toFixed(1)+" 公里");
       else meta.push("離住處直線："+ctx.froms.map(function(f){ return f.name+" 約 "+km(f,p).toFixed(1)+" 公里"; }).join("、"));
     }
-    var url=mapURL(p.q||((p.local||p.name)+" "+(ctx.mapCity||"")));
+    var url=navURL(p, p.q||((p.local||p.name)+" "+(ctx.mapCity||"")));
     return '<details class="poi" id="poi-'+p.id+'" data-type="'+p.type+'"><summary><div class="ph">'+h+'</div><p>'+p.line+'</p></summary><div class="pb">'+
-      '<p class="loc"><span>'+(p.local||"")+'</span><a href="'+url+'" target="_blank" rel="noopener">地圖</a></p>'+wkHTML(p,ctx)+
+      '<p class="loc"><span>'+(p.local||"")+'</span>'+ext(url,"地圖")+'</p>'+wkHTML(p,ctx)+
       (info.length?'<p class="meta">'+info.join("；")+'</p>':"")+(meta.length?'<p class="meta">'+meta.join("，")+'</p>':"")+
       (p.tip?'<p class="tip">'+p.tip+'</p>':"")+'</div></details>';
   }
@@ -1147,10 +1165,12 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
     var stays=staysOn(d.date);
     if (stays.length) b+='<div class="blk"><span class="lab ghost">今晚住</span>'+stays.map(function(s){
       var n=diff(s.from,d.date)+1, sub=[];
-      if (s.name) sub.push(s.address?'<a class="pin" href="'+mapURL(s.name+" "+s.address)+'" target="_blank" rel="noopener">'+s.name+'</a>':s.name);
+      if (s.name) sub.push(s.name);
       if (s.address) sub.push(s.address);
       if (s.note&&n===1) sub.push(s.note);
-      return '<div class="stay" style="margin-top:8px">'+svg("bed")+'<div><p>'+who(s.who)+s.area+'，第 '+n+' 晚／共 '+s.nights+' 晚'+st(s.status)+'</p>'+sub.map(function(x){return '<p class="s">'+x+'</p>';}).join("")+'</div></div>';
+      var a=stayAddr(s);
+      return '<div class="stay" style="margin-top:8px">'+svg("bed")+'<div><p>'+who(s.who)+s.area+'，第 '+n+' 晚／共 '+s.nights+' 晚'+st(s.status)+'</p>'+sub.map(function(x){return '<p class="s">'+x+'</p>';}).join("")+'</div></div>'+
+        ((s.phone||a)?'<div class="acts big" style="margin:6px 0 0 32px">'+(s.phone?telBtn(s.phone):"")+(a?ext(navURL(a,a.name+" "+a.addr),"導航"):"")+'</div>':"");
     }).join("")+'</div>';
     if (d.free) d.free.forEach(function(f){
       b+='<div class="blk"><span class="lab">自由時段</span><div class="free tint"><p class="when">'+who(f.who)+f.when+'</p><p>'+f.text+'</p></div>'+
@@ -1266,13 +1286,25 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
     if (document.getElementById("filter")) applyFilter();
     document.querySelectorAll(".nav a").forEach(function(a){ if(a.getAttribute("data-tab")===tab) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
     var dayLink=document.querySelector('.nav a[data-tab="day"]'); dayLink.setAttribute("href","#/day/"+lastDay);
-    if (h!==cur) window.scrollTo(0,0);
-    cur=h;
+    if (restoreY!=null){ window.scrollTo(0,restoreY); restoreY=null; }
+    else if (h!==cur) window.scrollTo(0,0);
+    cur=h; saveView();
     if (p[0]==="city"&&p[2]){ var fp=document.getElementById("poi-"+p[2]); if (fp){ fp.open=true; fp.classList.add("focus"); fp.scrollIntoView({block:"center"}); } }
     var on=document.querySelector('#chips a[aria-current="true"]');
     if (on){ var box=document.getElementById("chips"); box.scrollLeft = on.offsetLeft - box.clientWidth/2 + on.clientWidth/2; }
   }
   window.addEventListener("hashchange", route);
+  /* 記住看到哪裡：分頁和捲動位置；超過 6 小時沒用就回預設頁 */
+  var SAVEK="lastView", restoreY=null;
+  function saveView(){ try{ localStorage.setItem(SAVEK, JSON.stringify({h:location.hash, y:Math.round(window.scrollY), t:Date.now()})); }catch(e){} }
+  (function(){ var sv=null; try{ sv=JSON.parse(localStorage.getItem(SAVEK)||"null"); }catch(e){}
+    if (!sv||!sv.t||Date.now()-sv.t>6*3600e3) return;
+    var hh=location.hash;
+    if (!hh||hh==="#"||hh==="#/"||hh===sv.h){ if (sv.h&&sv.h!==hh){ try{ history.replaceState(null,"",sv.h); }catch(x){} } restoreY=sv.y||0; }
+  })();
+  var svT; window.addEventListener("scroll", function(){ clearTimeout(svT); svT=setTimeout(saveView,300); }, {passive:true});
+  document.addEventListener("visibilitychange", function(){ if (document.visibilityState==="hidden") saveView(); });
+  window.addEventListener("pagehide", saveView);
   /* 住宿格城市名：先放完整中文，放不下的格子改成英文代號 */
   function fitCov(){
     var els=document.querySelectorAll(".cov-n"); if(!els.length) return;
@@ -1339,7 +1371,16 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
   }, {passive:true});
 
   route();
-  if ("serviceWorker" in navigator && location.protocol.indexOf("http")===0) navigator.serviceWorker.register("sw.js").catch(function(){});
+  /* 背景抓到新版時，底部分頁上方出現「有新版本」 */
+  function showUpd(){ if (document.getElementById("upd")) return;
+    var b=document.createElement("button"); b.type="button"; b.id="upd"; b.className="upd"; b.textContent="有新版本，點一下更新";
+    b.addEventListener("click", function(){ saveView(); location.reload(); }); document.body.appendChild(b); }
+  if ("serviceWorker" in navigator && location.protocol.indexOf("http")===0){
+    var hadCtl=!!navigator.serviceWorker.controller;
+    navigator.serviceWorker.addEventListener("message", function(e){ if (e.data&&e.data.type==="update") showUpd(); });
+    navigator.serviceWorker.addEventListener("controllerchange", function(){ if (hadCtl) showUpd(); });
+    navigator.serviceWorker.register("sw.js").catch(function(){});
+  }
 })();
 </script>
 </body>
