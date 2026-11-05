@@ -17,6 +17,12 @@
      rule 退改 { type：free 免費取消、change 改期免費、paid 可付費更改、none 不可退、tbd 待確認；until 期限（YYYY-MM-DDTHH:MM，當地時間）；label 標籤文字（不寫就用預設）；note 補充 }
    stays 住宿：checkin、checkout 入住和退房時間（HH:MM）；kitchen、breakfast、parking、laundry 設施（true 有、false 沒有，也可以寫文字如「含早餐」，不知道就不寫）；
      room 房型、phone 電話、getThere 怎麼去、access 入住方式（自助入住、鑰匙盒等），不知道就不寫
+   days.times 重要時間點（色帶「接下來」用）：[{ at "HH:MM"（不知道寫「待補」）, t 說明, who, est: true 推估的時間，畫面寫「建議」 }]
+   days.transfers 門到門卡：[{ id, who, after 放在第幾段交通後面（-1＝最前面）, leg 對應的航班或車次（資料頁交通連到這張卡）, from, to, sub 趕幾點的什麼,
+     opts: [{ n 名稱, rec: true 推薦, steps 怎麼走, time 要多久, cost 多少錢, pay 怎麼付, fit 適合什麼情況, note 注意 }], warn 注意事項, addr 地址卡（addresses 的 key，或 "stay:<住處 id>"）, checkin 入住提醒 }]
+   cities.transit 交通怎麼搭：[{ n 名稱, d 一句說明 }]；cities.drive 自駕區塊、cities.e10 示意圖（羅弗敦）
+   checklist：due 是出發前的期限；旅途中的項目改寫 day（YYYY-MM-DD），可加 until 顯示到哪天、eve: true 前一晚做
+   我的備忘存在手機的 localStorage：memo:<住處 id>、memo:car
    cities.tips：{ i 圖示（shop、museum、food、cup、sun、aurora、clock、car、rain）, t 一句重點, d 補充說明 }
    activities：沒有固定行程卡的活動（極光團、哈士奇等），date 是排序用的日期，dateText 是顯示的日期
    stays.short：住處簡稱（名稱太長時用，例如城市頁的距離說明）
@@ -126,17 +132,77 @@ window.TRIP = {
       ],
       notes: ["阿聯酋建議起飛前 3 小時到機場"] },
 
-    { date: "2027-02-26", title: "Yulun 抵達華沙", region: "waw", city: "waw",
+    { date: "2027-02-26",
+      transfers: [
+        {
+          "id": "t-dxb-y",
+          "who": "Y",
+          "after": -1,
+          "leg": "EK179",
+          "from": "杜拜機場第三航廈",
+          "to": "轉機登機門",
+          "sub": "轉機約 3 小時，趕 07:50 EK179",
+          "opts": [
+            {
+              "n": "在第三航廈轉機",
+              "rec": true,
+              "steps": [
+                "下飛機跟著「Connections」指示走。",
+                "已經有登機證，走 Passengers with Boarding Pass，再過一次安檢後到登機門；沒有登機證就到轉機櫃台辦。",
+                "第三航廈不廣播登機，要自己看螢幕。A、B、C 三區之間可能要搭區間車。"
+              ]
+            }
+          ],
+          "warn": "阿聯酋的航班都在第三航廈。"
+        },
+        {
+          "id": "t-waw-in",
+          "who": "Y",
+          "after": 0,
+          "leg": "EK179",
+          "from": "華沙機場",
+          "to": "Mercure Warszawa Centrum（Złota 48/54）",
+          "sub": "11:30 落地，A 航廈",
+          "opts": [
+            {
+              "n": "SKM 通勤火車",
+              "rec": true,
+              "steps": [
+                "機場航廈地下就是車站。",
+                "搭 S3 到華沙中央車站（Warszawa Centralna），或搭 S2 到 Warszawa Śródmieście，兩站相鄰。",
+                "下車走到旅館。"
+              ],
+              "time": "車程約 25 分鐘",
+              "cost": "ZTM 75 分鐘票 PLN 4.40（約 NT$37）；20 分鐘票不夠",
+              "pay": "車站售票機或 Jakdojade app"
+            },
+            {
+              "n": "Bolt／計程車",
+
+              "cost": "一台約 PLN 50～80（約 NT$425～680）",
+              "pay": "Bolt app 綁卡",
+              "fit": "行李多、累了不想轉車"
+            }
+          ],
+          "warn": "SKM 偶爾會臨時關閉 Centralna 站，出發前一週查 SKM 公告。",
+          "addr": [
+            "waw-air",
+            "stay:waw1"
+          ],
+          "checkin": "15:00 才能入住，先寄放行李（24 小時櫃台）。"
+        }
+      ],
+      times: [{ at: "11:30", who: "Y", t: "抵達華沙" }], title: "Yulun 抵達華沙", region: "waw", city: "waw",
       legs: [
         { who: "Y", t: "flight", carrier: "阿聯酋", no: "EK179",
           from: "杜拜 DXB", fromNote: "第三航廈", dep: "07:50",
           to: "華沙 WAW", toNote: "A 航廈", arr: "11:30",
           bag: { chkKg: 25, chkNote: "計重制", cabN: 1, cabKg: 7, cabDim: [55, 38, 22], smlNote: "票面只列 1 件手提" }, status: "booked" },
-        { who: "Y", t: "taxi", text: "Bolt 到旅館" }
+
       ],
       free: [{ who: "Y", when: "下午～晚上", text: "抵達後在住處附近走走，調時差", areas: ["centrum", "old"] }] },
 
-    { date: "2027-02-27", title: "Yulun 華沙一日；May 深夜出發",
+    { date: "2027-02-27", times: [{ at: "23:00", who: "M", t: "從台北出發" }], title: "Yulun 華沙一日；May 深夜出發",
       alerts: ["May 20:00 前到桃園第二航廈"], region: "waw", city: "waw",
       free: [{ who: "Y", when: "全天", text: "週六博物館都有開。May 這天還沒到，Yulun 自己想看的展館排在今天", areas: ["old", "powisle", "centrum"] }],
       legs: [
@@ -146,14 +212,106 @@ window.TRIP = {
           bag: { tbd: "依她的票種，待確認" }, status: "self", statusText: "May 自訂，開票待確認" }
       ] },
 
-    { date: "2027-02-28", title: "飛奧斯陸，兩人會合", city: "osl",
-      alerts: ["May 12:10 抵達", "Yulun 14:25 起飛"], region: "osl",
+    { date: "2027-02-28",
+      transfers: [
+        {
+          "id": "t-dxb-m",
+          "who": "M",
+          "after": -1,
+          "leg": "EK159",
+          "from": "杜拜機場第三航廈",
+          "to": "轉機登機門",
+          "sub": "May 轉機，時間待補",
+          "opts": [
+            {
+              "n": "在第三航廈轉機",
+              "rec": true,
+              "steps": [
+                "下飛機跟著「Connections」指示走。",
+                "已經有登機證，走 Passengers with Boarding Pass，再過一次安檢後到登機門；沒有登機證就到轉機櫃台辦。",
+                "第三航廈不廣播登機，要自己看螢幕。A、B、C 三區之間可能要搭區間車。"
+              ]
+            }
+          ],
+          "warn": "阿聯酋的航班都在第三航廈。"
+        },
+        {
+          "id": "t-waw-out",
+          "who": "Y",
+          "after": 0,
+          "leg": "DY1019",
+          "from": "Mercure",
+          "to": "華沙機場",
+          "sub": "趕 14:25 DY1019",
+          "opts": [
+            {
+              "n": "SKM 通勤火車",
+              "rec": true,
+              "steps": [
+                "12:00 退房，建議 12:00 前出門（推估）。",
+                "走到華沙中央車站（Warszawa Centralna）搭 S3，或到 Warszawa Śródmieście 搭 S2，往機場方向。",
+                "坐到機場站，上樓就是航廈。"
+              ],
+              "time": "車程約 25 分鐘",
+              "cost": "ZTM 75 分鐘票 PLN 4.40（約 NT$37）",
+              "pay": "車站售票機或 Jakdojade app"
+            },
+            {
+              "n": "Bolt／計程車",
+              "cost": "一台約 PLN 50～80（約 NT$425～680）",
+              "pay": "Bolt app 綁卡",
+              "fit": "行李多、時間比較趕"
+            }
+          ],
+          "warn": "SKM 偶爾會臨時關閉 Centralna 站，前一天查 SKM 公告。",
+          "addr": [
+            "stay:waw1",
+            "waw-air"
+          ]
+        },
+        {
+          "id": "t-osl-in",
+          "after": 1,
+          "leg": "DY1019",
+          "from": "奧斯陸機場",
+          "to": "Bob W Oslo Sentralen（Kirkegata 30）",
+          "sub": "May 12:10 先到，Yulun 16:20 到",
+          "opts": [
+            {
+              "n": "Vy 區域火車",
+              "rec": true,
+              "steps": [
+                "機場航廈旁就是火車站，搭往奧斯陸中央車站（Oslo S）的 Vy 區域火車。",
+                "在 Oslo S 下車，出站走約 500 公尺到 Bob W。"
+              ],
+              "time": "約 23～30 分鐘",
+              "cost": "每人約 NOK 122～129（約 NT$435～460，各網站不一）；兩人合計約 NOK 244～258（約 NT$866～916）",
+              "pay": "Vy 或 Ruter app"
+            },
+            {
+              "n": "機場快線 Flytoget",
+              "time": "19～22 分鐘",
+              "cost": "每人約 NOK 243～258（約 NT$865～915）；兩人合計約 NOK 486～516（約 NT$1,725～1,832）",
+              "pay": "Flytoget app 或月台售票機",
+              "note": "Flytoget 和 Vy 的票不通用。"
+            }
+          ],
+          "warn": "2/25～2/28 地鐵停駛，但從 Oslo S 用走的不受影響。",
+          "addr": [
+            "osl-air",
+            "osl-st",
+            "stay:osl"
+          ],
+          "checkin": "15:00 才能入住，May 先寄放行李（能不能寄放待確認，見清單）。"
+        }
+      ],
+      times: [{ at: "12:00", who: "Y", t: "前出門", est: true }, { at: "12:10", who: "M", t: "抵達奧斯陸" }, { at: "14:25", who: "Y", t: "DY1019 起飛" }], title: "飛奧斯陸，兩人會合", city: "osl",
+      region: "osl",
       legs: [
         { who: "M", t: "flight", carrier: "阿聯酋", no: "EK159",
           from: "杜拜 DXB", fromNote: "第三航廈", dep: "待補",
           to: "奧斯陸 OSL", arr: "12:10",
           bag: { tbd: "依她的票種，待確認" }, status: "self", statusText: "May 自訂，開票待確認" },
-        { who: "Y", t: "taxi", text: "Bolt 到華沙機場" },
         { who: "Y", t: "flight", carrier: "挪威航空", no: "DY1019",
           from: "華沙 WAW", dep: "14:25", to: "奧斯陸 OSL", arr: "16:20",
           seats: [{ who: "Y", no: "8F" }],
@@ -166,8 +324,82 @@ window.TRIP = {
     { date: "2027-03-01", title: "奧斯陸市區、咖啡", region: "osl", city: "osl",
       free: [{ when: "全天", text: "週一國家博物館休館，孟克美術館有開。早上去 Grünerløkka 喝咖啡，下午歌劇院和孟克", areas: ["lokka", "bjorvika", "sentrum", "frogner"] }] },
 
-    { date: "2027-03-02", title: "飛特羅姆瑟", city: "tos",
-      alerts: ["10:30 起飛"], region: "tos",
+    { date: "2027-03-02",
+      transfers: [
+        {
+          "id": "t-osl-out",
+          "after": -1,
+          "leg": "DY372",
+          "from": "Bob W",
+          "to": "奧斯陸機場",
+          "sub": "趕 10:30 DY372",
+          "opts": [
+            {
+              "n": "走到 Oslo S 搭火車",
+              "rec": true,
+              "steps": [
+                "走到奧斯陸中央車站（Oslo S），約 08:30 上車。",
+                "搭 Vy 區域火車或 Flytoget 到機場。"
+              ],
+              "time": "走路約 500 公尺＋車程 19～30 分鐘",
+              "cost": "同來程：Vy 每人約 NOK 122～129（約 NT$435～460），Flytoget 每人約 NOK 243～258（約 NT$865～915）",
+              "pay": "Vy、Ruter 或 Flytoget app"
+            }
+          ],
+          "warn": "鐵路偶爾因維修或罷工停駛，前一天看 Vy 公告。",
+          "addr": [
+            "stay:osl",
+            "osl-st",
+            "osl-air"
+          ]
+        },
+        {
+          "id": "t-tos-in",
+          "after": 0,
+          "leg": "DY372",
+          "from": "特羅姆瑟機場",
+          "to": "Sjøparken（Strandvegen 114B）",
+          "sub": "12:30 落地",
+          "opts": [
+            {
+              "n": "計程車",
+              "rec": true,
+              "steps": [
+                "出航廈搭計程車，直接到門口。"
+              ],
+              "cost": "平日白天一台約 NOK 400（約 NT$1,420）；兩人分攤每人約 NOK 200（約 NT$710）",
+              "fit": "比兩人搭機場巴士多約 NOK 150，但不用轉車、行李直接到門口（推論）"
+            },
+            {
+              "n": "機場巴士 Airport Express",
+              "steps": [
+                "紅色車身，13:00、13:40、14:10 發車（12:20 那班趕不上）。",
+                "約 20 分鐘到市區。",
+                "下車後怎麼到住處：待查（住處樓下有 33、34 號公車）。"
+              ],
+              "time": "約 20 分鐘到市區",
+              "cost": "大人單程每人 NOK 125（約 NT$444）；兩人合計 NOK 250（約 NT$888）",
+              "pay": "只能刷卡"
+            },
+            {
+              "n": "一般公車",
+              "steps": [
+                "24、26、40、42 號經過機場。",
+                "出航廈要穿過地下停車場到路邊上車。"
+              ],
+              "cost": "單程每人約 NOK 30（約 NT$107，2026 年遊記）；兩人合計約 NOK 60（約 NT$213）",
+              "pay": "Svipper app"
+            }
+          ],
+          "addr": [
+            "tos-air",
+            "stay:tos"
+          ],
+          "checkin": "房東同意約 12:30 抵達。"
+        }
+      ],
+      times: [{ at: "08:30", t: "在奧斯陸中央車站（Oslo S）上車" }, { at: "10:30", t: "DY372 起飛" }], title: "飛特羅姆瑟", city: "tos",
+      region: "tos",
       legs: [
         { t: "flight", carrier: "挪威航空", no: "DY372",
           from: "奧斯陸 OSL", dep: "10:30", to: "特羅姆瑟 TOS", arr: "12:30",
@@ -187,8 +419,70 @@ window.TRIP = {
       notes: ["隔天 10:55 要搭飛機。極光團常常半夜才回到市區，第一次報團最好排 3/2 或 3/3，今晚留給沒看到時再報"],
       free: [{ when: "白天", text: "沒排哈士奇的時段，可以上纜車或逛市區", areas: ["tromsdalen", "centre"] }] },
 
-    { date: "2027-03-05", region: "lof", title: "飛 EVE 機場取車，進羅弗敦", city: "lof",
-      alerts: ["10:55 起飛", "12:15 落地後取車"],
+    { date: "2027-03-05",
+      transfers: [
+        {
+          "id": "t-tos-out",
+          "after": -1,
+          "leg": "WF863",
+          "from": "Sjøparken",
+          "to": "特羅姆瑟機場",
+          "sub": "趕 10:55 WF863",
+          "opts": [
+            {
+              "n": "前一晚預約計程車",
+              "rec": true,
+              "steps": [
+                "前一晚打電話預約：Tromsø Taxi 03011、Din Taxi 02045。",
+                "建議 09:00 前出門（推估）。"
+              ],
+              "cost": "一台約 NOK 400（約 NT$1,420）；兩人分攤每人約 NOK 200（約 NT$710）"
+            },
+            {
+              "n": "機場巴士",
+              "steps": [
+                "Polaria 09:10 或 Prostneset 09:07 上車，09:30 到機場。",
+                "從住處到 Polaria：待查。"
+              ],
+              "cost": "每人 NOK 125（約 NT$444）；兩人合計 NOK 250（約 NT$888）",
+              "pay": "只能刷卡",
+              "note": "下一班 09:37 → 10:00，搭 10:55 的飛機太趕。"
+            }
+          ],
+          "warn": "DHC-8 小飛機，登機箱可能在登機門被收去託運，證件和行動電源放隨身小包。",
+          "addr": [
+            "stay:tos",
+            "tos-air"
+          ]
+        },
+        {
+          "id": "t-eve-lof1",
+          "after": 1,
+          "leg": "WF863",
+          "from": "EVE 機場取車",
+          "to": "Lofoten Links Lodges（Gimsøy）",
+          "sub": "自駕",
+          "opts": [
+            {
+              "n": "自駕 E10",
+              "rec": true,
+              "steps": [
+                "EVE 機場取車後沿 E10 往西開。",
+                "途中在斯沃爾韋爾（Svolvær）採買，有 Kiwi、Rema 1000、Coop Mega，營業時間出發前再查。",
+                "過了 Svolvær 繼續往西到 Gimsøy。"
+              ],
+              "time": "車程待查（Svolvær 到 EVE 機場約 170 公里，Gimsøy 在 Svolvær 再往西）"
+            }
+          ],
+          "warn": "往 EVE 路上的 Raftsundet 橋、Gimsøy 的 Gimsøystraumen 橋，強風時會封橋，沒有替代道路。",
+          "addr": [
+            "eve-air",
+            "stay:lof1"
+          ],
+          "checkin": "16:00 起入住，最晚 23:30。小屋餐廳冬季關閉，晚餐自己煮。"
+        }
+      ],
+      times: [{ at: "09:00", t: "前出門", est: true }, { at: "10:55", t: "WF863 起飛" }, { at: "12:15", t: "取車" }], region: "lof", title: "飛 EVE 機場取車，進羅弗敦", city: "lof",
       legs: [
         { t: "flight", carrier: "Widerøe", no: "WF863",
           from: "特羅姆瑟 TOS", dep: "10:55", to: "EVE 機場", toNote: "哈爾斯塔/納爾維克機場", arr: "12:15", addr: ["eve-air"], via: "安德內斯（20 分鐘，不換飛機）",
@@ -200,21 +494,136 @@ window.TRIP = {
       notes: ["DHC-8 螺旋槳小飛機，置物櫃小，登機箱可能在登機門被收去託運。證件、貴重物品、行動電源放隨身小包"],
       free: [{ when: "傍晚", text: "到住處時天色已暗，沿路先採買再入住（16:00 起）。小屋餐廳冬季關閉，晚餐用共用廚房自己煮", areas: ["west", "mid", "east"] }] },
 
-    { date: "2027-03-06", title: "羅弗敦自駕，週六先採買", region: "lof", city: "lof",
+    { date: "2027-03-06",
+      transfers: [
+        {
+          "id": "t-lof1-lof2",
+          "after": -1,
+          "from": "Lofoten Links",
+          "to": "Sakrisøy Rorbuer",
+          "sub": "11:00 前退房，自駕",
+          "opts": [
+            {
+              "n": "自駕 E10",
+              "rec": true,
+              "steps": [
+                "11:00 前退房，沿 E10 往西。",
+                "途中在 Leknes 採買 3/7 週日的食物，Leknes 有 Coop Extra、Rema 1000 等。",
+                "加油在 Leknes 或雷訥（Reine）。"
+              ],
+              "time": "車程待查"
+            }
+          ],
+          "addr": [
+            "stay:lof1",
+            "stay:lof2"
+          ],
+          "checkin": "15:00～23:00 入住，冬季入住方式待確認。"
+        }
+      ],
+      times: [{ at: "11:00", t: "前退房" }], title: "羅弗敦自駕，週六先採買", region: "lof", city: "lof",
       free: [{ when: "全天", text: "11:00 前退房，往西開到薩克里索伊（Sakrisøy），15:00 起入住。週六：記得把 3/7 週日的食物先買好", areas: ["west", "mid", "east"] }] },
 
     { date: "2027-03-07", title: "羅弗敦，週日店家少", region: "lof", city: "lof",
       free: [{ when: "全天", text: "週日大型超市不開。看雲量往晴的一側開，中段的烏塔克萊夫（Uttakleiv）、豪克蘭海灘（Haukland）可以停一停", areas: ["west", "mid", "east"] }] },
 
-    { date: "2027-03-08", title: "羅弗敦，新月", city: "lof",
+    { date: "2027-03-08",
+      transfers: [
+        {
+          "id": "t-lof2-lof3",
+          "after": -1,
+          "from": "Sakrisøy",
+          "to": "Laukvik Suites",
+          "sub": "11:00 前退房，自駕",
+          "opts": [
+            {
+              "n": "自駕 E10",
+              "rec": true,
+              "steps": [
+                "11:00 前退房，沿 E10 往東。",
+                "途中在斯沃爾韋爾（Svolvær）採買；Laukvik 的 Coop Marked 週一～五 10:00～18:00（資料年份不明）。"
+              ],
+              "time": "車程待查"
+            }
+          ],
+          "addr": [
+            "stay:lof2",
+            "stay:lof3"
+          ],
+          "checkin": "15:00～22:00 入住，最晚 22:00，追極光繞路要注意時間。"
+        }
+      ],
+      times: [{ at: "11:00", t: "前退房" }], title: "羅弗敦，新月", city: "lof",
       alerts: ["新月，整趟最暗的一夜"], region: "lof",
       free: [{ when: "全天", text: "11:00 前退房，今晚住東北岸的 Laukvik Suites（15:00～22:00 入住）。看天氣決定往西側或東側；晚上新月，挑晴的方向去北側海灘", areas: ["west", "mid", "east"] }] },
 
     { date: "2027-03-09", title: "羅弗敦最後一天", region: "lof", city: "lof",
       free: [{ when: "全天", text: "看天氣決定往哪邊走。隔天中午前要開回 EVE 機場還車。Laukvik 到 EVE 機場約 167 公里，正常路況 2.5～3 小時；3/10 計畫 08:00 出發。", areas: ["west", "mid", "east"] }] },
 
-    { date: "2027-03-10", region: "bgo", title: "還車，飛卑爾根", city: "bgo",
-      alerts: ["中午前到 EVE 機場還車", "13:55 起飛"],
+    { date: "2027-03-10",
+      transfers: [
+        {
+          "id": "t-lof3-eve",
+          "after": -1,
+          "leg": "WF1365",
+          "from": "Laukvik",
+          "to": "EVE 機場還車",
+          "sub": "08:00 出發，中午前還車，13:55 起飛",
+          "opts": [
+            {
+              "n": "自駕 E10",
+              "rec": true,
+              "steps": [
+                "前一晚查 175 路況（vegvesen.no，也可撥 175）和 yr.no 天氣。",
+                "3/9 先在斯沃爾韋爾（Svolvær）加滿油。",
+                "08:00 出發，中午前還車。"
+              ],
+              "time": "約 167 公里，正常路況 2.5～3 小時"
+            }
+          ],
+          "warn": "預報有暴風雪時，可改住機場附近（例如 Evenes Sure Best Western）。",
+          "addr": [
+            "stay:lof3",
+            "eve-air"
+          ]
+        },
+        {
+          "id": "t-bgo-in",
+          "after": 1,
+          "leg": "WF1365",
+          "from": "卑爾根機場",
+          "to": "Ole Bull Hotel（Øvre Ole Bulls plass 3）",
+          "sub": "16:40 落地",
+          "opts": [
+            {
+              "n": "輕軌 Bybanen 1 號線",
+              "rec": true,
+              "steps": [
+                "上車前用 Skyss app 或月台售票機買票（app 名稱出發前確認），單程票效期 60 分鐘。",
+                "坐到終點 Byparken。",
+                "下車走約 3 分鐘到旅館。"
+              ],
+              "time": "約 45 分鐘",
+              "cost": "大人每人 NOK 51（約 NT$181）；兩人合計 NOK 102（約 NT$362）",
+              "pay": "Skyss app 或月台售票機"
+            },
+            {
+              "n": "機場巴士 Flybussen",
+              "time": "20～30 分鐘",
+              "cost": "每人約 NOK 189（約 NT$671）；兩人合計約 NOK 378（約 NT$1,342）"
+            },
+            {
+              "n": "計程車",
+              "cost": "一台約 NOK 400～600（約 NT$1,420～2,130）；兩人分攤每人約 NOK 200～300（約 NT$710～1,065）"
+            }
+          ],
+          "addr": [
+            "bgo-air",
+            "stay:bgo"
+          ]
+        }
+      ],
+      times: [{ at: "08:00", t: "從 Laukvik 出發" }, { at: "12:00", t: "前還車" }, { at: "13:55", t: "WF1365 起飛" }], region: "bgo", title: "還車，飛卑爾根", city: "bgo",
       legs: [
         { t: "car", text: "開回 EVE 機場還車" },
         { t: "flight", carrier: "Widerøe", no: "WF1365",
@@ -226,8 +635,33 @@ window.TRIP = {
       notes: ["Embraer 190-E2 噴射機，中途停特隆赫姆時留在機上", "機場輕軌到市區終點站 Byparken 約 45 分鐘"],
       free: [{ when: "晚上", text: "搭弗洛伊恩纜車（Fløibanen）上山看夜景，末班時間出發前查", areas: ["bryggen"] }] },
 
-    { date: "2027-03-11", region: "bgo", art: "nutshell", title: "挪威縮影一日", city: "bgo",
-      alerts: ["08:29 火車出發", "沒有備用日"],
+    { date: "2027-03-11",
+      transfers: [
+        {
+          "id": "t-bgo-st",
+          "after": -1,
+          "from": "Ole Bull",
+          "to": "卑爾根火車站",
+          "sub": "趕 08:29 挪威縮影",
+          "opts": [
+            {
+              "n": "走路",
+              "rec": true,
+              "steps": [
+                "建議 08:10 前出門（推估），走路約 10 分鐘。"
+              ],
+              "time": "約 10 分鐘"
+            }
+          ],
+          "warn": "火車站旁的 Nonneseter 輕軌站 2026 年關閉。",
+          "addr": [
+            "stay:bgo",
+            "bgo-st"
+          ]
+        }
+      ],
+      times: [{ at: "08:10", t: "前出門", est: true }, { at: "08:29", t: "挪威縮影火車出發" }], region: "bgo", art: "nutshell", title: "挪威縮影一日", city: "bgo",
+      alerts: ["沒有備用日"],
       legs: [
         { t: "tour", text: "挪威縮影一日來回", dep: "08:29", arr: "18:17", status: "pending",
           stops: [
@@ -240,8 +674,72 @@ window.TRIP = {
       ],
       notes: ["冬天遊船可能改航線，不影響行程；比較要擔心的是卑爾根鐵路因冰雪延誤，這次沒有備用日。"] },
 
-    { date: "2027-03-12", region: "gdn", title: "飛格但斯克", city: "gdn",
-      alerts: ["13:40 起飛"],
+    { date: "2027-03-12",
+      transfers: [
+        {
+          "id": "t-bgo-out",
+          "after": -1,
+          "leg": "W61746",
+          "from": "Ole Bull",
+          "to": "卑爾根機場",
+          "sub": "趕 13:40 W61746",
+          "opts": [
+            {
+              "n": "輕軌 Bybanen 1 號線",
+              "rec": true,
+              "steps": [
+                "早上可以先寄放行李，去布呂根（Bryggen）或魚市場。",
+                "11:00 退房後從 Byparken 搭輕軌，約 11:45 到機場。"
+              ],
+              "time": "約 45 分鐘",
+              "cost": "大人每人 NOK 51（約 NT$181）；兩人合計 NOK 102（約 NT$362）",
+              "pay": "Skyss app 或月台售票機"
+            }
+          ],
+          "warn": "Trip.com 建議起飛前 3 小時到機場（10:40），照原計畫只有約 2 小時。Wizz 託運櫃台關閉時間待查。",
+          "addr": [
+            "stay:bgo",
+            "bgo-air"
+          ]
+        },
+        {
+          "id": "t-gdn-in",
+          "after": 0,
+          "leg": "W61746",
+          "from": "格但斯克機場",
+          "to": "Craft Beer Central Hotel（Podwale Grodzkie 4）",
+          "sub": "15:25 落地",
+          "opts": [
+            {
+              "n": "210 號公車",
+              "rec": true,
+              "steps": [
+                "坐往 Dworzec Główny（中央車站）方向。",
+                "坐到底站，就在旅館這條街上。"
+              ],
+              "time": "約 40 分鐘；平日每小時 2 班",
+              "cost": "ZTM 75 分鐘票每人約 PLN 4.80（約 NT$41，各網站寫 4.80～6）；兩人合計約 PLN 9.60（約 NT$82）",
+              "pay": "Jakdojade app 或站牌售票機"
+            },
+            {
+              "n": "PKM 火車",
+              "steps": [
+                "多數要在 Gdańsk Wrzeszcz 換車。"
+              ],
+              "cost": "市區票每人 PLN 8.50（約 NT$72）；兩人合計 PLN 17（約 NT$145）"
+            },
+            {
+              "n": "計程車、Bolt",
+              "cost": "一台約 PLN 60～120（約 NT$510～1,020，各網站差很多）"
+            }
+          ],
+          "addr": [
+            "gdn-air",
+            "stay:gdn"
+          ]
+        }
+      ],
+      times: [{ at: "11:00", t: "退房、搭輕軌" }, { at: "13:40", t: "W61746 起飛" }], region: "gdn", title: "飛格但斯克", city: "gdn",
       legs: [
         { t: "flight", carrier: "Wizz Air", no: "W61746",
           from: "卑爾根 BGO", dep: "13:40", to: "格但斯克 GDN", arr: "15:25",
@@ -255,7 +753,44 @@ window.TRIP = {
     { date: "2027-03-13", title: "馬爾堡或索波特", region: "gdn", city: "gdn",
       free: [{ when: "全天", text: "馬爾堡或索波特二選一，回來再逛老城", areas: ["trips", "main", "river"] }] },
 
-    { date: "2027-03-14", title: "火車到華沙",
+    { date: "2027-03-14",
+      transfers: [
+        {
+          "id": "t-gdn-waw",
+          "after": -1,
+          "from": "Craft Beer",
+          "to": "Chopin Boutique（Smolna 14）",
+          "sub": "格但斯克中央車站 → 火車 → 華沙中央車站",
+          "opts": [
+            {
+              "n": "火車＋公車",
+              "rec": true,
+              "steps": [
+                "走到格但斯克中央車站（Gdańsk Główny）約 4 分鐘。",
+                "火車 2.5～3 小時，票約 2/12 開賣，時間待補。",
+                "到華沙中央車站後，搭 175 號公車往 Piłsudski 廣場方向，沿新世界街（Nowy Świat）走，Smolna 附近的站名待查。"
+              ],
+              "time": "火車 2.5～3 小時",
+              "cost": "華沙市區 75 分鐘票每人 PLN 4.40（約 NT$37）；兩人合計 PLN 8.80（約 NT$75）；火車票待補"
+            },
+            {
+              "n": "火車＋Bolt",
+              "steps": [
+                "到華沙中央車站後叫 Bolt 到 Smolna 14。"
+              ],
+              "cost": "Bolt 一台約 PLN 50～80（約 NT$425～680）"
+            }
+          ],
+          "addr": [
+            "stay:gdn",
+            "gdn-st",
+            "waw-st",
+            "stay:waw2"
+          ],
+          "checkin": "15:00 才能入住，早到的話寄放行李（能不能寄放待確認）。"
+        }
+      ],
+      times: [{ at: "11:00", t: "前退房" }, { at: "待補", t: "火車時間（買票後補）" }], title: "火車到華沙",
       alerts: ["週日商店公休"], region: "waw", city: "waw",
       legs: [
         { t: "train", text: "波蘭國鐵，格但斯克到華沙，約 2.5～3 小時", status: "pending", addr: ["gdn-st", "waw-st"], short: "格但斯克 → 華沙 火車" }
@@ -267,7 +802,45 @@ window.TRIP = {
       alerts: ["週一博物館休館"], region: "waw", city: "waw",
       free: [{ when: "全天", text: "週一王宮和國家博物館休館，適合公園、觀景台和市區散步", areas: ["centrum", "lazienki", "old"] }] },
 
-    { date: "2027-03-16", sunAt: "waw", title: "華沙起飛回台",
+    { date: "2027-03-16",
+      transfers: [
+        {
+          "id": "t-waw-out2",
+          "after": -1,
+          "leg": "EK180",
+          "from": "Chopin Boutique",
+          "to": "華沙機場",
+          "sub": "趕 13:40 EK180",
+          "opts": [
+            {
+              "n": "175 號公車",
+              "rec": true,
+              "steps": [
+                "阿聯酋建議起飛前 3 小時到機場，建議 10:00 前出門（推估）。",
+                "175 號公車往機場方向，站名待查。"
+              ],
+              "cost": "ZTM 75 分鐘票每人 PLN 4.40（約 NT$37）；兩人合計 PLN 8.80（約 NT$75）",
+              "pay": "Jakdojade app 或售票機"
+            },
+            {
+              "n": "SKM S2",
+              "steps": [
+                "從 Warszawa Śródmieście 搭 S2 到機場。"
+              ],
+              "cost": "每人 PLN 4.40（約 NT$37）"
+            },
+            {
+              "n": "Bolt",
+              "cost": "一台約 PLN 50～80（約 NT$425～680）"
+            }
+          ],
+          "addr": [
+            "stay:waw2",
+            "waw-air"
+          ]
+        }
+      ],
+      times: [{ at: "10:00", t: "前出門", est: true }, { at: "13:40", t: "EK180 起飛" }], sunAt: "waw", title: "華沙起飛回台",
       alerts: ["10:40 前到機場"], region: "sky",
       legs: [
         { t: "flight", carrier: "阿聯酋", no: "EK180",
@@ -277,7 +850,30 @@ window.TRIP = {
       ],
       notes: ["阿聯酋建議起飛前 3 小時到機場，也就是 10:40 前"] },
 
-    { date: "2027-03-17", sunAt: "tw", title: "抵達台北", region: "sky",
+    { date: "2027-03-17",
+      transfers: [
+        {
+          "id": "t-dxb-back",
+          "after": -1,
+          "leg": "EK366",
+          "from": "杜拜機場第三航廈",
+          "to": "轉機登機門",
+          "sub": "兩人轉機約 4 小時 45 分，趕 03:40 EK366",
+          "opts": [
+            {
+              "n": "在第三航廈轉機",
+              "rec": true,
+              "steps": [
+                "下飛機跟著「Connections」指示走。",
+                "已經有登機證，走 Passengers with Boarding Pass，再過一次安檢後到登機門；沒有登機證就到轉機櫃台辦。",
+                "第三航廈不廣播登機，要自己看螢幕。A、B、C 三區之間可能要搭區間車。"
+              ]
+            }
+          ],
+          "warn": "阿聯酋的航班都在第三航廈。"
+        }
+      ],
+      sunAt: "tw", title: "抵達台北", region: "sky",
       legs: [
         { t: "flight", carrier: "阿聯酋", no: "EK366",
           from: "杜拜 DXB", fromNote: "第三航廈", dep: "03:40",
@@ -294,7 +890,8 @@ window.TRIP = {
      lat、lng：大約座標，用來算離住處的直線距離 */
   cities: {
     waw: {
-      name: "華沙", region: "waw", ref: ["waw1", "waw2"], mapCity: "Warszawa",
+      name: "華沙", region: "waw",
+      transit: [{ n: "市區 ZTM 票", d: "公車、電車、地鐵、SKM 通用，75 分鐘票 PLN 4.40（約 NT$37），用 Jakdojade app 或售票機買。" }, { n: "機場", d: "SKM S2（到 Warszawa Śródmieście）、S3（到華沙中央車站 Warszawa Centralna），或 175 號公車。" }], ref: ["waw1", "waw2"], mapCity: "Warszawa",
       intro: "二戰後依原貌重建的首都，老城列入世界遺產，適合慢慢走、看美術館、坐咖啡館。",
       tips: [
         { i: "shop", t: "週日超市大多不開", d: "Żabka 便利商店、藥局、麵包店、加油站例外，Żabka 多數開到 23:00。餐廳照常營業。" },
@@ -370,7 +967,8 @@ window.TRIP = {
       ]
     },
     osl: {
-      name: "奧斯陸", region: "osl", ref: "osl", mapCity: "Oslo",
+      name: "奧斯陸", region: "osl",
+      transit: [{ n: "市區", d: "用 Ruter app 買票。" }, { n: "機場", d: "Vy 區域火車或機場快線 Flytoget，見 2/28、3/2 的門到門卡。" }, { n: "2/25～2/28 地鐵停駛", d: "電車照常（班次可能減少）。" }], ref: "osl", mapCity: "Oslo",
       intro: "挪威首都，現代建築、孟克和北歐精品咖啡，兩人會合的第一站。",
       tips: [
         { i: "shop", t: "2/28 週日大型超市不開", d: "只有 Joker、Bunnpris 和便利商店，營業時間較短。晚餐和隔天早餐先想好。" },
@@ -411,7 +1009,8 @@ window.TRIP = {
       ]
     },
     tos: {
-      name: "特羅姆瑟", region: "tos", ref: "tos", mapCity: "Tromsø",
+      name: "特羅姆瑟", region: "tos",
+      transit: [{ n: "市區公車", d: "用 Svipper app 買票。住處樓下有 33、34 號公車，到市中心約 5～10 分鐘，走路約 15 分鐘。" }, { n: "機場巴士 Airport Express", d: "大人單程 NOK 125（約 NT$444）、來回 NOK 200（約 NT$710），只能刷卡。" }, { n: "計程車", d: "Tromsø Taxi 03011、Din Taxi 02045。" }], ref: "tos", mapCity: "Tromsø",
       intro: "北極圈裡生活機能最好的城市，市中心在島上，走路就能逛完。",
       tips: [
         { i: "sun", t: "白天短，戶外行程排中午前後", d: "晚上留給極光團。" },
@@ -449,7 +1048,26 @@ window.TRIP = {
       ]
     },
     lof: {
-      name: "羅弗敦", region: "lof", mapCity: "Lofoten",
+      name: "羅弗敦", region: "lof",
+      transit: [{ n: "自駕", d: "見下方「開車」。" }], mapCity: "Lofoten",
+      /* E10 示意圖：投影 x = 14 + (經度 − 12.9) × 84，y = 16 + (68.62 − 緯度) × 210 */
+      e10: {
+        road: [["Å", 67.879, 12.983], ["Reine", 67.932, 13.089], ["Flakstad", 68.05, 13.30], ["Leknes", 68.147, 13.611], ["Borg", 68.243, 13.785],
+               ["Gimsøy 橋", 68.30, 14.05], ["Svolvær", 68.234, 14.568], ["Fiskebøl", 68.41, 14.79], ["Gullesfjord", 68.53, 16.05], ["EVE 機場", 68.49, 16.68]],
+        spurs: [["Svolvær", "Laukvik", 68.387, 14.412], ["Gimsøy 橋", "Lofoten Links", 68.3404, 14.1285], ["Svolvær", "Henningsvær", 68.155, 14.204], ["Reine", "Sakrisøy", 67.9409, 13.1111]],
+        stays: [{ n: 1, stay: "lof1", lat: 68.3404, lng: 14.1285, t: "Lofoten Links 3/5" }, { n: 2, stay: "lof2", lat: 67.9409, lng: 13.1111, t: "Sakrisøy 3/6–3/8" }, { n: 3, stay: "lof3", lat: 68.387, lng: 14.412, t: "Laukvik 3/8–3/10" }],
+        towns: [["Å", 67.879, 12.983], ["Leknes", 68.147, 13.611], ["Svolvær", 68.234, 14.568], ["Henningsvær", 68.155, 14.204], ["Uttakleiv", 68.214, 13.533]],
+        supply: [["Svolvær", "超市・加油"], ["Leknes", "超市・加油"], ["Reine", "超市・加油"], ["Laukvik", "超市"]],
+        drives: [["3/5", "EVE 機場 → ① Lofoten Links", "車程待查"], ["3/6", "① → ② Sakrisøy", "車程待查"], ["3/8", "② → ③ Laukvik", "車程待查"], ["3/10", "③ Laukvik → EVE 機場", "約 167 公里，2.5～3 小時"]]
+      },
+      drive: [
+        { t: "取車時要確認", items: ["輪胎是冬季胎或釘胎。", "油車還是電動車（Yulun 沒開過電動車）。", "車上有沒有 AutoPASS：過路費之後從租車費扣，羅弗敦本身過路費很少。", "道路救援電話（在租車合約上，記到租車備忘）。", "繞車一圈拍照存證，記下油的種類。"] },
+        { t: "每天開車前", items: ["路況看 175（Statens vegvesen，vegvesen.no，也可撥 175），天氣看 yr.no 的風和降雪。", "Gimsøystraumen 橋、Raftsundet 橋強風時會封橋，可能封幾小時，沒有替代道路。", "建議油量低於一半就加（推論）。"] },
+        { t: "補給點", items: ["斯沃爾韋爾（Svolvær）：Kiwi、Rema 1000、Coop Mega；Alti 購物中心裡的 Bunnpris 週日 10:00～23:00 有開。", "Leknes：Coop Extra、Rema 1000、Bunnpris 等，Bunnpris 週日也開。", "Laukvik：Coop Marked，週一～五 10:00～18:00、週六 10:00～15:00，週日不開。", "加油站在 Svolvær、Leknes、雷訥（Reine），多為自助、只收卡，部分無人站要用有 PIN 碼的卡。", "營業時間是舊資料，出發前和前一天都要再查。"] },
+        { t: "路上要注意", items: ["Leknes 以西路比較窄、會車困難。", "冬天路肩不清雪，不要隨便路邊停車拍照，到有標示的停車場。", "豪克蘭（Haukland）、烏塔克萊夫（Uttakleiv）海灘停車要付費（EasyPark 或 Parka app）。", "天黑早，日照時間看每日頁。"] },
+        { t: "出事時", items: ["租車道路救援看合約，保險資料在雲端硬碟。"], tel: [["112", "警察"], ["113", "救護"], ["110", "消防"]] },
+        { t: "3/10 還車", items: ["08:00 出發、中午前還車。", "前一晚查路況和天氣。", "3/9 在斯沃爾韋爾（Svolvær）加滿油。", "暴風雪時的備案是改住機場附近。"] }
+      ],
       intro: "雪山直接從海裡拔起，一條 E10 公路串起整排島。",
       tips: [
         { i: "shop", t: "3/7 週日大型超市不開", d: "偏遠地區週日營業的店更少。3/6 週六先把 3/7 的食物買好。" },
@@ -489,7 +1107,8 @@ window.TRIP = {
       ]
     },
     bgo: {
-      name: "卑爾根", region: "bgo", ref: "bgo", mapCity: "Bergen", tour: "2027-03-11",
+      name: "卑爾根", region: "bgo",
+      transit: [{ n: "公車、輕軌", d: "用 Skyss 票，上車前在 app 或售票機買。" }, { n: "輕軌 1 號線到機場", d: "大人 NOK 51（約 NT$181）。火車站旁的 Nonneseter 站 2026 年關閉，改在 Bystasjonen（巴士總站）上下車。" }], ref: "bgo", mapCity: "Bergen", tour: "2027-03-11",
       intro: "峽灣入口的港口城市，彩色木屋街是世界遺產。",
       tips: [
         { i: "rain", t: "雨具要帶", d: "挪威最常下雨的城市之一。" }
@@ -511,7 +1130,8 @@ window.TRIP = {
       ]
     },
     gdn: {
-      name: "格但斯克", region: "gdn", ref: "gdn", mapCity: "Gdańsk",
+      name: "格但斯克", region: "gdn",
+      transit: [{ n: "公車", d: "用 ZTM 票（Jakdojade app 或售票機），SKM、PKM 火車另外買票。" }, { n: "機場", d: "210 號公車。" }, { n: "3/13 一日遊", d: "去馬爾堡（Malbork）或索波特（Sopot）搭火車。" }], ref: "gdn", mapCity: "Gdańsk",
       intro: "波羅的海邊的漢薩港口古城，冬天安靜又有氣氛。",
       tips: [
         { i: "food", t: "長街一帶的牛奶吧和餃子店", d: "便宜好吃，在地人和學生常去，午餐和傍晚要排隊。" },
@@ -568,7 +1188,9 @@ window.TRIP = {
     "osl-air": { name: "Oslo lufthavn Gardermoen", sub: "奧斯陸機場", city: "", code: "OSL" },
     "tos-air": { name: "Tromsø lufthavn", sub: "特羅姆瑟機場", city: "", code: "TOS" },
     "eve-air": { name: "Harstad/Narvik lufthavn Evenes", sub: "哈爾斯塔/納爾維克機場，取車、還車", city: "", code: "EVE" },
-    "bgo-air": { name: "Bergen lufthavn Flesland", sub: "卑爾根機場", city: "", code: "BGO" }
+    "bgo-air": { name: "Bergen lufthavn Flesland", sub: "卑爾根機場", city: "", code: "BGO" },
+    "osl-st":  { name: "Oslo sentralstasjon", sub: "奧斯陸中央車站（Oslo S）", city: "Oslo" },
+    "bgo-st":  { name: "Bergen stasjon", sub: "卑爾根火車站", city: "Bergen" }
   },
 
   /* 極光分頁 */
@@ -595,6 +1217,19 @@ window.TRIP = {
       "北側海灘地平線開闊、光害少：烏塔克萊夫、Eggum、Gimsøy。",
       "村子裡的路燈會讓照片過曝，找村子邊緣暗一點的地方。"
     ],
+    steps: [
+      { t: "今晚哪裡晴？", d: "最重要的一步。看低雲和中雲，高雲影響比較小。羅弗敦往雲少的方向開；特羅姆瑟用來決定要不要報團。",
+        tools: [["Yr", "https://www.yr.no", "逐小時雲量，分低、中、高雲"], ["Windy", "https://www.windy.com", "大範圍雲圖"]] },
+      { t: "極光活不活躍？", d: "北挪威不用看 Kp。看 Bz：接近 0 或轉成負值，大約 30 分鐘內有機會出現。",
+        tools: [["Norlys", "https://norlys.live", "非營利、沒有廣告；iPhone app 要 iOS 18.2 以上"]] },
+      { t: "現在有人看到了嗎？", d: "有人貼照片就代表出來了。",
+        tools: [["Facebook 極光通報社團", "", "在 Facebook 搜尋特羅姆瑟、羅弗敦的極光通報社團，名稱出發前確認"], ["Hello Aurora app", "", "看附近使用者的回報"]] }
+    ],
+    spots: [
+      { n: "烏塔克萊夫海灘（Uttakleiv）", d: "面向北方、光害少。", lat: 68.214, lng: 13.533 },
+      { n: "豪克蘭海灘（Haukland）", d: "白沙配雪山。", lat: 68.199, lng: 13.552 },
+      { n: "Laukvik 住處前", d: "往西北是開闊海面，3/8～3/9 用。", lat: 68.3874, lng: 14.4121 }
+    ],
     coming: []
   },
 
@@ -613,7 +1248,7 @@ window.TRIP = {
     { id: "pkp", due: "2027-02-12", dueApprox: true, text: "買格但斯克 → 華沙火車票", sub: "出發前約 30 天開賣" },
     { id: "entry", due: "2027-01-25", text: "查入境規定最新公告", sub: "歐盟 EES、ETIAS 上路時程" },
     { id: "hours", due: "2027-01-25", text: "確認景點營業時間", sub: "出發前一個月，包括蕭邦博物館有沒有重開" },
-    { id: "offline", due: "2027-02-11", text: "手冊加到主畫面、測試離線", sub: "出發前兩週" },
+    { id: "offline", due: "2027-02-11", text: "手冊加到主畫面、測試離線", sub: "出發前兩週。備忘要在主畫面打開的手冊裡打，清除瀏覽器資料會一起消失" },
     { id: "sjoparken-bath", due: "2027-02-25", text: "跟 May 確認能不能接受 Sjøparken 和房東共用浴室", sub: "不行的話 2/25 15:00（當地時間）前取消" },
     { id: "chopin-reply", text: "等 Chopin Boutique 回信，確認飯店收到訂單" },
     { id: "mercure-charge", text: "確認 Mercure 只扣款一次", sub: "帳單出現兩筆的話，拿取消信找 Agoda" },
@@ -622,9 +1257,32 @@ window.TRIP = {
     { id: "gmaps-offline", due: "2027-02-18", text: "下載 Google 地圖離線地圖（羅弗敦、特羅姆瑟）" },
     { id: "aurora-app", due: "2027-02-18", text: "裝好極光 App 並開通知", sub: "見極光頁「今晚判斷」" },
     { id: "mofa-reg", due: "2027-02-18", text: "外交部出國登錄", sub: "外交部領事事務局網站" },
-    { id: "sos-phones", text: "查好保險公司、發卡銀行的海外緊急電話", sub: "之後加進資料頁「緊急」" }
+    { id: "sos-phones", text: "查好保險公司、發卡銀行的海外緊急電話", sub: "之後加進資料頁「緊急」" },
+    /* 旅途中 */
+    { id: "bobw-mail", day: "2027-02-26", until: "2027-02-28", text: "收 Bob W 的入住說明和門禁密碼 email", sub: "抵達前 72 小時內寄來，收到後填進 Bob W 的備忘" },
+    { id: "hans-info", day: "2027-02-27", until: "2027-02-28", text: "收 Hans-Erik 的入住資訊", sub: "他說入住前 2～3 天傳，收到後填進 Sjøparken 的備忘" },
+    { id: "aurora-book", day: "2027-03-02", text: "看雲量預報報極光團", sub: "第一次排 3/2 或 3/3 晚上；報名時問回程能不能送到 Strandvegen 114B" },
+    { id: "aurora-again", day: "2027-03-04", text: "前兩晚沒看到極光的話再報一次" },
+    { id: "taxi-0305", day: "2027-03-04", eve: true, text: "預約 3/5 早上的計程車", sub: "Tromsø Taxi 03011、Din Taxi 02045" },
+    { id: "bag-0305", day: "2027-03-04", eve: true, text: "確認登機箱厚度在 20 公分內，證件放隨身小包" },
+    { id: "food-0307", day: "2027-03-06", text: "採買 3/7 週日的食物" },
+    { id: "road-0310", day: "2027-03-09", eve: true, text: "查 175 路況和 yr 天氣，決定 3/10 出發時間" },
+    { id: "fuel-0310", day: "2027-03-09", eve: true, text: "在斯沃爾韋爾（Svolvær）加滿油" },
+    { id: "train-0314", day: "2027-03-13", eve: true, text: "確認 3/14 火車時間，11:00 前退房" }
   ],
-  info: {
-    coming: ["緊急電話與駐外館處", "App 清單（交通、叫車、極光預報）", "貨幣與付款", "挪威冬季自駕", "入境規定（出發前一個月查最新公告）", "穿著與裝備"]
-  }
+  /* 資料頁「緊急」：tel 撥號 [號碼, 說明]，不寫卡號 */
+  sos: [
+    { t: "當地緊急電話", rows: [
+      { n: "挪威", tel: [["112", "警察"], ["113", "救護"], ["110", "消防"]] },
+      { n: "波蘭", tel: [["112", "緊急電話"]] } ] },
+    { t: "駐外館處", rows: [
+      { n: "駐瑞典代表處（兼理挪威）", d: "Sveavägen 168, Stockholm", tel: [["+46-70-675 5089", "緊急（非急難重大事件請勿撥打）"], ["+46-8-728 85 13", "辦公"]] },
+      { n: "駐波蘭代表處", d: "Emilii Plater 53 30 樓, Warszawa", tel: [["+48-668-027-574", "緊急（非急難請勿撥打）"], ["+48-22-213-0060", "辦公"]] },
+      { n: "外交部旅外國人急難救助專線", tel: [["+886-800-085-095", "急難救助"]] } ] },
+    { t: "挪威路況", rows: [ { n: "Statens vegvesen 路況", tel: [["175", "路況"]] } ] },
+    { t: "保險、信用卡", rows: [
+      { n: "保險", d: "保單在雲端硬碟；保險公司緊急電話待補。" },
+      { n: "信用卡掛失", d: "發卡銀行海外緊急電話待補。" } ] },
+    { t: "護照遺失", rows: [ { n: "先報警拿報案證明，再聯絡駐外館處補發", d: "一般流程，出發前到外交部領事事務局網站確認。" } ] }
+  ]
 };
