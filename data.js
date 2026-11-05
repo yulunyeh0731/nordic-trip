@@ -22,7 +22,8 @@
    stays.short：住處簡稱（名稱太長時用，例如城市頁的距離說明）
    cities.ref：城市頁算景點距離用的住處 id，同一城市住兩段時寫成陣列（例如 ["waw1", "waw2"]）
    stays.via：訂房平台（例如 Booking.com、Airbnb、官網），資料頁住宿卡會顯示
-   route.stay：對到 stays 的 id，總覽路線方塊的日期和晚數從這裡算
+   stays.loc：一句位置說明（地區頁住處卡用）
+   legs.stops：一日遊依序經過的點（挪威縮影），stopsNote 補充；cities.tour：地區頁要列出的一日遊日期
    checklist.due：期限或建議完成日（YYYY-MM-DD），dueApprox: true 表示是大約的日期
    訂位代號、確認號不要寫進來（網頁是公開的）。 */
 
@@ -46,70 +47,60 @@ window.TRIP = {
     sky: { name: "回程",     color: "ink" }
   },
 
-  route: [
-    { name: "華沙", nights: "2 晚，Yulun 先行", solo: true, stay: "waw1" },
-    { name: "奧斯陸", nights: "2 晚，會合", stay: "osl" },
-    { name: "特羅姆瑟", nights: "3 晚", polar: true, stay: "tos" },
-    { name: "羅弗敦", nights: "5 晚", polar: true, stay: ["lof1", "lof2", "lof3"] },
-    { name: "卑爾根", nights: "2 晚", stay: "bgo" },
-    { name: "格但斯克", nights: "2 晚", stay: "gdn" },
-    { name: "華沙", nights: "2 晚", stay: "waw2" }
-  ],
-
   stays: [
-    { id: "waw1", who: "Y", area: "華沙", name: "Mercure Warszawa Centrum", short: "Mercure", from: "2027-02-26", nights: 2,
+    { id: "waw1", loc: "在華沙中央車站（Warszawa Centralna）附近", who: "Y", area: "華沙", name: "Mercure Warszawa Centrum", short: "Mercure", from: "2027-02-26", nights: 2,
       address: "Złota 48/54, 00-120 Warszawa", lat: 52.23095, lng: 21.00123, status: "booked", via: "Agoda",
       room: "Classic Standard Double，22 平方公尺，1 張大床", breakfast: false, phone: "+48 22 697 3999",
       checkin: "15:00", checkout: "12:00",
       note: "24 小時櫃台，可寄放行李；在中央車站（Warszawa Centralna）附近",
       cost: { cat: "住宿", cur: "TWD", amt: 3826.88, twd: 3826.88, who: "Y", pay: "paid", payDate: "2026-11-05",
         rule: { type: "free", until: "2027-02-24T23:59", note: "華沙時間；2/25 起取消收第 1 晚房費，2/26 起不可退款" } } },
-    { id: "osl", area: "奧斯陸", name: "Bob W Oslo Sentralen", from: "2027-02-28", nights: 2, status: "booked", via: "Klook",
+    { id: "osl", loc: "從奧斯陸中央車站（Oslo S）走約 500 公尺", area: "奧斯陸", name: "Bob W Oslo Sentralen", from: "2027-02-28", nights: 2, status: "booked", via: "Klook",
       address: "Kirkegata 30, 0153 Oslo", lat: 59.911, lng: 10.745,
       room: "雙人房，1 張大床", kitchen: "沒有廚房，有熱水壺", breakfast: false,
       phone: "+47 23 50 70 98", checkin: "15:00", checkout: "11:00",
       note: "自助入住：先線上報到，用手機開房門",
       cost: { cat: "住宿", cur: "TWD", amt: 5529, twd: 5529, pay: "paid", payDate: "2026-11-04", note: "Klook", rule: { type: "none", note: "不可退款" } } },
-    { id: "tos", area: "特羅姆瑟", name: "Sjøparken 獨立房間", from: "2027-03-02", nights: 3, status: "booked", via: "Airbnb",
+    { id: "tos", loc: "樓下有 33、34 號公車，到市中心約 5～10 分鐘，走路約 15 分鐘", area: "特羅姆瑟", name: "Sjøparken 獨立房間", from: "2027-03-02", nights: 3, status: "booked", via: "Airbnb",
       address: "Strandvegen 114B, 9006 Tromsø", lat: 69.6361, lng: 18.9351,
       room: "獨立房間，浴室和房東共用", kitchen: "廚房設備齊全", breakfast: false,
       phone: "+47 41 34 07 10", checkin: "15:00", checkout: "12:00",
       note: "房東 Hans-Erik，入住前 2～3 天傳入住資訊；房東同意約 12:30 抵達",
       cost: { cat: "住宿", cur: "TWD", amt: 17710.79, pay: "later", payDate: "2027-02-17", note: "Airbnb",
         rule: { type: "free", until: "2027-02-25T15:00", note: "3/2 15:00 前取消可拿回部分退款" } } },
-    { id: "lof1", area: "羅弗敦", name: "Lofoten Links Lodges", from: "2027-03-05", nights: 1, status: "booked", via: "Booking.com",
+    { id: "lof1", loc: "在 Gimsøy，門牌和高爾夫球場同號，導航用座標", area: "羅弗敦", name: "Lofoten Links Lodges", from: "2027-03-05", nights: 1, status: "booked", via: "Booking.com",
       address: "Hov Tore Hjortsvei 389, 8314 Gimsøy", lat: 68.3404, lng: 14.1285,
       room: "Luxury Standard Lodge，私人衛浴，共用廚房和客廳", kitchen: "共用廚房", breakfast: false, parking: true,
       phone: "+47 76 07 20 02", checkin: "16:00", checkout: "11:00",
       note: "餐廳冬季關閉，晚餐自己煮。門牌和高爾夫球場同號，導航用座標 68.3404, 14.1285",
       cost: { cat: "住宿", cur: "NOK", amt: 1912.5, pay: "later", note: "含 12% 加值稅",
         rule: { type: "free", until: "2027-02-02T23:59", note: "2/3 起取消收 50%，未入住收全額" } } },
-    { id: "lof2", area: "羅弗敦", name: "Sakrisøy Rorbuer", from: "2027-03-06", nights: 2, status: "booked", via: "Booking.com",
+    { id: "lof2", loc: "在雷訥（Reine）旁的薩克里索伊（Sakrisøy）小島", area: "羅弗敦", name: "Sakrisøy Rorbuer", from: "2027-03-06", nights: 2, status: "booked", via: "Booking.com",
       address: "Sakrisøya 2, 8390 Reine", lat: 67.9409, lng: 13.1111,
       room: "海景傳統小屋，附陽台", kitchen: "簡易廚房（灶台、烤箱、冰箱）", breakfast: false, parking: "免費（不可預約）",
       phone: "+47 90 03 54 19", checkin: "15:00", checkout: "11:00",
       note: "冬季入住時間和拿鑰匙方式待確認",
       cost: { cat: "住宿", cur: "NOK", amt: 6356.79, pay: "later", note: "房價 NOK 6,980 扣掉 Booking.com 折抵 623.21；住宿開的發票會顯示全額",
         rule: { type: "free", until: "2027-02-20T00:00", note: "入住 14 天前，確切時間看訂單頁；之後取消或未入住收全額" } } },
-    { id: "lof3", area: "羅弗敦", name: "Laukvik Suites", from: "2027-03-08", nights: 2, status: "booked", via: "Booking.com",
+    { id: "lof3", loc: "在群島東北岸的 Laukvik", area: "羅弗敦", name: "Laukvik Suites", from: "2027-03-08", nights: 2, status: "booked", via: "Booking.com",
       address: "Laukvikveien 3B, 8315 Laukvik", lat: 68.3874, lng: 14.4121,
       room: "單臥室公寓，私人衛浴", kitchen: "廚房（灶台、烤箱、洗碗機）", breakfast: false, parking: true,
       phone: "+47 93 45 81 79", checkin: "15:00", checkout: "12:00",
       note: "入住 15:00～22:00；有洗衣機、烘衣機",
       cost: { cat: "住宿", cur: "NOK", amt: 2575.8, pay: "paid", payDate: "2026-11-04", note: "含 12% 加值稅", rule: { type: "none", note: "不可退款、不可改日期" } } },
-    { id: "bgo", area: "卑爾根", name: "Ole Bull Hotel & Apartments", from: "2027-03-10", nights: 2, status: "booked", via: "Agoda",
+    { id: "bgo", loc: "走到輕軌 Byparken 站約 3 分鐘", area: "卑爾根", name: "Ole Bull Hotel & Apartments", from: "2027-03-10", nights: 2, status: "booked", via: "Agoda",
       address: "Øvre Ole Bulls plass 3, 5012 Bergen", lat: 60.392, lng: 5.322,
       room: "Standard Twin Room，已要求 2 張單人床", kitchen: "有廚房（住客評價）", breakfast: false,
       phone: "+47 55 23 16 13", checkin: "15:00", checkout: "11:00",
       note: "走到輕軌 Byparken 站約 3 分鐘；可寄放行李",
       cost: { cat: "住宿", cur: "TWD", amt: 6198.94, twd: 6198.94, pay: "paid", payDate: "2026-11-05", note: "含稅，Agoda 促銷 12%", rule: { type: "none", note: "不可退款、不可更改" } } },
-    { id: "gdn", area: "格但斯克", name: "Craft Beer Central Hotel", from: "2027-03-12", nights: 2, status: "booked", via: "Klook",
+    { id: "gdn", loc: "走到格但斯克中央車站（Gdańsk Główny）約 4 分鐘", area: "格但斯克", name: "Craft Beer Central Hotel", from: "2027-03-12", nights: 2, status: "booked", via: "Klook",
       address: "Podwale Grodzkie 4, 80-895 Gdańsk", lat: 54.354, lng: 18.645,
       room: "雙人或雙床房（Pils），已要求 2 張單人床", breakfast: false,
       phone: "+48 58 351 09 10", checkin: "15:00", checkout: "11:00",
       note: "24 小時櫃台，可寄放行李；走到中央車站約 4 分鐘。城市稅到店付（每人每晚約 PLN 3.3～3.5）",
       cost: { cat: "住宿", cur: "TWD", amt: 4734, twd: 4734, pay: "paid", payDate: "2026-11-05", note: "合計 4,983 扣掉 Klook 付款優惠 249", rule: { type: "none", note: "不可更改或取消" } } },
-    { id: "waw2", area: "華沙", name: "Chopin Boutique", from: "2027-03-14", nights: 2, status: "booked", via: "Agoda",
+    { id: "waw2", loc: "走到國家博物館約 2 分鐘，在新世界街（Nowy Świat）一帶", area: "華沙", name: "Chopin Boutique", from: "2027-03-14", nights: 2, status: "booked", via: "Agoda",
       address: "Smolna 14, 00-375 Warszawa", lat: 52.233, lng: 21.024,
       room: "高級雙人房，已要求 2 張單人床", breakfast: true,
       checkin: "15:00", checkout: "11:00",
@@ -235,12 +226,19 @@ window.TRIP = {
       notes: ["Embraer 190-E2 噴射機，中途停特隆赫姆時留在機上", "機場輕軌到市區終點站 Byparken 約 45 分鐘"],
       free: [{ when: "晚上", text: "搭弗洛伊恩纜車（Fløibanen）上山看夜景，末班時間出發前查", areas: ["bryggen"] }] },
 
-    { date: "2027-03-11", region: "bgo", art: "nutshell", places: ["nutshell"], title: "挪威縮影一日", city: "bgo",
+    { date: "2027-03-11", region: "bgo", art: "nutshell", title: "挪威縮影一日", city: "bgo",
       alerts: ["08:29 火車出發", "沒有備用日"],
       legs: [
-        { t: "tour", text: "挪威縮影一日來回", dep: "08:29", arr: "18:17", status: "pending" }
+        { t: "tour", text: "挪威縮影一日來回", dep: "08:29", arr: "18:17", status: "pending",
+          stops: [
+            "<b>卑爾根到沃斯（Voss）</b>：08:29 搭火車，09:41 到沃斯",
+            "<b>沃斯到古德旺恩（Gudvangen）</b>：10:10 轉巴士下山，11:10 到峽灣邊",
+            "<b>納柔依峽灣（Nærøyfjord）遊船</b>：12:00 開船，14:00 到弗洛姆（Flåm）",
+            "<b>弗洛姆鐵路（Flåmsbana）</b>：14:30 出發，15:14 到米達爾（Myrdal）",
+            "<b>米達爾回卑爾根</b>：15:56 搭卑爾根鐵路，18:17 回到卑爾根" ],
+          stopsNote: "天氣不好或峽灣結冰時，遊船會改成從弗洛姆出發的來回航程，古德旺恩到弗洛姆改搭巴士；改搭 12:00 的弗洛姆來回船，仍接得上 14:30 的鐵路。" }
       ],
-      notes: ["冬天遊船可能改航線，不影響行程；比較要擔心的是卑爾根鐵路因冰雪延誤，這次沒有備用日。詳細時刻見地點介紹"] },
+      notes: ["冬天遊船可能改航線，不影響行程；比較要擔心的是卑爾根鐵路因冰雪延誤，這次沒有備用日。"] },
 
     { date: "2027-03-12", region: "gdn", title: "飛格但斯克", city: "gdn",
       alerts: ["13:40 起飛"],
@@ -288,93 +286,6 @@ window.TRIP = {
       ] }
   ],
 
-  /* 內容區塊：h 小標、p 段落、list 清單、quote 引言、note 提醒、sub 子項目、stops 依序停靠 */
-  places: [
-    { id: "oslo", name: "奧斯陸", region: "osl", tier: "worth",
-      line: "挪威首都，現代建築、孟克和北歐精品咖啡。兩人會合的第一站。",
-      blocks: [
-        { list: [
-          "<b>歌劇院</b>：可以直接走上傾斜的屋頂看港灣，免費",
-          "<b>孟克美術館</b>：收藏《吶喊》，每週三晚上 18～21 點免費，要提早預約",
-          "<b>維格蘭雕塑公園</b>：兩百多座雕像，免費",
-          "<b>精品咖啡</b>：Tim Wendelboe、Fuglen 等北歐咖啡代表店" ] },
-        { p: "Time Out 曾把奧斯陸評為最佳北歐城市小旅行第一名；也有作者說它不像哥本哈根那麼漂亮。這次住 2 晚，3/1 整天逛市區和喝咖啡。" }
-      ] },
-
-    { id: "tromso", name: "特羅姆瑟", region: "tos", tier: "must", polar: true,
-      line: "北極圈裡生活機能最好的城市，極光團最成熟。",
-      blocks: [
-        { h: "是什麼", p: "挪威北部最大的城市，位在北極圈內約 350 公里的小島上，被稱為「北極門戶」。市中心走路就能逛完，餐廳、博物館、飯店都很完整。" },
-        { h: "有什麼", list: [
-          "<b>極光團</b>：好的導遊會看雲量開到內陸，甚至越過邊境到芬蘭追晴天。2018 年就是跟 Flexitour 看到極光的，這家現在仍由同一位導遊經營",
-          "<b>狗拉雪橇</b>：營地在郊外的克瓦洛亞島，例如 Tromsø Wilderness Centre，有超過 300 隻狗，推薦選自己駕駛",
-          "<b>纜車</b>：上 421 公尺的觀景台，天氣好時看得到約 70 公里外的林根阿爾卑斯山",
-          "<b>北極大教堂</b>：三角形的白色教堂，是城市地標" ] },
-        { h: "旅人怎麼說", quote: "很貴、極光不穩定、市中心比想像中小，但不代表不值得去。如果期待的是 IG 上隨時都有的極光，很可能會失望。" },
-        { p: "2025 年機場旅客量增加約 40%，冬天晚上觀光巴士塞滿港邊。" },
-        { note: "極光團品質落差很大，要選小團、評價高、可彈性改期的業者。3 月看不到鯨魚，賞鯨季是 11～1 月。纜車＋北極大教堂套票不划算：大教堂常因婚喪禮不開放，纜車強風會停駛。" }
-      ] },
-
-    { id: "lofoten", name: "羅弗敦群島", region: "lof", tier: "must", polar: true,
-      line: "雪山直接從海裡拔起，山腳是紅色漁屋。挪威冬天風景的最高峰。",
-      blocks: [
-        { h: "是什麼", p: "挪威西北外海的一串群島，一條 E10 公路由東到西把所有島串起來。2～3 月白天變長，光線最漂亮。" },
-        { h: "會去哪裡", p: "從 EVE 機場（哈爾斯塔/納爾維克機場，Harstad/Narvik lufthavn Evenes）取車，沿 E10 公路玩西側和東側，最後開回 EVE 機場還車。先住中段 Gimsøy 一晚，再住西側薩克里索伊兩晚，最後兩晚住東北岸 Laukvik。" },
-        { sub: "西側：哈姆諾伊、薩克里索伊、雷訥、Å", p: "整趟的精華。哈姆諾伊是紅色漁屋配尖山；過橋的薩克里索伊整村是黃色的；雷訥是羅弗敦最經典的明信片畫面；Å 是 E10 的終點。" },
-        { sub: "中段：烏塔克萊夫、豪克蘭海灘", p: "白天是雪山配海灘，晚上是看極光的經典地點。北側海灘面向北方，地平線開闊。" },
-        { sub: "東側：斯沃爾韋爾、亨寧斯韋爾", p: "斯沃爾韋爾是東側最大的鎮，生活機能最好。亨寧斯韋爾是建在小島群上的漁村，冬天正值鱈魚季，港口掛滿晾魚乾的木架。有名的海上足球場經典照片是空拍，站在地面看不太出來。" },
-        { h: "旅人怎麼說", quote: "冬天絕對值得，但這時的羅弗敦比較安靜、陰鬱、難以預測。期待穩定的天氣就會失望。" },
-        { p: "3 月中去的旅客說主要道路清得很快，配釘胎慢慢開不難。中文平台上「冬天不適合自駕」的說法，多半來自推銷包團的業者。" },
-        { note: "部分餐廳冬天會休息，超市選擇也少。雷訥布林根登山步道冬天很危險，不建議爬。有車就能看雲量往晴的一側移動追極光。" }
-      ] },
-
-    { id: "nutshell", name: "挪威縮影", region: "bgo", tier: "must",
-      line: "一天看完峽灣、高山鐵路和雪原。從卑爾根當天來回，不帶行李。",
-      blocks: [
-        { h: "依序會經過", stops: [
-          "<b>卑爾根到沃斯</b>：08:29 搭火車，09:41 到沃斯",
-          "<b>沃斯到古德旺恩</b>：10:10 轉巴士下山，11:10 到峽灣邊",
-          "<b>納柔依峽灣遊船</b>：12:00 開船，14:00 到弗洛姆。世界遺產，兩岸峭壁非常窄",
-          "<b>弗洛姆鐵路</b>：14:30 出發，15:14 到米達爾，約 20 公里爬升 800 多公尺",
-          "<b>米達爾回卑爾根</b>：15:56 搭卑爾根鐵路，18:17 回到卑爾根" ] },
-        { h: "旅人怎麼說", p: "冬天評價兩極。有台灣旅人 3 月走，說雪景美到讓人忘記呼吸；也有人覺得冬天弗洛姆鐵路景色普通，瀑布整個結冰。還有人遇到火車取消，改坐好幾個小時的巴士。" },
-        { note: "天氣不好或峽灣結冰時，遊船會改成從弗洛姆出發的來回航程，古德旺恩到弗洛姆改搭巴士；改搭 12:00 的弗洛姆來回船，仍接得上 14:30 的鐵路。比較需要擔心的是卑爾根鐵路因冰雪延誤，這次沒有備用日。" }
-      ] },
-
-    { id: "bergen", name: "卑爾根", region: "bgo", tier: "worth",
-      line: "峽灣入口的港口城市，彩色木屋街是世界遺產。",
-      blocks: [
-        { list: [
-          "<b>布呂根</b>：港邊一排彩色木造倉庫，漢薩同盟時期的商館，世界遺產",
-          "<b>弗洛伊恩纜車</b>：上山看整個港灣，晚上夜景很美",
-          "<b>魚市場</b>：港邊吃海鮮" ] },
-        { p: "論壇上的評價是「值得待一天」。缺點是挪威最常下雨的城市之一。" }
-      ] },
-
-    { id: "gdansk", name: "格但斯克", region: "gdn", tier: "must",
-      line: "波羅的海邊的漢薩港口古城，冬天安靜又有氣氛。",
-      blocks: [
-        { h: "有什麼", list: [
-          "<b>長街與長市場</b>：兩旁是彩色的山牆商人房屋，最經典的畫面",
-          "<b>莫特瓦瓦河畔</b>：老倉庫和中世紀木造起重機，傍晚散步很美",
-          "<b>琥珀</b>：這一帶是波羅的海琥珀的產地，老城有很多琥珀店" ] },
-        { h: "旅人怎麼說", quote: "冬天比華沙和克拉科夫更安靜、更有氣氛，窄巷和彩色建築在冬天有一層霜的光澤。" },
-        { note: "海邊冬天風很大。" }
-      ] },
-
-    { id: "malbork", name: "馬爾堡城堡", region: "gdn", tier: "must",
-      line: "世界最大的紅磚城堡，從格但斯克搭火車約 30～40 分鐘。",
-      blocks: [
-        { p: "13 世紀條頓騎士團建造的總部，世界遺產。規模非常驚人，室內展區多，冬天去也不怕冷。" }
-      ] },
-
-    { id: "sopot", name: "索波特", region: "gdn", tier: "worth",
-      line: "格但斯克旁的海濱小鎮，有歐洲最長的木造海上棧橋。",
-      blocks: [
-        { p: "從格但斯克搭通勤火車約 20～30 分鐘。冬天的波羅的海是灰藍色的，適合排半天輕鬆逛。" }
-      ] }
-  ],
-
   /* 城市 → 區域 → 地點
      type：sight 景點、food 吃、cafe 咖啡
      pri：must 必去、maybe 有空再去（景點用）；why：吃和咖啡的去的理由
@@ -384,7 +295,7 @@ window.TRIP = {
   cities: {
     waw: {
       name: "華沙", region: "waw", ref: ["waw1", "waw2"], mapCity: "Warszawa",
-      intro: "二戰後依原貌重建的首都，老城列入世界遺產。不是驚艷型的城市，適合慢慢走、看美術館、坐咖啡館。",
+      intro: "二戰後依原貌重建的首都，老城列入世界遺產，適合慢慢走、看美術館、坐咖啡館。",
       tips: [
         { i: "shop", t: "週日超市大多不開", d: "Żabka 便利商店、藥局、麵包店、加油站例外，Żabka 多數開到 23:00。餐廳照常營業。" },
         { i: "museum", t: "週一多數博物館休館", d: "王宮、國家博物館、華沙博物館都休。兩人一起在華沙的是 3/14 週日和 3/15 週一，想一起看的展館排 3/14。" },
@@ -460,7 +371,7 @@ window.TRIP = {
     },
     osl: {
       name: "奧斯陸", region: "osl", ref: "osl", mapCity: "Oslo",
-      intro: "挪威首都，現代建築、孟克和北歐精品咖啡。兩人會合的第一站，2/28 下午加 3/1 一整天。",
+      intro: "挪威首都，現代建築、孟克和北歐精品咖啡，兩人會合的第一站。",
       tips: [
         { i: "shop", t: "2/28 週日大型超市不開", d: "只有 Joker、Bunnpris 和便利商店，營業時間較短。晚餐和隔天早餐先想好。" },
         { i: "museum", t: "3/1 週一國家博物館休館", d: "孟克美術館照常開。May 2/28 中午就到，可以當天下午去國家博物館（週日開到 17:00）。" },
@@ -501,11 +412,14 @@ window.TRIP = {
     },
     tos: {
       name: "特羅姆瑟", region: "tos", ref: "tos", mapCity: "Tromsø",
-      intro: "北極圈裡生活機能最好的城市。市中心在島上，走路就能逛完；北極大教堂和纜車在跨海大橋另一頭。",
+      intro: "北極圈裡生活機能最好的城市，市中心在島上，走路就能逛完。",
       tips: [
         { i: "sun", t: "白天短，戶外行程排中午前後", d: "晚上留給極光團。" },
+        { i: "aurora", t: "市區光害大", d: "極光大爆發時在橋上或纜車山頂也看得到，但效果不如跟團到郊外。" },
+        { i: "car", t: "哈士奇營地在郊外的克瓦洛亞島（Kvaløya）", d: "例如 Tromsø Wilderness Centre，推薦選自己駕駛雪橇。" },
         { i: "cup", t: "Risø 週日公休", d: "其他小店營業時間也常變動。" },
-        { i: "aurora", t: "市區光害大", d: "極光大爆發時在橋上或纜車山頂也看得到，但效果不如跟團到郊外。" }
+        { i: "museum", t: "纜車＋北極大教堂套票不划算", d: "大教堂常因婚禮、喪禮不開放，纜車強風會停駛。" },
+        { i: "clock", t: "3 月看不到鯨魚", d: "賞鯨季是 11～1 月。" }
       ],
       areas: [
         { id: "centre", name: "市中心（島上）", line: "港邊、Storgata 和大教堂一帶，咖啡店、博物館都在走路範圍。" },
@@ -536,12 +450,14 @@ window.TRIP = {
     },
     lof: {
       name: "羅弗敦", region: "lof", mapCity: "Lofoten",
-      intro: "一條 E10 公路串起整排島。住 5 晚：3/5 中段 Gimsøy，3/6～3/8 西側薩克里索伊，3/8～3/10 東北岸 Laukvik。3/10 回 EVE 機場還車。",
+      intro: "雪山直接從海裡拔起，一條 E10 公路串起整排島。",
       tips: [
         { i: "shop", t: "3/7 週日大型超市不開", d: "偏遠地區週日營業的店更少。3/6 週六先把 3/7 的食物買好。" },
         { i: "clock", t: "冬天店家常不照公告開門", d: "有旅人說不一定照公告時間營業，想去的店前一天先查。" },
         { i: "car", t: "看雲量開車追晴天", d: "雲量預報哪邊晴就往哪邊開。" },
-        { i: "aurora", t: "北側海灘看極光", d: "烏塔克萊夫（Uttakleiv）、Eggum、Gimsøy 面向北方、光害少。" }
+        { i: "aurora", t: "北側海灘看極光", d: "烏塔克萊夫（Uttakleiv）、Eggum、Gimsøy 面向北方、光害少。" },
+        { i: "food", t: "部分餐廳冬天休息，超市選擇也少", d: "晚餐多半要自己煮，經過大鎮時先採買。" },
+        { i: "clock", t: "雷訥布林根（Reinebringen）步道冬天很危險", d: "不建議爬。" }
       ],
       areas: [
         { id: "west", name: "西側：雷訥一帶", line: "雷訥、哈姆諾伊、薩克里索伊、Å，羅弗敦最經典的畫面。" },
@@ -573,8 +489,8 @@ window.TRIP = {
       ]
     },
     bgo: {
-      name: "卑爾根", region: "bgo", ref: "bgo", mapCity: "Bergen", places: ["nutshell"],
-      intro: "峽灣入口的港口城市，彩色木屋街是世界遺產。3/10 晚上到，3/11 走挪威縮影，3/12 起飛前的上午可以再逛港邊。",
+      name: "卑爾根", region: "bgo", ref: "bgo", mapCity: "Bergen", tour: "2027-03-11",
+      intro: "峽灣入口的港口城市，彩色木屋街是世界遺產。",
       tips: [
         { i: "rain", t: "雨具要帶", d: "挪威最常下雨的城市之一。" }
       ],
@@ -596,16 +512,17 @@ window.TRIP = {
     },
     gdn: {
       name: "格但斯克", region: "gdn", ref: "gdn", mapCity: "Gdańsk",
-      intro: "波羅的海邊的漢薩港口古城，冬天安靜又有氣氛。3/12 下午到，3/13 一整天可以去馬爾堡或索波特。",
+      intro: "波羅的海邊的漢薩港口古城，冬天安靜又有氣氛。",
       tips: [
         { i: "food", t: "長街一帶的牛奶吧和餃子店", d: "便宜好吃，在地人和學生常去，午餐和傍晚要排隊。" },
         { i: "museum", t: "聖母聖殿鐘樓淡季可能不開", d: "有旅人說淡季不開放登頂，出發前查。" },
-        { i: "museum", t: "3/12、3/13 博物館和城堡都有開", d: "3/12 週五、3/13 週六。" }
+        { i: "museum", t: "3/12、3/13 博物館和城堡都有開", d: "3/12 週五、3/13 週六。" },
+        { i: "rain", t: "海邊冬天風很大", d: "去索波特棧橋要穿防風外套。" }
       ],
       areas: [
         { id: "main", name: "主城區：長街與長市場", line: "從金門到綠門的皇家之路，彩色山牆房屋和海神噴泉。" },
         { id: "river", name: "河畔與穀倉島", line: "莫特瓦瓦河沿岸的老倉庫和中世紀起重機。" },
-        { id: "trips", name: "一日遊：馬爾堡、索波特", line: "搭火車就到，3/13 二選一。" }
+        { id: "trips", name: "一日遊（3/13）：馬爾堡、索波特", line: "搭火車就到，3/13 二選一。" }
       ],
       pois: [
         { id: "longmarket", area: "main", type: "sight", pri: "must", when: ["day", "eve"], name: "長街與長市場", local: "Długa, Długi Targ",
@@ -633,9 +550,10 @@ window.TRIP = {
           line: "老城和穀倉島之間的牛奶吧，一整餐不到 25 茲羅提。", lat: 54.3475, lng: 18.6585 },
         { id: "malborkpoi", area: "trips", type: "sight", pri: "must", when: ["day"], name: "馬爾堡城堡", local: "Zamek w Malborku",
           line: "世界最大的紅磚城堡，條頓騎士團總部，世界遺產。從格但斯克搭火車約 30～40 分鐘。", time: "半天",
-          hours: "冬季開放時間出發前查", lat: 54.0397, lng: 19.0277 },
+          hours: "冬季開放時間出發前查", tip: "室內展區多，冬天去也不怕冷。", lat: 54.0397, lng: 19.0277 },
         { id: "sopotpoi", area: "trips", type: "sight", pri: "maybe", when: ["day"], name: "索波特海上棧橋", local: "Molo w Sopocie",
-          line: "歐洲最長的木造海上棧橋，從格但斯克搭通勤火車約 20～30 分鐘。", time: "半天", lat: 54.4466, lng: 18.5700 }
+          line: "歐洲最長的木造海上棧橋，從格但斯克搭通勤火車約 20～30 分鐘。", time: "半天",
+          tip: "冬天的波羅的海是灰藍色的，適合排半天輕鬆逛。", lat: 54.4466, lng: 18.5700 }
       ]
     }
   },

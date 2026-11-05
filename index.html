@@ -56,7 +56,7 @@ a{color:inherit} button{font:inherit;color:inherit}
 
 /* 底部分頁 */
 .nav{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--paper);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
-.nav .wrap{display:grid;grid-template-columns:repeat(5,1fr);height:var(--navh);padding:0 4px}
+.nav .wrap{display:grid;grid-template-columns:repeat(4,1fr);height:var(--navh);padding:0 4px}
 .nav a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-decoration:none;color:var(--ink3);font-size:11.5px;line-height:1}
 .nav svg{width:22px;height:22px}
 .nav a[aria-current="page"]{color:var(--ink)}
@@ -85,67 +85,13 @@ summary{list-style:none;cursor:pointer} summary::-webkit-details-marker{display:
 .muted{color:var(--ink2);font-size:14px}
 .foot{margin:28px 0 8px;font-size:12.5px;color:var(--ink3)}
 
-/* 總覽：封面 */
-.hero{background:var(--night);color:#EEF3F6;overflow:hidden;position:relative}
-.hero svg.lines{display:block;width:100%;height:84px}
-.hero path{fill:none;stroke-linecap:round}
-.drift{animation:drift 26s ease-in-out infinite alternate}
-.drift2{animation:drift 34s ease-in-out infinite alternate-reverse}
-@keyframes drift{from{transform:translateX(-14px)}to{transform:translateX(14px)}}
-@media (prefers-reduced-motion:reduce){.drift,.drift2{animation:none}}
-.hero .wrap{padding-bottom:22px}
-.hero .kicker{margin:0;font-size:13px;letter-spacing:.2em;color:#9FB6C6}
-.hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(52px,16vw,76px);line-height:1.05;margin:6px 0 0;letter-spacing:.06em}
-.hero .dates{font-family:var(--serif);font-weight:700;font-size:21px;margin:10px 0 0;color:#D7E2EA}
-.count{display:inline-flex;align-items:baseline;gap:8px;margin:16px 0 0;padding:8px 12px;border:1px solid #33536B;border-radius:3px;font-size:14px;color:#C4D3DE}
-.count b{font-family:var(--serif);font-size:26px;color:#fff;line-height:1}
-/* 總覽：路線方塊 */
-.rgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
-.rgrid a{display:block;min-width:0;min-height:44px;text-decoration:none;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:3px;padding:7px 7px 8px}
-.rgrid b{display:block;font-family:var(--serif);font-weight:700;font-size:15px;line-height:1.3;white-space:nowrap}
-.rgrid span{display:block;font-size:12px;line-height:1.45;color:var(--ink2);white-space:nowrap;font-variant-numeric:tabular-nums}
-.rgrid a[aria-current="true"]{background:var(--c);border-color:var(--c);color:#fff}
-.rgrid a[aria-current="true"] span{color:#fff;opacity:.9}
-/* 總覽：準備進度、下一步 */
-.pg{padding:13px 14px 4px;border-top:1px solid var(--line2)}
-.pg:first-child{border-top:0}
-.pg-hd{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px}
-.pg-hd b{font-family:var(--serif);font-weight:700;font-size:18px}
-.pg-hd span{font-size:13.5px;color:var(--ink2)}
-.pg-hd em{font-style:normal;font-family:var(--serif);font-weight:700;font-size:20px;color:var(--ink)}
-.pg .bar{height:8px}
-.pg .bar span{background:var(--aurora)}
-.pg-todo{list-style:none;margin:8px 0 0;padding:0}
-.pg-todo li{display:grid;grid-template-columns:3em minmax(0,1fr);gap:8px;padding:4px 0;font-size:14.5px;line-height:1.5}
-.pg-todo .d{font-family:var(--serif);font-weight:700;color:var(--ink2);font-variant-numeric:tabular-nums}
-.more{display:flex;align-items:center;justify-content:flex-end;min-height:44px;font-size:14px;font-weight:500;color:var(--fjord);text-decoration:none}
-.nxt .more{padding:0 14px;border-top:1px solid var(--line2)}
-.nx-d{list-style:none;margin:0;padding:0}
-.nx-d li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;padding:11px 14px;border-top:1px solid var(--line2)}
-.nx-d li:first-child{border-top:0}
-.nx-d p{margin:0;font-size:15px;line-height:1.5}
-.nxt .s{font-size:13px;color:var(--ink2);margin:2px 0 0}
-.nxt .s.late{color:var(--alert);font-weight:600}
-.due{display:inline-block;min-width:4.4em;text-align:center;font-family:var(--serif);font-weight:700;font-size:14px;line-height:1;padding:6px 6px 5px;border-radius:2px;background:var(--fjord);color:#fff;white-space:nowrap;font-variant-numeric:tabular-nums}
-.due.late{background:var(--alert)}
-.due-s{display:inline-block;font-style:normal;font-size:12px;font-weight:600;color:var(--fjord);border:1px solid currentColor;border-radius:2px;padding:0 5px;margin-left:6px;line-height:1.5;vertical-align:1px;white-space:nowrap}
-.nx-t{padding:11px 14px;border-top:1px solid var(--line2)}
-.nx-d+.nx-t{border-top:1px solid var(--line2)}
-.nxt>.nx-t:first-child{border-top:0}
-.nx-t .s{margin:0 0 6px}
-.tags{display:flex;flex-wrap:wrap;gap:6px}
-.tags span{font-size:13px;line-height:1.45;padding:3px 8px;border:1px solid var(--line);border-radius:2px;background:var(--page);color:var(--ink)}
-/* 總覽：查資料 */
-.qk{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin-bottom:8px}
-.qk a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:68px;text-decoration:none;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:3px;font-size:13.5px}
-.qk svg{width:24px;height:24px;color:var(--fjord)}
 /* 資料 */
 .ihero{background:var(--night);color:#EEF3F6}
 .ihero .wrap{padding-top:24px;padding-bottom:16px}
 .ihero h1{font-family:var(--serif);font-weight:700;font-size:44px;line-height:1.1;margin:0;letter-spacing:.08em}
 .ihero p{margin:8px 0 0;font-size:14.5px;color:#B9C8D3}
 .itabs{position:sticky;top:0;z-index:30;background:var(--page);border-bottom:1px solid var(--line);padding:8px 0}
-.itabs .wrap{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px}
+.itabs .wrap{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:4px}
 .itabs a{display:flex;align-items:center;justify-content:center;min-height:44px;text-decoration:none;font-size:14.5px;color:var(--ink2);background:var(--paper);border:1px solid var(--line);border-radius:3px;white-space:nowrap}
 .itabs a[aria-current="page"]{background:var(--ink);border-color:var(--ink);color:var(--paper);font-weight:600}
 /* 資料：費用 */
@@ -200,13 +146,6 @@ details.fi>summary{display:grid;grid-template-columns:auto minmax(0,1fr) auto au
 @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .rt-free{color:#7FD4B4} :root:not([data-theme="light"]) .rt-change{color:#8DB9D6} :root:not([data-theme="light"]) .rt-paid{color:#E7B95A} }
 :root[data-theme="dark"] .rt-free{color:#7FD4B4} :root[data-theme="dark"] .rt-change{color:#8DB9D6} :root[data-theme="dark"] .rt-paid{color:#E7B95A}
 
-.stays{list-style:none;margin:0;padding:0}
-.stays li{display:grid;grid-template-columns:5.4em minmax(0,1fr);gap:10px;padding:11px 14px;border-top:1px solid var(--line2);border-left:4px solid var(--c)}
-.stays li:first-child{border-top:0}
-.stays .when{font-family:var(--serif);font-weight:700;font-size:16px;line-height:1.25}
-.stays .when small{display:block;font-family:var(--sans);font-weight:400;font-size:12px;color:var(--ink2);margin-top:3px}
-.stays p{margin:0;font-size:15px;line-height:1.5}
-.stays .s{font-size:13.5px;color:var(--ink2)}
 .addr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:center;padding:10px 14px;border-top:1px solid var(--line2)}
 .addr:first-child{border-top:0}
 .addr b{display:block;font-weight:600;font-size:15px;word-break:break-word;line-height:1.4}
@@ -224,7 +163,6 @@ a.ext .net{display:inline-flex;align-items:center;gap:2px;font-size:10px;font-we
 .upd{position:fixed;left:0;right:0;bottom:calc(var(--navh) + env(safe-area-inset-bottom,0px));z-index:45;width:100%;min-height:48px;border:0;border-top:1px solid var(--line);background:var(--fjord);color:#fff;font-size:15px;font-weight:600;cursor:pointer}
 .toast{position:fixed;left:50%;bottom:calc(var(--navh) + env(safe-area-inset-bottom,0px) + 14px);transform:translateX(-50%);background:var(--ink);color:var(--paper);font-size:14px;padding:8px 14px;border-radius:3px;z-index:70;opacity:0;transition:opacity .2s;pointer-events:none}
 .toast.on{opacity:1}
-.strip{display:block;width:100%;height:30px}
 .art{position:absolute;right:0;bottom:0;width:86%;height:auto;pointer-events:none;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 38%);mask-image:linear-gradient(to right,transparent 0,#000 38%)}
 .art .b{fill:#fff;fill-opacity:.11}.art .m{fill:#fff;fill-opacity:.18}.art .f{fill:#fff;fill-opacity:.23}
 .art .w{fill:var(--c)}.art .ln{fill:#fff;fill-opacity:.5}.art .ac{fill:#E9785D;fill-opacity:.95}
@@ -304,143 +242,21 @@ details.fold>.in{border-top:1px solid var(--line2);padding:4px 14px 12px}
 .drv button{margin-top:16px;min-height:52px;border:1px solid var(--line);background:var(--page);border-radius:4px;font-size:16px;cursor:pointer}
 
 /* 每日 */
-.daybar{position:sticky;top:0;z-index:30;background:var(--page);border-bottom:1px solid var(--line);padding:8px 0}
-.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:0 16px;scroll-padding:0 16px}
-.chips::-webkit-scrollbar{display:none}
-.chips a{flex:none;width:48px;min-height:44px;text-align:center;text-decoration:none;border:1px solid var(--line);border-top:3px solid var(--c);background:var(--paper);border-radius:3px;padding:4px 0 3px;line-height:1.2;font-size:11.5px;color:var(--ink2)}
-.chips a b{display:block;font-size:15px;font-weight:600;color:var(--ink)}
-.chips a[aria-current="true"]{background:var(--c);border-color:var(--c);color:#fff}
-.chips a[aria-current="true"] b{color:#fff}
-.chips a .td{display:block;font-size:10px;color:var(--alert)}
-.chips a[aria-current="true"] .td{color:#fff}
-.band{background:var(--c);color:#fff;margin-top:12px;padding:14px 16px 16px;border-radius:4px 4px 0 0;position:relative;overflow:hidden}
-.band>*:not(.art),.cband>*:not(.art){position:relative}
-.band .k{margin:0;font-size:12.5px;letter-spacing:.14em;opacity:.85}
-.band .row1{display:flex;align-items:flex-end;gap:12px;margin-top:2px}
-.band .dt{font-family:var(--serif);font-weight:700;font-size:64px;line-height:.95;letter-spacing:-.01em}
-.band .wd{font-size:15px;padding-bottom:6px;opacity:.9}
-.band h2{font-family:var(--serif);font-weight:700;font-size:21px;line-height:1.35;margin:10px 0 0}
-.band .num{position:absolute;right:14px;top:12px;font-family:var(--serif);font-size:14px;opacity:.85}
-.daybody{background:var(--paper);border:1px solid var(--line);border-top:0;border-radius:0 0 4px 4px;padding:14px 16px 16px}
-.alerts{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
-.alert{display:inline-flex;align-items:center;font-size:13.5px;font-weight:600;color:var(--alert);border:1.5px solid var(--alert);border-radius:3px;padding:1px 8px;background:color-mix(in srgb,var(--alert) 6%,var(--paper))}
-.tl{margin:0 0 18px}
-.tl-axis{position:relative;height:30px;background:var(--line2);border-radius:2px;overflow:hidden}
-.tl-free{position:absolute;inset:0;background:color-mix(in srgb,var(--c) 16%,var(--paper))}
-.tl-blk{position:absolute;top:0;bottom:0;background:var(--slate);color:#fff;font-size:11.5px;line-height:30px;padding:0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-left:1px solid var(--paper);border-right:1px solid var(--paper)}
-.tl-blk.tour{background:var(--c)}
-.tl-sun{position:relative;height:8px;margin-top:3px;background:#2C3E50;border-radius:2px;overflow:hidden}
-.tl-day{position:absolute;top:0;bottom:0;background:#F2C14E}
-.tl-tw{position:absolute;top:0;bottom:0;background:#8E7AB5}
-.tl-ticks{position:relative;height:16px;font-size:11px;color:var(--ink3)}
-.tl-ticks span{position:absolute;transform:translateX(-50%)}
-.tl-note{font-size:12.5px;color:var(--ink2);margin-top:2px;display:flex;flex-wrap:wrap;gap:2px 12px}
-.tl-note i{display:inline-block;width:10px;height:8px;margin-right:4px;border-radius:1px;vertical-align:0}
-.bar{display:flex;height:12px;border-radius:2px;overflow:hidden;background:var(--line2);gap:2px}
-.bar span{display:block;height:100%}
-.k-move{background:repeating-linear-gradient(135deg,var(--slate) 0 3px,transparent 3px 6px);opacity:.7}
-.k-free{background:var(--c)}
-.k-tour{background:color-mix(in srgb,var(--c) 55%,var(--paper))}
-.legend{display:flex;flex-wrap:wrap;gap:2px 14px;margin-top:6px;font-size:12.5px;color:var(--ink2)}
-.legend i{display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:-1px;border-radius:1px}
 .blk{margin:0 0 18px}
 .blk>.lab{margin-bottom:8px}
-.evs{list-style:none;margin:0;padding:0}
-.ev{display:grid;grid-template-columns:3.4em 22px minmax(0,1fr);gap:0 8px;padding:7px 0}
-.ev-t{font-family:var(--serif);font-weight:700;font-size:18px;line-height:1.35;text-align:right;font-variant-numeric:tabular-nums}
-.ev-n{position:relative;display:flex;justify-content:center}
-.ev-n svg{width:22px;height:22px;padding:3px;border-radius:50%;background:var(--paper);border:1.5px solid var(--c);color:var(--c);position:relative;z-index:1}
-.ev:not(:last-child) .ev-n::after{content:"";position:absolute;top:24px;bottom:-12px;left:50%;border-left:1px dashed var(--line)}
-.ev-m{margin:0;font-weight:500;font-size:15.5px;line-height:1.5}
-.ev-s{margin:2px 0 0;font-size:14px;color:var(--ink2);line-height:1.55}
-.free{padding:12px 14px;border-left:4px solid var(--c);margin-bottom:10px}
-.free .when{font-family:var(--serif);font-weight:700;font-size:19px;margin:0}
-.free p{margin:4px 0 0;font-size:15px}
-.plan{margin:0;padding-left:1.15em;font-size:15.5px}
-.plan li{margin:4px 0}
-.dnote{margin:0 0 8px;padding:9px 12px;border-left:3px solid #C9971C;background:color-mix(in srgb,#C9971C 9%,var(--paper));font-size:14.5px}
-.stay{display:grid;grid-template-columns:22px minmax(0,1fr);gap:0 10px;padding:4px 0}
-.stay svg{width:20px;height:20px;color:var(--c);margin-top:3px}
-.stay p{margin:0;font-size:15px;line-height:1.55}
-.stay .s{font-size:13.5px;color:var(--ink2)}
-.links{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
-.links a{font-size:13.5px;text-decoration:none;border:1px solid var(--c);color:var(--c);padding:3px 10px;border-radius:2px}
-.pager{display:flex;gap:10px;margin:14px 0 4px}
-.pager a{flex:1;display:block;text-align:center;border:1px solid var(--line);background:var(--paper);border-radius:3px;padding:9px 10px;text-decoration:none;font-size:13.5px;color:var(--ink2)}
-.pager a b{display:block;color:var(--ink);font-weight:600;font-size:15px}
-.pager a.off{visibility:hidden}
-.hint{text-align:center;font-size:12px;color:var(--ink3);margin:6px 0 0}
 
 /* 區域與地點 */
-details.area{background:var(--paper);border:1px solid var(--line);border-radius:3px;margin:0 0 8px}
-details.area>summary{display:flex;align-items:center;gap:10px;padding:11px 13px}
-details.area>summary b{display:block;font-family:var(--serif);font-weight:700;font-size:17px;line-height:1.35}
-details.area>summary span{display:block;font-size:13px;color:var(--ink2);line-height:1.5}
-.pois{list-style:none;margin:0;padding:0 13px 4px;border-top:1px solid var(--line2)}
-.poi{padding:12px 0;border-top:1px solid var(--line2)}
-.poi:first-child{border-top:0}
-.poi[hidden]{display:none}
-.ph{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
-.ty{font-size:11.5px;font-weight:600;line-height:1;padding:4px 6px 3px;border-radius:2px;color:#fff}
-.ty-sight{background:var(--slate)} .ty-food{background:var(--brick)} .ty-cafe{background:#8C6A1E}
-.ph b{font-size:16px;font-weight:600}
-.pri{font-size:12.5px;font-weight:600}
-.pri-must{color:var(--aurora)} .pri-maybe{color:var(--ink3);font-weight:400}
-.why{font-size:12px;color:var(--ink2);border:1px solid var(--line);padding:0 5px;border-radius:2px;line-height:1.6}
-.closed{font-size:12px;font-weight:600;color:var(--alert);border:1.5px solid var(--alert);padding:0 5px;border-radius:2px;line-height:1.5}
-.slots{display:inline-flex;gap:2px;margin-left:auto}
-.slots i{font-style:normal;font-size:11px;width:20px;text-align:center;line-height:18px;border-radius:2px;color:var(--ink3);background:var(--line2)}
-.slots i.on{background:var(--c);color:#fff}
-.poi .loc{margin:2px 0 0;font-size:13px;color:var(--ink3)}
-.poi p{margin:4px 0 0;font-size:15px;line-height:1.6}
-.poi .meta{font-size:13.5px;color:var(--ink2)}
-.poi .tip{font-size:14px;color:var(--ink2);border-left:2px solid var(--line);padding-left:9px;margin-top:6px}
-.ph a.pin{font-size:16px;font-weight:600}
 
-/* 城市 */
 .cband{background:var(--c);color:#fff;padding:22px 0 0;position:relative;overflow:hidden}
 .cband .wrap{position:relative;padding-bottom:20px;min-height:150px}
 .cband .art{bottom:30px;width:74%}
 .cband .strip{position:relative;background:color-mix(in srgb,#000 12%,var(--c))}
 .cband h1{font-family:var(--serif);font-weight:700;font-size:44px;line-height:1.1;margin:0;letter-spacing:.04em}
 .cband p{margin:8px 0 0;font-size:15px;opacity:.92}
-.clist a{display:flex;align-items:center;gap:14px;text-decoration:none;background:var(--paper);border:1px solid var(--line);border-radius:3px;margin:0 0 8px;overflow:hidden}
-.clist .sw{width:62px;align-self:stretch;background:var(--c);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:24px}
-.clist b{display:block;font-family:var(--serif);font-weight:700;font-size:20px;line-height:1.3}
-.clist span{font-size:13px;color:var(--ink2)}
-.clist div{padding:12px 0}
-.filter{display:flex;gap:6px;margin:16px 0 12px}
-.filter button{border:1px solid var(--line);background:var(--paper);border-radius:2px;padding:4px 12px;font-size:14px;cursor:pointer}
-.filter button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
 .tips{margin:0;padding:12px 14px 12px 30px;font-size:14.5px}
 .tips li{margin:4px 0}
-details.place{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:0;margin:0 0 8px}
-details.place>summary{display:flex;align-items:center;gap:10px;padding:12px 13px}
-details.place>summary b{font-family:var(--serif);font-weight:700;font-size:18px}
-details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
-.body{padding:2px 13px 12px;border-top:1px solid var(--line2);font-size:15px}
-.body h4{font-size:13px;letter-spacing:.1em;color:var(--c);margin:14px 0 4px}
-.body p{margin:0 0 8px} .body ul{margin:0 0 8px;padding-left:1.1em} .body li{margin:4px 0} .body b{font-weight:600}
-.body .quote{border-left:2px solid var(--c);padding-left:11px;color:var(--ink2);font-family:var(--serif)}
-.body .note{padding:9px 12px;border-left:3px solid #C9971C;background:color-mix(in srgb,#C9971C 9%,var(--paper));font-size:14px;margin:10px 0 2px}
-.body .subp{border-top:1px solid var(--line2);padding:9px 0 2px}
-.body .subp b{display:block;font-family:var(--serif);font-size:16px}
-.body .stops{list-style:none;padding:0;margin:8px 0;counter-reset:s}
-.body .stops li{position:relative;padding:0 0 9px 30px;counter-increment:s;margin:0}
-.body .stops li::before{content:counter(s);position:absolute;left:0;top:2px;width:21px;height:21px;border-radius:50%;border:1.5px solid var(--c);color:var(--c);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center}
 
 /* 極光 */
-.ahero{background:var(--night);color:#EEF3F6;overflow:hidden}
-.ahero svg{display:block;width:100%;height:110px}
-.ahero path{fill:none;stroke-linecap:round}
-.ahero .wrap{padding-bottom:22px}
-.ahero h1{font-family:var(--serif);font-weight:700;font-size:56px;line-height:1;margin:0;letter-spacing:.1em}
-.ahero p{margin:10px 0 0;color:#B9C8D3;font-size:15px}
-.nights{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:4px;margin-top:18px}
-.nights a{text-decoration:none;text-align:center;padding:6px 0 5px;border-radius:2px;background:#1E3A50;color:#D7E2EA;font-size:11px;line-height:1.3}
-.nights a b{display:block;font-family:var(--serif);font-size:16px;color:#fff}
-.nights a.moon{background:var(--glow);color:#0B3A2C}
-.nights a.moon b{color:#062A1F}
 .alist{list-style:none;margin:0;padding:0}
 .alist li{padding:11px 14px;border-top:1px solid var(--line2);font-size:15px}
 .alist li:first-child{border-top:0}
@@ -457,10 +273,6 @@ details.place>summary span{display:block;font-size:13.5px;color:var(--ink2)}
 .check input:checked~.txt{color:var(--ink3);text-decoration:line-through;text-decoration-color:var(--line)}
 .check input:focus-visible+.bx{outline:2px solid var(--glow);outline-offset:2px}
 .txt small{display:block;font-size:13px;color:var(--ink2);text-decoration:none}
-.prog{display:flex;align-items:center;gap:12px;margin:14px 0 10px}
-.prog .bar{flex:1;height:8px}
-.prog .bar span{background:var(--aurora)}
-.prog b{font-family:var(--serif);font-size:20px}
 .reset{min-height:44px;border:1px solid var(--line);background:var(--paper);border-radius:3px;padding:4px 12px;font-size:13px;color:var(--ink2);cursor:pointer}
 
 /* 類別色（費用、住宿共用） */
@@ -484,89 +296,24 @@ details.fgrp>summary .kic{margin-right:-2px}
 .fx p{margin:0;font-size:14px;line-height:1.6}
 .fx p+p{margin-top:4px}
 .fx .s{color:var(--ink2);font-size:13px}
-/* 住宿：覆蓋條 */
-.cov{padding:12px 14px 10px}
-.cov-g{display:grid;gap:2px;grid-auto-rows:auto}
-.cov-n{font-size:12px;line-height:16px;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:clip;padding-bottom:3px;border-bottom:2px solid var(--c)}
 .cv{height:24px;border-radius:2px;background:var(--c);color:#fff;font-size:10.5px;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1}
 .cv.p{background:none;box-shadow:inset 0 0 0 1.5px var(--c);color:var(--c)}
-.cov-d{font-size:11px;color:var(--ink3);line-height:1.3;white-space:nowrap;font-variant-numeric:tabular-nums}
-.cov-d i{font-style:normal}
-.cov-d.low{transform:translateY(14px)}
-.cov-g.has-low{padding-bottom:14px}
-.cov-k{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:8px;font-size:12.5px;color:var(--ink2)}
-.cov-k i{display:inline-block;width:14px;height:10px;margin-right:5px;vertical-align:-1px;border-radius:1px;background:var(--ink2)}
-.cov-k i.p{background:none;box-shadow:inset 0 0 0 1.5px var(--ink2)}
-.cov-s{margin:8px 0 0;font-size:13.5px;color:var(--ink)}
 /* 住宿卡 */
 .sty{border-top:1px solid var(--line2);border-left:4px solid var(--c)}
 .sty:first-child{border-top:0}
-.sty>summary,.sty>.sh{display:grid;grid-template-columns:4.6em minmax(0,1fr) 9px;gap:0 10px;align-items:start;padding:12px 12px 12px 12px}
-.sty>.sh{grid-template-columns:4.6em minmax(0,1fr)}
-.sty .when{font-family:var(--serif);font-weight:700;font-size:17px;line-height:1.2}
-.sty .when small{display:block;font-family:var(--sans);font-weight:400;font-size:12px;color:var(--ink2);margin-top:4px}
-.sty .nm{margin:0;font-size:15.5px;line-height:1.45}
-.sty .nm b{font-weight:600}
-.sty .ar{margin:0;font-size:13px;color:var(--ink2)}
-.sty .chev{margin-top:8px}
-.sty-t{display:flex;gap:16px;margin:8px 0 0}
-.sty-t div{display:flex;flex-direction:column;line-height:1.2}
-.sty-t span{font-size:11.5px;color:var(--ink2)}
-.sty-t b{font-family:var(--serif);font-weight:700;font-size:20px;font-variant-numeric:tabular-nums}
 .fxs{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0 0}
 .fxi{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;line-height:1.5;padding:1px 7px 1px 5px;border-radius:2px;background:color-mix(in srgb,var(--k-stay) 13%,var(--paper));color:var(--ink)}
 .fxi svg{width:15px;height:15px;color:var(--k-stay)}
 .fxi.no{background:none;border:1px dashed var(--line);color:var(--ink2)}
 .fxi.no svg{color:var(--ink3)}
-.sty .rtw{margin:8px 0 0}
 .sty-in{border-top:1px dashed var(--line2);padding:4px 14px 12px}
 .sty-in .addr{padding:10px 0;grid-template-columns:minmax(0,1fr)}
 .sty-in .addr b{font-size:14px}
 .sty-in .rws>div{display:grid;grid-template-columns:4.6em minmax(0,1fr);gap:8px;padding:7px 0;border-top:1px solid var(--line2);font-size:14px;line-height:1.55}
 .sty-in .rws>div>span{color:var(--ink2);font-size:13px}
-.sty .pnote{margin:4px 0 0;font-size:13.5px;color:var(--ink2)}
-.sty.pend .nm{color:var(--ink2)}
-/* 每日：精簡地點 */
-.carea{margin:0 0 8px;padding:10px 12px;background:var(--paper);border:1px solid var(--line);border-radius:3px}
-.carea>b{display:block;font-family:var(--serif);font-weight:700;font-size:16px;line-height:1.35}
-.carea>span{display:block;font-size:12.5px;color:var(--ink2);line-height:1.45}
-.pcs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.pc{display:inline-flex;align-items:center;gap:5px;min-height:34px;padding:3px 9px 3px 7px;border:1px solid var(--line);border-radius:3px;text-decoration:none;font-size:14px;color:var(--ink);background:var(--paper)}
-.pc i{width:8px;height:8px;border-radius:50%;flex:none}
-.pc .m{font-size:11.5px;font-weight:600;color:var(--aurora)}
 .pc.off{color:var(--ink3);background:var(--line2)}
 .pc.off .x{font-size:11.5px;font-weight:600;color:var(--alert)}
-.dt-sight{background:var(--slate)} .dt-food{background:var(--brick)} .dt-cafe{background:#8C6A1E}
-.tl-out{position:relative;height:17px;font-size:11.5px;color:var(--ink2);margin-top:2px}
-.tl-out span{position:absolute;white-space:nowrap;line-height:17px}
 /* 地點卡（可收合） */
-details.poi{padding:0;border-top:1px solid var(--line2)}
-details.poi:first-child{border-top:0}
-details.poi>summary{padding:11px 0 10px}
-details.poi>summary .ph .chev{margin-left:6px}
-details.poi>summary .slots{margin-left:auto}
-details.poi>summary p{margin:4px 0 0;font-size:14.5px;line-height:1.55;color:var(--ink)}
-details.poi .ph b{font-size:16px;font-weight:600}
-.pb{padding:0 0 12px}
-.pb .loc{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0;font-size:13px;color:var(--ink2)}
-.pb .loc a{flex:none;min-height:48px;display:inline-flex;align-items:center;padding:0 12px;border:1px solid var(--line);border-radius:3px;text-decoration:none;color:var(--ink);font-size:13px}
-.wk{display:flex;align-items:center;gap:3px;margin:8px 0 2px}
-.wk i{font-style:normal;width:26px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12.5px;border-radius:2px;background:color-mix(in srgb,var(--aurora) 12%,var(--paper));color:var(--ink)}
-.wk i.x{background:var(--line2);color:var(--ink3);text-decoration:line-through}
-.wk i.on{box-shadow:inset 0 0 0 2px var(--c)}
-.wk i.cur{background:var(--c);color:#fff;text-decoration:none}
-.wk i.cur.x{background:var(--alert)}
-.wk small{margin-left:6px;font-size:12px;color:var(--ink2);line-height:1.3}
-.pb .meta{margin:4px 0 0;font-size:13.5px;color:var(--ink2);line-height:1.55}
-.pb .tip{font-size:14px;color:var(--ink2);border-left:2px solid var(--line);padding-left:9px;margin:8px 0 0}
-details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:0 -13px;padding:0 13px}
-/* 城市：要先知道 */
-.tipl{list-style:none;margin:0;padding:0}
-.tipl li{display:grid;grid-template-columns:24px minmax(0,1fr);gap:10px;padding:10px 14px;border-top:1px solid var(--line2)}
-.tipl li:first-child{border-top:0}
-.tipl svg{width:22px;height:22px;color:var(--c);margin-top:1px}
-.tipl b{display:block;font-weight:600;font-size:15px;line-height:1.5}
-.tipl span{display:block;font-size:13.5px;color:var(--ink2);line-height:1.55}
 /* 極光：數字與夜晚 */
 .astat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .astat div{background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:10px 10px 9px}
@@ -587,6 +334,241 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
 .nbar .tw{position:absolute;top:0;bottom:0;background:#8E7AB5}
 .ntk{display:flex;justify-content:space-between;font-size:11px;color:var(--ink3);padding:4px 14px 8px 113px}
 .nrows li.nm a{background:color-mix(in srgb,var(--glow) 12%,var(--paper))}
+
+/* 共用：小標、提示、收合 */
+h3.sub{display:flex;align-items:center;gap:8px;font-family:var(--serif);font-weight:700;font-size:17px;margin:20px 0 8px}
+h3.sub small{font-family:var(--sans);font-weight:400;font-size:13px;color:var(--ink2)}
+h3.sub i{width:4px;height:16px;border-radius:2px;background:var(--c)}
+.inote{margin:0 0 10px;font-size:13.5px;color:var(--ink2);line-height:1.55}
+.acts.big{flex-wrap:wrap;margin-top:10px}
+.acts.big>*{flex:1 1 0;min-width:0}
+.est{font-style:normal;font-size:11.5px;font-weight:600;margin-left:6px;padding:0 5px;border:1px solid currentColor;border-radius:2px;opacity:.9;white-space:nowrap}
+
+/* 行程：小封面 */
+.cover{background:var(--night);color:#EEF3F6;position:relative;overflow:hidden}
+.cover svg.lines,.thead svg.lines{position:absolute;left:0;top:0;width:100%;height:100%}
+.drift{animation:drift 26s ease-in-out infinite alternate}
+.drift2{animation:drift 34s ease-in-out infinite alternate-reverse}
+@keyframes drift{from{transform:translateX(-14px)}to{transform:translateX(14px)}}
+@media (prefers-reduced-motion:reduce){.drift,.drift2{animation:none}}
+.cover path,.thead path,.ahero path{fill:none;stroke-linecap:round}
+.cv-in{position:relative;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding-top:26px;padding-bottom:14px}
+.cover h1{font-family:var(--serif);font-weight:700;font-size:34px;line-height:1.1;margin:0;letter-spacing:.06em}
+.cover .dates{margin:6px 0 0;font-family:var(--serif);font-weight:700;font-size:15px;color:#C4D3DE}
+.cd{display:flex;gap:14px;text-align:center}
+.cd span{display:flex;flex-direction:column;font-size:12px;color:#B9C8D3;line-height:1.3}
+.cd b{font-family:var(--serif);font-weight:700;font-size:28px;color:#fff;line-height:1.15}
+.strip{display:block;width:100%;position:relative}
+/* 最近要做的事 */
+.nx-d{list-style:none;margin:0;padding:0}
+.nx-d li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;padding:11px 14px;border-top:1px solid var(--line2)}
+.nx-d li:first-child{border-top:0}
+.nx-d p{margin:0;font-size:15px;line-height:1.5}
+.nxt .s{font-size:13px;color:var(--ink2);margin:2px 0 0}
+.nxt .s.late{color:var(--alert);font-weight:600}
+.nx-r{margin:0;padding:10px 14px;border-top:1px solid var(--line2);font-size:14px;line-height:1.55}
+.nx-r span{color:var(--ink2)}
+.more{display:flex;align-items:center;justify-content:flex-end;min-height:44px;font-size:14px;font-weight:500;color:var(--fjord);text-decoration:none}
+.nxt .more{padding:0 14px;border-top:1px solid var(--line2)}
+.due{display:inline-block;min-width:4.4em;text-align:center;font-family:var(--serif);font-weight:700;font-size:14px;line-height:1;padding:6px 6px 5px;border-radius:2px;background:var(--fjord);color:#fff;white-space:nowrap;font-variant-numeric:tabular-nums}
+.due.late{background:var(--alert)}
+.due-s{display:inline-block;font-style:normal;font-size:12px;font-weight:600;color:var(--fjord);border:1px solid currentColor;border-radius:2px;padding:0 5px;margin-left:6px;line-height:1.5;vertical-align:1px;white-space:nowrap}
+:root[data-theme="dark"] .due-s{color:#8DB9D6}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .due-s{color:#8DB9D6} :root:not([data-theme="light"]) .more{color:#8DB9D6} }
+:root[data-theme="dark"] .more{color:#8DB9D6}
+
+/* 路線線條日期列 */
+.rline{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:10px 0 6px;background:var(--page)}
+.rline::-webkit-scrollbar{display:none}
+.rl-in{display:flex;gap:8px;padding:0 16px;width:max-content}
+.rg{display:flex;flex-direction:column}
+.rg-n{font-family:var(--serif);font-weight:700;font-size:14px;line-height:1.2;padding-left:6px;white-space:nowrap;color:color-mix(in srgb,var(--c) 78%,var(--ink))}
+.rg-ds{display:flex;position:relative}
+.rg-ds::before{content:"";position:absolute;left:10px;right:10px;top:20.5px;height:3px;border-radius:2px;background:var(--c)}
+.rd{position:relative;display:flex;flex-direction:column;align-items:center;width:44px;min-height:62px;text-decoration:none;color:var(--ink2)}
+.rd-t{height:14px;font-size:10.5px;font-weight:700;line-height:14px;color:var(--alert);white-space:nowrap}
+.rd i{display:block;width:14px;height:14px;border-radius:50%;border:2.5px solid var(--c);background:var(--page);margin:1px 0;position:relative}
+.rd b{font-size:13px;font-weight:600;color:var(--ink);line-height:1.25;margin-top:3px;font-variant-numeric:tabular-nums}
+.rd small{font-size:11px;line-height:1.2}
+.rd[aria-current="true"] i{width:20px;height:20px;margin:-2px 0;background:var(--c)}
+.rd[aria-current="true"] b{font-weight:800}
+
+/* 每日 */
+.thead{background:var(--night);color:#EEF3F6;position:relative;overflow:hidden}
+.thead svg.lines{opacity:.45}
+.thead .wrap{position:relative;display:flex;justify-content:space-between;align-items:center;min-height:42px}
+.thead b{font-family:var(--serif);font-weight:700;font-size:16px;letter-spacing:.1em}
+.thead span{font-family:var(--serif);font-weight:700;font-size:15px;color:#D7E2EA}
+.dayband{margin-top:4px}
+.band{background:var(--c);color:#fff;padding:12px 16px 14px;border-radius:4px 4px 0 0;position:relative;overflow:hidden}
+.band>*:not(.art),.cband>*:not(.art){position:relative}
+.band .k{margin:0;font-size:12.5px;letter-spacing:.14em;opacity:.85}
+.band .row1{display:flex;align-items:flex-end;gap:10px;margin-top:2px}
+.band .dt{font-family:var(--serif);font-weight:700;font-size:44px;line-height:.95;letter-spacing:-.01em}
+.band .wd{font-size:15px;padding-bottom:3px;opacity:.9}
+.band h2{font-family:var(--serif);font-weight:700;font-size:19px;line-height:1.35;margin:8px 0 0}
+.nx{margin:12px -16px -14px;padding:9px 16px 12px;background:rgba(6,16,24,.42)}
+.nx-k{margin:0;font-size:12px;letter-spacing:.14em;opacity:.8}
+.nx1{display:flex;align-items:baseline;gap:10px;margin:2px 0 0;line-height:1.3}
+.nx1 b{font-family:var(--serif);font-weight:700;font-size:28px;font-variant-numeric:tabular-nums}
+.nx1 span{font-size:16px;font-weight:600}
+.nx-cd{margin:2px 0 0;font-size:13.5px;color:#FFE7A6;font-weight:600}
+.nx-l{list-style:none;margin:6px 0 0;padding:0;font-size:14.5px;line-height:1.5}
+.nx-l li{display:grid;grid-template-columns:3.2em minmax(0,1fr);gap:8px;padding:2px 0}
+.nx-l b{font-family:var(--serif);font-weight:700;font-variant-numeric:tabular-nums}
+.nx .who.w{color:#fff;border-color:rgba(255,255,255,.45)}
+.dayfoot{background:var(--paper);border:1px solid var(--line);border-top:0;border-radius:0 0 4px 4px;padding:10px 14px 10px}
+.alerts{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+.alert{display:inline-flex;align-items:center;font-size:13.5px;font-weight:600;color:var(--alert);border:1.5px solid var(--alert);border-radius:3px;padding:1px 8px;background:color-mix(in srgb,var(--alert) 6%,var(--paper))}
+.sb-bar{position:relative;height:8px;border-radius:2px;background:#2C3E50}
+.sb-bar span{position:absolute;top:0;bottom:0}
+.sb-bar .dy{background:#F2C14E}
+.sb-bar .tw{background:#8E7AB5}
+.sb-bar .tk{width:2px;top:-4px;bottom:-4px;margin-left:-1px;background:var(--ink);border-radius:1px}
+.sb-t{margin:5px 0 0;font-size:12.5px;color:var(--ink2);font-variant-numeric:tabular-nums}
+.jump{display:flex;gap:6px;margin:10px 0 0}
+.jump button{flex:1;min-height:44px;border:1px solid var(--line);background:var(--paper);border-radius:3px;font-size:14.5px;color:var(--ink);cursor:pointer}
+.dsec{background:var(--paper);border:1px solid var(--line);border-radius:4px;margin:10px 0 0;scroll-margin-top:10px}
+.dsec>summary{display:flex;align-items:center;gap:10px;min-height:52px;padding:8px 14px}
+.dh{font-family:var(--serif);font-weight:700;font-size:18px;flex:none}
+.ds{font-size:13px;color:var(--ink2);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;min-width:0;flex:1}
+.dsec[open] .ds{visibility:hidden}
+.dsb{padding:6px 14px 14px;border-top:1px solid var(--line2)}
+.evs{list-style:none;margin:0;padding:0}
+.ev{display:grid;grid-template-columns:3.4em 22px minmax(0,1fr);gap:0 8px;padding:7px 0}
+.ev-t{font-family:var(--serif);font-weight:700;font-size:18px;line-height:1.35;text-align:right;font-variant-numeric:tabular-nums}
+.ev-n{position:relative;display:flex;justify-content:center}
+.ev-n svg{width:22px;height:22px;padding:3px;border-radius:50%;background:var(--paper);border:1.5px solid var(--c);color:var(--c);position:relative;z-index:1}
+.ev:not(:last-child) .ev-n::after{content:"";position:absolute;top:24px;bottom:-12px;left:50%;border-left:1px dashed var(--line)}
+.ev-m{margin:0;font-weight:500;font-size:15.5px;line-height:1.5}
+.ev-s{margin:2px 0 0;font-size:14px;color:var(--ink2);line-height:1.55}
+.stops{list-style:none;padding:0;margin:8px 0;counter-reset:s;font-size:14.5px}
+.stops li{position:relative;padding:0 0 8px 30px;counter-increment:s;margin:0;line-height:1.55}
+.stops li::before{content:counter(s);position:absolute;left:0;top:2px;width:21px;height:21px;border-radius:50%;border:1.5px solid var(--c);color:var(--c);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center}
+.free{padding:10px 12px;border-left:4px solid var(--c);margin:8px 0}
+.free .when{font-family:var(--serif);font-weight:700;font-size:17px;margin:0}
+.free p{margin:4px 0 0;font-size:15px}
+.plan{margin:8px 0;padding-left:1.15em;font-size:15px}
+.plan li{margin:4px 0}
+.dnote{margin:8px 0 0;padding:9px 12px;border-left:3px solid #C9971C;background:color-mix(in srgb,#C9971C 9%,var(--paper));font-size:14.5px}
+.carea{margin:0 0 8px;padding:10px 12px;background:var(--page);border:1px solid var(--line2);border-radius:3px}
+.carea>b{display:block;font-family:var(--serif);font-weight:700;font-size:16px;line-height:1.35}
+.carea>span{display:block;font-size:12.5px;color:var(--ink2);line-height:1.45}
+.pcs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.pc{display:inline-flex;align-items:center;gap:5px;min-height:44px;padding:3px 10px 3px 8px;border:1px solid var(--line);border-radius:3px;text-decoration:none;font-size:14px;color:var(--ink);background:var(--paper)}
+.pc i{width:8px;height:8px;border-radius:50%;flex:none}
+.pc.off{color:var(--ink3);background:var(--line2)}
+.pc.off .x{font-size:11.5px;font-weight:600;color:var(--alert)}
+.dt-sight{background:var(--slate)} .dt-food{background:var(--brick)} .dt-cafe{background:#8C6A1E}
+.pager{display:flex;gap:10px;margin:14px 0 4px}
+.pager a{flex:1;display:block;text-align:center;border:1px solid var(--line);background:var(--paper);border-radius:3px;padding:9px 10px;text-decoration:none;font-size:13.5px;color:var(--ink2)}
+.pager a b{display:block;color:var(--ink);font-weight:600;font-size:15px}
+.pager a.off{visibility:hidden}
+.hint{text-align:center;font-size:12px;color:var(--ink3);margin:6px 0 0}
+/* 住處卡 */
+.sbox{padding:10px 0 4px;border-top:1px solid var(--line2)}
+.dsb>.sbox:first-child{border-top:0}
+.sb-n{margin:0;font-size:16px;line-height:1.45}
+.sb-n b{font-weight:600}
+.sb-s{margin:2px 0 0;font-size:13.5px;color:var(--ink2);font-variant-numeric:tabular-nums}
+.sb-a{margin:4px 0 0;font-size:14.5px}
+.sb-l{margin:2px 0 0;font-size:13.5px;color:var(--ink2)}
+main>.sbox{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:4px;padding:10px 12px 12px;margin:0 0 8px}
+
+/* 地區 */
+.cswitch{overflow-x:auto;scrollbar-width:none;background:var(--page);border-bottom:1px solid var(--line);padding:8px 0}
+.cswitch::-webkit-scrollbar{display:none}
+.cs-in{display:flex;gap:6px;padding:0 16px;width:max-content}
+.cs-in a{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:46px;min-width:64px;padding:0 12px;border:1.5px solid var(--line);border-radius:3px;background:var(--paper);text-decoration:none;color:var(--ink);font-family:var(--serif);font-weight:700;font-size:15px;line-height:1.2}
+.cs-in a small{font-family:var(--sans);font-weight:600;font-size:10.5px;margin-top:2px}
+.cs-in a[aria-current="page"]{border-color:var(--c);box-shadow:inset 0 -3px 0 var(--c)}
+.cs-in a.here{background:var(--c);border-color:var(--c);color:#fff;box-shadow:none}
+.cband{background:var(--c);color:#fff;padding:18px 0 0;position:relative;overflow:hidden}
+.cband .wrap{position:relative;padding-bottom:14px}
+.cband .art{bottom:16px;width:70%}
+.cband .strip{background:color-mix(in srgb,#000 12%,var(--c))}
+.cband h1{font-family:var(--serif);font-weight:700;font-size:38px;line-height:1.1;margin:0;letter-spacing:.04em}
+.cband p{margin:6px 0 0;font-size:14.5px;opacity:.94;max-width:30em}
+.cband .cb-d{font-family:var(--serif);font-weight:700;font-size:15px;opacity:1}
+.tipl{list-style:none;margin:0;padding:0}
+.tipl li{display:grid;grid-template-columns:24px minmax(0,1fr);gap:10px;padding:10px 14px;border-top:1px solid var(--line2)}
+.tipl li:first-child{border-top:0}
+.tipl svg{width:22px;height:22px;color:var(--c);margin-top:1px}
+.tipl b{display:block;font-weight:600;font-size:15px;line-height:1.5}
+.tipl span{display:block;font-size:13.5px;color:var(--ink2);line-height:1.55}
+details.more-d{border-top:1px solid var(--line2)}
+details.more-d>summary,details.fin>summary{display:flex;align-items:center;gap:8px;min-height:46px;padding:0 14px;font-size:14px;color:var(--ink2)}
+details.more-d .tipl{border-top:1px solid var(--line2)}
+.trl{list-style:none;margin:0;padding:0}
+.trl li{padding:10px 14px;border-top:1px solid var(--line2);font-size:14.5px;line-height:1.55}
+.trl li:first-child{border-top:0}
+.trl b{display:block;font-weight:600;font-size:15px}
+.trl span{color:var(--ink2)}
+.pf{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin:0 0 6px}
+.pf .seg{margin:0}
+.seg button{min-width:0}
+.tgl{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:3px;background:var(--paper);font-size:14.5px;color:var(--ink);cursor:pointer}
+.tgl i{position:relative;width:30px;height:18px;border-radius:9px;background:var(--line);flex:none;transition:background .15s}
+.tgl i::after{content:"";position:absolute;left:2px;top:2px;width:14px;height:14px;border-radius:50%;background:#fff;transition:left .15s}
+.tgl[aria-pressed="true"] i{background:var(--aurora)}
+.tgl[aria-pressed="true"] i::after{left:14px}
+.filter{display:flex;gap:6px;margin:0 0 10px}
+.filter button{flex:1;min-height:44px;border:1px solid var(--line);background:var(--paper);border-radius:3px;padding:0 8px;font-size:14px;cursor:pointer;color:var(--ink)}
+.filter button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.pf-n{margin:-4px 0 10px;font-size:13px}
+details.area{background:var(--paper);border:1px solid var(--line);border-radius:3px;margin:0 0 8px}
+details.area>summary{display:flex;align-items:center;gap:10px;min-height:52px;padding:8px 13px}
+details.area>summary b{display:block;font-family:var(--serif);font-weight:700;font-size:16.5px;line-height:1.35}
+details.area>summary span{display:block;font-size:12.5px;color:var(--ink2);line-height:1.4}
+.pois{padding:0 13px 4px;border-top:1px solid var(--line2)}
+.card.pois{padding:0 13px}
+.al{margin:8px 0 2px;font-size:13.5px;color:var(--ink2)}
+details.poi{border-top:1px solid var(--line2)}
+.pois>details.poi:first-child,.al+details.poi{border-top:0}
+details.poi>summary.ph{display:flex;align-items:center;gap:8px;min-height:46px;padding:4px 0}
+.ph b{font-size:15.5px;font-weight:600;min-width:0}
+.ph .km{margin-left:auto;font-size:13px;color:var(--ink2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.ph .km+.chev{margin-left:4px}
+.ty{font-size:11.5px;font-weight:600;line-height:1;padding:4px 6px 3px;border-radius:2px;color:#fff;flex:none}
+.ty-sight{background:var(--slate)} .ty-food{background:var(--brick)} .ty-cafe{background:#8C6A1E}
+.closed{font-size:12px;font-weight:600;color:var(--alert);border:1.5px solid var(--alert);padding:0 5px;border-radius:2px;line-height:1.5;white-space:nowrap}
+.pb{padding:0 0 12px}
+.pb .pl{margin:0;font-size:15px;line-height:1.6}
+.pb .loc{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:8px 0 0;font-size:13px;color:var(--ink2)}
+.pb .loc a{flex:none;min-height:48px;padding:0 14px;border:1px solid var(--line);border-radius:3px;color:var(--ink);font-size:14px}
+.pb .meta{margin:4px 0 0;font-size:13.5px;color:var(--ink2);line-height:1.55}
+.pb .tip{font-size:14px;color:var(--ink2);border-left:2px solid var(--line);padding-left:9px;margin:8px 0 0}
+details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:0 -13px;padding:0 13px}
+.wk{display:flex;align-items:center;gap:3px;margin:8px 0 2px}
+.wk i{font-style:normal;width:26px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12.5px;border-radius:2px;background:color-mix(in srgb,var(--aurora) 12%,var(--paper));color:var(--ink)}
+.wk i.x{background:var(--line2);color:var(--ink3);text-decoration:line-through}
+.wk i.cur{background:var(--c);color:#fff;text-decoration:none}
+.wk i.cur.x{background:var(--alert)}
+.wk small{margin-left:6px;font-size:12px;color:var(--ink2);line-height:1.3}
+details.fold .in .stops{margin-top:12px}
+
+/* 極光 */
+.ahero{background:var(--night);color:#EEF3F6;overflow:hidden;position:relative}
+.ahero svg{position:absolute;left:0;top:0;width:100%;height:100%}
+.ahero .wrap{position:relative;padding-top:26px;padding-bottom:16px}
+.ahero h1{font-family:var(--serif);font-weight:700;font-size:40px;line-height:1;margin:0;letter-spacing:.1em}
+.ahero p{margin:8px 0 0;color:#B9C8D3;font-size:14px}
+.tonight{margin-top:16px;padding:12px 14px}
+.tn-k{margin:0;font-size:13.5px;color:var(--ink2)}
+.tn-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:6px}
+.tn-g span{display:block;font-size:12.5px;color:var(--ink2)}
+.tn-g b{display:block;font-family:var(--serif);font-weight:700;font-size:24px;line-height:1.2;font-variant-numeric:tabular-nums}
+.tn-m{display:flex;gap:10px;align-items:center}
+.tn-m svg{width:36px;height:36px;flex:none}
+details.learn{margin-top:8px}
+details.learn>summary{display:flex;align-items:center;gap:10px;min-height:52px;border-top:1px solid var(--line)}
+details.learn>summary h2.sec{margin:12px 0}
+.sty>summary{display:grid;grid-template-columns:3em minmax(0,1fr) auto 9px;gap:0 10px;align-items:center;min-height:52px;padding:6px 12px}
+.sy-d{font-family:var(--serif);font-weight:700;font-size:16px;line-height:1.15;font-variant-numeric:tabular-nums}
+.sy-d small{display:block;font-family:var(--sans);font-weight:400;font-size:11.5px;color:var(--ink2)}
+.sy-n{font-size:15px;font-weight:600;line-height:1.35;overflow-wrap:anywhere}
+.sy-n .who{font-weight:400}
+.sy-t{font-size:12.5px;line-height:1.35;color:var(--ink2);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 </style>
 </head>
 <body>
@@ -603,9 +585,8 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
 
 <nav class="nav" aria-label="分頁">
   <div class="wrap">
-    <a href="#/" data-tab="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v13H4z"/><path d="M4 9.5h16M9 9.5v9"/></svg>總覽</a>
-    <a href="#/day" data-tab="day"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="1.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>每日</a>
-    <a href="#/city" data-tab="city"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>城市</a>
+    <a href="#/" data-tab="trip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="1.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>行程</a>
+    <a href="#/city" data-tab="city"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>地區</a>
     <a href="#/aurora" data-tab="aurora"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2.5 15c4-6 7-6 9.5-2s5.5 4 9.5-2"/><path d="M2.5 10c4-5 7-5 9.5-1.5s5.5 3.5 9.5-1.5" opacity=".55"/><path d="M3 20h18"/></svg>極光</a>
     <a href="#/info" data-tab="info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M3.5 6.5a1.5 1.5 0 0 1 1.5-1.5h4.5l2 2.5H19a1.5 1.5 0 0 1 1.5 1.5v9.5A1.5 1.5 0 0 1 19 20H5a1.5 1.5 0 0 1-1.5-1.5z"/><path d="M3.5 10.5h17"/></svg>資料</a>
   </div>
@@ -662,7 +643,6 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
   function who(w){ return w?'<span class="who">'+T.people[w]+'</span>':""; }
   function st(s,t){ return s?'<span class="st st-'+s+'">'+(t||({booked:"已訂",pending:"待訂",self:"May 自訂"})[s])+'</span>':""; }
   function km(a,b){ var r=Math.PI/180,dl=(b.lat-a.lat)*r,dn=(b.lng-a.lng)*r,h=Math.sin(dl/2)*Math.sin(dl/2)+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dn/2)*Math.sin(dn/2); return 2*6371*Math.asin(Math.sqrt(h)); }
-  function mapURL(q){ return "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q); }
   /* 導航：有座標就用座標，沒有才用名稱＋地址 */
   function navURL(o, q){ return o&&o.lat!=null&&o.lng!=null ? "https://www.google.com/maps/dir/?api=1&destination="+o.lat+","+o.lng : "https://www.google.com/maps/dir/?api=1&destination="+encodeURIComponent(q||""); }
   var NET='<svg class="neti" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2.5 9a14 14 0 0 1 19 0M5.8 12.5a9 9 0 0 1 12.4 0M9.2 16a4 4 0 0 1 5.6 0"/><circle cx="12" cy="19.3" r="1.2" fill="currentColor" stroke="none"/></g></svg>';
@@ -674,14 +654,13 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
   var today=todayISO(), inTrip=today>=T.start&&today<=T.end;
   var lastDay = key(inTrip?today:T.start);
   function staysOn(iso){ return T.stays.filter(function(s){return iso>=s.from && iso<add(s.from,s.nights);}); }
-  function placeById(id){ return T.places.filter(function(p){return p.id===id;})[0]; }
   function setTitle(t){ document.title = t+"｜北境冬旅"; }
 
   var ART={"waw": "<rect class=\"b\" x=\"204\" y=\"84\" width=\"92\" height=\"36\"/><rect class=\"b\" x=\"214\" y=\"68\" width=\"72\" height=\"16\"/><rect class=\"b\" x=\"222\" y=\"52\" width=\"56\" height=\"16\"/><rect class=\"b\" x=\"230\" y=\"36\" width=\"40\" height=\"16\"/><rect class=\"b\" x=\"237\" y=\"24\" width=\"26\" height=\"12\"/><rect class=\"b\" x=\"243\" y=\"14\" width=\"14\" height=\"10\"/><rect class=\"b\" x=\"188\" y=\"96\" width=\"16\" height=\"24\"/><rect class=\"b\" x=\"296\" y=\"96\" width=\"16\" height=\"24\"/><polygon class=\"b\" points=\"247,14 250,0 253,14\"/><rect class=\"b\" x=\"203\" y=\"78\" width=\"3\" height=\"6\"/><rect class=\"b\" x=\"294\" y=\"78\" width=\"3\" height=\"6\"/><rect class=\"b\" x=\"213\" y=\"62\" width=\"3\" height=\"6\"/><rect class=\"b\" x=\"284\" y=\"62\" width=\"3\" height=\"6\"/><rect class=\"b\" x=\"221\" y=\"46\" width=\"3\" height=\"6\"/><rect class=\"b\" x=\"276\" y=\"46\" width=\"3\" height=\"6\"/><rect class=\"b\" x=\"229\" y=\"30\" width=\"3\" height=\"6\"/><rect class=\"b\" x=\"268\" y=\"30\" width=\"3\" height=\"6\"/><rect class=\"b\" x=\"236\" y=\"18\" width=\"3\" height=\"6\"/><rect class=\"b\" x=\"261\" y=\"18\" width=\"3\" height=\"6\"/><polygon class=\"f\" points=\"0,120 0,86 10,72 20,86 20,120\"/><rect class=\"w\" x=\"5.06667\" y=\"92\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"11.7333\" y=\"92\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"5.06667\" y=\"103\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"11.7333\" y=\"103\" width=\"3.2\" height=\"5\"/><polygon class=\"f\" points=\"20,120 20,80 23.7143,80 23.7143,74 27.4286,74 27.4286,68 31.1429,68 31.1429,62 34.8571,62 34.8571,68 38.5714,68 38.5714,74 42.2857,74 42.2857,80 46,80 46,120\"/><rect class=\"w\" x=\"24.9\" y=\"86\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"31.4\" y=\"86\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"37.9\" y=\"86\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"24.9\" y=\"97\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"31.4\" y=\"97\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"37.9\" y=\"97\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"24.9\" y=\"108\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"31.4\" y=\"108\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"37.9\" y=\"108\" width=\"3.2\" height=\"5\"/><polygon class=\"f\" points=\"46,120 46,90 55,76 64,90 64,120\"/><rect class=\"w\" x=\"50.4\" y=\"96\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"56.4\" y=\"96\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"50.4\" y=\"107\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"56.4\" y=\"107\" width=\"3.2\" height=\"5\"/><polygon class=\"f\" points=\"64,120 64,74 69.6,68 72.4,60 78,56 83.6,60 86.4,68 92,74 92,120\"/><rect class=\"w\" x=\"69.4\" y=\"80\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"76.4\" y=\"80\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"83.4\" y=\"80\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"69.4\" y=\"91\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"76.4\" y=\"91\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"83.4\" y=\"91\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"69.4\" y=\"102\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"76.4\" y=\"102\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"83.4\" y=\"102\" width=\"3.2\" height=\"5\"/><polygon class=\"f\" points=\"92,120 92,86 102,72 112,86 112,120\"/><rect class=\"w\" x=\"97.0667\" y=\"92\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"103.733\" y=\"92\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"97.0667\" y=\"103\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"103.733\" y=\"103\" width=\"3.2\" height=\"5\"/><polygon class=\"f\" points=\"112,120 112,80 115.714,80 115.714,74 119.429,74 119.429,68 123.143,68 123.143,62 126.857,62 126.857,68 130.571,68 130.571,74 134.286,74 134.286,80 138,80 138,120\"/><rect class=\"w\" x=\"116.9\" y=\"86\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"123.4\" y=\"86\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"129.9\" y=\"86\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"116.9\" y=\"97\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"123.4\" y=\"97\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"129.9\" y=\"97\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"116.9\" y=\"108\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"123.4\" y=\"108\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"129.9\" y=\"108\" width=\"3.2\" height=\"5\"/><polygon class=\"f\" points=\"138,120 138,92 148,78 158,92 158,120\"/><rect class=\"w\" x=\"143.067\" y=\"98\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"149.733\" y=\"98\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"143.067\" y=\"109\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"149.733\" y=\"109\" width=\"3.2\" height=\"5\"/><polygon class=\"f\" points=\"158,120 158,82 163.2,76 165.8,68 171,64 176.2,68 178.8,76 184,82 184,120\"/><rect class=\"w\" x=\"162.9\" y=\"88\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"169.4\" y=\"88\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"175.9\" y=\"88\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"162.9\" y=\"99\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"169.4\" y=\"99\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"175.9\" y=\"99\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"162.9\" y=\"110\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"169.4\" y=\"110\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"175.9\" y=\"110\" width=\"3.2\" height=\"5\"/><polygon class=\"f\" points=\"184,120 184,94 193,80 202,94 202,120\"/><rect class=\"w\" x=\"188.4\" y=\"100\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"194.4\" y=\"100\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"188.4\" y=\"111\" width=\"3.2\" height=\"5\"/><rect class=\"w\" x=\"194.4\" y=\"111\" width=\"3.2\" height=\"5\"/><rect class=\"f\" x=\"0\" y=\"118\" width=\"320\" height=\"2\"/>", "osl": "<rect class=\"b\" x=\"96\" y=\"62\" width=\"11\" height=\"58\"/><rect class=\"b\" x=\"112\" y=\"40\" width=\"11\" height=\"80\"/><rect class=\"b\" x=\"128\" y=\"74\" width=\"9\" height=\"46\"/><rect class=\"b\" x=\"142\" y=\"74\" width=\"13\" height=\"46\"/><rect class=\"b\" x=\"160\" y=\"68\" width=\"11\" height=\"52\"/><rect class=\"b\" x=\"176\" y=\"68\" width=\"9\" height=\"52\"/><rect class=\"b\" x=\"190\" y=\"74\" width=\"9\" height=\"46\"/><rect class=\"b\" x=\"204\" y=\"48\" width=\"9\" height=\"72\"/><rect class=\"b\" x=\"218\" y=\"74\" width=\"11\" height=\"46\"/><rect class=\"b\" x=\"234\" y=\"74\" width=\"9\" height=\"46\"/><rect class=\"b\" x=\"248\" y=\"48\" width=\"13\" height=\"72\"/><polygon class=\"m\" points=\"268,120 268,38 284,30 284,22 304,32 304,120\"/><rect class=\"w\" x=\"272\" y=\"44\" width=\"28\" height=\"1.4\"/><rect class=\"w\" x=\"272\" y=\"53\" width=\"28\" height=\"1.4\"/><rect class=\"w\" x=\"272\" y=\"62\" width=\"28\" height=\"1.4\"/><rect class=\"w\" x=\"272\" y=\"71\" width=\"28\" height=\"1.4\"/><rect class=\"w\" x=\"272\" y=\"80\" width=\"28\" height=\"1.4\"/><rect class=\"w\" x=\"272\" y=\"89\" width=\"28\" height=\"1.4\"/><rect class=\"w\" x=\"272\" y=\"98\" width=\"28\" height=\"1.4\"/><rect class=\"w\" x=\"272\" y=\"107\" width=\"28\" height=\"1.4\"/><polygon class=\"f\" points=\"0,120 0,112 110,90 176,90 176,74 228,70 228,90 250,90 272,104 272,120\"/><polygon class=\"f\" points=\"150,90 150,62 200,56 200,90\"/><rect class=\"w\" x=\"154\" y=\"64\" width=\"1.2\" height=\"24\"/><rect class=\"w\" x=\"160\" y=\"64\" width=\"1.2\" height=\"24\"/><rect class=\"w\" x=\"166\" y=\"64\" width=\"1.2\" height=\"24\"/><rect class=\"w\" x=\"172\" y=\"64\" width=\"1.2\" height=\"24\"/><rect class=\"w\" x=\"178\" y=\"64\" width=\"1.2\" height=\"24\"/><rect class=\"w\" x=\"184\" y=\"64\" width=\"1.2\" height=\"24\"/><rect class=\"w\" x=\"190\" y=\"64\" width=\"1.2\" height=\"24\"/><rect class=\"w\" x=\"196\" y=\"64\" width=\"1.2\" height=\"24\"/><rect class=\"m\" x=\"0\" y=\"118\" width=\"320\" height=\"2\"/>", "tos": "<path class=\"au1\" d=\"M10 22C70 6 120 30 180 14S270 2 320 12\"/><path class=\"au2\" d=\"M40 34C100 20 150 40 210 26S290 18 320 24\"/><polygon class=\"b\" points=\"0,120 0,74 36,56 70,66 118,44 170,62 214,50 260,58 320,48 320,120\"/><path class=\"brg\" d=\"M0 98 Q90 78 180 98\"/><rect class=\"m\" x=\"40\" y=\"88\" width=\"2\" height=\"30\"/><rect class=\"m\" x=\"90\" y=\"82\" width=\"2\" height=\"30\"/><rect class=\"m\" x=\"140\" y=\"88\" width=\"2\" height=\"30\"/><polygon class=\"f\" points=\"186,120 252,24 318,120\"/><polygon class=\"m\" points=\"204,120 258,34 312,120\"/><polygon class=\"m\" points=\"222,120 264,44 306,120\"/><polygon class=\"m\" points=\"240,120 270,54 300,120\"/><polygon class=\"m\" points=\"258,120 276,64 294,120\"/><polygon class=\"w\" points=\"238,120 252,82 266,120\"/><rect class=\"ln\" x=\"251\" y=\"90\" width=\"2\" height=\"24\"/><rect class=\"ln\" x=\"245\" y=\"98\" width=\"14\" height=\"2\"/><rect class=\"f\" x=\"0\" y=\"118\" width=\"320\" height=\"2\"/>", "lof": "<path class=\"au1\" d=\"M20 18C80 4 140 26 200 12S280 0 320 8\"/><path class=\"au2\" d=\"M60 30C120 16 170 36 230 22S300 14 320 18\"/><polygon class=\"b\" points=\"0,120 0,80 30,62 52,72 84,38 102,56 126,46 150,70 320,70 320,120\"/><polygon class=\"m\" points=\"110,120 140,90 158,98 186,52 198,64 212,40 236,78 256,62 282,90 320,74 320,120\"/><rect class=\"ac\" x=\"176\" y=\"98\" width=\"18\" height=\"14\"/><polygon class=\"ac\" points=\"174,99 185,91 196,99\"/><rect class=\"w\" x=\"179\" y=\"104\" width=\"4\" height=\"8\"/><rect class=\"ln\" x=\"178\" y=\"112\" width=\"1.6\" height=\"8\"/><rect class=\"ln\" x=\"191\" y=\"112\" width=\"1.6\" height=\"8\"/><rect class=\"ac\" x=\"200\" y=\"98\" width=\"18\" height=\"14\"/><polygon class=\"ac\" points=\"198,99 209,91 220,99\"/><rect class=\"w\" x=\"203\" y=\"104\" width=\"4\" height=\"8\"/><rect class=\"ln\" x=\"202\" y=\"112\" width=\"1.6\" height=\"8\"/><rect class=\"ln\" x=\"215\" y=\"112\" width=\"1.6\" height=\"8\"/><rect class=\"ac\" x=\"226\" y=\"98\" width=\"18\" height=\"14\"/><polygon class=\"ac\" points=\"224,99 235,91 246,99\"/><rect class=\"w\" x=\"229\" y=\"104\" width=\"4\" height=\"8\"/><rect class=\"ln\" x=\"228\" y=\"112\" width=\"1.6\" height=\"8\"/><rect class=\"ln\" x=\"241\" y=\"112\" width=\"1.6\" height=\"8\"/><path class=\"rack\" d=\"M262 120 L271 98 L280 120 M266 104 L276 104\"/><path class=\"rack\" d=\"M286 120 L295 98 L304 120 M290 104 L300 104\"/><rect class=\"m\" x=\"0\" y=\"116\" width=\"320\" height=\"4\"/>", "bgo": "<polygon class=\"b\" points=\"0,120 0,70 70,42 150,30 230,44 320,58 320,120\"/><path class=\"ln\" d=\"M150 31 L205 110\"/><polygon class=\"f\" points=\"104,120 104,74 114,54 124,74 124,120\"/><rect class=\"w\" x=\"107\" y=\"76\" width=\"0.8\" height=\"42\"/><rect class=\"w\" x=\"111\" y=\"76\" width=\"0.8\" height=\"42\"/><rect class=\"w\" x=\"115\" y=\"76\" width=\"0.8\" height=\"42\"/><rect class=\"w\" x=\"119\" y=\"76\" width=\"0.8\" height=\"42\"/><rect class=\"w\" x=\"111.5\" y=\"64\" width=\"5\" height=\"6\"/><polygon class=\"f\" points=\"125,120 125,66 137,46 149,66 149,120\"/><rect class=\"w\" x=\"128\" y=\"68\" width=\"0.8\" height=\"50\"/><rect class=\"w\" x=\"132\" y=\"68\" width=\"0.8\" height=\"50\"/><rect class=\"w\" x=\"136\" y=\"68\" width=\"0.8\" height=\"50\"/><rect class=\"w\" x=\"140\" y=\"68\" width=\"0.8\" height=\"50\"/><rect class=\"w\" x=\"144\" y=\"68\" width=\"0.8\" height=\"50\"/><rect class=\"w\" x=\"134.5\" y=\"56\" width=\"5\" height=\"6\"/><polygon class=\"f\" points=\"150,120 150,72 160,52 170,72 170,120\"/><rect class=\"w\" x=\"153\" y=\"74\" width=\"0.8\" height=\"44\"/><rect class=\"w\" x=\"157\" y=\"74\" width=\"0.8\" height=\"44\"/><rect class=\"w\" x=\"161\" y=\"74\" width=\"0.8\" height=\"44\"/><rect class=\"w\" x=\"165\" y=\"74\" width=\"0.8\" height=\"44\"/><rect class=\"w\" x=\"157.5\" y=\"62\" width=\"5\" height=\"6\"/><polygon class=\"f\" points=\"171,120 171,62 184,42 197,62 197,120\"/><rect class=\"w\" x=\"174\" y=\"64\" width=\"0.8\" height=\"54\"/><rect class=\"w\" x=\"178\" y=\"64\" width=\"0.8\" height=\"54\"/><rect class=\"w\" x=\"182\" y=\"64\" width=\"0.8\" height=\"54\"/><rect class=\"w\" x=\"186\" y=\"64\" width=\"0.8\" height=\"54\"/><rect class=\"w\" x=\"190\" y=\"64\" width=\"0.8\" height=\"54\"/><rect class=\"w\" x=\"194\" y=\"64\" width=\"0.8\" height=\"54\"/><rect class=\"w\" x=\"181.5\" y=\"52\" width=\"5\" height=\"6\"/><polygon class=\"f\" points=\"198,120 198,70 209,50 220,70 220,120\"/><rect class=\"w\" x=\"201\" y=\"72\" width=\"0.8\" height=\"46\"/><rect class=\"w\" x=\"205\" y=\"72\" width=\"0.8\" height=\"46\"/><rect class=\"w\" x=\"209\" y=\"72\" width=\"0.8\" height=\"46\"/><rect class=\"w\" x=\"213\" y=\"72\" width=\"0.8\" height=\"46\"/><rect class=\"w\" x=\"217\" y=\"72\" width=\"0.8\" height=\"46\"/><rect class=\"w\" x=\"206.5\" y=\"60\" width=\"5\" height=\"6\"/><polygon class=\"f\" points=\"221,120 221,64 233,44 245,64 245,120\"/><rect class=\"w\" x=\"224\" y=\"66\" width=\"0.8\" height=\"52\"/><rect class=\"w\" x=\"228\" y=\"66\" width=\"0.8\" height=\"52\"/><rect class=\"w\" x=\"232\" y=\"66\" width=\"0.8\" height=\"52\"/><rect class=\"w\" x=\"236\" y=\"66\" width=\"0.8\" height=\"52\"/><rect class=\"w\" x=\"240\" y=\"66\" width=\"0.8\" height=\"52\"/><rect class=\"w\" x=\"230.5\" y=\"54\" width=\"5\" height=\"6\"/><polygon class=\"f\" points=\"246,120 246,74 256,54 266,74 266,120\"/><rect class=\"w\" x=\"249\" y=\"76\" width=\"0.8\" height=\"42\"/><rect class=\"w\" x=\"253\" y=\"76\" width=\"0.8\" height=\"42\"/><rect class=\"w\" x=\"257\" y=\"76\" width=\"0.8\" height=\"42\"/><rect class=\"w\" x=\"261\" y=\"76\" width=\"0.8\" height=\"42\"/><rect class=\"w\" x=\"253.5\" y=\"64\" width=\"5\" height=\"6\"/><polygon class=\"f\" points=\"267,120 267,60 280,40 293,60 293,120\"/><rect class=\"w\" x=\"270\" y=\"62\" width=\"0.8\" height=\"56\"/><rect class=\"w\" x=\"274\" y=\"62\" width=\"0.8\" height=\"56\"/><rect class=\"w\" x=\"278\" y=\"62\" width=\"0.8\" height=\"56\"/><rect class=\"w\" x=\"282\" y=\"62\" width=\"0.8\" height=\"56\"/><rect class=\"w\" x=\"286\" y=\"62\" width=\"0.8\" height=\"56\"/><rect class=\"w\" x=\"290\" y=\"62\" width=\"0.8\" height=\"56\"/><rect class=\"w\" x=\"277.5\" y=\"50\" width=\"5\" height=\"6\"/><polygon class=\"f\" points=\"294,120 294,68 305,48 316,68 316,120\"/><rect class=\"w\" x=\"297\" y=\"70\" width=\"0.8\" height=\"48\"/><rect class=\"w\" x=\"301\" y=\"70\" width=\"0.8\" height=\"48\"/><rect class=\"w\" x=\"305\" y=\"70\" width=\"0.8\" height=\"48\"/><rect class=\"w\" x=\"309\" y=\"70\" width=\"0.8\" height=\"48\"/><rect class=\"w\" x=\"313\" y=\"70\" width=\"0.8\" height=\"48\"/><rect class=\"w\" x=\"302.5\" y=\"58\" width=\"5\" height=\"6\"/><rect class=\"f\" x=\"0\" y=\"118\" width=\"320\" height=\"2\"/>", "gdn": "<rect class=\"b\" x=\"40\" y=\"40\" width=\"38\" height=\"80\"/><polygon class=\"b\" points=\"78,120 78,72 124,58 170,72 170,120\"/><polygon class=\"b\" points=\"40,40 43,26 46,40\"/><polygon class=\"b\" points=\"72,40 75,26 78,40\"/><polygon class=\"b\" points=\"54,40 59,22 64,40\"/><rect class=\"f\" x=\"196\" y=\"60\" width=\"26\" height=\"60\"/><rect class=\"f\" x=\"254\" y=\"60\" width=\"26\" height=\"60\"/><polygon class=\"f\" points=\"190,62 286,62 286,38 238,14 190,38\"/><path class=\"rack\" d=\"M198 44 L180 34 M180 34 L180 56\"/><rect class=\"w\" x=\"205\" y=\"70\" width=\"6\" height=\"8\"/><rect class=\"w\" x=\"263\" y=\"70\" width=\"6\" height=\"8\"/><rect class=\"w\" x=\"205\" y=\"84\" width=\"6\" height=\"8\"/><rect class=\"w\" x=\"263\" y=\"84\" width=\"6\" height=\"8\"/><rect class=\"w\" x=\"205\" y=\"98\" width=\"6\" height=\"8\"/><rect class=\"w\" x=\"263\" y=\"98\" width=\"6\" height=\"8\"/><rect class=\"w\" x=\"196\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"202\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"208\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"214\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"220\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"226\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"232\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"238\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"244\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"250\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"256\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"262\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"268\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"274\" y=\"42\" width=\"1\" height=\"18\"/><rect class=\"w\" x=\"280\" y=\"42\" width=\"1\" height=\"18\"/><polygon class=\"m\" points=\"286,120 286,82 294,70 302,82 302,120\"/><polygon class=\"m\" points=\"302,120 302,76 311,64 320,76 320,120\"/><rect class=\"m\" x=\"0\" y=\"116\" width=\"320\" height=\"4\"/>", "nutshell": "<polygon class=\"m\" points=\"0,120 0,14 40,22 78,48 118,96 130,120\"/><polygon class=\"m\" points=\"320,120 320,6 286,16 250,40 214,84 196,120\"/><polygon class=\"b\" points=\"110,120 140,78 160,70 186,80 210,120\"/><rect class=\"b\" x=\"0\" y=\"112\" width=\"320\" height=\"8\"/><polygon class=\"f\" points=\"150,110 176,110 172,115 154,115\"/><rect class=\"f\" x=\"160\" y=\"104\" width=\"8\" height=\"6\"/><path class=\"rail\" d=\"M10 30 L44 44 L22 58 L60 74 L44 88\"/><rect class=\"ac\" x=\"30\" y=\"47\" width=\"12\" height=\"5\"/><rect class=\"ac\" x=\"43\" y=\"48\" width=\"10\" height=\"4\"/>", "travel": "<path class=\"trail\" d=\"M0 104 C80 100 150 80 236 46\"/><g transform=\"translate(236,22) rotate(-24) scale(2.6)\"><path class=\"f\" d=\"M14 3.2v-1.2l-5-3.1v-3.3a1 1 0 0 0-2 0v3.3L2 2v1.2l5-1.5v3.1l-1.3 1V6.7l2.3-.7 2.3.7V5.8l-1.3-1V1.7z\" transform=\"rotate(90 8 2)\"/></g>"};
   var PAT={ no:"<rect x=\"4\" y=\"14\" width=\"2\" height=\"2\"/><rect x=\"6\" y=\"6\" width=\"2\" height=\"2\"/><rect x=\"6\" y=\"8\" width=\"2\" height=\"2\"/><rect x=\"6\" y=\"14\" width=\"2\" height=\"2\"/><rect x=\"6\" y=\"20\" width=\"2\" height=\"2\"/><rect x=\"6\" y=\"22\" width=\"2\" height=\"2\"/><rect x=\"8\" y=\"6\" width=\"2\" height=\"2\"/><rect x=\"8\" y=\"8\" width=\"2\" height=\"2\"/><rect x=\"8\" y=\"10\" width=\"2\" height=\"2\"/><rect x=\"8\" y=\"14\" width=\"2\" height=\"2\"/><rect x=\"8\" y=\"18\" width=\"2\" height=\"2\"/><rect x=\"8\" y=\"20\" width=\"2\" height=\"2\"/><rect x=\"8\" y=\"22\" width=\"2\" height=\"2\"/><rect x=\"10\" y=\"8\" width=\"2\" height=\"2\"/><rect x=\"10\" y=\"10\" width=\"2\" height=\"2\"/><rect x=\"10\" y=\"12\" width=\"2\" height=\"2\"/><rect x=\"10\" y=\"14\" width=\"2\" height=\"2\"/><rect x=\"10\" y=\"16\" width=\"2\" height=\"2\"/><rect x=\"10\" y=\"18\" width=\"2\" height=\"2\"/><rect x=\"10\" y=\"20\" width=\"2\" height=\"2\"/><rect x=\"12\" y=\"10\" width=\"2\" height=\"2\"/><rect x=\"12\" y=\"12\" width=\"2\" height=\"2\"/><rect x=\"12\" y=\"16\" width=\"2\" height=\"2\"/><rect x=\"12\" y=\"18\" width=\"2\" height=\"2\"/><rect x=\"14\" y=\"4\" width=\"2\" height=\"2\"/><rect x=\"14\" y=\"6\" width=\"2\" height=\"2\"/><rect x=\"14\" y=\"8\" width=\"2\" height=\"2\"/><rect x=\"14\" y=\"10\" width=\"2\" height=\"2\"/><rect x=\"14\" y=\"18\" width=\"2\" height=\"2\"/><rect x=\"14\" y=\"20\" width=\"2\" height=\"2\"/><rect x=\"14\" y=\"22\" width=\"2\" height=\"2\"/><rect x=\"14\" y=\"24\" width=\"2\" height=\"2\"/><rect x=\"16\" y=\"10\" width=\"2\" height=\"2\"/><rect x=\"16\" y=\"12\" width=\"2\" height=\"2\"/><rect x=\"16\" y=\"16\" width=\"2\" height=\"2\"/><rect x=\"16\" y=\"18\" width=\"2\" height=\"2\"/><rect x=\"18\" y=\"8\" width=\"2\" height=\"2\"/><rect x=\"18\" y=\"10\" width=\"2\" height=\"2\"/><rect x=\"18\" y=\"12\" width=\"2\" height=\"2\"/><rect x=\"18\" y=\"14\" width=\"2\" height=\"2\"/><rect x=\"18\" y=\"16\" width=\"2\" height=\"2\"/><rect x=\"18\" y=\"18\" width=\"2\" height=\"2\"/><rect x=\"18\" y=\"20\" width=\"2\" height=\"2\"/><rect x=\"20\" y=\"6\" width=\"2\" height=\"2\"/><rect x=\"20\" y=\"8\" width=\"2\" height=\"2\"/><rect x=\"20\" y=\"10\" width=\"2\" height=\"2\"/><rect x=\"20\" y=\"14\" width=\"2\" height=\"2\"/><rect x=\"20\" y=\"18\" width=\"2\" height=\"2\"/><rect x=\"20\" y=\"20\" width=\"2\" height=\"2\"/><rect x=\"20\" y=\"22\" width=\"2\" height=\"2\"/><rect x=\"22\" y=\"6\" width=\"2\" height=\"2\"/><rect x=\"22\" y=\"8\" width=\"2\" height=\"2\"/><rect x=\"22\" y=\"14\" width=\"2\" height=\"2\"/><rect x=\"22\" y=\"20\" width=\"2\" height=\"2\"/><rect x=\"22\" y=\"22\" width=\"2\" height=\"2\"/><rect x=\"24\" y=\"14\" width=\"2\" height=\"2\"/><rect x=\"0\" y=\"0\" width=\"2\" height=\"2\"/><rect x=\"30\" y=\"0\" width=\"2\" height=\"2\"/><rect x=\"0\" y=\"30\" width=\"2\" height=\"2\"/><rect x=\"30\" y=\"30\" width=\"2\" height=\"2\"/><rect x=\"15\" y=\"0\" width=\"2\" height=\"2\"/><rect x=\"0\" y=\"15\" width=\"2\" height=\"2\"/><rect x=\"30\" y=\"15\" width=\"2\" height=\"2\"/><rect x=\"15\" y=\"30\" width=\"2\" height=\"2\"/>", pl:"<circle cx=\"20\" cy=\"16\" r=\"3.6\"/><ellipse cx=\"20\" cy=\"9\" rx=\"2.3\" ry=\"4.4\" transform=\"rotate(0 20 9)\"/><ellipse cx=\"24.9497\" cy=\"11.0503\" rx=\"2.3\" ry=\"4.4\" transform=\"rotate(45 24.9497 11.0503)\"/><ellipse cx=\"27\" cy=\"16\" rx=\"2.3\" ry=\"4.4\" transform=\"rotate(90 27 16)\"/><ellipse cx=\"24.9497\" cy=\"20.9497\" rx=\"2.3\" ry=\"4.4\" transform=\"rotate(135 24.9497 20.9497)\"/><ellipse cx=\"20\" cy=\"23\" rx=\"2.3\" ry=\"4.4\" transform=\"rotate(180 20 23)\"/><ellipse cx=\"15.0503\" cy=\"20.9497\" rx=\"2.3\" ry=\"4.4\" transform=\"rotate(225 15.0503 20.9497)\"/><ellipse cx=\"13\" cy=\"16\" rx=\"2.3\" ry=\"4.4\" transform=\"rotate(270 13 16)\"/><ellipse cx=\"15.0503\" cy=\"11.0503\" rx=\"2.3\" ry=\"4.4\" transform=\"rotate(315 15.0503 11.0503)\"/><ellipse cx=\"6\" cy=\"24\" rx=\"1.8\" ry=\"4.6\" transform=\"rotate(-35 6 24)\"/><ellipse cx=\"34\" cy=\"24\" rx=\"1.8\" ry=\"4.6\" transform=\"rotate(35 34 24)\"/><circle cx=\"2\" cy=\"6\" r=\"1.4\"/><circle cx=\"38\" cy=\"6\" r=\"1.4\"/><circle cx=\"20\" cy=\"30\" r=\"1.4\"/>" };
   function art(k){ return ART[k]?'<svg class="art" viewBox="0 0 320 120" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">'+ART[k]+'</svg>':""; }
-  function strip(kind, color, id){ var w=kind==="no"?32:40;
-    return '<svg class="strip" aria-hidden="true"><defs><pattern id="'+id+'" width="'+w+'" height="32" patternUnits="userSpaceOnUse"><g fill="'+color+'">'+PAT[kind]+'</g></pattern></defs><rect width="100%" height="32" fill="url(#'+id+')"/></svg>'; }
+  function strip(kind, color, id, sc){ var w=kind==="no"?32:40; sc=sc||1;
+    return '<svg class="strip'+(sc<1?" thin":"")+'" aria-hidden="true" style="height:'+Math.round(30*sc)+'px"><defs><pattern id="'+id+'" width="'+w*sc+'" height="'+32*sc+'" patternUnits="userSpaceOnUse"><g fill="'+color+'" transform="scale('+sc+')">'+PAT[kind]+'</g></pattern></defs><rect width="100%" height="'+32*sc+'" fill="url(#'+id+')"/></svg>'; }
   function artKey(d){ return d.art || ({tw:"travel",sky:"travel"})[d.region] || d.region; }
   /* 日出日落（NOAA 公式），回傳當地時間的小時數 */
   function sunTimes(iso, lat, lng, tz, zen){
@@ -696,47 +675,6 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
   }
   function hm(h){ h=(h+24)%24; var H=Math.floor(h), M=Math.round((h-H)*60); if(M===60){H=(H+1)%24;M=0;} return String(H).padStart(2,"0")+":"+String(M).padStart(2,"0"); }
   function toH(t){ var p=t.split(":"); return +p[0]+(+p[1])/60; }
-  function timeline(d){
-    var blks=[];
-    var TZ={TPE:8,DXB:4}, dayTz=(T.regions[d.sunAt||d.region]||{}).tz||1;
-    function tzOf(x){ return TZ[(x||"").split(" ")[1]]||1; }
-    var HM=/^\d{1,2}:\d{2}$/;
-    (d.legs||[]).forEach(function(l){ if(!HM.test(l.arr||"")) return;
-      var who=l.who?T.people[l.who]+" ":"", b=toH(l.arr);
-      if (l.t==="flight") b-=tzOf(l.to)-dayTz;
-      /* 起飛時間待補：只畫到抵達時間，從時間軸左端開始 */
-      if (!HM.test(l.dep||"")){ if (l.dep) blks.push({a:null,b:b,t:l.t,label:who+l.arr+" 抵達"}); return; }
-      var a=toH(l.dep);
-      if (l.t==="flight") a-=tzOf(l.from)-dayTz;
-      if (l.plus||b<a) b+=24;
-      blks.push({a:a,b:b,t:l.t,label:who+(l.no||l.text||""),short:l.no||l.short||l.text||""}); });
-    var reg=T.regions[d.sunAt||d.region], sun=reg&&reg.lat?sunTimes(d.date,reg.lat,reg.lng,reg.tz,90.833):null;
-    var dusk=reg&&reg.polar?sunTimes(d.date,reg.lat,reg.lng,reg.tz,102):null;
-    if (!blks.length && !sun) return "";
-    var lo=6, hi=24;
-    blks.forEach(function(x){ if (x.a!=null) lo=Math.min(lo,Math.floor(x.a)); hi=Math.max(hi,Math.ceil(x.b)); });
-    blks.forEach(function(x){ if (x.a==null) x.a=lo; });
-    if (reg&&reg.polar) hi=Math.max(hi,26);
-    hi=Math.min(hi,30); var span=hi-lo;
-    function pct(h){ return ((Math.max(lo,Math.min(hi,h))-lo)/span*100).toFixed(2)+"%"; }
-    function wid(a,b){ return ((Math.min(hi,b)-Math.max(lo,a))/span*100).toFixed(2)+"%"; }
-    var outs=[];
-    var h='<div class="tl"><div class="tl-axis"><div class="tl-free"></div>'+blks.map(function(x){
-      var w=(Math.min(hi,x.b)-Math.max(lo,x.a))/span*100, narrow=w<x.label.length*2.6;
-      if (narrow) outs.push(x);
-      return '<div class="tl-blk'+(x.t==="tour"?" tour":"")+'" style="left:'+pct(x.a)+';width:'+wid(x.a,x.b)+'"'+(narrow?' aria-hidden="true"':"")+'>'+(narrow?"":x.label)+'</div>'; }).join("")+'</div>';
-    if (outs.length) h+='<div class="tl-out">'+outs.map(function(x){ var mid=(Math.max(lo,x.a)+Math.min(hi,x.b))/2, p=(mid-lo)/span*100;
-      var pos=p>75?'right:'+(100-((Math.min(hi,x.b)-lo)/span*100)).toFixed(2)+'%':(p<20?'left:'+pct(x.a):'left:'+p.toFixed(2)+'%;transform:translateX(-50%)');
-      return '<span style="'+pos+'">'+(x.short||x.label)+'</span>'; }).join("")+'</div>';
-    if (sun){ h+='<div class="tl-sun"><div class="tl-day" style="left:'+pct(sun[0])+';width:'+wid(sun[0],sun[1])+'"></div>'+
-      (dusk?'<div class="tl-tw" style="left:'+pct(sun[1])+';width:'+wid(sun[1],dusk[1])+'"></div><div class="tl-tw" style="left:'+pct(dusk[0])+';width:'+wid(dusk[0],sun[0])+'"></div>':"")+'</div>'; }
-    h+='<div class="tl-ticks">';
-    for (var t=Math.ceil(lo/3)*3; t<=hi; t+=3) h+='<span style="left:'+pct(t)+'">'+(t%24)+'</span>';
-    h+='</div><div class="tl-note"><span>當地時間</span>'+(blks.length?'<span><i style="background:var(--slate)"></i>已排定</span><span><i style="background:color-mix(in srgb,var(--c) 30%,var(--paper))"></i>自由</span>':"");
-    if (sun) h+='<span><i style="background:#F2C14E"></i>日出 '+hm(sun[0])+'，日落 '+hm(sun[1])+'</span>';
-    if (dusk) h+='<span><i style="background:#8E7AB5"></i>'+hm(dusk[1])+' 後天色夠暗，可以看極光</span>';
-    return h+'</div></div>';
-  }
   /* 地址卡 */
   var CODE={}; Object.keys(T.addresses).forEach(function(k){ var a=T.addresses[k]; if(a.code) CODE[a.code]=k; });
   function addrRow(a){
@@ -747,14 +685,6 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
       '<button type="button" data-big="'+encodeURIComponent(JSON.stringify({n:a.name,s:a.sub,a:a.addr||""}))+'">大字</button></div></div>';
   }
   function stayAddr(s){ return s.address?{name:s.name, addr:s.address, sub:s.area+"住處", lat:s.lat, lng:s.lng}:null; }
-  function dayAddrs(d){
-    var list=[], seen={};
-    function push(k){ if(k&&!seen[k]&&T.addresses[k]){ seen[k]=1; list.push(T.addresses[k]); } }
-    (d.legs||[]).forEach(function(l){ if(l.t==="flight"){ [l.from,l.to].forEach(function(x){ var c=(x||"").split(" ")[1]; push(CODE[c]); }); } (l.addr||[]).forEach(push); });
-    staysOn(d.date).forEach(function(s){ var a=stayAddr(s); if(a) list.push(a); });
-    return list;
-  }
-
   var LINES='<g class="drift"><path d="M-30,58 C60,24 130,68 210,38 S330,12 430,32" stroke="#5DCAA5" stroke-width="2.4"/><path d="M-30,66 C70,36 140,76 220,48 S340,22 430,42" stroke="#1D9E75" stroke-width="1.4"/></g><g class="drift2"><path d="M-30,50 C50,18 120,58 200,30 S320,4 430,22" stroke="#AFA9EC" stroke-width="1"/><path d="M-30,74 C90,46 150,84 230,58 S350,34 430,52" stroke="#5DCAA5" stroke-width=".8"/></g>';
 
   /* ── 行李、座位 ── */
@@ -902,57 +832,43 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
         '<span class="ws">'+whoTag+stx+'</span><span class="chev"></span></summary>'+
         '<div class="mv-in">'+info.join("")+'<a class="more" href="#/day/'+key(d.date)+'">看 '+md(d.date)+' 每日行程 ›</a></div></details>';
     }).join("");
-    return '<h2 class="sec">交通 <small>點一下看座位、行李、退改</small></h2>'+sw+'<div class="card mvs">'+rows+'</div>';
+    return '<h2 class="sec">交通 <small>點一下看座位、行李、退改</small></h2><p class="inote">所有確認單都在 Google 雲端硬碟（記得設成離線可用）。登機證在各航空公司 App。</p>'+sw+'<div class="card mvs">'+rows+'</div>';
   }
   var FX=[["kitchen","kitchen","廚房"],["breakfast","cup","早餐","含早餐"],["parking","park","停車"],["laundry","wash","洗衣"]];
   function stayFx(s){ var h=FX.filter(function(f){return s[f[0]]!=null;}).map(function(f){ var on=s[f[0]];
       return '<span class="fxi'+(on?"":" no")+'">'+svg(f[1])+(on?(typeof on==="string"?on:(f[3]||f[2])):"不含"+f[2])+'</span>'; }).join("");
     return h?'<div class="fxs">'+h+'</div>':""; }
-  function coverHTML(){
-    var nights=[], first=T.stays[0].from;
-    T.stays.forEach(function(s){ for(var i=0;i<s.nights;i++) nights.push({s:s,date:add(s.from,i)}); });
-    var n=nights.length, cols='style="grid-template-columns:repeat('+n+',minmax(0,1fr))"';
-    var heads=T.stays.map(function(s){ var c=col(regionOn(s.from));
-      return '<span class="cov-n" style="grid-column:span '+s.nights+';--c:'+c+'" title="'+s.area+'" data-full="'+s.area+'" data-code="'+regionOn(s.from).toUpperCase()+'">'+s.area+'</span>'; }).join("");
-    var cells=nights.map(function(x){ var c=col(regionOn(x.date)), bk=x.s.status==="booked";
-      return '<span class="cv'+(bk?"":" p")+'" style="--c:'+c+'" title="'+md(x.date)+' '+x.s.area+'">'+(x.s.who?T.people[x.s.who].slice(0,1):"")+'</span>'; }).join("");
-    var ticks=T.stays.map(function(s){ return '<span class="cov-d" style="grid-column:span '+s.nights+'"><i>'+md(s.from)+'</i></span>'; }).join("");
-    var bk=nights.filter(function(x){return x.s.status==="booked";}).length;
-    return '<div class="card cov"><div class="cov-g" '+cols+'>'+heads+cells+ticks+'</div>'+
-      '<div class="cov-k"><span><i></i>已訂</span><span><i class="p"></i>待訂</span><span>Y＝只有 Yulun</span></div>'+
-      '<p class="cov-s">'+n+' 晚裡已訂 <b>'+bk+'</b> 晚，還有 '+(n-bk)+' 晚待訂</p></div>';
-  }
   function stayCard(s){
     var reg=regionOn(s.from), c=col(reg), out=add(s.from,s.nights), bk=s.status==="booked";
-    var when='<span class="when">'+md(s.from)+'<small>'+md(out)+' 退房<br>'+s.nights+' 晚</small></span>';
-    var head='<div><p class="nm">'+who(s.who)+(s.name?'<b>'+s.name+'</b>':s.area)+st(s.status)+'</p>'+(s.name?'<p class="ar">'+s.area+(s.room?"・"+s.room:"")+'</p>':"");
-    var t=[]; if (s.checkin) t.push('<div><span>入住</span><b>'+s.checkin+'</b></div>'); if (s.checkout) t.push('<div><span>退房</span><b>'+s.checkout+'</b></div>');
-    if (t.length) head+='<div class="sty-t">'+t.join("")+'</div>';
-    head+=stayFx(s);
-    if (s.cost&&s.cost.rule&&(bk||s.cost.rule.type!=="tbd")) head+='<p class="rtw">'+ruleTag(s.cost.rule)+'</p>';
-    if (!bk&&s.note) head+='<p class="pnote">'+s.note+'</p>';
-    head+='</div>';
-    if (!bk) return '<div class="sty pend" style="--c:'+c+'"><div class="sh">'+when+head+'</div></div>';
+    var sum='<span class="sy-d">'+md(s.from)+'<small>'+s.nights+' 晚</small></span><span class="sy-n">'+who(s.who)+(s.name||s.area)+(bk?"":st(s.status))+'</span><span class="sy-t">入住 '+(s.checkin||"—")+'<br>退房 '+(s.checkout||"—")+'</span><span class="chev"></span>';
     var a=stayAddr(s), rows=[];
     function row(k,v){ if(v) rows.push('<div><span>'+k+'</span><div>'+v+'</div></div>'); }
+    row("日期", md(s.from)+" 入住"+(s.checkin?" "+s.checkin:"")+"，"+md(out)+" 退房"+(s.checkout?" "+s.checkout:"")+"，"+s.nights+" 晚");
+    row("房型", s.room);
+    row("設施", stayFx(s));
     row("訂房平台", s.via);
     row("電話", s.phone?telBtn(s.phone,s.phone):"");
     row("怎麼去", s.getThere);
     row("入住方式", s.access);
     if (s.cost){ var x=costItems().filter(function(i){return i.c===s.cost;})[0];
       if (x) row("付款", origText(x)+(x.v!=null?"，"+amtText(x.v,x.ap):"")+"・"+payText(s.cost)); }
-    if (s.cost&&s.cost.rule&&s.cost.rule.note) row("取消", ruleHTML(s.cost.rule));
+    if (s.cost&&s.cost.rule) row("取消", ruleHTML(s.cost.rule));
     row("備註", s.note);
-    return '<details class="sty" style="--c:'+c+'"><summary>'+when+head+'<span class="chev"></span></summary><div class="sty-in">'+(a?addrRow(a):"")+'<div class="rws">'+rows.join("")+'</div></div></details>';
+    return '<details class="sty" id="stay-'+s.id+'" style="--c:'+c+'"><summary>'+sum+'</summary><div class="sty-in">'+(a?addrRow(a):"")+'<div class="rws">'+rows.join("")+'</div></div></details>';
   }
+  var DRIVE='<p class="inote">所有確認單都在 Google 雲端硬碟（記得設成離線可用）</p>';
   function infoStay(){
-    return '<h2 class="sec">住宿 <small>每格一晚</small></h2>'+coverHTML()+
-      '<h2 class="sec">各段住宿 <small>點已訂的看地址和入住資訊</small></h2><div class="card">'+T.stays.map(stayCard).join("")+'</div>';
+    return '<h2 class="sec">住宿 <small>點一下看地址和入住資訊</small></h2>'+DRIVE+'<div class="card">'+T.stays.map(stayCard).join("")+'</div>';
   }
+  /* 地址依城市分組：住處看入住那天的地區，機場和車站看代碼前綴 */
+  var ADDR_CITY={eve:"lof"};
   function infoAddr(){
-    var addrs=[]; T.stays.forEach(function(s){ var a=stayAddr(s); if(a) addrs.push(a); });
-    Object.keys(T.addresses).forEach(function(k){ addrs.push(T.addresses[k]); });
-    return '<h2 class="sec">常用地址 <small>住處、機場、車站</small></h2><p class="muted" style="margin:0 0 8px">複製貼到 Bolt、Uber，或直接開 Google 地圖導航。住處訂好後會陸續加入。</p><div class="card">'+addrs.map(addrRow).join("")+'</div>';
+    var g={}; T.cityOrder.forEach(function(c){ g[c]=[]; });
+    T.stays.forEach(function(s){ var a=stayAddr(s), r=regionOn(s.from); if(a&&g[r]) g[r].push(a); });
+    Object.keys(T.addresses).forEach(function(k){ var c=k.split("-")[0]; c=ADDR_CITY[c]||c; (g[c]=g[c]||[]).push(T.addresses[k]); });
+    return '<h2 class="sec">常用地址 <small>住處、機場、車站</small></h2><p class="muted" style="margin:0 0 8px">複製貼到 Bolt、Uber，或直接開 Google 地圖導航。</p>'+
+      Object.keys(g).filter(function(c){return g[c].length;}).map(function(c){ var y=T.cities[c];
+        return '<h3 class="sub" style="--c:'+col(y?y.region:"tw")+'"><i></i>'+(y?y.name:c)+'</h3><div class="card">'+g[c].map(addrRow).join("")+'</div>'; }).join("");
   }
   function infoBag(){
     var ents=[]; allSegs().forEach(function(x){ if(x.l.t!=="flight") return; bagEntries(x.l).forEach(function(e){ ents.push({d:x.d,l:x.l,who:e.who,b:e.b}); }); });
@@ -992,103 +908,85 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
     return top+tbl;
   }
   var done={}; try{ done=JSON.parse(localStorage.getItem("checklist")||"{}"); }catch(e){ done={}; }
+  function checkItem(x){
+    return '<li><label><input type="checkbox" data-id="'+x.id+'"'+(done[x.id]?" checked":"")+'><span class="bx">'+svg("check")+'</span><span class="txt">'+x.text+
+      (x.due?'<em class="due-s">'+dueText(x)+'</em>':"")+(x.day?'<em class="due-s">'+md(x.day)+(x.eve?" 晚上":"")+'</em>':"")+(x.sub?'<small>'+x.sub+'</small>':"")+'</span></label></li>'; }
+  function checkGroup(name, items){
+    if (!items.length) return "";
+    var open=items.filter(function(x){return !done[x.id];}), fin=items.filter(function(x){return done[x.id];});
+    return '<h2 class="sec">'+name+' <small>'+fin.length+'／'+items.length+' 完成</small></h2><div class="card">'+
+      (open.length?'<ul class="check">'+open.map(checkItem).join("")+'</ul>':'<p class="muted fempty">都完成了</p>')+
+      (fin.length?'<details class="fin"><summary>已完成 '+fin.length+' 項<span class="chev"></span></summary><ul class="check">'+fin.map(checkItem).join("")+'</ul></details>':"")+'</div>';
+  }
   function infoList(){
-    var n=T.checklist.filter(function(x){return done[x.id];}).length, tot=T.checklist.length;
-    return '<h2 class="sec">行前清單</h2><div class="prog"><b>'+n+'／'+tot+'</b><div class="bar"><span style="flex:'+n+'"></span><span style="flex:'+(tot-n)+';background:none"></span></div></div>'+
-      '<div class="card"><ul class="check">'+T.checklist.map(function(x){
-        return '<li><label><input type="checkbox" data-id="'+x.id+'"'+(done[x.id]?" checked":"")+'><span class="bx">'+svg("check")+'</span><span class="txt">'+x.text+(x.due?'<em class="due-s">'+dueText(x)+'</em>':"")+(x.sub?'<small>'+x.sub+'</small>':"")+'</span></label></li>'; }).join("")+'</ul></div>'+
+    var pre=T.checklist.filter(function(x){return !x.day;}), trip=T.checklist.filter(function(x){return x.day;});
+    function by(a,b){ var x=a.due||a.day||"9", y=b.due||b.day||"9"; return x<y?-1:x>y?1:0; }
+    return checkGroup("出發前", pre.slice().sort(by))+checkGroup("旅途中", trip.slice().sort(by))+
       '<p class="foot" style="display:flex;justify-content:space-between;align-items:center;gap:10px"><span>勾選只存在這支手機，May 的手機要自己勾。</span><button type="button" class="reset" id="reset">全部清除</button></p>';
   }
   function pageInfo(cat){
     var tab=INFO.filter(function(x){return x[0]===cat;})[0]||INFO[0];
     setTitle(tab[1]);
     var body={move:infoMove,stay:infoStay,addr:infoAddr,bag:infoBag,fee:infoFee,list:infoList}[tab[0]]();
-    return '<section class="ihero"><div class="wrap"><h1>資料</h1><p>交通、住宿、地址、行李、費用和行前清單</p></div>'+strip("no","rgba(255,255,255,.16)","pi")+'</section>'+
+    return '<section class="ihero"><div class="wrap"><h1>資料</h1></div>'+strip("no","rgba(255,255,255,.16)","pi",0.5)+'</section>'+
       '<nav class="itabs" aria-label="資料分類"><div class="wrap">'+INFO.map(function(x){
         return '<a href="#/info/'+x[0]+'"'+(x[0]===tab[0]?' aria-current="page"':"")+'>'+x[1]+'</a>'; }).join("")+'</div></nav>'+
       '<main class="wrap">'+body+(tab[0]!=="list"?'<p class="foot">資料更新於 '+T.updated.replace(/-/g,"/")+'。訂位代號不放在這個公開頁面。匯率：1 挪威克朗約台幣 '+T.rates.NOK+' 元、1 歐元約 '+T.rates.EUR+' 元、1 茲羅提約 '+T.rates.PLN+' 元。</p>':"")+'</main>';
   }
 
-  /* ── 總覽 ── */
+  /* ── 共用：日期、狀態 ── */
   function dueText(x){ return (x.dueApprox?"約 ":"")+md(x.due); }
   function stayById(id){ return T.stays.filter(function(s){return s.id===id;})[0]; }
-  function regionOn(iso){ var d=T.days.filter(function(x){return x.date===iso;})[0]; return d?d.region:"tw"; }
-  function routeHTML(){
-    var cells=T.route.map(function(r){
-      var ss=[].concat(r.stay).map(stayById).filter(Boolean); if(!ss.length) return "";
-      var s=ss[0], last=ss[ss.length-1], nights=ss.reduce(function(n,x){return n+x.nights;},0);
-      var out=add(last.from,last.nights), on=inTrip&&today>=s.from&&today<out;
-      return '<a href="#/day/'+key(s.from)+'" style="--c:'+col(regionOn(s.from))+'"'+(on?' aria-current="true"':"")+'><b>'+r.name+'</b><span>'+md(s.from)+'–'+md(out)+'</span><span>'+nights+' 晚'+(s.who?'・'+T.people[s.who]:"")+'</span></a>';
-    });
-    var sky=T.days.filter(function(d){return d.region==="sky";}), first=sky[0]||T.days[T.days.length-1];
-    var onSky=inTrip&&today>=first.date;
-    cells.push('<a href="#/day/'+key(first.date)+'" style="--c:'+col("sky")+'"'+(onSky?' aria-current="true"':"")+'><b>回台北</b><span>'+md(first.date)+'–'+md(T.end)+'</span><span>回程</span></a>');
-    return '<h2 class="sec">路線 <small>點一下看那一段的第一天</small></h2><div class="rgrid">'+cells.join("")+'</div>';
+  function dayOf(iso){ return T.days.filter(function(x){return x.date===iso;})[0]; }
+  function regionOn(iso){ var d=dayOf(iso); return d?d.region:"tw"; }
+  function pad(n){ return String(n).padStart(2,"0"); }
+  /* 現在是「今天」的第幾分鐘（過了午夜、還沒到 3:00 時會超過 1440） */
+  function nowMin(){ var r=new Date(), iso=r.getFullYear()+"-"+pad(r.getMonth()+1)+"-"+pad(r.getDate());
+    return r.getHours()*60+r.getMinutes()+1440*diff(today,iso); }
+  function toMin(t){ var p=t.split(":"); return (+p[0])*60+(+p[1]); }
+  /* 行程分頁不顯示「已訂」，只標例外 */
+  function stT(s,t){ return s==="booked"?"":st(s,t); }
+  function legStT(l){ if (l.todo) return st("self",l.todo); return stT(l.status,l.statusText); }
+  /* 城市：今天在哪、預設哪一個 */
+  function cityOn(iso){ var d=dayOf(iso); if(!d) return null; return d.city||(T.cities[d.region]?d.region:null); }
+  function hereCity(){ return inTrip?cityOn(today):null; }
+  function defaultCity(){ if (!inTrip) return T.cityOrder[0]; return hereCity()||(today<"2027-03-01"?T.cityOrder[0]:"waw"); }
+  var lastCity=null;
+
+  /* ── 路線線條日期列（行程首頁、每日頁共用） ── */
+  function groups(){ var gs=[]; T.days.forEach(function(d){ var g=gs[gs.length-1];
+      if (!g||g.r!==d.region){ g={r:d.region, days:[]}; gs.push(g); } g.days.push(d); });
+    return gs; }
+  function gName(r){ return r==="tw"?"出發":T.regions[r].name; }
+  function rlineHTML(sel){
+    return '<nav class="rline" id="rline" aria-label="日期"><div class="rl-in">'+groups().map(function(g){
+      return '<div class="rg" style="--c:'+col(g.r)+'"><span class="rg-n">'+gName(g.r)+'</span><div class="rg-ds">'+g.days.map(function(d){
+        var on=d.date===sel, td=inTrip&&d.date===today;
+        return '<a class="rd" href="#/day/'+key(d.date)+'"'+(on?' aria-current="true"':"")+' aria-label="'+md(d.date)+' '+wd(d.date)+(td?"，今天":"")+'">'+
+          '<span class="rd-t">'+(td?"今天":"")+'</span><i></i><b>'+md(d.date)+'</b><small>'+WD[dow(d.date)]+'</small></a>'; }).join("")+'</div></div>'; }).join("")+'</div></nav>';
   }
-  function legLabel(l){
-    if (l.t==="flight") return (l.who?T.people[l.who]+" ":"")+(l.no||l.carrier)+" "+apt(l.from).c+"→"+apt(l.to).c;
-    return (l.who?T.people[l.who]+" ":"")+(l.short||l.text);
-  }
-  function prepHTML(){
-    var moves=[]; T.days.forEach(function(d){ (d.legs||[]).forEach(function(l){ if(/flight|train|tour|car/.test(l.t)&&l.status) moves.push({d:d,l:l}); }); });
-    var mDone=moves.filter(function(x){return x.l.status==="booked"&&!x.l.todo;});
-    var mTodo=moves.filter(function(x){return !(x.l.status==="booked"&&!x.l.todo);});
-    var sDone=T.stays.filter(function(s){return s.status==="booked";}), sTodo=T.stays.filter(function(s){return s.status!=="booked";});
-    function block(name, a, tot, rows, href, more){
-      return '<div class="pg"><div class="pg-hd"><b>'+name+'</b><span><em>'+a+'</em>／'+tot+' 段已訂</span></div>'+
-        '<div class="bar"><span style="flex:'+a+'"></span><span style="flex:'+(tot-a)+';background:none"></span></div>'+
-        (rows.length?'<ul class="pg-todo">'+rows.join("")+'</ul>':'<p class="muted" style="margin:8px 0 0">全部訂好了</p>')+
-        '<a class="more" href="'+href+'">'+more+' ›</a></div>';
-    }
-    var mRows=mTodo.map(function(x){ var l=x.l;
-      return '<li><span class="d">'+md(x.d.date)+'</span><span>'+legLabel(l)+(l.todo?st("self",l.todo):st(l.status,l.statusText))+'</span></li>'; });
-    var sRows=sTodo.map(function(s){ return '<li><span class="d">'+md(s.from)+'</span><span>'+who(s.who)+s.area+" "+s.nights+' 晚'+st(s.status)+'</span></li>'; });
-    return '<h2 class="sec">準備進度</h2><div class="card prep">'+
-      block("交通", mDone.length, moves.length, mRows, "#/info/move", "看交通時刻")+
-      block("住宿", sDone.length, T.stays.length, sRows, "#/info/stay", "看住宿")+'</div>';
-  }
-  function nextHTML(){
-    var open=T.checklist.filter(function(x){return !done[x.id];});
-    var soon=freeSoon(7).map(function(x){ var r=x.c.rule; return {text:"免費取消期限："+x.name, sub:untilText(r.until)+" 前（當地時間）"+(r.note?"，"+r.note:""), due:r.until.slice(0,10), cancel:true}; });
-    var dated=open.filter(function(x){return x.due;}).concat(soon).sort(function(a,b){return a.due<b.due?-1:a.due>b.due?1:0;});
+
+  /* ── 行程：出發前 ── */
+  function soonHTML(){
+    var open=T.checklist.filter(function(x){return !done[x.id]&&!x.day;});
+    var cancels=costItems().filter(function(x){ var r=x.c.rule; return r&&r.type==="free"&&r.until&&r.until.slice(0,10)>=today; })
+      .map(function(x){ var r=x.c.rule; return {text:"免費取消期限："+x.name, sub:untilText(r.until)+" 前（當地時間）", due:r.until.slice(0,10), cancel:true}; });
+    var dated=open.filter(function(x){return x.due;}).concat(cancels).sort(function(a,b){return a.due<b.due?-1:a.due>b.due?1:0;}).slice(0,3);
     var rest=open.filter(function(x){return !x.due;});
-    var h='<h2 class="sec">下一步 <small>還沒勾的待辦</small></h2><div class="card nxt">';
-    if (!open.length&&!soon.length) h+='<p class="muted" style="margin:0;padding:12px 14px">清單都完成了</p>';
+    var h='<h2 class="sec">最近要做的事</h2><div class="card nxt">';
+    if (!dated.length&&!rest.length) h+='<p class="muted" style="margin:0;padding:12px 14px">清單都完成了</p>';
     if (dated.length) h+='<ul class="nx-d">'+dated.map(function(x){ var late=x.due<today;
       return '<li><span class="due'+(late||x.cancel?" late":"")+'">'+dueText(x)+'</span><div><p>'+x.text+'</p>'+(late?'<p class="s late">已過期</p>':(x.sub?'<p class="s">'+x.sub+'</p>':""))+'</div></li>'; }).join("")+'</ul>';
-    if (rest.length) h+='<div class="nx-t"><p class="s">沒有日期</p><div class="tags">'+rest.map(function(x){return '<span>'+x.text+'</span>';}).join("")+'</div></div>';
+    if (rest.length) h+='<p class="nx-r"><span>還沒有日期：</span>'+rest.slice(0,3).map(function(x){return x.text;}).join("、")+(rest.length>3?"⋯等 "+rest.length+" 項":"")+'</p>';
     return h+'<a class="more" href="#/info/list">看完整清單 ›</a></div>';
   }
-  function todayHTML(){
-    var d=T.days.filter(function(x){return x.date===today;})[0]; if(!d) return "";
-    var nx=T.days.filter(function(x){return x.date===add(today,1);})[0];
-    var stays=staysOn(today), c=col(d.region);
-    var where=stays.length?stays.map(function(s){return (s.who?T.people[s.who]+" ":"")+s.area;}).join("、"):"";
-    var head=where?"今晚在 "+where:(today===T.end?"今天回到台北":"今晚搭夜間航班");
-    var b="";
-    if (d.alerts) b+='<div class="alerts">'+d.alerts.map(function(a){return '<span class="alert">'+a+'</span>';}).join("")+'</div>';
-    b+='<div class="blk"><span class="lab" style="--c:var(--slate)">固定行程</span>'+(d.legs?'<ol class="evs">'+d.legs.map(legHTML).join("")+'</ol>':'<p class="muted" style="margin:8px 0 0">今天沒有固定行程，看每日頁的自由時段</p>')+'</div>';
-    if (stays.length) b+='<div class="blk"><span class="lab ghost">今晚住</span>'+stays.map(function(s){
-      var a=stayAddr(s), n=diff(s.from,today)+1;
-      return '<div class="stay" style="margin-top:8px">'+svg("bed")+'<div><p>'+who(s.who)+s.area+(s.name?"，"+s.name:"")+'，第 '+n+' 晚／共 '+s.nights+' 晚'+st(s.status)+'</p></div></div>'+(a?'<div class="card" style="margin-top:6px">'+addrRow(a)+'</div>':"");
-    }).join("")+'</div>';
-    if (nx&&nx.alerts) b+='<div class="blk"><span class="lab ghost">明天 '+md(nx.date)+' '+wd(nx.date)+'</span><div class="alerts" style="margin:8px 0 0">'+nx.alerts.map(function(a){return '<span class="alert">'+a+'</span>';}).join("")+'</div></div>';
-    b+='<a class="more" href="#/day/'+key(today)+'">看今天完整安排 ›</a>';
-    return '<h2 class="sec">今天</h2><section style="--c:'+c+'"><div class="band">'+art(artKey(d))+'<p class="k">'+T.regions[d.region].name+'</p><span class="num">第 '+(diff(T.start,today)+1)+' 天</span>'+
-      '<div class="row1"><span class="dt">'+md(today)+'</span><span class="wd">'+wd(today)+'</span></div><h2>'+head+'</h2></div><div class="daybody">'+b+'</div></section>';
-  }
   function pageHome(){
-    setTitle("總覽");
-    var count;
-    if (today<T.start) count='<span class="count">Yulun 出發還有 <b>'+diff(today,T.departures.Y)+'</b> 天，May <b>'+diff(today,T.departures.M)+'</b> 天</span>';
-    else if (inTrip) count='<span class="count">旅程第 <b>'+(diff(T.start,today)+1)+'</b> 天</span>';
-    else count='<span class="count">旅程已結束</span>';
-    var mid=today<T.start?prepHTML()+nextHTML():(inTrip?todayHTML():"");
-    var quick='<h2 class="sec">查資料</h2><div class="qk">'+INFO.slice(0,5).map(function(x){
-      return '<a href="#/info/'+x[0]+'">'+svg(x[2])+'<span>'+x[1]+'</span></a>'; }).join("")+'</div>';
-    return '<section class="hero"><svg class="lines" viewBox="0 0 400 84" preserveAspectRatio="none" aria-hidden="true">'+LINES+'</svg><div class="wrap">'+
-      '<p class="kicker">北歐＋波蘭　冬季旅行手冊</p><h1>北境冬旅</h1><p class="dates">2027／2.25 — 3.17</p>'+count+'</div>'+strip("no","rgba(255,255,255,.16)","pn")+'</section>'+
-      '<main class="wrap">'+routeHTML()+mid+quick+'</main>';
+    setTitle("行程");
+    var cd;
+    if (today<T.start) cd='<div class="cd"><span>Yulun<b>'+diff(today,T.departures.Y)+'</b>天</span><span>May<b>'+diff(today,T.departures.M)+'</b>天</span></div>';
+    else cd='<div class="cd"><span>旅程<b>已結束</b></span></div>';
+    return '<section class="cover"><svg class="lines" viewBox="0 0 400 84" preserveAspectRatio="none" aria-hidden="true">'+LINES+'</svg><div class="wrap cv-in"><div><h1>北境冬旅</h1><p class="dates">2027／2.25 — 3.17</p></div>'+cd+'</div>'+strip("no","rgba(255,255,255,.16)","pn",0.5)+'</section>'+
+      '<main class="wrap">'+soonHTML()+'<h2 class="sec">路線 <small>點日期看那一天</small></h2></main>'+rlineHTML(null)+'<div class="wrap"><p class="foot">資料更新於 '+T.updated.replace(/-/g,"/")+'</p></div>';
   }
 
   /* ── 每日 ── */
@@ -1100,135 +998,183 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
       if (l.fromNote||l.toNote) a.push((l.fromNote||"")+(l.fromNote&&l.toNote?" → ":"")+(l.toNote||""));
       if (l.via) a.push("中途停"+l.via);
       s.push(a.join("，"));
-      s.push((l.arr?l.arr+" 抵達"+(l.plus?"（隔天）":""):"")+(l.depNote?(l.arr?"，":"")+l.depNote:""));
+      s.push((l.arr?l.arr+" 抵達"+(l.plus?"（隔天）":""):""));
       if (l.seats||l.seatNote) s.push(seatTags(l));
       if (l.bag) s.push(bagTag(l));
     } else { m=who(l.who)+l.text; if (l.arr) s.push(l.arr+" 回到出發地"); }
     var tm=/^\d{1,2}:\d{2}$/.test(l.dep||"")?l.dep:(l.dep?"—":"");
     if (l.dep&&tm==="—") s.unshift('<span class="seat none">起飛時間'+l.dep+'</span>');
-    return '<li class="ev"><span class="ev-t">'+tm+'</span><span class="ev-n">'+svg(l.t)+'</span><div><p class="ev-m">'+m+legSt(l)+'</p>'+
-      s.filter(Boolean).map(function(x){return '<p class="ev-s">'+x+'</p>';}).join("")+'</div></li>';
+    var x='';
+    if (l.stops) x='<ol class="stops">'+li(l.stops)+'</ol>'+(l.stopsNote?'<p class="dnote">'+l.stopsNote+'</p>':"");
+    return '<li class="ev"><span class="ev-t">'+tm+'</span><span class="ev-n">'+svg(l.t)+'</span><div><p class="ev-m">'+m+legStT(l)+'</p>'+
+      s.filter(Boolean).map(function(y){return '<p class="ev-s">'+y+'</p>';}).join("")+x+'</div></li>';
   }
-  var WK=[1,2,3,4,5,6,0];
-  function cityDows(cid){ var o={}; T.days.forEach(function(d){ if(d.city===cid) o[dow(d.date)]=1; }); return o; }
-  function wkHTML(p, ctx){
-    if (!Array.isArray(p.closed)||p.warn) return "";
-    var cur=ctx.date?dow(ctx.date):null, on=ctx.dows||{};
-    return '<div class="wk" aria-label="營業日：'+(p.closed.length?p.closed.map(function(n){return "週"+WD[n];}).join("、")+"休":"每天開")+'">'+WK.map(function(n){
-      var x=p.closed.indexOf(n)>-1;
-      return '<i class="'+(x?"x ":"")+(n===cur?"cur":(on[n]?"on":""))+'">'+WD[n]+'</i>'; }).join("")+
-      '<small>'+(cur!=null?"實心＝當天":"框＝你們在這裡的日子")+'</small></div>';
+  /* 日照條：一天 0～24 點，黃色白天、紫色黃昏、深色夜晚；有重要時間點才畫刻度 */
+  function sunbar(d){
+    var reg=T.regions[d.sunAt||d.region]; if (!reg||!reg.lat) return "";
+    var sun=sunTimes(d.date,reg.lat,reg.lng,reg.tz,90.833), dusk=reg.polar?sunTimes(d.date,reg.lat,reg.lng,reg.tz,102):null;
+    if (!sun) return "";
+    function P(h){ return (Math.max(0,Math.min(24,h))/24*100).toFixed(2)+"%"; }
+    function W(a,b){ return ((Math.min(24,b)-Math.max(0,a))/24*100).toFixed(2)+"%"; }
+    var tw=dusk?[dusk[0],dusk[1]]:[sun[0]-0.6,sun[1]+0.6];
+    var bar='<div class="sb-bar"><span class="tw" style="left:'+P(tw[0])+';width:'+W(tw[0],sun[0])+'"></span><span class="dy" style="left:'+P(sun[0])+';width:'+W(sun[0],sun[1])+'"></span><span class="tw" style="left:'+P(sun[1])+';width:'+W(sun[1],tw[1])+'"></span>'+
+      (d.times||[]).filter(function(x){return /^\d{1,2}:\d{2}$/.test(x.at||"");}).map(function(x){ return '<span class="tk" style="left:'+P(toMin(x.at)/60)+'"></span>'; }).join("")+'</div>';
+    var txt=['日出 '+hm(sun[0]),'日落 '+hm(sun[1])]; if (dusk) txt.push(hm(dusk[1])+' 後夠暗');
+    return '<div class="sunb">'+bar+'<p class="sb-t">'+txt.join("｜")+(reg!==T.regions[d.region]?"（"+reg.name+"）":"")+'</p></div>';
   }
-  function poiHTML(p, ctx){
-    var h='<span class="ty ty-'+p.type+'">'+TYPE[p.type]+'</span><b>'+p.name+'</b>';
-    if (p.pri) h+='<span class="pri pri-'+p.pri+'">'+(p.pri==="must"?"必去":"有空再去")+'</span>';
-    if (p.why) h+='<span class="why">'+p.why+'</span>';
-    if (p.warn) h+='<span class="closed">'+p.warn+'</span>';
-    else if (ctx.date && p.closed && p.closed.indexOf(dow(ctx.date))>-1) h+='<span class="closed">當天公休</span>';
-    if (p.when) h+='<span class="slots" aria-label="適合時段">'+SLOT.map(function(x){return '<i class="'+(p.when.indexOf(x[0])>-1?"on":"")+'">'+x[1]+'</i>';}).join("")+'</span>';
-    h+='<span class="chev"></span>';
-    var info=[], meta=[];
-    if (p.hours) info.push(p.hours);
-    if (p.free) info.push(p.free);
-    if (p.time) meta.push("約 "+p.time);
-    if (ctx.froms && ctx.froms.length && p.lat){
-      if (ctx.froms.length===1) meta.push("離 "+ctx.froms[0].name+" 直線約 "+km(ctx.froms[0],p).toFixed(1)+" 公里");
-      else meta.push("離住處直線："+ctx.froms.map(function(f){ return f.name+" 約 "+km(f,p).toFixed(1)+" 公里"; }).join("、"));
+  /* 色帶下半部：今天接下來的事（倒數），其他日期只列重要時間 */
+  function timesHTML(d, live){
+    var ts=(d.times||[]).filter(function(x){return x.at;}); if (!ts.length) return "";
+    function tx(x){ return who(x.who).replace('class="who"','class="who w"')+x.t+(x.est?'<em class="est">建議</em>':""); }
+    if (live){
+      var now=nowMin(), up=ts.filter(function(x){ return /^\d/.test(x.at)&&toMin(x.at)>now; }).slice(0,3);
+      if (!up.length) return "";
+      var f=up[0], left=toMin(f.at)-now, hh=Math.floor(left/60), mm=left%60;
+      return '<div class="nx"><p class="nx-k">接下來</p><p class="nx1"><b>'+f.at+'</b><span>'+tx(f)+'</span></p><p class="nx-cd">還有 '+(hh?hh+" 小時 ":"")+mm+' 分</p>'+
+        (up.length>1?'<ul class="nx-l">'+up.slice(1).map(function(x){return '<li><b>'+x.at+'</b><span>'+tx(x)+'</span></li>';}).join("")+'</ul>':"")+'</div>';
     }
-    var url=navURL(p, p.q||((p.local||p.name)+" "+(ctx.mapCity||"")));
-    return '<details class="poi" id="poi-'+p.id+'" data-type="'+p.type+'"><summary><div class="ph">'+h+'</div><p>'+p.line+'</p></summary><div class="pb">'+
-      '<p class="loc"><span>'+(p.local||"")+'</span>'+ext(url,"地圖")+'</p>'+wkHTML(p,ctx)+
-      (info.length?'<p class="meta">'+info.join("；")+'</p>':"")+(meta.length?'<p class="meta">'+meta.join("，")+'</p>':"")+
-      (p.tip?'<p class="tip">'+p.tip+'</p>':"")+'</div></details>';
-  }
-  function areaHTML(city, a, ctx, open){
-    var list=city.pois.filter(function(p){return p.area===a.id;});
-    return '<details class="area"'+(open?" open":"")+'><summary><div><b>'+a.name+'</b><span>'+a.line+'　'+list.length+' 個地點</span></div><span class="chev"></span></summary><div class="pois">'+
-      list.map(function(p){return poiHTML(p,ctx);}).join("")+'</div></details>';
+    return '<div class="nx"><p class="nx-k">重要時間</p><ul class="nx-l">'+ts.map(function(x){return '<li><b>'+x.at+'</b><span>'+tx(x)+'</span></li>';}).join("")+'</ul></div>';
   }
   function areaChips(cid, city, a, date){
     var list=city.pois.filter(function(p){return p.area===a.id;}), wd0=dow(date);
     return '<div class="carea"><b>'+a.name+'</b><span>'+a.line+'</span><div class="pcs">'+list.map(function(p){
       var off=p.warn||(p.closed&&p.closed.indexOf(wd0)>-1);
-      return '<a class="pc'+(off?" off":"")+'" href="#/city/'+cid+'/'+p.id+'"><i class="dt-'+p.type+'"></i>'+p.name+(p.pri==="must"&&!off?'<span class="m">必去</span>':"")+(off?'<span class="x">'+(p.warn||"今天休")+'</span>':"")+'</a>'; }).join("")+'</div></div>';
+      return '<a class="pc'+(off?" off":"")+'" href="#/city/'+cid+'/'+p.id+'"><i class="dt-'+p.type+'"></i>'+p.name+(off?'<span class="x">'+(p.warn||"今天休")+'</span>':"")+'</a>'; }).join("")+'</div></div>';
   }
-  function pageDay(k){
+  /* 住處卡：每日頁「今晚住」和地區頁共用 */
+  function stayBox(s, opt){
+    opt=opt||{}; var a=stayAddr(s), out=add(s.from,s.nights);
+    var head=opt.date?'第 '+(diff(s.from,opt.date)+1)+' 晚／共 '+s.nights+' 晚':md(s.from)+'–'+md(out)+'・'+s.nights+' 晚';
+    var t=[]; if (s.checkin) t.push("入住 "+s.checkin); if (s.checkout) t.push("退房 "+s.checkout);
+    var btn=[]; if (s.phone) btn.push(telBtn(s.phone)); if (a) btn.push(ext(navURL(a,a.name+" "+a.addr),"導航"));
+    if (a&&opt.copy) btn.push('<button type="button" data-copy="'+a.addr.replace(/"/g,"&quot;")+'">複製</button>');
+    if (a) btn.push('<button type="button" data-big="'+encodeURIComponent(JSON.stringify({n:a.name,s:a.sub,a:a.addr||""}))+'">大字</button>');
+    return '<div class="sbox" style="--c:'+col(regionOn(s.from))+'"><p class="sb-n">'+who(s.who)+'<b>'+s.name+'</b>'+stT(s.status)+'</p>'+
+      '<p class="sb-s">'+head+(t.length?"・"+t.join("・"):"")+'</p>'+
+      (s.address?'<p class="sb-a">'+s.address+'</p>':"")+(opt.loc&&s.loc?'<p class="sb-l">'+s.loc+'</p>':"")+
+      (opt.note&&s.note?'<p class="sb-l">'+s.note+'</p>':"")+
+      (btn.length?'<div class="acts big">'+btn.join("")+'</div>':"")+'</div>';
+  }
+  function dsec(id, name, sum, open, body){
+    return '<details class="dsec" id="s-'+id+'"'+(open?" open":"")+'><summary><span class="dh">'+name+'</span><span class="ds">'+sum+'</span><span class="chev"></span></summary><div class="dsb">'+body+'</div></details>';
+  }
+  function pageDay(k, home){
     var d=byKey(k)||T.days[0]; lastDay=key(d.date);
     var i=T.days.indexOf(d), prev=T.days[i-1], next=T.days[i+1], c=col(d.region), city=T.cities[d.city];
-    setTitle(md(d.date)+" "+T.regions[d.region].name);
-    var chips='<div class="daybar"><div class="chips" id="chips">'+T.days.map(function(x){
-      return '<a href="#/day/'+key(x.date)+'" style="--c:'+col(x.region)+'"'+(x===d?' aria-current="true"':"")+'>'+(x.date===today?'<span class="td">今天</span>':"")+'<b>'+md(x.date)+'</b>'+wd(x.date).slice(1)+'</a>'; }).join("")+'</div></div>';
-    var b='';
-    if (d.alerts) b+='<div class="alerts">'+d.alerts.map(function(a){return '<span class="alert">'+a+'</span>';}).join("")+'</div>';
-    b+=timeline(d);
-    if (d.legs) b+='<div class="blk"><span class="lab" style="--c:var(--slate)">固定行程</span><ol class="evs">'+d.legs.map(legHTML).join("")+'</ol></div>';
-    var stays=staysOn(d.date);
-    if (stays.length) b+='<div class="blk"><span class="lab ghost">今晚住</span>'+stays.map(function(s){
-      var n=diff(s.from,d.date)+1, sub=[];
-      if (s.name) sub.push(s.name);
-      if (s.address) sub.push(s.address);
-      if (s.note&&n===1) sub.push(s.note);
-      var a=stayAddr(s);
-      return '<div class="stay" style="margin-top:8px">'+svg("bed")+'<div><p>'+who(s.who)+s.area+'，第 '+n+' 晚／共 '+s.nights+' 晚'+st(s.status)+'</p>'+sub.map(function(x){return '<p class="s">'+x+'</p>';}).join("")+'</div></div>'+
-        ((s.phone||a)?'<div class="acts big" style="margin:6px 0 0 32px">'+(s.phone?telBtn(s.phone):"")+(a?ext(navURL(a,a.name+" "+a.addr),"導航"):"")+'</div>':"");
-    }).join("")+'</div>';
-    if (d.free) d.free.forEach(function(f){
-      b+='<div class="blk"><span class="lab">自由時段</span><div class="free tint"><p class="when">'+who(f.who)+f.when+'</p><p>'+f.text+'</p></div>'+
-        (city&&f.areas?f.areas.map(function(a){return areaChips(d.city, city, city.areas.filter(function(x){return x.id===a;})[0], d.date);}).join(""):"")+'</div>';
-    });
-    if (d.plan) b+='<div class="blk"><span class="lab">安排</span><ul class="plan" style="margin-top:8px">'+li(d.plan)+'</ul></div>';
-    if (d.notes) b+='<div class="blk">'+d.notes.map(function(n){return '<p class="dnote">'+n+'</p>';}).join("")+'</div>';
-    var ads=dayAddrs(d);
-    if (ads.length) b+='<div class="blk"><span class="lab ghost">地址</span><div class="card" style="margin-top:8px">'+ads.map(addrRow).join("")+'</div></div>';
-    var links=[];
-    if (city&&city.areas) links.push('<a href="#/city/'+d.city+'">'+city.name+'城市頁</a>');
-    (d.places||[]).forEach(function(id){ var p=placeById(id); if(p) links.push('<a href="#/place/'+id+'">'+p.name+'介紹</a>'); });
-    if (links.length) b+='<div class="links">'+links.join("")+'</div>';
+    var isToday=inTrip&&d.date===today;
+    setTitle(home?"行程":md(d.date)+" "+T.regions[d.region].name);
+    var legs=d.legs||[], stays=staysOn(d.date);
+    /* 區塊依時間展開 */
+    var lastArr=null; legs.forEach(function(l){ if (/^\d{1,2}:\d{2}$/.test(l.arr||"")){ var m=toMin(l.arr)+(l.plus?1440:0); if (lastArr==null||m>lastArr) lastArr=m; } });
+    var oMove=true, oArea=true, oStay=true;
+    if (isToday){ oArea=false; oMove=legs.length>0&&(lastArr==null||nowMin()<lastArr); oStay=!oMove; }
+    var secs=[], jumps=[];
+    if (legs.length){
+      var mv='<ol class="evs">'+legs.map(legHTML).join("")+'</ol>';
+      if (d.notes) mv+=d.notes.map(function(n){return '<p class="dnote">'+n+'</p>';}).join("");
+      secs.push(dsec("move","移動",legs.map(function(l){ return (/^\d/.test(l.dep||"")?l.dep+" ":"")+(l.t==="flight"?(l.no||l.carrier):(l.short||l.text)); }).join("、"),oMove,mv));
+      jumps.push(["move","移動"]);
+    }
+    if (d.free||d.plan){
+      var ar='';
+      (d.free||[]).forEach(function(f){
+        ar+='<div class="free tint"><p class="when">'+who(f.who)+f.when+'</p><p>'+f.text+'</p></div>'+
+          (city&&f.areas?f.areas.map(function(a){ var A=city.areas.filter(function(x){return x.id===a;})[0]; return A?areaChips(d.city, city, A, d.date):""; }).join(""):""); });
+      if (d.plan) ar+='<ul class="plan">'+li(d.plan)+'</ul>';
+      if (d.notes&&!legs.length) ar+=d.notes.map(function(n){return '<p class="dnote">'+n+'</p>';}).join("");
+      if (city) ar+='<a class="more" href="#/city/'+d.city+'">看'+city.name+'地區頁 ›</a>';
+      var f0=(d.free||[])[0], sum=f0?f0.when+"："+f0.text:(d.plan||[])[0];
+      secs.push(dsec("area","這一區",sum,oArea,ar)); jumps.push(["area","這一區"]);
+    }
+    if (stays.length){
+      secs.push(dsec("stay","今晚住",stays.map(function(s){return (s.who?T.people[s.who]+" ":"")+(s.short||s.name);}).join("、"),oStay,
+        stays.map(function(s){ return stayBox(s,{date:d.date, copy:true, note:diff(s.from,d.date)===0}); }).join("")));
+      jumps.push(["stay","今晚住"]);
+    }
+    var head='<header class="thead"><svg class="lines" viewBox="0 0 400 84" preserveAspectRatio="none" aria-hidden="true">'+LINES+'</svg><div class="wrap"><b>北境冬旅</b><span>第 '+(diff(T.start,d.date)+1)+' 天</span></div></header>';
+    var band='<section class="dayband" style="--c:'+c+'"><div class="band">'+art(artKey(d))+'<p class="k">'+T.regions[d.region].name+'</p>'+
+      '<div class="row1"><span class="dt">'+md(d.date)+'</span><span class="wd">'+wd(d.date)+'</span></div><h2>'+d.title+'</h2>'+timesHTML(d,isToday)+'</div>'+
+      '<div class="dayfoot">'+(d.alerts?'<div class="alerts">'+d.alerts.map(function(a){return '<span class="alert">'+a+'</span>';}).join("")+'</div>':"")+sunbar(d)+'</div></section>';
+    var jump=jumps.length>1?'<div class="jump">'+jumps.map(function(j){return '<button type="button" data-jump="'+j[0]+'">'+j[1]+'</button>';}).join("")+'</div>':"";
     var pager='<div class="pager">'+(prev?'<a href="#/day/'+key(prev.date)+'">‹ 前一天<b>'+md(prev.date)+'</b></a>':'<a class="off"></a>')+(next?'<a href="#/day/'+key(next.date)+'">後一天 ›<b>'+md(next.date)+'</b></a>':'<a class="off"></a>')+'</div>';
-    return chips+'<main class="wrap"><section style="--c:'+c+'"><div class="band">'+art(artKey(d))+'<p class="k">'+T.regions[d.region].name+'</p><span class="num">第 '+(diff(T.start,d.date)+1)+' 天</span>'+
-      '<div class="row1"><span class="dt">'+md(d.date)+'</span><span class="wd">'+wd(d.date)+'</span></div><h2>'+d.title+'</h2></div><div class="daybody">'+b+'</div></section>'+pager+'<p class="hint">左右滑動也能換日</p></main>';
+    return head+rlineHTML(d.date)+'<main class="wrap">'+band+jump+secs.join("")+pager+'<p class="hint">左右滑動也能換日</p></main>';
   }
 
-  /* ── 城市 ── */
-  var filter="all";
-  function pageCities(){
-    setTitle("城市");
-    return '<main class="wrap"><h2 class="sec" style="margin-top:22px">城市 <small>依路線順序</small></h2><div class="clist">'+T.cityOrder.map(function(id){
-      var c=T.cities[id]; return '<a href="#/city/'+id+'" style="--c:'+col(c.region)+'"><span class="sw">'+c.name.slice(0,1)+'</span><div><b>'+c.name+'</b><span>'+(c.pois?c.areas.length+" 個區域、"+c.pois.length+" 個地點":"地點介紹，區域和店家待整理")+'</span></div></a>';
-    }).join("")+'</div></main>';
+  /* ── 地區 ── */
+  var near=false, openOnly=false, filter="all", focusPoi=null;
+  var WK=[1,2,3,4,5,6,0];
+  function cityDays(cid){ return T.days.filter(function(d){return d.city===cid;}).map(function(d){return d.date;}); }
+  function cityCheckDate(cid){ var ds=cityDays(cid); if (!ds.length) return null;
+    if (ds.indexOf(today)>-1) return today; return ds.filter(function(x){return x>=today;})[0]||ds[0]; }
+  function cityStays(c){ return T.stays.filter(function(s){ return regionOn(s.from)===c.region; }); }
+  function wkHTML(p, date){
+    if (!Array.isArray(p.closed)||p.warn) return "";
+    var cur=date?dow(date):null;
+    return '<div class="wk" aria-label="營業日：'+(p.closed.length?p.closed.map(function(n){return "週"+WD[n];}).join("、")+"休":"每天開")+'">'+WK.map(function(n){
+      var x=p.closed.indexOf(n)>-1;
+      return '<i class="'+(x?"x ":"")+(n===cur?"cur":"")+'">'+WD[n]+'</i>'; }).join("")+(cur!=null?'<small>實心＝'+md(date)+'</small>':"")+'</div>';
   }
-  function blocksHTML(bs){ return bs.map(function(b){ var h=b.h?"<h4>"+b.h+"</h4>":"";
-    if (b.sub) return '<div class="subp"><b>'+b.sub+'</b>'+b.p+'</div>';
-    if (b.list) return h+"<ul>"+li(b.list)+"</ul>";
-    if (b.stops) return h+'<ol class="stops">'+li(b.stops)+"</ol>";
-    if (b.quote) return h+'<p class="quote">'+b.quote+'</p>';
-    if (b.note) return '<div class="note">'+b.note+'</div>';
-    return h+"<p>"+b.p+"</p>"; }).join(""); }
-  function placeHTML(p, open){
-    return '<details class="place"'+(open?" open":"")+' style="--c:'+col(p.region)+'"><summary><div><b>'+p.name+'</b><span>'+p.line+'</span></div><span class="chev"></span></summary><div class="body">'+blocksHTML(p.blocks)+'</div></details>';
+  function poiHTML(p, ctx){
+    var dist=ctx.froms.length&&p.lat?ctx.froms.map(function(f){return {f:f,k:km(f,p)};}).sort(function(a,b){return a.k-b.k;})[0]:null;
+    var sm='<span class="ty ty-'+p.type+'">'+TYPE[p.type]+'</span><b>'+p.name+'</b>'+(ctx.near&&dist?'<span class="km">'+dist.k.toFixed(1)+' 公里</span>':"")+'<span class="chev"></span>';
+    var meta=[];
+    if (p.pri) meta.push(p.pri==="must"?"必去":"有空再去");
+    if (p.why) meta.push(p.why);
+    if (p.when) meta.push("適合"+p.when.map(function(w){return {day:"白天",eve:"傍晚",night:"晚上"}[w];}).join("、"));
+    if (p.time) meta.push("約 "+p.time);
+    var info=[]; if (p.hours) info.push(p.hours); if (p.free) info.push(p.free);
+    var dl="";
+    if (dist) dl=ctx.froms.length===1?"離 "+dist.f.name+" 直線約 "+dist.k.toFixed(1)+" 公里":"離住處直線："+ctx.froms.map(function(f){ return f.name+" 約 "+km(f,p).toFixed(1)+" 公里"; }).join("、");
+    var url=navURL(p, p.q||((p.local||p.name)+" "+(ctx.mapCity||"")));
+    return '<details class="poi" id="poi-'+p.id+'"'+(focusPoi===p.id?" open":"")+'><summary class="ph">'+sm+'</summary><div class="pb">'+
+      '<p class="pl">'+p.line+(p.warn?' <span class="closed">'+p.warn+'</span>':"")+'</p>'+
+      (meta.length?'<p class="meta">'+meta.join("・")+'</p>':"")+wkHTML(p,ctx.date)+
+      (info.length?'<p class="meta">'+info.join("；")+'</p>':"")+(dl?'<p class="meta">'+dl+'</p>':"")+
+      (p.tip?'<p class="tip">'+p.tip+'</p>':"")+
+      '<p class="loc"><span>'+(p.local||"")+'</span>'+ext(url,"地圖")+'</p></div></details>';
   }
   function pageCity(id){
-    var c=T.cities[id]; if(!c) return pageCities();
-    setTitle(c.name);
-    var h='<section class="cband" style="--c:'+col(c.region)+'">'+art(id)+'<div class="wrap"><h1>'+c.name+'</h1>'+(c.intro?'<p>'+c.intro+'</p>':"")+'</div>'+strip(id==="waw"||id==="gdn"?"pl":"no","rgba(255,255,255,.22)","pc")+'</section><main class="wrap" style="--c:'+col(c.region)+'">';
-    if (c.tips) h+='<h2 class="sec">要先知道</h2><div class="card"><ul class="tipl">'+c.tips.map(function(t){
-      return typeof t==="string"?'<li><span></span><div><b>'+t+'</b></div></li>':'<li>'+svg(t.i)+'<div><b>'+t.t+'</b>'+(t.d?'<span>'+t.d+'</span>':"")+'</div></li>'; }).join("")+'</ul></div>';
+    var c=T.cities[id]; if(!c) return null;
+    lastCity=id; setTitle(c.name);
+    var here=hereCity(), cc=col(c.region);
+    var sw='<nav class="cswitch" aria-label="地區"><div class="cs-in">'+T.cityOrder.map(function(x){ var y=T.cities[x];
+      return '<a href="#/city/'+x+'" style="--c:'+col(y.region)+'"'+(x===id?' aria-current="page"':"")+(x===here?' class="here"':"")+'>'+y.name+(x===here?'<small>現在在這</small>':"")+'</a>'; }).join("")+'</div></nav>';
+    var ss=cityStays(c), nights=ss.reduce(function(n,s){return n+s.nights;},0);
+    var when=ss.map(function(s){ return md(s.from)+"–"+md(add(s.from,s.nights))+(s.who?" "+T.people[s.who]:""); }).join("、");
+    var h=sw+'<section class="cband" style="--c:'+cc+'">'+art(id)+'<div class="wrap"><h1>'+c.name+'</h1>'+(c.intro?'<p>'+c.intro+'</p>':"")+'<p class="cb-d">'+when+'・'+nights+' 晚</p></div>'+strip(id==="waw"||id==="gdn"?"pl":"no","rgba(255,255,255,.22)","pc",0.5)+'</section><main class="wrap" style="--c:'+cc+'">';
+    h+='<h2 class="sec">住處</h2>'+ss.map(function(s){ return stayBox(s,{loc:true}); }).join("");
+    if (c.tips){ var tip=function(t){ return '<li>'+svg(t.i)+'<div><b>'+t.t+'</b>'+(t.d?'<span>'+t.d+'</span>':"")+'</div></li>'; };
+      h+='<h2 class="sec">要先知道</h2><div class="card"><ul class="tipl">'+c.tips.slice(0,3).map(tip).join("")+'</ul>'+
+        (c.tips.length>3?'<details class="more-d"><summary>更多（'+(c.tips.length-3)+' 條）<span class="chev"></span></summary><ul class="tipl">'+c.tips.slice(3).map(tip).join("")+'</ul></details>':"")+'</div>'; }
+    if (c.transit) h+='<h2 class="sec">交通怎麼搭</h2><div class="card"><ul class="trl">'+c.transit.map(function(t){ return '<li><b>'+t.n+'</b><span>'+t.d+'</span></li>'; }).join("")+'</ul></div>';
+    if (c.tour){ var td=dayOf(c.tour), tl=td&&(td.legs||[]).filter(function(l){return l.stops;})[0];
+      if (tl) h+='<h2 class="sec">'+(tl.short||"挪威縮影")+' <small>'+md(c.tour)+' '+wd(c.tour)+'</small></h2><details class="card fold"><summary>'+tl.dep+' 出發、'+tl.arr+' 回到卑爾根<span class="chev"></span></summary><div class="in"><ol class="stops">'+li(tl.stops)+'</ol>'+(tl.stopsNote?'<p class="dnote">'+tl.stopsNote+'</p>':"")+'<a class="more" href="#/day/'+key(c.tour)+'">看 '+md(c.tour)+' 每日行程 ›</a></div></details>'; }
     if (c.areas){
-      var refs=[].concat(c.ref||[]);
-      var froms=T.stays.filter(function(s){return refs.indexOf(s.id)>-1&&s.lat;}).map(function(s){ return {lat:s.lat,lng:s.lng,name:s.short||s.name}; });
-      var ctx={date:null, dows:cityDows(id), froms:froms, mapCity:c.mapCity};
-      h+='<h2 class="sec">區域 <small>日、昏、夜是適合去的時段</small></h2><div class="filter" id="filter">'+[["all","全部"],["sight","景點"],["food","吃"],["cafe","咖啡"]].map(function(f){
-        return '<button type="button" data-f="'+f[0]+'" aria-pressed="'+(filter===f[0])+'">'+f[1]+'</button>';}).join("")+'</div>'+c.areas.map(function(a){return areaHTML(c,a,ctx,true);}).join("");
+      var refs=[].concat(c.ref||[]), rs=refs.length?ss.filter(function(s){return refs.indexOf(s.id)>-1;}):ss;
+      var froms=rs.filter(function(s){return s.lat;}).map(function(s){ return {lat:s.lat,lng:s.lng,name:s.short||s.name}; });
+      var cd=cityCheckDate(id), ctx={date:cd, froms:froms, mapCity:c.mapCity, near:near};
+      var opensToday={}; if (inTrip&&cityOn(today)===id){ var dd=dayOf(today); (dd.free||[]).forEach(function(f){ (f.areas||[]).forEach(function(a){ opensToday[a]=1; }); }); }
+      function vis(p){ if (filter!=="all"&&p.type!==filter) return false; if (openOnly&&cd&&(p.warn||(p.closed&&p.closed.indexOf(dow(cd))>-1))) return false; return true; }
+      var tdy=inTrip&&cd===today?"今天":md(cd);
+      h+='<h2 class="sec">區域和地點</h2><div class="pf"><div class="seg" role="group" aria-label="排列方式">'+[[false,"依區域"],[true,"離住處近的"]].map(function(o){
+          return '<button type="button" data-near="'+o[0]+'" aria-pressed="'+(near===o[0])+'">'+o[1]+'</button>'; }).join("")+'</div>'+
+        '<button type="button" class="tgl" data-open aria-pressed="'+openOnly+'"><i></i>'+tdy+'有開的</button></div>'+
+        '<div class="filter" role="group" aria-label="類型">'+[["all","全部"],["sight","景點"],["food","吃"],["cafe","咖啡"]].map(function(f){
+          return '<button type="button" data-f="'+f[0]+'" aria-pressed="'+(filter===f[0])+'">'+f[1]+'</button>';}).join("")+'</div>';
+      if (openOnly&&cd){ var allOpen=c.pois.every(function(p){ return !(p.warn||(p.closed&&p.closed.indexOf(dow(cd))>-1)); });
+        h+='<p class="muted pf-n">'+(allOpen?"這天都有開":"以 "+md(cd)+" "+wd(cd)+" 判斷，公休的先不列")+'</p>'; }
+      if (near){
+        var ps=c.pois.filter(vis).map(function(p){ return {p:p,k:froms.length&&p.lat?Math.min.apply(null,froms.map(function(f){return km(f,p);})):1e9}; }).sort(function(a,b){return a.k-b.k;});
+        h+='<div class="card pois">'+ps.map(function(x){return poiHTML(x.p,ctx);}).join("")+'</div>';
+      } else {
+        h+=c.areas.map(function(a){ var list=c.pois.filter(function(p){return p.area===a.id&&vis(p);});
+          var op=!!opensToday[a.id]||list.some(function(p){return p.id===focusPoi;});
+          return '<details class="area"'+(op?" open":"")+'><summary><div><b>'+a.name+'</b><span>'+list.length+' 個地點</span></div><span class="chev"></span></summary><div class="pois"><p class="al">'+a.line+'</p>'+
+            list.map(function(p){return poiHTML(p,ctx);}).join("")+'</div></details>'; }).join("");
+      }
+      h+='<p class="foot">營業時間是 2025～2026 年的資料，出發前一個月再確認一次。</p>';
     }
-    if (c.places) h+='<h2 class="sec">地點介紹 <small>區域和店家待整理</small></h2>'+c.places.map(function(pid){return placeHTML(placeById(pid));}).join("");
-    if (c.areas) h+='<p class="foot">營業時間是 2025～2026 年的資料，出發前一個月再確認一次。</p>';
     return h+'</main>';
-  }
-  function pagePlace(id){ var p=placeById(id); if(!p) return pageCities(); setTitle(p.name);
-    return '<main class="wrap"><div style="height:16px"></div>'+placeHTML(p,true)+'</main>'; }
-  function applyFilter(){
-    document.querySelectorAll(".poi").forEach(function(el){ el.hidden=!(filter==="all"||el.getAttribute("data-type")===filter); });
-    document.querySelectorAll("#filter button").forEach(function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-f")===filter); });
   }
 
   /* ── 極光 ── */
@@ -1240,58 +1186,71 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
     if (m.wax) p='M'+c+' '+top+' A'+r+' '+r+' 0 0 1 '+c+' '+bot+' A'+rx+' '+r+' 0 0 '+(k>0.5?1:0)+' '+c+' '+top;
     else p='M'+c+' '+top+' A'+r+' '+r+' 0 0 0 '+c+' '+bot+' A'+rx+' '+r+' 0 0 '+(k>0.5?0:1)+' '+c+' '+top;
     return '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#1E3A50" stroke="#7C8A95" stroke-width=".8"/>'+(k>0.02?'<path d="'+p+'" fill="#F4E9C1"/>':"")+'</svg>'; }
+  function darkOf(d){ var r=T.regions[d.region], ev=sunTimes(d.date,r.lat,r.lng,r.tz,102), mo=sunTimes(add(d.date,1),r.lat,r.lng,r.tz,102); return [ev[1],mo[0]+24]; }
   function pageAurora(){
     setTitle("極光");
     var A=T.aurora, ds=T.days.filter(function(d){return d.region==="tos"||d.region==="lof";});
-    var nights=ds.map(function(d){
-      return '<a href="#/day/'+key(d.date)+'"'+(d.date==="2027-03-08"?' class="moon"':"")+'><b>'+md(d.date)+'</b>'+(d.date==="2027-03-08"?"新月":T.regions[d.region].name.slice(0,2))+'</a>'; }).join("");
+    var inA=inTrip&&ds.some(function(d){return d.date===today;});
+    var tn=inA?dayOf(today):ds.filter(function(d){return d.date>=today;})[0];
+    var top="";
+    if (tn){ var m=moonAt(tn.date), dk=darkOf(tn), pct=Math.max(1,Math.round(m.k*100)), r=T.regions[tn.region];
+      top='<div class="card tonight"><p class="tn-k">'+(inA?"今晚":"第一晚")+'・'+md(tn.date)+' '+wd(tn.date)+'・'+r.name+'</p><div class="tn-g"><div><span>天黑時段</span><b>'+hm(dk[0])+'–'+hm(dk[1])+'</b></div>'+
+        '<div class="tn-m">'+moonSVG(m)+'<div><span>月光</span><b>'+(tn.date===A.newMoon?"新月":pct+"%")+'</b></div></div></div></div>'; }
     var LO=16, HI=32, SP=HI-LO;
     function P(h){ return ((Math.max(LO,Math.min(HI,h))-LO)/SP*100).toFixed(2)+"%"; }
     function W(a,b){ return ((Math.min(HI,b)-Math.max(LO,a))/SP*100).toFixed(2)+"%"; }
-    var rows=ds.map(function(d){ var r=T.regions[d.region], m=moonAt(d.date);
-      var ev=sunTimes(d.date,r.lat,r.lng,r.tz,102), mo=sunTimes(add(d.date,1),r.lat,r.lng,r.tz,102);
+    var rows=ds.map(function(d){ var r=T.regions[d.region], m=moonAt(d.date), dk=darkOf(d);
       var ss=sunTimes(d.date,r.lat,r.lng,r.tz,90.833), sr=sunTimes(add(d.date,1),r.lat,r.lng,r.tz,90.833);
-      var dk0=ev[1], dk1=mo[0]+24, pct=Math.max(1,Math.round(m.k*100)), nm=d.date===A.newMoon;
-      var bar='<div class="nbar"><span class="tw" style="left:'+P(ss[1])+';width:'+W(ss[1],dk0)+'"></span><span class="dk" style="left:'+P(dk0)+';width:'+W(dk0,dk1)+'"></span><span class="tw" style="left:'+P(dk1)+';width:'+W(dk1,sr[0]+24)+'"></span></div>';
+      var pct=Math.max(1,Math.round(m.k*100)), nm=d.date===A.newMoon;
+      var bar='<div class="nbar"><span class="tw" style="left:'+P(ss[1])+';width:'+W(ss[1],dk[0])+'"></span><span class="dk" style="left:'+P(dk[0])+';width:'+W(dk[0],dk[1])+'"></span><span class="tw" style="left:'+P(dk[1])+';width:'+W(dk[1],sr[0]+24)+'"></span></div>';
       return '<li'+(pct<=5?' class="nm"':"")+'><a href="#/day/'+key(d.date)+'"><span class="d"><b>'+md(d.date)+'</b><small>'+wd(d.date)+'</small></span><span class="mn">'+moonSVG(m)+'</span>'+
-        '<span class="nb"><span class="nt"><span>'+r.name+'・'+(nm?"新月":"月光 "+pct+"%")+'</span><span>暗 '+hm(dk0)+'–'+hm(dk1)+'</span></span>'+bar+'</span></a></li>'; }).join("");
+        '<span class="nb"><span class="nt"><span>'+r.name+'・'+(nm?"新月":"月光 "+pct+"%")+'</span><span>暗 '+hm(dk[0])+'–'+hm(dk[1])+'</span></span>'+bar+'</span></a></li>'; }).join("");
     var stats=(A.stats||[]).map(function(x){ return '<div><b>'+x.n+'<small>'+x.u+'</small></b><span>'+x.t+'</span></div>'; }).join("");
-    return '<section class="ahero"><svg viewBox="0 0 400 110" preserveAspectRatio="none" aria-hidden="true"><g transform="translate(0,20)">'+LINES+'</g></svg><div class="wrap"><h1>極光</h1><p>北極圈裡的 '+ds.length+' 個晚上，點日期看那天的安排</p><div class="nights">'+nights+'</div></div></section>'+
-      '<main class="wrap">'+(stats?'<h2 class="sec">機率</h2><div class="astat">'+stats+'</div>':"")+
-      '<h2 class="sec">每晚的月光和暗的時段 <small>月光越少越好</small></h2><div class="card"><ul class="nrows">'+rows+'</ul>'+
+    var showLof=!inA||today>="2027-03-05";
+    var learn='<h3 class="sub">機率</h3><div class="astat">'+stats+'</div>'+
+      '<h3 class="sub">每晚的月光和暗的時段 <small>月光越少越好</small></h3><div class="card"><ul class="nrows">'+rows+'</ul>'+
       '<div class="ntk"><span>16</span><span>20</span><span>0</span><span>4</span><span>8</span></div>'+
       '<p class="muted" style="margin:0;padding:0 14px 12px;font-size:12.5px">深藍是天色夠暗、可以看極光的時段，紫色是黃昏和黎明。月光以當晚 22 點估算。</p></div>'+
-      '<h2 class="sec">要知道的事</h2><div class="card"><ul class="alist">'+li(A.facts)+'</ul></div>'+
+      '<h3 class="sub">要知道的事</h3><div class="card"><ul class="alist">'+li(A.facts)+'</ul></div>';
+    return '<section class="ahero"><svg viewBox="0 0 400 84" preserveAspectRatio="none" aria-hidden="true">'+LINES+'</svg><div class="wrap"><h1>極光</h1><p>北極圈裡的 '+ds.length+' 個晚上（3/2～3/9）</p></div></section>'+
+      '<main class="wrap">'+top+
+      (A.steps?'<h2 class="sec">今晚判斷 <small>依序看三件事</small></h2>'+stepsHTML(A.steps):"")+
+      (showLof?(A.spots?'<h2 class="sec">羅弗敦觀測點 <small>3/5～3/9</small></h2>'+spotsHTML(A.spots):'<h2 class="sec">羅弗敦自己追 <small>3/5～3/9</small></h2><div class="card"><ul class="alist">'+li(A.lofoten)+'</ul></div>'):"")+
       '<h2 class="sec">特羅姆瑟極光團</h2><div class="card"><ul class="alist">'+li(A.tour)+'</ul></div>'+
-      '<h2 class="sec">羅弗敦自己追</h2><div class="card"><ul class="alist">'+li(A.lofoten)+'</ul></div>'+
-      (A.coming&&A.coming.length?'<h2 class="sec">之後會加入</h2><div class="card"><ul class="alist">'+li(A.coming)+'</ul></div>':"")+'</main>';
+      '<details class="learn"'+(inA?"":" open")+'><summary><h2 class="sec">行前了解</h2><span class="chev"></span></summary>'+learn+'</details></main>';
   }
+  function stepsHTML(){ return ""; }
+  function spotsHTML(){ return ""; }
 
   /* ── 路由 ── */
   var cur="";
+  /* 舊網址：地點介紹導到對應地區 */
+  var PLACE_CITY={oslo:"osl",tromso:"tos",lofoten:"lof",nutshell:"bgo",bergen:"bgo",gdansk:"gdn",malbork:"gdn",sopot:"gdn"};
+  function go(h){ try{ history.replaceState(null,"",h); }catch(x){} return h.replace(/^#\/?/,""); }
   function route(){
     var h=location.hash.replace(/^#\/?/,""), p=h.split("/"), tab, html;
-    if (p[0]==="list"){ p=["info","list"]; h="info/list"; try{ history.replaceState(null,"","#/info/list"); }catch(x){} }
+    if (p[0]==="list") p=(h=go("#/info/list")).split("/");
+    if (p[0]==="place") p=(h=go("#/city/"+(PLACE_CITY[p[1]]||defaultCity()))).split("/");
+    if (p[0]==="city"&&!T.cities[p[1]]) p=(h=go("#/city/"+(lastCity||defaultCity()))).split("/");
+    if (p[0]==="day"&&!p[1]) p=(h=go("#/day/"+(inTrip?key(today):lastDay))).split("/");
     switch(p[0]){
-      case "day": tab="day"; html=pageDay(p[1]||lastDay); break;
-      case "city": tab="city"; if (p[2]) filter="all"; html=p[1]?pageCity(p[1]):pageCities(); break;
-      case "place": tab="city"; html=pagePlace(p[1]); break;
+      case "day": tab="trip"; html=pageDay(p[1]); break;
+      case "city": tab="city"; if (p[2]){ filter="all"; openOnly=false; focusPoi=p[2]; } else focusPoi=null; html=pageCity(p[1]); break;
       case "aurora": tab="aurora"; html=pageAurora(); break;
       case "info": tab="info"; html=pageInfo(p[1]); break;
-      default: tab="home"; html=pageHome();
+      default: tab="trip"; html=inTrip?pageDay(key(today),true):pageHome();
     }
     if (drv) drv.hidden=true;
     view.innerHTML=html;
-    fitCov();
-    if (document.getElementById("filter")) applyFilter();
     document.querySelectorAll(".nav a").forEach(function(a){ if(a.getAttribute("data-tab")===tab) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
-    var dayLink=document.querySelector('.nav a[data-tab="day"]'); dayLink.setAttribute("href","#/day/"+lastDay);
+    document.querySelector('.nav a[data-tab="city"]').setAttribute("href","#/city/"+(lastCity||defaultCity()));
     if (restoreY!=null){ window.scrollTo(0,restoreY); restoreY=null; }
     else if (h!==cur) window.scrollTo(0,0);
     cur=h; saveView();
-    if (p[0]==="city"&&p[2]){ var fp=document.getElementById("poi-"+p[2]); if (fp){ fp.open=true; fp.classList.add("focus"); fp.scrollIntoView({block:"center"}); } }
-    var on=document.querySelector('#chips a[aria-current="true"]');
-    if (on){ var box=document.getElementById("chips"); box.scrollLeft = on.offsetLeft - box.clientWidth/2 + on.clientWidth/2; }
+    if (focusPoi){ var fp=document.getElementById("poi-"+focusPoi); if (fp){ fp.classList.add("focus"); fp.scrollIntoView({block:"center"}); } }
+    [["rline",'a[aria-current="true"]'],["cswitch",'a[aria-current="page"]']].forEach(function(x){
+      var box=document.querySelector("."+x[0]), on=box&&box.querySelector(x[1]);
+      if (on){ var br=box.getBoundingClientRect(), r=on.getBoundingClientRect(); box.scrollLeft += r.left-br.left - box.clientWidth/2 + r.width/2; } });
   }
   window.addEventListener("hashchange", route);
   /* 記住看到哪裡：分頁和捲動位置；超過 6 小時沒用就回預設頁 */
@@ -1305,25 +1264,6 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
   var svT; window.addEventListener("scroll", function(){ clearTimeout(svT); svT=setTimeout(saveView,300); }, {passive:true});
   document.addEventListener("visibilitychange", function(){ if (document.visibilityState==="hidden") saveView(); });
   window.addEventListener("pagehide", saveView);
-  /* 住宿格城市名：先放完整中文，放不下的格子改成英文代號 */
-  function fitCov(){
-    var els=document.querySelectorAll(".cov-n"); if(!els.length) return;
-    els.forEach(function(e){ e.textContent=e.getAttribute("data-full"); e.style.fontSize=""; });
-    var cut=[]; els.forEach(function(e){ if(e.scrollWidth>e.clientWidth) cut.push(e); });
-    cut.forEach(function(e){ e.textContent=e.getAttribute("data-code"); });
-    /* 英文代號還是放不下（例如只住 1 晚的格子），把字縮小到放得下，最小 8 px */
-    var tight=cut.filter(function(e){ return e.scrollWidth>e.clientWidth; }).map(function(e){ return [e,e.clientWidth/e.scrollWidth,parseFloat(getComputedStyle(e).fontSize)]; });
-    tight.forEach(function(x){ x[0].style.fontSize=Math.max(8,Math.floor(x[2]*x[1]*10)/10)+"px"; });
-    /* 日期比格子寬、會蓋到下一個日期時，移到下一行 */
-    var ds=[].slice.call(document.querySelectorAll(".cov-d")), prevLow=false, any=false;
-    ds.forEach(function(d){ d.classList.remove("low"); });
-    var wide=ds.map(function(d){ var t=d.firstChild; return t&&t.getBoundingClientRect().width>d.getBoundingClientRect().width+0.5; });
-    ds.forEach(function(d,i){ var low=wide[i]&&!prevLow; if(low){ d.classList.add("low"); any=true; } prevLow=low; });
-    var g=document.querySelector(".cov-g"); if (g) g.classList.toggle("has-low",any);
-  }
-  var fitT; window.addEventListener("resize", function(){ clearTimeout(fitT); fitT=setTimeout(fitCov,120); });
-  if (document.fonts&&document.fonts.ready) document.fonts.ready.then(fitCov);
-
   /* 複製 */
   var toast=document.createElement("div"); toast.className="toast"; toast.setAttribute("role","status"); document.body.appendChild(toast);
   function say(t){ toast.textContent=t; toast.classList.add("on"); clearTimeout(say.t); say.t=setTimeout(function(){toast.classList.remove("on");},1600); }
@@ -1336,7 +1276,10 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
   /* 點擊 */
   var drv=document.getElementById("drv");
   document.addEventListener("click", function(e){
-    var f=e.target.closest("#filter button"); if (f){ filter=f.getAttribute("data-f"); applyFilter(); return; }
+    var f=e.target.closest("[data-f]"); if (f){ filter=f.getAttribute("data-f"); focusPoi=null; route(); return; }
+    var nr=e.target.closest("[data-near]"); if (nr){ near=nr.getAttribute("data-near")==="true"; focusPoi=null; route(); return; }
+    var oo=e.target.closest("[data-open]"); if (oo){ openOnly=!openOnly; focusPoi=null; route(); return; }
+    var jp=e.target.closest("[data-jump]"); if (jp){ var sec=document.getElementById("s-"+jp.getAttribute("data-jump")); if (sec){ sec.open=true; sec.scrollIntoView({behavior:"smooth",block:"start"}); } return; }
     var fw=e.target.closest("[data-fw]"); if (fw){ feeWho=fw.getAttribute("data-fw"); try{localStorage.setItem("feeWho",feeWho);}catch(x){} route(); return; }
     var mv=e.target.closest("[data-mv]"); if (mv){ mvWho=mv.getAttribute("data-mv"); try{localStorage.setItem("moveWho",mvWho);}catch(x){} route(); return; }
     var c=e.target.closest("[data-copy]");
@@ -1355,14 +1298,13 @@ details.poi.focus{background:color-mix(in srgb,var(--c) 8%,var(--paper));margin:
   document.addEventListener("change", function(e){
     var c=e.target.closest(".check input"); if(!c) return;
     done[c.getAttribute("data-id")]=c.checked; try{localStorage.setItem("checklist",JSON.stringify(done));}catch(x){}
-    var n=T.checklist.filter(function(x){return done[x.id];}).length, tot=T.checklist.length, pr=document.querySelector(".prog");
-    pr.querySelector("b").textContent=n+"／"+tot; var s=pr.querySelectorAll(".bar span"); s[0].style.flex=n; s[1].style.flex=tot-n;
+    setTimeout(route, 250);
   });
 
   /* 每日左右滑 */
   var sx=null, sy=0;
   view.addEventListener("touchstart", function(e){
-    if (location.hash.indexOf("#/day")!==0 || e.target.closest(".chips,a,button,summary")){ sx=null; return; }
+    if (!document.querySelector(".pager") || e.target.closest(".rline,a,button,summary,textarea,input")){ sx=null; return; }
     sx=e.touches[0].clientX; sy=e.touches[0].clientY; }, {passive:true});
   view.addEventListener("touchend", function(e){
     if (sx===null) return; var dx=e.changedTouches[0].clientX-sx, dy=e.changedTouches[0].clientY-sy; sx=null;
