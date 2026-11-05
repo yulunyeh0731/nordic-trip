@@ -55,10 +55,13 @@ window.TRIP = {
   ],
 
   stays: [
-    { id: "waw1", who: "Y", area: "華沙", name: "Motel One Warsaw-Chopin", from: "2027-02-26", nights: 2,
-      address: "ul. Tamka 38, 00-355 Warszawa", lat: 52.2370, lng: 21.0236, status: "booked", via: "官網", room: "The One", breakfast: false, phone: "+48 22 417 60 01",
-      note: "晚上 6 點後抵達也會保留房間（信用卡擔保），住宿費現場付",
-      cost: { cat: "住宿", cur: "PLN", amt: 560, who: "Y", pay: "onsite", payDate: "2027-02-26", rule: { type: "free", until: "2027-02-26T18:00", note: "之後取消收 90%" } } },
+    { id: "waw1", who: "Y", area: "華沙", name: "Mercure Warszawa Centrum", from: "2027-02-26", nights: 2,
+      address: "Złota 48/54, 00-120 Warszawa", lat: 52.23095, lng: 21.00123, status: "booked", via: "Agoda",
+      room: "Classic Standard Double，22 平方公尺，1 張大床", breakfast: false, phone: "+48 22 697 3999",
+      checkin: "15:00", checkout: "12:00",
+      note: "24 小時櫃台，可寄放行李；在中央車站（Warszawa Centralna）附近",
+      cost: { cat: "住宿", cur: "TWD", amt: 3826.88, twd: 3826.88, who: "Y", pay: "paid", payDate: "2026-11-05",
+        rule: { type: "free", until: "2027-02-24T23:59", note: "華沙時間；2/25 起取消收第 1 晚房費，2/26 起不可退款" } } },
     { id: "osl", area: "奧斯陸", name: "Bob W Oslo Sentralen", from: "2027-02-28", nights: 2, status: "booked", via: "Klook",
       address: "Kirkegata 30, 0153 Oslo", lat: 59.911, lng: 10.745,
       room: "雙人房，1 張大床", kitchen: "沒有廚房，有熱水壺", breakfast: false,
@@ -138,7 +141,7 @@ window.TRIP = {
           bag: { chkKg: 25, chkNote: "計重制", cabN: 1, cabKg: 7, cabDim: [55, 38, 22], smlNote: "票面只列 1 件手提" }, status: "booked" },
         { who: "Y", t: "taxi", text: "Bolt 到旅館" }
       ],
-      free: [{ who: "Y", when: "下午～晚上", text: "抵達後在住處附近走走，調時差", areas: ["powisle", "old"] }] },
+      free: [{ who: "Y", when: "下午～晚上", text: "抵達後在住處附近走走，調時差", areas: ["centrum", "old"] }] },
 
     { date: "2027-02-27", title: "Yulun 華沙一日；May 深夜出發",
       alerts: ["May 20:00 前到桃園第二航廈"], region: "waw", city: "waw",
@@ -387,9 +390,9 @@ window.TRIP = {
         { i: "museum", t: "戰爭主題的博物館要有中文導覽", d: "華沙起義博物館、POLIN 猶太歷史博物館評價很高；有沒有中文語音導覽待查。" }
       ],
       areas: [
-        { id: "powisle", name: "住處周邊：新世界街一帶", line: "Motel One 就在這區，走路就到新世界街和王宮之路。" },
+        { id: "powisle", name: "新世界街一帶", line: "走路就到新世界街和王宮之路；3/14～3/16 住的 Chopin Boutique 在這區。" },
         { id: "old", name: "王宮之路與老城", line: "戰後重建、列入世界遺產的老城和王宮。" },
-        { id: "centrum", name: "市中心：科學文化宮、Marszałkowska", line: "蘇聯時期的地標和市中心商圈，平價餐廳和咖啡店多。" },
+        { id: "centrum", name: "市中心：科學文化宮、Marszałkowska", line: "蘇聯時期的地標和市中心商圈，平價餐廳和咖啡店多。2/26～2/28 住的 Mercure 在這區，中央車站附近。" },
         { id: "lazienki", name: "瓦津基公園", line: "王室夏宮和大公園，水上宮殿裡有國王的畫廊。" }
       ],
       pois: [
@@ -684,7 +687,6 @@ window.TRIP = {
     { id: "ek-may", text: "跟 May 確認阿聯酋機票開票了沒" },
     { id: "wizz-bp", due: "2027-02-10", dueApprox: true, text: "確認 Wizz 登機證有沒有出來", sub: "WIZZ PLUS 有自動報到，兩個訂位代號都要看" },
     { id: "wizz-check", text: "確認 Wizz 訂單是 WIZZ PLUS", sub: "兩人各一個 Wizz 訂位代號（見 Trip.com 行程單），兩個都要登入 Wizz app 查" },
-    { id: "bgo-stay", text: "訂卑爾根住宿", sub: "候選 Ole Bull：先確認房型有沒有廚房，官網 Flexible 3/10 16:00 前免費取消" },
     { id: "lof-arrival", text: "告知 Lofoten Links Lodges 預計抵達時間", sub: "確認單要求事先告知；3/5 12:15 落地，取車後開過去" },
     { id: "laukvik-arrival", text: "告知 Laukvik Suites 預計抵達時間", sub: "確認單要求事先告知；3/8 從 Sakrisøy 開過去" },
     { id: "bobw-call", due: "2027-02-14", text: "打電話給 Bob W 安排入住", sub: "抵達前 14 天；同時完成線上登記（要上傳護照照片），問 May 2/28 約 14:00 能不能寄放行李" },
