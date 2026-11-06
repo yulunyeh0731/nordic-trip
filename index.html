@@ -206,17 +206,44 @@ a.ext .net{display:inline-flex;align-items:center;gap:2px;font-size:10px;font-we
 .seg button{min-height:44px;min-width:76px;padding:0 14px;border:0;border-left:1px solid var(--line);background:none;font-size:14.5px;color:var(--ink2);cursor:pointer}
 .seg button:first-child{border-left:0}
 .seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper);font-weight:600}
+/* 資料頁：一行列表，點了用半頁卡 */
+.lrow{display:grid;align-items:center;gap:0 8px;width:100%;min-height:52px;padding:6px 12px 6px 10px;border:0;border-top:1px solid var(--line2);border-left:4px solid var(--c,var(--line));background:none;font:inherit;color:var(--ink);text-align:left;cursor:pointer}
+.card>.lrow:first-child,.card>.lrow:first-of-type{border-top:0}
+.lrow .chev{transform:rotate(-45deg)}
+button.mv{grid-template-columns:2.7em 3.5em minmax(0,1fr) auto 9px}
+button.sty{grid-template-columns:3em minmax(0,1fr) 9px}
+.sty .sy-s{display:block;font-size:12.5px;line-height:1.4;color:var(--ink2);font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sty .sy-n b{display:block;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+button.arow{grid-template-columns:minmax(0,1fr) 9px;border-left:0;padding:6px 14px}
+.arow b{display:block;font-weight:600;font-size:15px;line-height:1.4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.arow span{display:block;font-size:13px;color:var(--ink2);line-height:1.4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* 半頁卡內容：交通、住宿、地址 */
+.sh-b .mv-in,.sh-b .sty-in{padding:0;border-top:0}
+.sh-b .mv-in>div:first-child,.sh-b .sty-in .rws>div:first-child{border-top:0}
+.sh-b .tcard{margin:10px 0 0}
+.sh-big{margin:0 0 6px;font-size:19px;line-height:1.45;font-weight:600;overflow-wrap:anywhere}
+.sh-acts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
+.sh-acts>*{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:52px;padding:0 10px;border:1px solid var(--line);border-radius:4px;background:var(--paper);color:var(--ink);font-size:15px;font-weight:600;text-decoration:none;cursor:pointer}
+.sh-acts .callb{flex-direction:row;margin:0}
+/* 半頁卡底部：上一段／下一段 */
+.sh-f{flex:none;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;padding:2px 6px;border-top:1px solid var(--line2);background:var(--paper)}
+.sh-f[hidden]{display:none}
+.sh-f button{min-height:46px;padding:0 12px;border:0;background:none;font:inherit;font-size:15px;font-weight:600;color:var(--ink);cursor:pointer;white-space:nowrap}
+.sh-f .p{justify-self:start} .sh-f .n{justify-self:end}
+.sh-f small{font-size:12.5px;color:var(--ink2);font-variant-numeric:tabular-nums}
 details.mv{border-top:1px solid var(--line2);border-left:4px solid var(--c)}
 details.mv:first-child{border-top:0}
 details.mv>summary{display:grid;grid-template-columns:2.7em 3.5em minmax(0,1fr) auto 9px;gap:0 8px;align-items:center;min-height:52px;padding:6px 12px 6px 10px}
-.mv summary b{display:block;font-family:var(--serif);font-weight:700;font-size:15.5px;line-height:1.25;font-variant-numeric:tabular-nums}
-.mv summary small{display:block;font-size:12px;line-height:1.35;color:var(--ink2);font-variant-numeric:tabular-nums}
+.mv summary b,button.mv b{display:block;font-family:var(--serif);font-weight:700;font-size:15.5px;line-height:1.25;font-variant-numeric:tabular-nums}
+.mv summary small,button.mv small{display:block;font-size:12px;line-height:1.35;color:var(--ink2);font-variant-numeric:tabular-nums}
 .mv .rt b{font-family:var(--sans);font-weight:600;font-size:14.5px;overflow-wrap:anywhere}
 .mv .rt.code b{white-space:nowrap}
 .mv .ws{display:flex;flex-direction:column;align-items:flex-end;gap:3px;max-width:6.6em;text-align:right}
 .mv .ws .who{margin:0}
 .mv .ws .st{margin:0;white-space:normal;line-height:1.45;word-break:keep-all}
 .mv.pend .tm b,.mv.pend .rt b{color:var(--ink2)}
+button.mv .rt b,button.mv .rt small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+button.mv .ws .st{white-space:nowrap}
 .mv-in{padding:2px 14px 0 14px;border-top:1px dashed var(--line2)}
 .mv-in>div{display:grid;grid-template-columns:3em minmax(0,1fr);gap:8px;padding:7px 0;border-top:1px solid var(--line2);font-size:14px;line-height:1.5}
 .mv-in>div:first-child{border-top:0}
@@ -746,6 +773,7 @@ details.learn>summary h2.sec{margin:12px 0}
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sh-t" hidden>
   <div class="sh-top" id="sh-top"><span class="sh-grab" aria-hidden="true"></span><div class="sh-h"><h2 id="sh-t"></h2><button type="button" class="sh-x" id="sh-x" aria-label="關閉">×</button></div></div>
   <div class="sh-b" id="sh-b"></div>
+  <div class="sh-f" id="sh-f" hidden></div>
 </div>
 
 <nav class="nav" aria-label="分頁">
@@ -850,7 +878,7 @@ details.learn>summary h2.sec{margin:12px 0}
       ext(navURL(a,q),"導航")+
       '<button type="button" data-big="'+encodeURIComponent(JSON.stringify({n:a.name,s:a.sub,a:a.addr||""}))+'">大字</button></div></div>';
   }
-  function stayAddr(s){ return s.address?{name:s.name, addr:s.address, sub:s.area+"住處", lat:s.lat, lng:s.lng}:null; }
+  function stayAddr(s){ return s.address?{name:s.name, addr:s.address, sub:s.area+"住處", lat:s.lat, lng:s.lng, phone:s.phone}:null; }
   var LINES='<g class="drift"><path d="M-30,58 C60,24 130,68 210,38 S330,12 430,32" stroke="#5DCAA5" stroke-width="2.4"/><path d="M-30,66 C70,36 140,76 220,48 S340,22 430,42" stroke="#1D9E75" stroke-width="1.4"/></g><g class="drift2"><path d="M-30,50 C50,18 120,58 200,30 S320,4 430,22" stroke="#AFA9EC" stroke-width="1"/><path d="M-30,74 C90,46 150,84 230,58 S350,34 430,52" stroke="#5DCAA5" stroke-width=".8"/></g>';
 
   /* ── 行李、座位 ── */
@@ -995,35 +1023,46 @@ details.learn>summary h2.sec{margin:12px 0}
       '<p class="foot">信用卡號、保單號碼不放在這個公開頁面。</p>';
   }
   var mvWho="all"; try{ mvWho=localStorage.getItem("moveWho")||"all"; }catch(e){}
+  function moveSegs(){ return allSegs(true).filter(function(x){ var w=x.l.who; return mvWho==="all"||!w||w===mvWho; }); }
+  /* 交通半頁卡：原本展開的全部資訊，門到門卡也在同一張 */
+  function moveSheet(i){
+    var segs=moveSegs(), x=segs[i]; if (!x) return null;
+    var l=x.l, d=x.d, fl=l.t==="flight", car=l.t==="car", info=[];
+    function row(k,v){ if(v) info.push('<div><span>'+k+'</span><div>'+v+'</div></div>'); }
+    var tm=/^\d{1,2}:\d{2}$/.test(l.dep||"")?l.dep:(l.dep||"");
+    row("日期", md(d.date)+" "+wd(d.date)+(tm?"，"+tm+(l.arr?" → "+l.arr+(l.plus?"（隔天）":""):""):""));
+    row("誰搭", (l.who?T.people[l.who]:"兩人")+" "+legSt(l,mvWho));
+    if (fl){ row("航班",l.carrier+(l.no?" "+l.no:"")+(l.fare?"，"+l.fare:""));
+      row("路線",l.from+(l.fromNote?"（"+l.fromNote+"）":"")+" → "+l.to+(l.toNote?"（"+l.toNote+"）":""));
+      row("經停",l.via?"中途停"+l.via:"直飛");
+      row("機型",l.aircraft);
+      row("座位",seatTags(l)); }
+    else row("內容",l.text);
+    row("行李",bagTag(l));
+    if (l.cost) row("退改",ruleHTML(l.cost.rule));
+    if (car) info.push('<div class="mv-memo">'+carMemo()+'</div>');
+    var tl=(d.transfers||[]).filter(function(t){ return l.no&&t.leg===l.no&&(mvWho==="all"||!t.who||t.who===mvWho); });
+    var title=md(d.date)+" "+(fl?apt(l.from).c+" → "+apt(l.to).c:(l.short||l.text));
+    return {t:title, h:'<div class="mv-in" style="--c:'+col(d.region)+'">'+info.join("")+'</div>'+
+      (tl.length?'<p class="sh-k">門到門</p>'+tl.map(function(t){ return '<div style="--c:'+col(d.region)+'">'+transferHTML(t,key(d.date))+'</div>'; }).join(""):"")+
+      '<a class="more" href="#/day/'+key(d.date)+'">看 '+md(d.date)+' 每日行程 ›</a>', seq:{k:"mv",i:i,n:segs.length,u:"段"}};
+  }
   function infoMove(){
-    var segs=allSegs(true).filter(function(x){ var w=x.l.who; return mvWho==="all"||!w||w===mvWho; });
+    var segs=moveSegs();
     var sw='<div class="seg" role="group" aria-label="看誰的行程">'+[["all","兩人"],["Y","Yulun"],["M","May"]].map(function(o){
       return '<button type="button" data-mv="'+o[0]+'" aria-pressed="'+(mvWho===o[0])+'">'+o[1]+'</button>'; }).join("")+'</div>';
-    var rows=segs.map(function(x){
-      var l=x.l, d=x.d, fl=l.t==="flight", car=l.t==="car";
-      var stx=legSt(l,mvWho);
-      var whoTag=l.todo&&mvWho==="all"?"":'<span class="who">'+(l.who?T.people[l.who]:"兩人")+'</span>';
+    var rows=segs.map(function(x,i){
+      var l=x.l, d=x.d, fl=l.t==="flight";
+      var whoTag='<span class="who">'+(l.who?T.people[l.who]:"兩人")+'</span>';
       var route=fl?apt(l.from).c+"→"+apt(l.to).c:(l.short||l.text);
       var sub=fl?(l.no||l.carrier):({train:"火車",tour:"一日遊",car:"租車"})[l.t]||"";
-      var info=[];
-      function row(k,v){ if(v) info.push('<div><span>'+k+'</span><div>'+v+'</div></div>'); }
-      if (fl){ row("航班",l.carrier+(l.no?" "+l.no:"")+(l.fare?"，"+l.fare:""));
-        row("路線",l.from+(l.fromNote?"（"+l.fromNote+"）":"")+" → "+l.to+(l.toNote?"（"+l.toNote+"）":""));
-        row("經停",l.via?"中途停"+l.via:"直飛");
-        row("機型",l.aircraft);
-        row("座位",seatTags(l)); }
-      else row("內容",l.text);
-      row("行李",bagTag(l));
-      if (l.cost) row("退改",ruleHTML(l.cost.rule));
-      var tl=(d.transfers||[]).filter(function(t){ return l.no&&t.leg===l.no&&(mvWho==="all"||!t.who||t.who===mvWho); });
-      var links=tl.map(function(t){ return '<button type="button" class="more tl" data-tr="'+key(d.date)+'|'+t.id+'" aria-haspopup="dialog">門到門：'+t.from+' → '+t.to+' ›</button>'; }).join("");
-      if (car) info.push('<div class="mv-memo">'+carMemo()+'</div>');
-      return '<details class="mv'+(l.status==="pending"?" pend":"")+'" style="--c:'+col(d.region)+'"><summary>'+
+      /* 列表不顯示「已訂」，只標待訂、待確認、May 自訂 */
+      var stx=l.todo?(mvWho==="Y"?"":st("self",/待確認/.test(l.todo)?"待確認":"May 自訂")):(l.status==="booked"?"":st(l.status,/待確認/.test(l.statusText||"")?"待確認":null));
+      return '<button type="button" class="lrow mv'+(l.status==="pending"?" pend":"")+'" data-seq="mv|'+i+'" aria-haspopup="dialog" style="--c:'+col(d.region)+'">'+
         '<span class="d"><b>'+md(d.date)+'</b><small>'+wd(d.date).slice(1)+'</small></span>'+
         '<span class="tm"><b>'+(/^\d{1,2}:\d{2}$/.test(l.dep||"")?l.dep:"—")+'</b><small>'+(l.arr?l.arr+(l.plus?"⁺¹":""):"")+'</small></span>'+
         '<span class="rt'+(fl?" code":"")+'"><b>'+route+'</b><small>'+sub+'</small></span>'+
-        '<span class="ws">'+whoTag+stx+'</span><span class="chev"></span></summary>'+
-        '<div class="mv-in">'+info.join("")+links+'<a class="more" href="#/day/'+key(d.date)+'">看 '+md(d.date)+' 每日行程 ›</a></div></details>';
+        '<span class="ws">'+whoTag+stx+'</span><span class="chev"></span></button>';
     }).join("");
     return '<h2 class="sec">交通 <small>點一下看座位、行李、退改</small></h2><p class="inote">所有確認單都在 Google 雲端硬碟（記得設成離線可用）。登機證在各航空公司 App。</p>'+sw+'<div class="card mvs">'+rows+'</div>';
   }
@@ -1032,8 +1071,7 @@ details.learn>summary h2.sec{margin:12px 0}
       return '<span class="fxi'+(on?"":" no")+'">'+svg(f[1])+(on?(typeof on==="string"?on:(f[3]||f[2])):"不含"+f[2])+'</span>'; }).join("");
     return h?'<div class="fxs">'+h+'</div>':""; }
   function stayCard(s){
-    var reg=regionOn(s.from), c=col(reg), out=add(s.from,s.nights), bk=s.status==="booked";
-    var sum='<span class="sy-d">'+md(s.from)+'<small>'+s.nights+' 晚</small></span><span class="sy-n">'+who(s.who)+(s.name||s.area)+(bk?"":st(s.status))+'</span><span class="sy-t">入住 '+(s.checkin||"—")+'<br>退房 '+(s.checkout||"—")+'</span><span class="chev"></span>';
+    var reg=regionOn(s.from), c=col(reg), out=add(s.from,s.nights);
     var a=stayAddr(s), rows=[];
     function row(k,v){ if(v) rows.push('<div><span>'+k+'</span><div>'+v+'</div></div>'); }
     row("日期", md(s.from)+" 入住"+(s.checkin?" "+s.checkin:"")+"，"+md(out)+" 退房"+(s.checkout?" "+s.checkout:"")+"，"+s.nights+" 晚");
@@ -1047,22 +1085,43 @@ details.learn>summary h2.sec{margin:12px 0}
       if (x) row("付款", origText(x)+(x.v!=null?"，"+amtText(x.v,x.ap):"")+"・"+payText(s.cost)); }
     if (s.cost&&s.cost.rule) row("取消", ruleHTML(s.cost.rule));
     row("備註", s.note);
-    return '<details class="sty" id="stay-'+s.id+'" style="--c:'+c+'"><summary>'+sum+'</summary><div class="sty-in">'+(a?addrRow(a):"")+stayMemo(s)+'<div class="rws">'+rows.join("")+'</div></div></details>';
+    return '<div class="sty-in" style="--c:'+c+'">'+(a?addrRow(a):"")+stayMemo(s)+'<div class="rws">'+rows.join("")+'</div></div>';
   }
+  /* 住宿：一行列表＋半頁卡 */
+  function stayRow(s,i){
+    var bk=s.status==="booked", t=[];
+    if (s.checkin) t.push("入住 "+s.checkin); if (s.checkout) t.push("退房 "+s.checkout); if (s.via) t.push(s.via);
+    return '<button type="button" class="lrow sty" data-seq="sty|'+i+'" aria-haspopup="dialog" style="--c:'+col(regionOn(s.from))+'">'+
+      '<span class="sy-d">'+md(s.from)+'<small>'+s.nights+' 晚</small></span><span class="sy-n"><b>'+who(s.who)+(s.name||s.area)+(bk?"":st(s.status))+'</b><span class="sy-s">'+t.join("・")+'</span></span><span class="chev"></span></button>'; }
+  function staySheetI(i){ var s=T.stays[i]; if (!s) return null;
+    return {t:s.name||s.area, h:(s.who||s.status!=="booked"?'<p class="sh-sub">'+who(s.who)+st(s.status)+'</p>':"")+stayCard(s), seq:{k:"sty",i:i,n:T.stays.length,u:"間"}}; }
   var DRIVE='<p class="inote">所有確認單都在 Google 雲端硬碟（記得設成離線可用）</p>';
   function infoStay(){
-    return '<h2 class="sec">住宿 <small>點一下看地址和入住資訊</small></h2>'+DRIVE+'<div class="card">'+T.stays.map(stayCard).join("")+'</div>';
+    return '<h2 class="sec">住宿 <small>點一下看地址和入住資訊</small></h2>'+DRIVE+'<div class="card">'+T.stays.map(stayRow).join("")+'</div>';
   }
   /* 地址依城市分組：住處看入住那天的地區，機場和車站看代碼前綴 */
   var ADDR_CITY={eve:"lof"};
+  var ADDRS=[];
   function infoAddr(){
     var g={}; T.cityOrder.forEach(function(c){ g[c]=[]; });
     T.stays.forEach(function(s){ var a=stayAddr(s), r=regionOn(s.from); if(a&&g[r]) g[r].push(a); });
     Object.keys(T.addresses).forEach(function(k){ var c=k.split("-")[0]; c=ADDR_CITY[c]||c; (g[c]=g[c]||[]).push(T.addresses[k]); });
-    return '<h2 class="sec">常用地址 <small>住處、機場、車站</small></h2><p class="muted" style="margin:0 0 8px">複製貼到 Bolt、Uber，或直接開 Google 地圖導航。</p>'+
-      Object.keys(g).filter(function(c){return g[c].length;}).map(function(c){ var y=T.cities[c];
-        return '<h3 class="sub" style="--c:'+col(y?y.region:"tw")+'"><i></i>'+(y?y.name:c)+'</h3><div class="card">'+g[c].map(addrRow).join("")+'</div>'; }).join("");
+    /* 旅途中目前所在城市那一組放最上面，其他照行程順序 */
+    var order=Object.keys(g).filter(function(c){return g[c].length;}), here=hereCity();
+    if (here&&order.indexOf(here)>-1) order=[here].concat(order.filter(function(c){return c!==here;}));
+    ADDRS=[];
+    return '<h2 class="sec">常用地址 <small>住處、機場、車站</small></h2><p class="muted" style="margin:0 0 8px">點一下看完整地址，可以複製、導航或給司機看大字。</p>'+
+      order.map(function(c){ var y=T.cities[c];
+        return '<h3 class="sub" style="--c:'+col(y?y.region:"tw")+'"><i></i>'+(y?y.name:c)+(c===here&&inTrip?' <small>現在在這</small>':"")+'</h3><div class="card">'+g[c].map(function(a){ ADDRS.push(a);
+          return '<button type="button" class="lrow arow" data-addr="'+(ADDRS.length-1)+'" aria-haspopup="dialog"><span><b>'+a.name+'</b><span>'+a.sub+'</span></span><span class="chev"></span></button>'; }).join("")+'</div>'; }).join("");
   }
+  /* 地址半頁卡：大一點的地址、說明，複製、導航、大字、撥號 */
+  function addrSheet(i){ var a=ADDRS[i]; if (!a) return null;
+    var copy=a.addr||a.name, q=a.name+(a.addr?" "+a.addr:"")+(a.city?" "+a.city:"");
+    var btn=['<button type="button" data-copy="'+esc(copy)+'">複製</button>', ext(navURL(a,q),"導航"),
+      '<button type="button" data-big="'+encodeURIComponent(JSON.stringify({n:a.name,s:a.sub,a:a.addr||""}))+'">大字</button>'];
+    if (a.phone) btn.push(telBtn(a.phone));
+    return {t:a.name, h:'<p class="sh-big">'+(a.addr||a.name+(a.city?"，"+a.city:""))+'</p><p class="sh-sub">'+a.sub+'</p><div class="sh-acts">'+btn.join("")+'</div>'}; }
   function infoBag(){
     var ents=[]; allSegs().forEach(function(x){ if(x.l.t!=="flight") return; bagEntries(x.l).forEach(function(e){ ents.push({d:x.d,l:x.l,who:e.who,b:e.b}); }); });
     function lab(e){ var c=e.l.carrier, split=e.who&&ents.some(function(o){return o.l.carrier===c&&o.b.tbd;})||(e.b.tbd&&e.who);
@@ -1380,7 +1439,7 @@ details.learn>summary h2.sec{margin:12px 0}
   }
 
   /* ── 地區 ── */
-  var near=false, openOnly=false, filter="all", focusPoi=null, focusArea=null;
+  var near=false, openOnly=false, filter="all", focusPoi=null, focusArea=null, openInfo=null;
   var WK=[1,2,3,4,5,6,0];
   function cityDays(cid){ return T.days.filter(function(d){return d.city===cid;}).map(function(d){return d.date;}); }
   function cityCheckDate(cid){ var ds=cityDays(cid); if (!ds.length) return null;
@@ -1566,7 +1625,13 @@ details.learn>summary h2.sec{margin:12px 0}
           else if (p[2]){ filter="all"; openOnly=false; focusPoi=p[2]; } }
         html=pageCity(p[1]); break;
       case "aurora": tab="aurora"; html=pageAurora(); break;
-      case "info": tab="info"; html=pageInfo(p[1]); break;
+      case "info": tab="info"; html=pageInfo(p[1]);
+        /* 網址指到某一筆：#/info/stay/<住處 id>、#/info/move/<MMDD>[/<航班號>] */
+        if (p[2]&&h!==cur){ var oi=-1;
+          if (p[1]==="stay") T.stays.forEach(function(x,i){ if (x.id===p[2]) oi=i; });
+          if (p[1]==="move") moveSegs().forEach(function(x,i){ if (oi<0&&key(x.d.date)===p[2]&&(!p[3]||x.l.no===p[3])) oi=i; });
+          if (oi>-1) openInfo=[p[1],oi]; }
+        break;
       default: tab="trip"; html=inTrip?pageDay(key(today),true):pageHome();
     }
     if (drv) drv.hidden=true;
@@ -1589,6 +1654,7 @@ details.learn>summary h2.sec{margin:12px 0}
     cur=h; saveView();
     if (focusT&&!restored){ var ft=document.getElementById(focusT), ms=document.getElementById("s-move"); if (ft){ if(ms) ms.open=true; ft.open=true; ft.scrollIntoView({block:"start"}); } focusT=null; }
     if (focusPoi){ var fp=document.getElementById("poi-"+focusPoi); if (fp){ fp.classList.add("focus"); if (!restored) fp.scrollIntoView({block:"center"}); } }
+    if (openInfo){ var oo2=openInfo; openInfo=null; openSheet(oo2[0]==="stay"?staySheetI(oo2[1]):moveSheet(oo2[1]), view.querySelector('[data-seq="'+(oo2[0]==="stay"?"sty":"mv")+'|'+oo2[1]+'"]')); }
     if (focusArea&&!restored){ var fa=document.getElementById("area-"+focusArea); if (fa) fa.scrollIntoView({block:"start"}); focusArea=null; }
     [["rline",'a[aria-current="true"]']].forEach(function(x){
       var box=document.querySelector("."+x[0]), on=box&&box.querySelector(x[1]);
@@ -1635,6 +1701,10 @@ details.learn>summary h2.sec{margin:12px 0}
     clearTimeout(shT); sheetFrom=from||null;
     document.getElementById("sh-t").textContent=x.t;
     var b=document.getElementById("sh-b"); b.innerHTML=x.h; b.scrollTop=0;
+    var f=document.getElementById("sh-f"), q=x.seq;
+    if (q){ f.hidden=false; f.innerHTML=(q.i>0?'<button type="button" class="p" data-seq="'+q.k+'|'+(q.i-1)+'">‹ 上一'+q.u+'</button>':'<span></span>')+
+        '<small>'+(q.i+1)+'／'+q.n+'</small>'+(q.i<q.n-1?'<button type="button" class="n" data-seq="'+q.k+'|'+(q.i+1)+'">下一'+q.u+' ›</button>':'<span></span>'); }
+    else { f.hidden=true; f.innerHTML=""; }
     sheet.hidden=false; shbg.hidden=false; sheet.style.transform="";
     void sheet.offsetHeight; sheet.classList.add("on"); shbg.classList.add("on");
     document.getElementById("sh-x").focus({preventScroll:true});
@@ -1675,6 +1745,12 @@ details.learn>summary h2.sec{margin:12px 0}
       else if (!a.closest(".rline,.dnav")&&tabOf(a.getAttribute("href"))!==curTab)
         jumpFrom={h:location.hash||"#/", y:Math.round(sheetY!=null?sheetY:window.scrollY), label:backLabel(), open:openState()};
     }
+    var sq=e.target.closest("[data-seq]");
+    if (sq){ var qq=sq.getAttribute("data-seq").split("|"), inSheet=!!sq.closest("#sheet"), qi=+qq[1];
+      openSheet(qq[0]==="mv"?moveSheet(qi):staySheetI(qi), inSheet?sheetFrom:sq);
+      if (inSheet){ var nb=document.querySelector("#sh-f ."+(sq.classList.contains("p")?"p":"n"))||document.querySelector("#sh-f button"); if (nb) nb.focus({preventScroll:true}); }
+      return; }
+    var ad=e.target.closest("[data-addr]"); if (ad){ openSheet(addrSheet(+ad.getAttribute("data-addr")), ad); return; }
     var sp=e.target.closest("[data-poi],[data-bag],[data-tr],[data-stay]");
     if (sp){ var x=sp.getAttribute("data-poi")!=null?poiSheet(sp.getAttribute("data-poi")):sp.getAttribute("data-bag")!=null?bagSheet(sp.getAttribute("data-bag")):sp.getAttribute("data-tr")!=null?trSheet(sp.getAttribute("data-tr")):staySheet(sp.getAttribute("data-stay"));
       openSheet(x, sp); return; }
