@@ -18,7 +18,7 @@
    stays 住宿：checkin、checkout 入住和退房時間（HH:MM）；kitchen、breakfast、parking、laundry 設施（true 有、false 沒有，也可以寫文字如「含早餐」，不知道就不寫）；
      room 房型、phone 電話、getThere 怎麼去、access 入住方式（自助入住、鑰匙盒等），不知道就不寫
    days.times 重要時間點（色帶「接下來」用）：[{ at "HH:MM"（不知道寫「待補」）, t 說明, who, est: true 推估的時間，畫面寫「建議」 }]
-   days.transfers 門到門卡：[{ id, who, after 放在第幾段交通後面（-1＝最前面）, leg 對應的航班或車次（資料頁交通連到這張卡）, from, to, sub 趕幾點的什麼,
+   days.transfers 怎麼去卡（畫面上叫「怎麼去」）：[{ id, who, after 放在第幾段交通後面（-1＝最前面）, leg 對應的航班或車次（資料頁交通連到這張卡）, from, to, sub 趕幾點的什麼,
      opts: [{ n 名稱, rec: true 推薦, steps 怎麼走, time 要多久, cost 多少錢, pay 怎麼付, fit 適合什麼情況, note 注意 }], warn 注意事項, addr 地址卡（addresses 的 key，或 "stay:<住處 id>"）, checkin 入住提醒 }]
    cities.transit 交通怎麼搭：[{ n 名稱, d 一句說明 }]；cities.drive 自駕區塊、cities.e10 示意圖（羅弗敦）
    checklist：due 是出發前的期限；旅途中的項目改寫 day（YYYY-MM-DD），可加 until 顯示到哪天、eve: true 前一晚做
@@ -968,7 +968,7 @@ window.TRIP = {
     },
     osl: {
       name: "奧斯陸", region: "osl",
-      transit: [{ n: "市區", d: "用 Ruter app 買票。" }, { n: "機場", d: "Vy 區域火車或機場快線 Flytoget，見 2/28、3/2 的門到門卡。" }, { n: "2/25～2/28 地鐵停駛", d: "電車照常（班次可能減少）。" }], ref: "osl", mapCity: "Oslo",
+      transit: [{ n: "市區", d: "用 Ruter app 買票。" }, { n: "機場", d: "Vy 區域火車或機場快線 Flytoget，見 2/28、3/2 每日頁的「怎麼去」。" }, { n: "2/25～2/28 地鐵停駛", d: "電車照常（班次可能減少）。" }], ref: "osl", mapCity: "Oslo",
       intro: "挪威首都，現代建築、孟克和北歐精品咖啡，兩人會合的第一站。",
       tips: [
         { i: "shop", t: "2/28 週日大型超市不開", d: "只有 Joker、Bunnpris 和便利商店，營業時間較短。晚餐和隔天早餐先想好。" },
