@@ -639,6 +639,7 @@ details.fold .in .stops{margin-top:12px}
 .tn-m{display:flex;gap:10px;align-items:center}
 .tn-m svg{width:36px;height:36px;flex:none}
 details.learn{margin-top:8px}
+details.tripg>summary{display:flex;align-items:center;gap:10px;min-height:52px}
 details.learn>summary{display:flex;align-items:center;gap:10px;min-height:52px;border-top:1px solid var(--line)}
 details.learn>summary h2.sec{margin:12px 0}
 .sty>summary{display:grid;grid-template-columns:3em minmax(0,1fr) auto 9px;gap:0 10px;align-items:center;min-height:52px;padding:6px 12px}
@@ -1008,7 +1009,10 @@ details.learn>summary h2.sec{margin:12px 0}
   function infoList(){
     var pre=T.checklist.filter(function(x){return !x.day;}), trip=T.checklist.filter(function(x){return x.day;});
     function by(a,b){ var x=a.due||a.day||"9", y=b.due||b.day||"9"; return x<y?-1:x>y?1:0; }
-    return checkGroup("出發前", pre.slice().sort(by))+checkGroup("旅途中", trip.slice().sort(by))+
+    var tg=checkGroup("旅途中", trip.slice().sort(by));
+    /* 出發前，旅途中那組先收起來 */
+    if (today<T.start&&tg) tg='<details class="tripg"><summary><h2 class="sec">旅途中 <small>'+trip.length+' 項，出發後顯示在每日頁</small></h2><span class="chev"></span></summary>'+tg.replace(/^<h2 class="sec">[^]*?<\/h2>/,"")+'</details>';
+    return checkGroup("出發前", pre.slice().sort(by))+tg+
       '<p class="foot" style="display:flex;justify-content:space-between;align-items:center;gap:10px"><span>勾選只存在這支手機，May 的手機要自己勾。</span><button type="button" class="reset" id="reset">全部清除</button></p>';
   }
   function pageInfo(cat){
