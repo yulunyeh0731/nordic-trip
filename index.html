@@ -541,6 +541,12 @@ h3.sub i{width:4px;height:16px;border-radius:2px;background:var(--c)}
 .band .row1{display:flex;align-items:flex-end;gap:10px;margin-top:2px}
 .band .dt{font-family:var(--serif);font-weight:700;font-size:44px;line-height:.95;letter-spacing:-.01em}
 .band .wd{font-size:15px;padding-bottom:3px;opacity:.9}
+/* 色帶右側換日：‹ › 並排，旅途中看別天時多一顆「回今天」 */
+.bnav{display:flex;align-items:center;gap:8px;margin-left:auto;align-self:center}
+.bn{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.5);color:#fff;text-decoration:none;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.bn svg{width:20px;height:20px}
+.bn.off{visibility:hidden}
+.btoday{display:flex;align-items:center;min-height:44px;padding:0 12px;border-radius:22px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.5);color:#fff;font-size:13.5px;font-weight:600;text-decoration:none;white-space:nowrap;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
 .band h2{font-family:var(--serif);font-weight:700;font-size:19px;line-height:1.35;margin:8px 0 0}
 .nx{margin:12px -16px -14px;padding:9px 16px 12px;background:rgba(6,16,24,.42)}
 .nx-k{margin:0;font-size:12px;letter-spacing:.14em;opacity:.8}
@@ -599,7 +605,6 @@ h3.sub i{width:4px;height:16px;border-radius:2px;background:var(--c)}
 .pager a{flex:1;display:block;text-align:center;border:1px solid var(--line);background:var(--paper);border-radius:3px;padding:9px 10px;text-decoration:none;font-size:13.5px;color:var(--ink2)}
 .pager a b{display:block;color:var(--ink);font-weight:600;font-size:15px}
 .pager a.off{visibility:hidden}
-.hint{text-align:center;font-size:12px;color:var(--ink3);margin:6px 0 0}
 /* 住處卡 */
 .sbox{padding:10px 0 4px;border-top:1px solid var(--line2)}
 .dsb>.sbox:first-child{border-top:0}
@@ -1351,12 +1356,16 @@ details.learn>summary h2.sec{margin:12px 0}
     var mayLine="", DM=T.departures.M;
     if (isToday&&today<=DM){ var nm=diff(today,DM); mayLine='<small>'+(nm>0?"May "+mdw(DM)+" 出發，還有 "+nm+" 天":"May 今天出發")+'</small>'; }
     var head='<header class="thead"><svg class="lines" viewBox="0 0 400 84" preserveAspectRatio="none" aria-hidden="true">'+LINES+'</svg><div class="wrap"><b>北境冬旅</b><span class="th-r"><span>第 '+(diff(T.start,d.date)+1)+' 天</span>'+mayLine+'</span></div></header>';
+    var ARR=function(dir){ return '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="'+(dir<0?"M14.5 6l-6 6 6 6":"M9.5 6l6 6-6 6")+'"/></svg>'; };
+    var bnav='<div class="bnav">'+(inTrip&&d.date!==today?'<a class="btoday" href="#/day/'+key(today)+'">回今天</a>':"")+
+      (prev?'<a class="bn" href="#/day/'+key(prev.date)+'" aria-label="前一天 '+md(prev.date)+'">'+ARR(-1)+'</a>':'<span class="bn off" aria-hidden="true"></span>')+
+      (next?'<a class="bn" href="#/day/'+key(next.date)+'" aria-label="後一天 '+md(next.date)+'">'+ARR(1)+'</a>':'<span class="bn off" aria-hidden="true"></span>')+'</div>';
     var band='<section class="dayband" style="--c:'+c+'"><div class="band">'+art(artKey(d))+'<p class="k">'+T.regions[d.region].name+'</p>'+
-      '<div class="row1"><span class="dt">'+md(d.date)+'</span><span class="wd">'+wd(d.date)+'</span></div><h2>'+d.title+'</h2>'+timesHTML(d,isToday)+'</div>'+
+      '<div class="row1"><span class="dt">'+md(d.date)+'</span><span class="wd">'+wd(d.date)+'</span>'+bnav+'</div><h2>'+d.title+'</h2>'+timesHTML(d,isToday)+'</div>'+
       '<div class="dayfoot">'+(d.alerts?'<div class="alerts">'+d.alerts.map(function(a){return '<span class="alert">'+a+'</span>';}).join("")+'</div>':"")+sunbar(d)+'</div></section>';
     var jump=jumps.length>1?'<div class="jump">'+jumps.map(function(j){return '<button type="button" data-jump="'+j[0]+'">'+j[1]+'</button>';}).join("")+'</div>':"";
     var pager='<div class="pager">'+(prev?'<a href="#/day/'+key(prev.date)+'">‹ 前一天<b>'+md(prev.date)+'</b></a>':'<a class="off"></a>')+(next?'<a href="#/day/'+key(next.date)+'">後一天 ›<b>'+md(next.date)+'</b></a>':'<a class="off"></a>')+'</div>';
-    return head+rlineHTML(d.date)+'<main class="wrap">'+band+jump+todoHTML(d)+secs.join("")+pager+'<p class="hint">左右滑動也能換日</p></main>';
+    return head+rlineHTML(d.date)+'<main class="wrap">'+band+jump+todoHTML(d)+secs.join("")+pager+'</main>';
   }
 
   /* ── 地區 ── */
@@ -1629,9 +1638,13 @@ details.learn>summary h2.sec{margin:12px 0}
     var bk=e.target.closest("[data-back]");
     if (bk&&back){ var o=back; back=null; restoreY=o.y; restoreOpen=o.open; if ((location.hash||"#/")===o.h) route(); else location.hash=o.h; return; }
     var a=e.target.closest('a[href^="#/"]');
+    /* 同一分頁裡換日（‹ ›、回今天、路線線條、前一天／後一天）、換子分類：取代目前這一筆瀏覽紀錄 */
+    if (a&&(a.closest(".itabs,.cswitch")||(view.querySelector(".dayband")&&a.closest(".bnav,.rline,.pager")))){
+      e.preventDefault(); if (a.closest(".itabs,.cswitch")) keepBack=true;
+      location.replace(a.getAttribute("href")); return; }
     if (a&&!a.closest(".nav")){
       if (a.closest(".itabs,.cswitch")) keepBack=true;
-      else if (!a.closest(".rline,.pager")&&tabOf(a.getAttribute("href"))!==curTab)
+      else if (!a.closest(".rline,.pager,.bnav")&&tabOf(a.getAttribute("href"))!==curTab)
         jumpFrom={h:location.hash||"#/", y:Math.round(sheetY!=null?sheetY:window.scrollY), label:backLabel(), open:openState()};
     }
     var sp=e.target.closest("[data-poi],[data-bag],[data-tr],[data-stay]");
@@ -1671,17 +1684,6 @@ details.learn>summary h2.sec{margin:12px 0}
     done[c.getAttribute("data-id")]=c.checked; try{localStorage.setItem("checklist",JSON.stringify(done));}catch(x){}
     setTimeout(route, 250);
   });
-
-  /* 每日左右滑 */
-  var sx=null, sy=0;
-  view.addEventListener("touchstart", function(e){
-    if (sheetY!=null || !document.querySelector(".pager") || e.target.closest(".rline,a,button,summary,textarea,input")){ sx=null; return; }
-    sx=e.touches[0].clientX; sy=e.touches[0].clientY; }, {passive:true});
-  view.addEventListener("touchend", function(e){
-    if (sx===null||sheetY!=null){ sx=null; return; } var dx=e.changedTouches[0].clientX-sx, dy=e.changedTouches[0].clientY-sy; sx=null;
-    if (Math.abs(dx)<70||Math.abs(dy)>45) return;
-    var a=document.querySelectorAll(".pager a")[dx<0?1:0]; if (a&&a.getAttribute("href")) location.hash=a.getAttribute("href");
-  }, {passive:true});
 
   route();
   /* 背景抓到新版時，底部分頁上方出現「有新版本」 */
