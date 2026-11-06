@@ -25,7 +25,7 @@
   --k-move:#34508F; --k-stay:#C8901E; --k-car:#7E62C8; --k-act:#C2507A;
   --serif:"TripSerif","Noto Serif TC","Songti TC",serif;
   --sans:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
-  --navh:60px;
+  --navh:60px; --dnavh:48px;
   color-scheme:light; box-sizing:border-box;
 }
 @media (prefers-color-scheme:dark){
@@ -61,6 +61,18 @@ a{color:inherit} button{font:inherit;color:inherit}
 .nav svg{width:22px;height:22px}
 .nav a[aria-current="page"]{color:var(--ink)}
 .nav a[aria-current="page"] svg{color:var(--aurora)}
+
+/* 底部換日列：只在每日頁，固定在底部分頁正上方 */
+body.has-dnav{--dnav:var(--dnavh);padding-bottom:calc(var(--navh) + var(--dnavh) + 14px + env(safe-area-inset-bottom,0px))}
+.dnav{position:fixed;left:0;right:0;bottom:calc(var(--navh) + env(safe-area-inset-bottom,0px));z-index:39;height:var(--dnavh);background:color-mix(in srgb,var(--line2) 60%,var(--page));border-top:1px solid var(--line);box-shadow:0 -2px 8px rgba(0,0,0,.05)}
+.dnav .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;height:100%;padding:0 6px}
+.dnav .wrap>a,.dnav .wrap>span{display:flex;align-items:center;min-height:44px;padding:0 10px;text-decoration:none;font-size:15px;font-weight:600;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.dnav .dn-p{justify-content:flex-start}
+.dnav .dn-n{justify-content:flex-end}
+.dnav .dn-c{justify-content:center}
+.dnav .dn-now{font-family:var(--serif);font-weight:700;color:var(--ink3)}
+.dnav .dn-t span{display:flex;align-items:center;min-height:32px;padding:0 14px;border-radius:16px;background:var(--aurora);color:#fff;font-size:14.5px}
+.dnav .dn-arr{font-size:22px;line-height:1;font-weight:400;margin:-3px 6px 0}
 
 /* 共用 */
 h2.sec{font-family:var(--serif);font-weight:700;font-size:22px;line-height:1.3;margin:30px 0 10px;display:flex;align-items:baseline;gap:10px}
@@ -160,8 +172,8 @@ a.ext .net{display:inline-flex;align-items:center;gap:2px;font-size:10px;font-we
 .callb svg{width:17px;height:17px;color:var(--aurora)}
 .rws .callb{margin:4px 0 0}
 /* 有新版本 */
-.upd{position:fixed;left:0;right:0;bottom:calc(var(--navh) + env(safe-area-inset-bottom,0px));z-index:45;width:100%;min-height:48px;border:0;border-top:1px solid var(--line);background:var(--fjord);color:#fff;font-size:15px;font-weight:600;cursor:pointer}
-.toast{position:fixed;left:50%;bottom:calc(var(--navh) + env(safe-area-inset-bottom,0px) + 14px);transform:translateX(-50%);background:var(--ink);color:var(--paper);font-size:14px;padding:8px 14px;border-radius:3px;z-index:70;opacity:0;transition:opacity .2s;pointer-events:none}
+.upd{position:fixed;left:0;right:0;bottom:calc(var(--navh) + var(--dnav,0px) + env(safe-area-inset-bottom,0px));z-index:45;width:100%;min-height:48px;border:0;border-top:1px solid var(--line);background:var(--fjord);color:#fff;font-size:15px;font-weight:600;cursor:pointer}
+.toast{position:fixed;left:50%;bottom:calc(var(--navh) + var(--dnav,0px) + env(safe-area-inset-bottom,0px) + 14px);transform:translateX(-50%);background:var(--ink);color:var(--paper);font-size:14px;padding:8px 14px;border-radius:3px;z-index:70;opacity:0;transition:opacity .2s;pointer-events:none}
 .toast.on{opacity:1}
 .art{position:absolute;right:0;bottom:0;width:86%;height:auto;pointer-events:none;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 38%);mask-image:linear-gradient(to right,transparent 0,#000 38%)}
 .art .b{fill:#fff;fill-opacity:.11}.art .m{fill:#fff;fill-opacity:.18}.art .f{fill:#fff;fill-opacity:.23}
@@ -541,12 +553,6 @@ h3.sub i{width:4px;height:16px;border-radius:2px;background:var(--c)}
 .band .row1{display:flex;align-items:flex-end;gap:10px;margin-top:2px}
 .band .dt{font-family:var(--serif);font-weight:700;font-size:44px;line-height:.95;letter-spacing:-.01em}
 .band .wd{font-size:15px;padding-bottom:3px;opacity:.9}
-/* 色帶右側換日：‹ › 並排，旅途中看別天時多一顆「回今天」 */
-.bnav{display:flex;align-items:center;gap:8px;margin-left:auto;align-self:center}
-.bn{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.5);color:#fff;text-decoration:none;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
-.bn svg{width:20px;height:20px}
-.bn.off{visibility:hidden}
-.btoday{display:flex;align-items:center;min-height:44px;padding:0 12px;border-radius:22px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.5);color:#fff;font-size:13.5px;font-weight:600;text-decoration:none;white-space:nowrap;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
 .band h2{font-family:var(--serif);font-weight:700;font-size:19px;line-height:1.35;margin:8px 0 0}
 .nx{margin:12px -16px -14px;padding:9px 16px 12px;background:rgba(6,16,24,.42)}
 .nx-k{margin:0;font-size:12px;letter-spacing:.14em;opacity:.8}
@@ -601,10 +607,6 @@ h3.sub i{width:4px;height:16px;border-radius:2px;background:var(--c)}
 .pc.off{color:var(--ink3);background:var(--line2)}
 .pc.off .x{font-size:11.5px;font-weight:600;color:var(--alert)}
 .dt-sight{background:var(--slate)} .dt-food{background:var(--brick)} .dt-cafe{background:#8C6A1E}
-.pager{display:flex;gap:10px;margin:14px 0 4px}
-.pager a{flex:1;display:block;text-align:center;border:1px solid var(--line);background:var(--paper);border-radius:3px;padding:9px 10px;text-decoration:none;font-size:13.5px;color:var(--ink2)}
-.pager a b{display:block;color:var(--ink);font-weight:600;font-size:15px}
-.pager a.off{visibility:hidden}
 /* 住處卡 */
 .sbox{padding:10px 0 4px;border-top:1px solid var(--line2)}
 .dsb>.sbox:first-child{border-top:0}
@@ -1249,7 +1251,7 @@ details.learn>summary h2.sec{margin:12px 0}
     h+='<p class="sh-k">營業日</p>'+(Array.isArray(p.closed)&&!p.warn?wkHTML(p,date):"")+
       (info.length?'<p class="sh-p muted">'+info.join("；")+'</p>':(Array.isArray(p.closed)?"":'<p class="sh-p muted">營業日待確認</p>'));
     var ss=staysOn(date).filter(function(s){return s.lat;});
-    if (ss.length&&p.lat) h+='<p class="sh-k">離'+(isT?"今晚":dl.split(" ")[0]+" 晚上")+'住處</p><p class="sh-p">'+ss.map(function(s){ return (ss.length>1&&s.who?T.people[s.who]+" ":"")+(s.short||s.name)+" 直線約 "+km(s,p).toFixed(1)+" 公里"; }).join("；")+'</p>';
+    if (ss.length&&p.lat) h+='<p class="sh-k">離'+(isT?"今晚":" "+dl.split(" ")[0]+" 晚上")+'住處</p><p class="sh-p">'+ss.map(function(s){ return (ss.length>1&&s.who?T.people[s.who]+" ":"")+(s.short||s.name)+" 直線約 "+km(s,p).toFixed(1)+" 公里"; }).join("；")+'</p>';
     if (p.tip) h+='<p class="tip" style="font-size:14px;color:var(--ink2);border-left:2px solid var(--line);padding-left:9px">'+p.tip+'</p>';
     h+='<div class="acts big">'+ext(navURL(p, p.q||((p.local||p.name)+" "+(c.mapCity||""))),"導航")+'</div>';
     h+='<a class="more" href="#/city/'+cid+'/area/'+p.area+'">看這一區全部 ›</a>';
@@ -1356,16 +1358,18 @@ details.learn>summary h2.sec{margin:12px 0}
     var mayLine="", DM=T.departures.M;
     if (isToday&&today<=DM){ var nm=diff(today,DM); mayLine='<small>'+(nm>0?"May "+mdw(DM)+" 出發，還有 "+nm+" 天":"May 今天出發")+'</small>'; }
     var head='<header class="thead"><svg class="lines" viewBox="0 0 400 84" preserveAspectRatio="none" aria-hidden="true">'+LINES+'</svg><div class="wrap"><b>北境冬旅</b><span class="th-r"><span>第 '+(diff(T.start,d.date)+1)+' 天</span>'+mayLine+'</span></div></header>';
-    var ARR=function(dir){ return '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="'+(dir<0?"M14.5 6l-6 6 6 6":"M9.5 6l6 6-6 6")+'"/></svg>'; };
-    var bnav='<div class="bnav">'+(inTrip&&d.date!==today?'<a class="btoday" href="#/day/'+key(today)+'">回今天</a>':"")+
-      (prev?'<a class="bn" href="#/day/'+key(prev.date)+'" aria-label="前一天 '+md(prev.date)+'">'+ARR(-1)+'</a>':'<span class="bn off" aria-hidden="true"></span>')+
-      (next?'<a class="bn" href="#/day/'+key(next.date)+'" aria-label="後一天 '+md(next.date)+'">'+ARR(1)+'</a>':'<span class="bn off" aria-hidden="true"></span>')+'</div>';
     var band='<section class="dayband" style="--c:'+c+'"><div class="band">'+art(artKey(d))+'<p class="k">'+T.regions[d.region].name+'</p>'+
-      '<div class="row1"><span class="dt">'+md(d.date)+'</span><span class="wd">'+wd(d.date)+'</span>'+bnav+'</div><h2>'+d.title+'</h2>'+timesHTML(d,isToday)+'</div>'+
+      '<div class="row1"><span class="dt">'+md(d.date)+'</span><span class="wd">'+wd(d.date)+'</span></div><h2>'+d.title+'</h2>'+timesHTML(d,isToday)+'</div>'+
       '<div class="dayfoot">'+(d.alerts?'<div class="alerts">'+d.alerts.map(function(a){return '<span class="alert">'+a+'</span>';}).join("")+'</div>':"")+sunbar(d)+'</div></section>';
     var jump=jumps.length>1?'<div class="jump">'+jumps.map(function(j){return '<button type="button" data-jump="'+j[0]+'">'+j[1]+'</button>';}).join("")+'</div>':"";
-    var pager='<div class="pager">'+(prev?'<a href="#/day/'+key(prev.date)+'">‹ 前一天<b>'+md(prev.date)+'</b></a>':'<a class="off"></a>')+(next?'<a href="#/day/'+key(next.date)+'">後一天 ›<b>'+md(next.date)+'</b></a>':'<a class="off"></a>')+'</div>';
-    return head+rlineHTML(d.date)+'<main class="wrap">'+band+jump+todoHTML(d)+secs.join("")+pager+'</main>';
+    /* 底部換日列：‹ 前一天｜回今天或今天日期｜後一天 › */
+    var showT=inTrip&&d.date!==today;
+    var dnav='<nav class="dnav" aria-label="換日"><div class="wrap">'+
+      (prev?'<a class="dn-p" href="#/day/'+key(prev.date)+'" aria-label="前一天 '+md(prev.date)+'"><span class="dn-arr" aria-hidden="true">‹</span>'+md(prev.date)+'</a>':'<span class="dn-p" aria-hidden="true"></span>')+
+      (showT?'<a class="dn-c dn-t" href="#/day/'+key(today)+'" aria-label="回到今天 '+md(today)+'"><span>回今天</span></a>':'<span class="dn-c dn-now">'+mdw(d.date)+'</span>')+
+      (next?'<a class="dn-n" href="#/day/'+key(next.date)+'" aria-label="後一天 '+md(next.date)+'">'+md(next.date)+'<span class="dn-arr" aria-hidden="true">›</span></a>':'<span class="dn-n" aria-hidden="true"></span>')+
+      '</div></nav>';
+    return head+rlineHTML(d.date)+'<main class="wrap">'+band+jump+todoHTML(d)+secs.join("")+'</main>'+dnav;
   }
 
   /* ── 地區 ── */
@@ -1550,6 +1554,7 @@ details.learn>summary h2.sec{margin:12px 0}
     jumpFrom=null; keepBack=false; curTab=tab;
     view.innerHTML=html;
     document.body.classList.toggle("has-back", !!back);
+    document.body.classList.toggle("has-dnav", !!view.querySelector(".dnav"));
     if (back){ var hd=view.querySelector(".thead,.cover,.ihero,.ahero,.cband");
       var bb='<div class="backbar"><div class="wrap"><button type="button" class="back" data-back>← '+back.label+'</button></div></div>';
       if (hd) hd.insertAdjacentHTML("afterend", bb); else view.insertAdjacentHTML("afterbegin", bb); }
@@ -1639,12 +1644,12 @@ details.learn>summary h2.sec{margin:12px 0}
     if (bk&&back){ var o=back; back=null; restoreY=o.y; restoreOpen=o.open; if ((location.hash||"#/")===o.h) route(); else location.hash=o.h; return; }
     var a=e.target.closest('a[href^="#/"]');
     /* 同一分頁裡換日（‹ ›、回今天、路線線條、前一天／後一天）、換子分類：取代目前這一筆瀏覽紀錄 */
-    if (a&&(a.closest(".itabs,.cswitch")||(view.querySelector(".dayband")&&a.closest(".bnav,.rline,.pager")))){
+    if (a&&(a.closest(".itabs,.cswitch")||(view.querySelector(".dayband")&&a.closest(".dnav,.rline")))){
       e.preventDefault(); if (a.closest(".itabs,.cswitch")) keepBack=true;
       location.replace(a.getAttribute("href")); return; }
     if (a&&!a.closest(".nav")){
       if (a.closest(".itabs,.cswitch")) keepBack=true;
-      else if (!a.closest(".rline,.pager,.bnav")&&tabOf(a.getAttribute("href"))!==curTab)
+      else if (!a.closest(".rline,.dnav")&&tabOf(a.getAttribute("href"))!==curTab)
         jumpFrom={h:location.hash||"#/", y:Math.round(sheetY!=null?sheetY:window.scrollY), label:backLabel(), open:openState()};
     }
     var sp=e.target.closest("[data-poi],[data-bag],[data-tr],[data-stay]");
