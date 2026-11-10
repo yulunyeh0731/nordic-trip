@@ -546,6 +546,25 @@ details.topt>.topt-b{padding:0 10px 8px}
 .e-dr li{display:grid;grid-template-columns:3em minmax(0,1fr);gap:0 8px;padding:7px 6px;border-top:1px solid var(--line2);font-size:14px;line-height:1.45}
 .e-dr b{font-family:var(--serif);grid-row:span 2}
 .e-dr small{color:var(--ink2);font-size:12.5px}
+.e-dn{margin:6px 6px 2px;font-size:12.5px;color:var(--ink2)}
+.spn{margin:-2px 0 10px;font-size:13px;color:var(--ink2)}
+details.sp{border-top:1px solid var(--line2)}
+details.sp:first-child{border-top:0}
+details.sp>summary{display:flex;align-items:flex-start;gap:10px;padding:11px 14px;list-style:none;cursor:pointer}
+details.sp>summary::-webkit-details-marker{display:none}
+details.sp>.in{border-top:1px solid var(--line2);margin:0 14px;padding:4px 0 12px}
+.sp-h b em{font-style:normal;font-family:var(--serif);margin-right:6px}
+.sp-tn{font-style:normal;font-size:12px;font-weight:600;color:#fff;background:var(--aurora);border-radius:3px;padding:1px 6px;margin-right:6px;vertical-align:1px}
+.sp-h{flex:1;min-width:0;display:block}
+.sp-h small{display:block;font-size:12.5px;color:var(--ink2)}
+.sp-h b{display:block;font-weight:600;font-size:15.5px;line-height:1.4;margin:0 0 2px}
+.sp-h .sp-s{display:block;font-weight:400;font-size:14px;color:var(--ink);line-height:1.5}
+details.sp>summary .chev{margin-top:4px}
+.sp-l{list-style:none;margin:0;padding:0}
+.sp-l li{padding:9px 0;border-top:1px solid var(--line2);font-size:14.5px;line-height:1.55}
+.sp-l li:first-child{border-top:0}
+.sp-l li.sp-n{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center}
+.sp .acts.big{margin-top:6px}
 details.drv-i{border-top:1px solid var(--line2)}
 details.drv-i:first-child{border-top:0}
 details.drv-i>summary{display:flex;align-items:center;min-height:48px;padding:0 14px;font-weight:600;font-size:15px}
@@ -1610,7 +1629,7 @@ details.learn>summary h2.sec{margin:12px 0}
     m.stays.forEach(function(a){ var x=X(a.lng), y=Y(a.lat); g+='<circle class="e-stay" cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="8"/><text class="e-n" x="'+x.toFixed(1)+'" y="'+(y+3.6).toFixed(1)+'" text-anchor="middle">'+a.n+'</text>'; });
     var key=m.stays.map(function(a){ return '<span><i>'+a.n+'</i>'+a.t+'</span>'; }).join("");
     return '<h2 class="sec">E10 示意圖 <small>示意，不是實際道路</small></h2><div class="card e10"><svg viewBox="0 22 358 168" role="img" aria-label="羅弗敦 E10 公路示意圖，標出三間住處和 EVE 機場">'+g+'</svg>'+
-      '<div class="e-key">'+key+'</div><ul class="e-dr">'+m.drives.map(function(r){ return '<li><b>'+r[0]+'</b><span>'+r[1]+'</span><small>'+r[2]+'</small></li>'; }).join("")+'</ul></div>';
+      '<div class="e-key">'+key+'</div><ul class="e-dr">'+m.drives.map(function(r){ return '<li><b>'+r[0]+'</b><span>'+r[1]+'</span><small>'+r[2]+'</small></li>'; }).join("")+'</ul>'+(m.drivesNote?'<p class="e-dn">'+m.drivesNote+'</p>':"")+'</div>';
   }
 
   /* ── 極光 ── */
@@ -1651,7 +1670,7 @@ details.learn>summary h2.sec{margin:12px 0}
     return '<section class="ahero"><svg viewBox="0 0 400 84" preserveAspectRatio="none" aria-hidden="true">'+LINES+'</svg><div class="wrap"><h1>極光</h1><p>北極圈裡的 '+ds.length+' 個晚上（3/2～3/9）</p></div></section>'+
       '<main class="wrap">'+top+
       (A.steps?'<h2 class="sec">今晚判斷 <small>依序看三件事</small></h2>'+stepsHTML(A.steps):"")+
-      (showLof?(A.spots?'<h2 class="sec">羅弗敦觀測點 <small>3/5～3/9</small></h2>'+spotsHTML(A.spots)+'<ul class="plan">'+li(A.lofoten)+'</ul>':'<h2 class="sec">羅弗敦自己追 <small>3/5～3/9</small></h2><div class="card"><ul class="alist">'+li(A.lofoten)+'</ul></div>'):"")+
+      (showLof?(A.spots?'<h2 class="sec">羅弗敦觀測點 <small>3/5～3/9</small></h2>'+(A.spotsNote?'<p class="spn">'+A.spotsNote+'</p>':"")+spotsHTML(A.spots)+'<ul class="plan">'+li(A.lofoten)+'</ul>':'<h2 class="sec">羅弗敦自己追 <small>3/5～3/9</small></h2><div class="card"><ul class="alist">'+li(A.lofoten)+'</ul></div>'):"")+
       '<h2 class="sec">特羅姆瑟極光團</h2><div class="card"><ul class="alist">'+li(A.tour)+'</ul></div>'+
       '<details class="learn" id="learn"'+(inA?"":" open")+'><summary><h2 class="sec">行前了解</h2><span class="chev"></span></summary>'+learn+'</details></main>';
   }
@@ -1659,9 +1678,22 @@ details.learn>summary h2.sec{margin:12px 0}
     return '<ol class="steps">'+steps.map(function(x,i){
       return '<li class="card"><p class="st-h"><span>'+(i+1)+'</span>'+x.t+'</p><p class="st-d">'+x.d+'</p><div class="st-tools">'+x.tools.map(function(t){
         return t[1]?'<div class="tool">'+ext(t[1],t[0])+'<small>'+t[2]+'</small></div>':'<div class="tool nolink"><b>'+t[0]+'</b><small>'+t[2]+'</small></div>'; }).join("")+'</div></li>'; }).join("")+'</ol>'; }
+  /* 羅弗敦觀測點：依住處分組。旅途中今晚住的那組排最上面並展開，其他收起 */
   function spotsHTML(spots){
-    return '<div class="card">'+spots.map(function(x){
-      return '<div class="addr"><div><b>'+x.n+'</b><span>'+x.d+'車程待查。</span></div><div class="acts">'+ext(navURL(x),"導航")+'</div></div>'; }).join("")+'</div>'; }
+    var pois=(T.cities.lof&&T.cities.lof.pois)||[], tn=inTrip?staysOn(today).map(function(s){return s.id;}):[];
+    function poiBy(id){ return pois.filter(function(p){return p.id===id;})[0]; }
+    var gs=spots.map(function(g,i){ var s=g.stay&&stayById(g.stay);
+      return {g:g, s:s, from:s?s.from:"9999", tn:!!(s&&tn.indexOf(s.id)>=0), i:i}; });
+    gs.sort(function(a,b){ return (b.tn-a.tn)||(a.from<b.from?-1:a.from>b.from?1:a.i-b.i); });
+    return '<div class="card spg">'+gs.map(function(x){ var g=x.g, s=x.s, dl="";
+      if (s){ var last=add(s.from,s.nights-1); dl=md(s.from)+(s.nights>1?"～"+md(last):""); }
+      var items=g.items.map(function(it){
+        if (typeof it==="string") return '<li>'+it+'</li>';
+        var p=it.poi?poiBy(it.poi):null, url=p?navURL(p,p.local):navURL(null,it.q);
+        return '<li class="sp-n"><span>'+it.d+'</span><span class="acts">'+ext(url,"導航")+'</span></li>'; }).join("");
+      var nav=s?'<div class="acts big">'+ext(navURL(s,s.name+" "+s.address),"導航到住處")+'</div>':"";
+      return '<details class="sp"'+(x.tn?" open":"")+'><summary><span class="sp-h"><b>'+(x.tn?'<i class="sp-tn">今晚</i>':"")+(dl?'<em>'+dl+'</em>':"")+g.t+'</b>'+(g.sub?'<small>'+g.sub+'</small>':"")+'<span class="sp-s">'+g.sum+'</span></span><span class="chev"></span></summary>'+
+        '<div class="in"><ul class="sp-l">'+items+'</ul>'+nav+'</div></details>'; }).join("")+'</div>'; }
 
   /* ── 路由 ── */
   var cur="";

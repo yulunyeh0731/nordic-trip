@@ -85,7 +85,7 @@ window.TRIP = {
       address: "Sakrisøya 2, 8390 Reine", lat: 67.9409, lng: 13.1111,
       room: "海景傳統小屋，附陽台", kitchen: "簡易廚房（灶台、烤箱、冰箱）", breakfast: false, parking: "免費（不可預約）",
       phone: "+47 90 03 54 19", checkin: "15:00", checkout: "11:00",
-      note: "冬季入住時間和拿鑰匙方式待確認",
+      note: "冬季入住時間和拿鑰匙方式待確認。有住客說鑰匙是放在接待處旁的信箱（夏季的評價）。",
       cost: { cat: "住宿", cur: "NOK", amt: 6356.79, pay: "later", note: "房價 NOK 6,980 扣掉 Booking.com 折抵 623.21；住宿開的發票會顯示全額",
         rule: { type: "free", until: "2027-02-20T00:00", note: "入住 14 天前，確切時間看訂單頁；之後取消或未入住收全額" } } },
     { id: "lof3", loc: "在群島東北岸的 Laukvik", area: "羅弗敦", name: "Laukvik Suites", from: "2027-03-08", nights: 2, status: "booked", via: "Booking.com",
@@ -469,9 +469,10 @@ window.TRIP = {
               "steps": [
                 "EVE 機場取車後沿 E10 往西開。",
                 "途中在斯沃爾韋爾（Svolvær）採買，有 Kiwi、Rema 1000、Coop Mega，營業時間出發前再查。",
-                "過了 Svolvær 繼續往西到 Gimsøy。"
+                "過了 Svolvær 繼續往西到 Gimsøy。",
+                "沒買齊的話，同島的 Gimsøy Landhandel 雜貨店據說全年 24 小時營業（待確認）。"
               ],
-              "time": "車程待查（Svolvær 到 EVE 機場約 170 公里，Gimsøy 在 Svolvær 再往西）"
+              "time": "約 205～210 公里，好路況約 3 小時；下雪要多抓 1 小時以上"
             }
           ],
           "warn": "往 EVE 路上的 Raftsundet 橋、Gimsøy 的 Gimsøystraumen 橋，強風時會封橋，沒有替代道路。",
@@ -492,7 +493,7 @@ window.TRIP = {
         { t: "car", text: "EVE 機場取車（四驅、自排、雪胎），沿 E10 開到 Gimsøy 的 Lofoten Links Lodges", status: "pending", short: "EVE 機場租車" }
       ],
       notes: ["DHC-8 螺旋槳小飛機，置物櫃小，登機箱可能在登機門被收去託運。證件、貴重物品、行動電源放隨身小包"],
-      free: [{ when: "傍晚", text: "到住處時天色已暗，沿路先採買再入住（16:00 起）。小屋餐廳冬季關閉，晚餐用共用廚房自己煮", areas: ["west", "mid", "east"] }] },
+      free: [{ when: "傍晚", text: "13:00 左右取到車的話，大約 17:00～17:30 到住處，當天日落 17:22。在斯沃爾韋爾（Svolvær）採買要快，路上不要多停。小屋餐廳冬季關閉，晚餐用共用廚房自己煮（16:00 起入住）。", areas: ["west", "mid", "east"] }] },
 
     { date: "2027-03-06",
       transfers: [
@@ -508,10 +509,11 @@ window.TRIP = {
               "rec": true,
               "steps": [
                 "11:00 前退房，沿 E10 往西。",
+                "順路可去：Borg 的洛弗特維京博物館，就在 E10 旁。",
                 "途中在 Leknes 採買 3/7 週日的食物，Leknes 有 Coop Extra、Rema 1000 等。",
                 "加油在 Leknes 或雷訥（Reine）。"
               ],
-              "time": "車程待查"
+              "time": "約 103 公里，好路況約 1 小時 45 分"
             }
           ],
           "addr": [
@@ -522,7 +524,7 @@ window.TRIP = {
         }
       ],
       times: [{ at: "11:00", t: "前退房" }], title: "羅弗敦自駕，週六先採買", region: "lof", city: "lof",
-      free: [{ when: "全天", text: "11:00 前退房，往西開到薩克里索伊（Sakrisøy），15:00 起入住。週六：記得把 3/7 週日的食物先買好", areas: ["west", "mid", "east"] }] },
+      free: [{ when: "全天", text: "11:00 前退房，往西開到薩克里索伊（Sakrisøy），15:00 起入住。途中經過 Borg 的洛弗特維京博物館，有開的話可以順路進去（開放時間出發前查）。週六：記得在 Leknes 把 3/7 週日的食物先買好。", areas: ["west", "mid", "east"] }] },
 
     { date: "2027-03-07", title: "羅弗敦，週日店家少", region: "lof", city: "lof",
       free: [{ when: "全天", text: "週日大型超市不開。看雲量往晴的一側開，中段的烏塔克萊夫（Uttakleiv）、豪克蘭海灘（Haukland）可以停一停", areas: ["west", "mid", "east"] }] },
@@ -543,7 +545,7 @@ window.TRIP = {
                 "11:00 前退房，沿 E10 往東。",
                 "途中在斯沃爾韋爾（Svolvær）採買；Laukvik 的 Coop Marked 週一～五 10:00～18:00（資料年份不明）。"
               ],
-              "time": "車程待查"
+              "time": "約 154 公里，好路況約 2.5 小時"
             }
           ],
           "addr": [
@@ -555,7 +557,7 @@ window.TRIP = {
       ],
       times: [{ at: "11:00", t: "前退房" }], title: "羅弗敦，新月", city: "lof",
       alerts: ["新月，整趟最暗的一夜"], region: "lof",
-      free: [{ when: "全天", text: "11:00 前退房，今晚住東北岸的 Laukvik Suites（15:00～22:00 入住）。看天氣決定往西側或東側；晚上新月，挑晴的方向去北側海灘", areas: ["west", "mid", "east"] }] },
+      free: [{ when: "全天", text: "11:00 前退房，往東開到 Laukvik Suites（15:00～22:00 入住），約 154 公里，是羅弗敦開最久的一段，建議上午就出發、天黑前到。途中在斯沃爾韋爾（Svolvær）採買。晚上新月，天氣好的話在住處外面就能等極光。", areas: ["west", "mid", "east"] }] },
 
     { date: "2027-03-09", title: "羅弗敦最後一天", region: "lof", city: "lof",
       free: [{ when: "全天", text: "看天氣決定往哪邊走。隔天中午前要開回 EVE 機場還車。Laukvik 到 EVE 機場約 167 公里，正常路況 2.5～3 小時；3/10 計畫 08:00 出發。", areas: ["west", "mid", "east"] }] },
@@ -1058,7 +1060,8 @@ window.TRIP = {
         stays: [{ n: 1, stay: "lof1", lat: 68.3404, lng: 14.1285, t: "Lofoten Links 3/5" }, { n: 2, stay: "lof2", lat: 67.9409, lng: 13.1111, t: "Sakrisøy 3/6–3/8" }, { n: 3, stay: "lof3", lat: 68.387, lng: 14.412, t: "Laukvik 3/8–3/10" }],
         towns: [["Å", 67.879, 12.983], ["Leknes", 68.147, 13.611], ["Svolvær", 68.234, 14.568], ["Henningsvær", 68.155, 14.204], ["Uttakleiv", 68.214, 13.533]],
         supply: [["Svolvær", "超市・加油"], ["Leknes", "超市・加油"], ["Reine", "超市・加油"], ["Laukvik", "超市"]],
-        drives: [["3/5", "EVE 機場 → ① Lofoten Links", "車程待查"], ["3/6", "① → ② Sakrisøy", "車程待查"], ["3/8", "② → ③ Laukvik", "車程待查"], ["3/10", "③ Laukvik → EVE 機場", "約 167 公里，2.5～3 小時"]]
+        drives: [["3/5", "EVE 機場 → ① Lofoten Links", "約 205～210 公里，好路況約 3 小時"], ["3/6", "① → ② Sakrisøy", "約 103 公里，好路況約 1 小時 45 分"], ["3/8", "② → ③ Laukvik", "約 154 公里，好路況約 2.5 小時"], ["3/10", "③ Laukvik → EVE 機場", "約 167 公里，2.5～3 小時"]],
+        drivesNote: "都是不停車、好路況的時間。下雪要多抓 1 小時以上。"
       },
       drive: [
         { t: "取車時要確認", items: ["輪胎是冬季胎或釘胎。", "油車還是電動車（Yulun 沒開過電動車）。", "車上有沒有 AutoPASS：過路費之後從租車費扣，羅弗敦本身過路費很少。", "道路救援電話（在租車合約上，記到租車備忘）。", "繞車一圈拍照存證，記下油的種類。"] },
@@ -1071,9 +1074,10 @@ window.TRIP = {
       intro: "雪山直接從海裡拔起，一條 E10 公路串起整排島。",
       tips: [
         { i: "shop", t: "3/7 週日大型超市不開", d: "偏遠地區週日營業的店更少。3/6 週六先把 3/7 的食物買好。" },
-        { i: "clock", t: "冬天店家常不照公告開門", d: "有旅人說不一定照公告時間營業，想去的店前一天先查。" },
+        { i: "car", t: "暴風雪就不要開車", d: "下大雪、強風時待在住處。E10 曾因風暴封路，橋也會因強風封閉，沒有替代道路。只是下雨或陰天，可以去室內：洛弗特維京博物館（Borg）、卡伯爾沃格（Kabelvåg）的水族館、亨寧斯韋爾（Henningsvær）的 Galleri Lofoten，開放時間前一天查。" },
         { i: "car", t: "看雲量開車追晴天", d: "雲量預報哪邊晴就往哪邊開。" },
-        { i: "aurora", t: "北側海灘看極光", d: "烏塔克萊夫（Uttakleiv）、Eggum、Gimsøy 面向北方、光害少。" },
+        { i: "clock", t: "冬天店家常不照公告開門", d: "有旅人說不一定照公告時間營業，想去的店前一天先查。" },
+        { i: "aurora", t: "北側海灘看極光", d: "Vik、烏塔克萊夫（Uttakleiv）、Gimsøy 北岸、Skagsanden 面向北方、光害少。各住處怎麼看，見極光頁。" },
         { i: "food", t: "部分餐廳冬天休息，超市選擇也少", d: "晚餐多半要自己煮，經過大鎮時先採買。" },
         { i: "clock", t: "雷訥布林根（Reinebringen）步道冬天很危險", d: "不建議爬。" }
       ],
@@ -1093,10 +1097,18 @@ window.TRIP = {
         { id: "aa", area: "west", type: "food", why: "肉桂捲", when: ["day"], name: "Å 的老麵包店", local: "Å i Lofoten",
           line: "E10 終點的老麵包店，在地人說是這一帶最好吃的肉桂捲。",
           tip: "冬天營業日不固定，出發前查。", lat: 67.8790, lng: 12.9830 },
-        { id: "haukland", area: "mid", type: "sight", pri: "must", when: ["day", "night"], name: "豪克蘭海灘", local: "Haukland strand",
-          line: "白沙配雪山，晚上是看極光的經典地點。", lat: 68.1990, lng: 13.5520 },
+        { id: "skagsanden", area: "west", type: "sight", pri: "maybe", when: ["day", "night"], name: "Skagsanden 海灘", local: "Skagsanden, Flakstad",
+          line: "面向西北的大沙灘，從雷訥（Reine）往東約 25 分鐘，是離雷訥最近的開闊極光點。" },
+        { id: "haukland", area: "mid", type: "sight", pri: "must", when: ["day"], name: "豪克蘭海灘", local: "Haukland strand",
+          line: "白沙配雪山，白天最好看。面向西南，晚上要極光很強才看得到。", lat: 68.1990, lng: 13.5520 },
         { id: "uttakleiv", area: "mid", type: "sight", pri: "must", when: ["night"], name: "烏塔克萊夫海灘", local: "Uttakleiv",
-          line: "面向北方的海灘，光害少，極光倒映在潮池裡。", lat: 68.2140, lng: 13.5330 },
+          line: "西北到北方開闊、光害少，極光倒映在潮池裡。東邊被山擋住。", lat: 68.2140, lng: 13.5330 },
+        { id: "vik", area: "mid", type: "sight", pri: "maybe", when: ["night"], name: "Vik 海灘", local: "Vik strand",
+          line: "夾在豪克蘭和烏塔克萊夫中間，對北方最開闊，等極光先來這裡。" },
+        { id: "lofotr", area: "mid", type: "sight", pri: "maybe", when: ["day"], name: "洛弗特維京博物館", local: "Lofotr Vikingmuseum, Borg",
+          line: "重建的 83 公尺維京酋長長屋，就在 E10 旁，室內為主，天氣不好也能去。",
+          hours: "2026 年 11～12 月只開週三、週六 11:00～17:00；2027 年冬季時間出發前查。",
+          tip: "3/6 週六從 Gimsøy 開往 Sakrisøy 會經過。", lat: 68.2440, lng: 13.7566 },
         { id: "football", area: "east", type: "sight", pri: "maybe", when: ["day"], name: "亨寧斯韋爾足球場", local: "Henningsvær stadion",
           line: "建在岩石小島上的球場，經典照片是空拍，站在地面看不太出來。", lat: 68.1530, lng: 14.2070 },
         { id: "gallery", area: "east", type: "sight", pri: "must", when: ["day"], name: "羅弗敦美術館", local: "Galleri Lofoten",
@@ -1214,7 +1226,7 @@ window.TRIP = {
     ],
     lofoten: [
       "有車就是追光工具：看雲量往晴的一側移動。",
-      "北側海灘地平線開闊、光害少：烏塔克萊夫、Eggum、Gimsøy。",
+      "北側海灘地平線開闊、光害少：Vik、烏塔克萊夫（Uttakleiv）、Gimsøy 北岸、Skagsanden。",
       "村子裡的路燈會讓照片過曝，找村子邊緣暗一點的地方。"
     ],
     steps: [
@@ -1225,10 +1237,23 @@ window.TRIP = {
       { t: "現在有人看到了嗎？", d: "有人貼照片就代表出來了。",
         tools: [["Facebook 極光通報社團", "", "在 Facebook 搜尋特羅姆瑟、羅弗敦的極光通報社團，名稱出發前確認"], ["Hello Aurora app", "", "看附近使用者的回報"]] }
     ],
+    /* 羅弗敦觀測點，依住處分組：stay 住處 id（日期和導航從住處來）；沒有 stay 的是哪裡都能開過去的組。
+       items 是字串，或 { d 說明, poi 羅弗敦地點 id（用它的座標導航）, q 沒有座標時導航用的搜尋名稱 } */
+    spotsNote: "通常 20:00～21:00 之後才出現；到午夜還沒有，多半就不會有了。",
     spots: [
-      { n: "烏塔克萊夫海灘（Uttakleiv）", d: "面向北方、光害少。", lat: 68.214, lng: 13.533 },
-      { n: "豪克蘭海灘（Haukland）", d: "白沙配雪山。", lat: 68.199, lng: 13.552 },
-      { n: "Laukvik 住處前", d: "往西北是開闊海面，3/8～3/9 用。", lat: 68.3874, lng: 14.4121 }
+      { stay: "lof1", t: "Lofoten Links Lodges（Gimsøy 的 Hov）", sum: "出門就看，不用開車。",
+        items: ["小屋朝北，北邊沒有山、幾乎沒有光害。", "走到 Hov 海灘約 200 公尺。", "背景沒有山，照片比較單調。", "只住這一晚，陰天就等下一站。"] },
+      { stay: "lof2", t: "Sakrisøy Rorbuer", sum: "先在小屋外面看；想要開闊的北方，開 25 分鐘到 Skagsanden 海灘。",
+        items: ["這一帶很暗，有住客在小屋外就看到極光。",
+          { d: "哈姆諾伊（Hamnøy）橋：極光出現時擠滿腳架，往 Toppøy 走幾百公尺比較有空間。", poi: "hamnoy" },
+          "新月前後，對岸的山會被村子的燈照成橘色，只影響照片，不影響肉眼看。",
+          { d: "Skagsanden 海灘（Flakstad）：面向西北，往北都開闊。從雷訥（Reine）往東 26 公里、好路況約 25 分鐘。", q: "Skagsanden beach, Flakstad" }] },
+      { stay: "lof3", t: "Laukvik Suites", sum: "出門就看，往西北是開闊海面。",
+        items: ["白天先在住處附近找一個沒有路燈的位置。", "3/8 是新月，整趟最暗的一夜。"] },
+      { t: "中段海灘", sub: "從哪個住處都可以開過來追晴天", sum: "先到 Vik 海灘等，極光移動再換到隔壁海灘。",
+        items: [{ d: "Vik 海灘：對北方最開闊，適合先在這裡等。在豪克蘭和烏塔克萊夫中間。", q: "Vik beach, Vestvågøy" },
+          { d: "烏塔克萊夫海灘（Uttakleiv）：西北到北方開闊，東邊被山擋住。", poi: "uttakleiv" },
+          { d: "豪克蘭海灘（Haukland）：面向西南，北邊和東邊是山，極光很強、到頭頂時才適合。", poi: "haukland" }] }
     ],
     coming: []
   },
