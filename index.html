@@ -1372,8 +1372,8 @@ details.learn>summary h2.sec{margin:12px 0}
   function areaChips(cid, city, a, date){
     var list=city.pois.filter(function(p){return p.area===a.id;}), wd0=dow(date);
     return '<div class="carea"><b>'+a.name+'</b><span>'+a.line+'</span><div class="pcs">'+list.map(function(p){
-      var off=p.warn||(p.closed&&p.closed.indexOf(wd0)>-1);
-      return '<button type="button" class="pc'+(off?" off":"")+'" data-poi="'+cid+'|'+p.id+'|'+date+'" aria-haspopup="dialog"><i class="dt-'+p.type+'"></i>'+p.name+(off?'<span class="x">'+(p.warn||"今天休")+'</span>':"")+'</button>'; }).join("")+'</div></div>';
+      var off=p.shut||(p.closed&&p.closed.indexOf(wd0)>-1);
+      return '<button type="button" class="pc'+(off?" off":"")+'" data-poi="'+cid+'|'+p.id+'|'+date+'" aria-haspopup="dialog"><i class="dt-'+p.type+'"></i>'+p.name+(off?'<span class="x">'+(p.shut?p.warn||"沒開":"今天休")+'</span>':"")+'</button>'; }).join("")+'</div></div>';
   }
   function staySheet(id){ var s=stayById(id); if (!s) return null; return stayFull(s); }
   /* 地點半頁卡：類型、名稱、必去、時段、介紹、營業日、離今晚住處多遠、導航 */
@@ -1381,7 +1381,7 @@ details.learn>summary h2.sec{margin:12px 0}
     var q=ref.split("|"), cid=q[0], c=T.cities[cid], p=c&&c.pois.filter(function(x){return x.id===q[1];})[0], date=q[2]; if (!p) return null;
     var A=(c.areas||[]).filter(function(x){return x.id===p.area;})[0];
     var isT=inTrip&&date===today, dl=isT?"今天":mdw(date), key, cls="";
-    if (p.warn){ key=p.warn; cls="off"; }
+    if (p.shut){ key=p.warn||"沒開"; cls="off"; }
     else if (Array.isArray(p.closed)&&p.closed.indexOf(dow(date))>-1){ key=dl+"公休"; cls="off"; }
     else if (Array.isArray(p.closed)) key=dl+"有開"+(p.hours?"・"+p.hours:"");
     else { key=p.hours?p.hours:"營業日待確認"; cls="dim"; }
@@ -1391,10 +1391,12 @@ details.learn>summary h2.sec{margin:12px 0}
     var meta=[];
     if (p.pri) meta.push('<span class="sh-pri">'+(p.pri==="must"?"必去":"有空再去")+'</span>');
     if (p.when) meta.push("適合"+p.when.map(function(w){return {day:"白天",eve:"傍晚",night:"晚上"}[w];}).join("、"));
-    if (p.time) meta.push("約 "+p.time);
+    if (p.time) meta.push(/^\d/.test(p.time)?"約 "+p.time:p.time);
     var h='<div class="sh-l2">'+l2.join("")+'</div><div class="sh-l3">'+(meta.length?'<p class="sh-meta">'+meta.join('<span aria-hidden="true">・</span>')+'</p>':"")+
       '<p class="sh-p">'+p.line+(p.why?" "+p.why:"")+'</p>';
-    if (Array.isArray(p.closed)&&!p.warn) h+='<p class="sh-k">營業日</p>'+wkHTML(p,date);
+    if (p.warn&&!p.shut) h+='<p class="sh-p"><span class="closed">'+p.warn+'</span></p>';
+    if (Array.isArray(p.closed)&&!p.shut) h+='<p class="sh-k">營業日</p>'+wkHTML(p,date);
+    if (p.price) h+='<p class="sh-p">票價：'+p.price+'</p>';
     if (p.free) h+='<p class="sh-p muted">'+p.free+'</p>';
     if (p.tip) h+='<p class="tip" style="font-size:14px;color:var(--ink2);border-left:2px solid var(--line);padding-left:9px">'+p.tip+'</p>';
     h+='<a class="more" href="#/city/'+cid+'/area/'+p.area+'">看這一區全部 ›</a></div>';
@@ -1534,7 +1536,7 @@ details.learn>summary h2.sec{margin:12px 0}
         (on?'<svg class="ck" viewBox="0 0 24 24" aria-hidden="true">'+ICON.check+'</svg>':"")+'</a></li>'; }).join("")+'</ul>'}; }
   function cityStays(c){ return T.stays.filter(function(s){ return regionOn(s.from)===c.region; }); }
   function wkHTML(p, date){
-    if (!Array.isArray(p.closed)||p.warn) return "";
+    if (!Array.isArray(p.closed)||p.shut) return "";
     var cur=date?dow(date):null;
     return '<div class="wk" aria-label="營業日：'+(p.closed.length?p.closed.map(function(n){return "週"+WD[n];}).join("、")+"休":"每天開")+'">'+WK.map(function(n){
       var x=p.closed.indexOf(n)>-1;
@@ -1547,7 +1549,7 @@ details.learn>summary h2.sec{margin:12px 0}
     if (p.pri) meta.push(p.pri==="must"?"必去":"有空再去");
     if (p.why) meta.push(p.why);
     if (p.when) meta.push("適合"+p.when.map(function(w){return {day:"白天",eve:"傍晚",night:"晚上"}[w];}).join("、"));
-    if (p.time) meta.push("約 "+p.time);
+    if (p.time) meta.push(/^\d/.test(p.time)?"約 "+p.time:p.time);
     var info=[]; if (p.hours) info.push(p.hours); if (p.free) info.push(p.free);
     var dl="";
     if (dist) dl=ctx.froms.length===1?"離 "+dist.f.name+" 直線約 "+dist.k.toFixed(1)+" 公里":"離住處直線："+ctx.froms.map(function(f){ return f.name+" 約 "+km(f,p).toFixed(1)+" 公里"; }).join("、");
@@ -1555,7 +1557,7 @@ details.learn>summary h2.sec{margin:12px 0}
     return '<details class="poi" id="poi-'+p.id+'"'+(focusPoi===p.id?" open":"")+'><summary class="ph">'+sm+'</summary><div class="pb">'+
       '<p class="pl">'+p.line+(p.warn?' <span class="closed">'+p.warn+'</span>':"")+'</p>'+
       (meta.length?'<p class="meta">'+meta.join("・")+'</p>':"")+wkHTML(p,ctx.date)+
-      (info.length?'<p class="meta">'+info.join("；")+'</p>':"")+(dl?'<p class="meta">'+dl+'</p>':"")+
+      (info.length?'<p class="meta">'+info.join("；")+'</p>':"")+(p.price?'<p class="meta">票價：'+p.price+'</p>':"")+(dl?'<p class="meta">'+dl+'</p>':"")+
       (p.tip?'<p class="tip">'+p.tip+'</p>':"")+
       '<p class="loc"><span>'+(p.local||"")+'</span>'+ext(url,"地圖")+'</p></div></details>';
   }
@@ -1580,14 +1582,14 @@ details.learn>summary h2.sec{margin:12px 0}
       var froms=rs.filter(function(s){return s.lat;}).map(function(s){ return {lat:s.lat,lng:s.lng,name:s.short||s.name}; });
       var cd=cityCheckDate(id), ctx={date:cd, froms:froms, mapCity:c.mapCity, near:near};
       var opensToday={}; if (inTrip&&cityOn(today)===id){ var dd=dayOf(today); (dd.free||[]).forEach(function(f){ (f.areas||[]).forEach(function(a){ opensToday[a]=1; }); }); }
-      function vis(p){ if (filter!=="all"&&p.type!==filter) return false; if (openOnly&&cd&&(p.warn||(p.closed&&p.closed.indexOf(dow(cd))>-1))) return false; return true; }
+      function vis(p){ if (filter!=="all"&&p.type!==filter) return false; if (openOnly&&cd&&(p.shut||(p.closed&&p.closed.indexOf(dow(cd))>-1))) return false; return true; }
       var tdy=inTrip&&cd===today?"今天":md(cd);
       h+='<h2 class="sec">區域和地點</h2><div class="pf"><div class="seg" role="group" aria-label="排列方式">'+[[false,"依區域"],[true,"離住處近的"]].map(function(o){
           return '<button type="button" data-near="'+o[0]+'" aria-pressed="'+(near===o[0])+'">'+o[1]+'</button>'; }).join("")+'</div>'+
         '<button type="button" class="tgl" data-open aria-pressed="'+openOnly+'"><i></i>'+tdy+(tdy==="今天"?"":" ")+'有開的</button></div>'+
         '<div class="filter" role="group" aria-label="類型">'+[["all","全部"],["sight","景點"],["food","吃"],["cafe","咖啡"]].map(function(f){
           return '<button type="button" data-f="'+f[0]+'" aria-pressed="'+(filter===f[0])+'">'+f[1]+'</button>';}).join("")+'</div>';
-      if (openOnly&&cd){ var allOpen=c.pois.every(function(p){ return !(p.warn||(p.closed&&p.closed.indexOf(dow(cd))>-1)); });
+      if (openOnly&&cd){ var allOpen=c.pois.every(function(p){ return !(p.shut||(p.closed&&p.closed.indexOf(dow(cd))>-1)); });
         h+='<p class="muted pf-n">'+(allOpen?"這天都有開":"以 "+md(cd)+" "+wd(cd)+" 判斷，公休的先不列")+'</p>'; }
       if (near){
         var ps=c.pois.filter(vis).map(function(p){ return {p:p,k:froms.length&&p.lat?Math.min.apply(null,froms.map(function(f){return km(f,p);})):1e9}; }).sort(function(a,b){return a.k-b.k;});

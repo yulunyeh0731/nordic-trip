@@ -375,7 +375,7 @@ window.TRIP = {
               "steps": [
                 "紅色車身，13:00、13:40、14:10 發車（12:20 那班趕不上）。",
                 "約 20 分鐘到市區。",
-                "下車後怎麼到住處：待查（住處樓下有 33、34 號公車）。"
+                "下車後到住處：在市中心換 33 號公車（往 Sydspissen、Fagereng 方向）沿 Strandvegen 往南，住處樓下有站；行李多就直接搭計程車。"
               ],
               "time": "約 20 分鐘到市區",
               "cost": "大人單程每人 NOK 125（約 NT$444）；兩人合計 NOK 250（約 NT$888）",
@@ -442,7 +442,7 @@ window.TRIP = {
               "n": "機場巴士",
               "steps": [
                 "Polaria 09:10 或 Prostneset 09:07 上車，09:30 到機場。",
-                "從住處到 Polaria：待查。"
+                "從住處到 Polaria：樓下搭 34 號公車（往 Sentrum、UNN 方向），往市中心的路上會到；在哪一站下，上車前用 Google 地圖看。"
               ],
               "cost": "每人 NOK 125（約 NT$444）；兩人合計 NOK 250（約 NT$888）",
               "pay": "只能刷卡",
@@ -470,7 +470,7 @@ window.TRIP = {
                 "EVE 機場取車後沿 E10 往西開。",
                 "途中在斯沃爾韋爾（Svolvær）採買，有 Kiwi、Rema 1000、Coop Mega，營業時間出發前再查。",
                 "過了 Svolvær 繼續往西到 Gimsøy。",
-                "沒買齊的話，同島的 Gimsøy Landhandel 雜貨店據說全年 24 小時營業（待確認）。"
+                "沒買齊的話，同島的 Gimsøy Landhandel 雜貨店全年 24 小時營業，有雜貨和加油（兩個來源都這樣寫）。"
               ],
               "time": "約 205～210 公里，好路況約 3 小時；下雪要多抓 1 小時以上"
             }
@@ -509,11 +509,12 @@ window.TRIP = {
               "rec": true,
               "steps": [
                 "11:00 前退房，沿 E10 往西。",
-                "順路可去：Borg 的洛弗特維京博物館，就在 E10 旁。",
+                "想看羅弗敦美術館：先往東到亨寧斯韋爾（約 30 分鐘），11:00 開門。從亨寧斯韋爾到 Sakrisøy 約 116 公里、2 小時。",
+                "時間夠再去：Borg 的洛弗特維京博物館，就在 E10 旁。",
                 "途中在 Leknes 採買 3/7 週日的食物，Leknes 有 Coop Extra、Rema 1000 等。",
                 "加油在 Leknes 或雷訥（Reine）。"
               ],
-              "time": "約 103 公里，好路況約 1 小時 45 分"
+              "time": "直接開約 103 公里、1 小時 45 分；先繞亨寧斯韋爾的話，總共約 2.5 小時"
             }
           ],
           "addr": [
@@ -524,7 +525,7 @@ window.TRIP = {
         }
       ],
       times: [{ at: "11:00", t: "前退房" }], title: "羅弗敦自駕，週六先採買", region: "lof", city: "lof",
-      free: [{ when: "全天", text: "11:00 前退房，往西開到薩克里索伊（Sakrisøy），15:00 起入住。途中經過 Borg 的洛弗特維京博物館，有開的話可以順路進去（開放時間出發前查）。週六：記得在 Leknes 把 3/7 週日的食物先買好。", areas: ["west", "mid", "east"] }] },
+      free: [{ when: "全天", text: "11:00 前退房。想看羅弗敦美術館（Galleri Lofoten）的話只有今天：先往東開約 30 分鐘到亨寧斯韋爾（Henningsvær），美術館 11:00 開；看完再往西開到薩克里索伊（Sakrisøy），約 2 小時，15:00 起入住。途中經過 Borg 的洛弗特維京博物館，時間夠再進去。週六：記得在 Leknes 把 3/7 週日的食物先買好。兩個館 2027 年的開放時間出發前都要再查。", areas: ["west", "mid", "east"] }] },
 
     { date: "2027-03-07", title: "羅弗敦，週日店家少", region: "lof", city: "lof",
       free: [{ when: "全天", text: "週日大型超市不開。看雲量往晴的一側開，中段的烏塔克萊夫（Uttakleiv）、豪克蘭海灘（Haukland）可以停一停", areas: ["west", "mid", "east"] }] },
@@ -560,7 +561,7 @@ window.TRIP = {
       free: [{ when: "全天", text: "11:00 前退房，往東開到 Laukvik Suites（15:00～22:00 入住），約 154 公里，是羅弗敦開最久的一段，建議上午就出發、天黑前到。途中在斯沃爾韋爾（Svolvær）採買。晚上新月，天氣好的話在住處外面就能等極光。", areas: ["west", "mid", "east"] }] },
 
     { date: "2027-03-09", title: "羅弗敦最後一天", region: "lof", city: "lof",
-      free: [{ when: "全天", text: "看天氣決定往哪邊走。隔天中午前要開回 EVE 機場還車。Laukvik 到 EVE 機場約 167 公里，正常路況 2.5～3 小時；3/10 計畫 08:00 出發。", areas: ["west", "mid", "east"] }] },
+      free: [{ when: "全天", text: "看天氣決定往哪邊走。去亨寧斯韋爾（Henningsvær）可以逛村子、喝咖啡，但羅弗敦美術館週二多半沒開。隔天中午前要開回 EVE 機場還車：Laukvik 到 EVE 機場約 167 公里，正常路況 2.5～3 小時；3/10 計畫 08:00 出發。", areas: ["west", "mid", "east"] }] },
 
     { date: "2027-03-10",
       transfers: [
@@ -601,7 +602,7 @@ window.TRIP = {
               "n": "輕軌 Bybanen 1 號線",
               "rec": true,
               "steps": [
-                "上車前用 Skyss app 或月台售票機買票（app 名稱出發前確認），單程票效期 60 分鐘。",
+                "上車前用 Skyss app 或月台售票機買票（用新的 Skyss app；舊的 Skyss Billett 2026 年秋天停用），單程票效期 60 分鐘。",
                 "坐到終點 Byparken。",
                 "下車走約 3 分鐘到旅館。"
               ],
@@ -635,7 +636,7 @@ window.TRIP = {
           fare: "Smart", cost: { cat: "交通", cur: "NOK", amt: 2144, twd: 7621, pay: "paid", payDate: "2026-11-02", note: "含服務費", rule: { type: "none", note: "不可退款、不可改票" } } }
       ],
       notes: ["Embraer 190-E2 噴射機，中途停特隆赫姆時留在機上", "機場輕軌到市區終點站 Byparken 約 45 分鐘"],
-      free: [{ when: "晚上", text: "搭弗洛伊恩纜車（Fløibanen）上山看夜景，末班時間出發前查", areas: ["bryggen"] }] },
+      free: [{ when: "晚上", text: "搭弗洛伊恩纜車（Fløibanen）上山看夜景，纜車開到 24:00", areas: ["bryggen"] }] },
 
     { date: "2027-03-11",
       transfers: [
@@ -698,7 +699,7 @@ window.TRIP = {
               "pay": "Skyss app 或月台售票機"
             }
           ],
-          "warn": "Trip.com 建議起飛前 3 小時到機場（10:40），照原計畫只有約 2 小時。Wizz 託運櫃台關閉時間待查。",
+          "warn": "威茲航空的託運櫃台起飛前 2 小時才開、40 分鐘前關：11:40 開、13:00 關，登機門 13:10 關。照計畫 11:00 搭輕軌、約 11:45 到機場剛好；Trip.com 建議的 3 小時前到（10:40），櫃台還沒開。",
           "addr": [
             "stay:bgo",
             "bgo-air"
@@ -770,7 +771,7 @@ window.TRIP = {
               "steps": [
                 "走到格但斯克中央車站（Gdańsk Główny）約 4 分鐘。",
                 "火車 2.5～3 小時，票約 2/12 開賣，時間待補。",
-                "到華沙中央車站後，搭 175 號公車往 Piłsudski 廣場方向，沿新世界街（Nowy Świat）走，Smolna 附近的站名待查。"
+                "在中央車站前的 Dworzec Centralny 站搭 175 號公車，往 Pl. Piłsudskiego 方向，經 Centrum、Krucza，第 3 站 Foksal 下車，走到 Smolna 14。"
               ],
               "time": "火車 2.5～3 小時",
               "cost": "華沙市區 75 分鐘票每人 PLN 4.40（約 NT$37）；兩人合計 PLN 8.80（約 NT$75）；火車票待補"
@@ -819,7 +820,7 @@ window.TRIP = {
               "rec": true,
               "steps": [
                 "阿聯酋建議起飛前 3 小時到機場，建議 10:00 前出門（推估）。",
-                "175 號公車往機場方向，站名待查。"
+                "在新世界街（Nowy Świat）上的 Foksal 站搭 175 號公車往機場（Lotnisko Chopina）方向，從 Pl. Piłsudskiego 到機場全程約 33 分鐘。"
               ],
               "cost": "ZTM 75 分鐘票每人 PLN 4.40（約 NT$37）；兩人合計 PLN 8.80（約 NT$75）",
               "pay": "Jakdojade app 或售票機"
@@ -889,6 +890,8 @@ window.TRIP = {
      pri：must 必去、maybe 有空再去（景點用）；why：吃和咖啡的去的理由
      when：適合的時段 day 白天、eve 傍晚、night 晚上
      closed：公休的星期（0 週日、1 週一 … 6 週六），手冊會自動標出「當天公休」
+     hours 開放時間、price 門票（文字，只在地點卡顯示，不進費用頁）、free 免費時段、tip 補充
+     warn 紅字提醒（例如「施工中」）；shut: true 表示目前整個不開（例如整修），會標成沒開
      lat、lng：大約座標，用來算離住處的直線距離 */
   cities: {
     waw: {
@@ -899,7 +902,7 @@ window.TRIP = {
         { i: "shop", t: "週日超市大多不開", d: "Żabka 便利商店、藥局、麵包店、加油站例外，Żabka 多數開到 23:00。餐廳照常營業。" },
         { i: "museum", t: "週一多數博物館休館", d: "王宮、國家博物館、華沙博物館都休。兩人一起在華沙的是 3/14 週日和 3/15 週一，想一起看的展館排 3/14。" },
         { i: "food", t: "家常菜去牛奶吧", d: "老城廣場旁的餐廳偏貴、偏觀光。" },
-        { i: "museum", t: "戰爭主題的博物館要有中文導覽", d: "華沙起義博物館、POLIN 猶太歷史博物館評價很高；有沒有中文語音導覽待查。" }
+        { i: "museum", t: "戰爭主題的博物館要有中文導覽", d: "POLIN 猶太歷史博物館有中文語音導覽。華沙起義博物館的語音導覽沒有中文（官網列的是英、法、德、西、義、希臘、斯洛伐克、烏克蘭 8 種）。" }
       ],
       areas: [
         { id: "powisle", name: "新世界街一帶", line: "走路就到新世界街和王宮之路；3/14～3/16 住的 Chopin Boutique 在這區。" },
@@ -910,23 +913,26 @@ window.TRIP = {
       pois: [
         { id: "stor", pri: "must", why: "手沖", when: ["day"], area: "powisle", type: "cafe", name: "STOR Cafe", local: "ul. Tamka 33", q: "STOR Cafe Tamka 33 Warszawa",
           line: "華沙最早的精品咖啡店之一，招牌是手沖。",
+          hours: "平日 08:30–21:00，週末 09:30–21:00",
           tip: "華沙在地雜誌說，很多人覺得這是全波蘭最好的咖啡館。", lat: 52.2368, lng: 21.0228 },
         { id: "natmuseum", pri: "must", when: ["day"], area: "powisle", type: "sight", name: "國家博物館", local: "Muzeum Narodowe w Warszawie",
           line: "波蘭最大的美術館，有歐洲古典繪畫和波蘭歷史畫。", time: "2～3 小時",
-          hours: "週二～週日 10:00–18:00，週五到 20:00", closed: [1], free: "週二常設展免費",
+          hours: "週二～週四、週六、週日 10:00–18:00，週五到 20:00", closed: [1], price: "PLN 30（約 NT$255）", free: "週二常設展免費",
           tip: "馬泰伊科的巨幅歷史畫《格倫瓦德之戰》在這裡。", lat: 52.2316, lng: 21.0249 },
         { id: "chopin", pri: "maybe", area: "powisle", type: "sight", name: "蕭邦博物館", local: "Muzeum Fryderyka Chopina",
-          line: "全世界最多蕭邦手稿和遺物的博物館。", closed: [1], warn: "整修中",
-          hours: "2026 年整修休館，預計 2027 年重開，日期未定",
-          tip: "重開後採整點入場。出發前要確認 2 月底、3 月中有沒有開。", lat: 52.2366, lng: 21.0216 },
+          line: "全世界最多蕭邦手稿和遺物的博物館。", closed: [1], warn: "整修中", shut: true,
+          hours: "2026 整年整修休館。館方目標是 2027 年 1 月重開，實際日期出發前確認。平常是週二～週日 11:00–18:00",
+          tip: "重開後採整點入場。", lat: 52.2366, lng: 21.0216 },
         { id: "wedel", why: "熱巧克力", when: ["day", "eve"], area: "powisle", type: "cafe", name: "Wedel 巧克力咖啡館", local: "Pijalnia Czekolady E. Wedel, Szpitalna 8",
-          line: "1894 年開的熱巧克力老店，波蘭的國民巧克力品牌。", lat: 52.2344, lng: 21.0125 },
+          line: "1894 年開的熱巧克力老店，波蘭的國民巧克力品牌。",
+          hours: "週一～週六約 09:00–22:00，週日到 20:00 或 21:00（各網站略有出入）", lat: 52.2344, lng: 21.0125 },
         { id: "bristol", why: "百年老店", when: ["day"], area: "old", type: "cafe", name: "Cafe Bristol", local: "Krakowskie Przedmieście 42/44", q: "Cafe Bristol Warszawa",
           line: "1901 年開業的維也納風老咖啡館，在布里斯托飯店一樓。",
+          hours: "每天 09:00–18:00（有的網站寫到 19:00）",
           tip: "招牌是維也納咖啡和奶油千層派（kremówka）。", lat: 52.2428, lng: 21.0153 },
         { id: "castle", pri: "must", when: ["day"], area: "old", type: "sight", name: "華沙王宮", local: "Zamek Królewski",
           line: "歷代國王的居所，有林布蘭的兩幅肖像，還有貝洛托畫的 23 幅華沙城景。", time: "2～3 小時",
-          hours: "週二～週日開放；冬季時間各來源不一，週日較早關", closed: [1], free: "週三常設展免費",
+          hours: "週二～週日 10:00–17:00，最後入場 16:00", closed: [1], price: "PLN 60（約 NT$510）", free: "週三免費（走特別路線，部分展廳不開）",
           tip: "旅人說重建得非常逼真，慢慢看可以待到三小時。", lat: 52.2479, lng: 21.0143 },
         { id: "oldsquare", pri: "must", when: ["day", "eve"], area: "old", type: "sight", name: "老城廣場與甕城", local: "Rynek Starego Miasta, Barbakan",
           line: "彩色山牆房屋圍成的廣場，中央是華沙美人魚像；往北走到紅磚甕城和新城。", time: "1 小時",
@@ -936,35 +942,51 @@ window.TRIP = {
           hours: "週二～週五 9:00–17:00（週四到 19:00），週末 11:00–18:00", closed: [1], free: "週四免費",
           lat: 52.2502, lng: 21.0121 },
         { id: "concert", pri: "maybe", when: ["eve"], area: "old", type: "sight", name: "蕭邦音樂會", local: "Muzeum Archidiecezji Warszawskiej",
-          line: "總教區博物館每天 18:30 的蕭邦音樂會，票價 45 茲羅提（約台幣 383）。",
+          line: "在總教區博物館聽蕭邦音樂會。",
+          hours: "每天 18:30 開演", price: "PLN 45（約 NT$383）",
           tip: "蕭邦博物館整修期間的替代方案。這是 2026 年的資訊。", lat: 52.2486, lng: 21.0131 },
         { id: "zapiecek", why: "坐下來吃", when: ["day", "eve"], area: "old", type: "food", name: "Zapiecek 波蘭餃子", local: "Freta 18 等多家分店", q: "Zapiecek Freta 18 Warszawa",
           line: "連鎖波蘭餃子店，老城就有好幾家，台灣交換生最常推薦。",
+          hours: "每天 11:00–23:00",
           tip: "台灣學生推薦點煎的，不要點水煮的；觀光客多時要排隊。人均約台幣 400～500（2023 年記錄）。",
           lat: 52.2522, lng: 21.0093 },
         { id: "barbakan", why: "平價快吃", when: ["day"], area: "old", type: "food", name: "Pod Barbakanem 牛奶吧", local: "Bar Mleczny Pod Barbakanem",
           line: "老城牆邊的牛奶吧，用很低的價格吃家常波蘭菜。",
-          tip: "牛奶吧是自己到櫃台點餐的平價食堂，吃完就走。", lat: 52.2509, lng: 21.0102 },
+          hours: "平日 08:00–16:00，週末 09:00–17:00",
+          tip: "下午就關門，只能當早餐或午餐。牛奶吧是自己到櫃台點餐的平價食堂，吃完就走。", lat: 52.2509, lng: 21.0102 },
+        { id: "holycross", pri: "must", when: ["day"], area: "old", type: "sight", name: "聖十字教堂", local: "Kościół Świętego Krzyża, Krakowskie Przedmieście 3", q: "Kościół Świętego Krzyża Krakowskie Przedmieście 3 Warszawa",
+          line: "蕭邦的心臟封在教堂左側第二根柱子裡。就在王宮之路上，走路會經過。", time: "15 分鐘",
+          hours: "免費。開放時間各來源不一（有的寫每天 6:00–20:00），遇到彌撒不方便參觀" },
+        { id: "polin", pri: "maybe", when: ["day"], area: "old", type: "sight", name: "POLIN 波蘭猶太人歷史博物館", local: "Muzeum POLIN, Anielewicza 6", q: "POLIN Museum Anielewicza 6 Warszawa",
+          line: "講波蘭猶太人一千年的歷史，華沙評價最高的博物館之一。在老城西北邊。", time: "2.5 小時",
+          hours: "週一、週三～週五、週日 10:00–18:00，週六到 20:00；常設展最後入場是關門前 2 小時", closed: [2], price: "PLN 45（約 NT$383）", free: "週四免費",
+          tip: "有中文語音導覽。週一有開，王宮和國家博物館休館的 3/15 可以來。" },
         { id: "pkin", pri: "must", when: ["day", "eve"], area: "centrum", type: "sight", name: "科學文化宮觀景台", local: "Pałac Kultury i Nauki，30 樓", q: "Pałac Kultury i Nauki Warszawa",
           line: "在 30 樓看整個華沙，也是少數週一有開的景點。", time: "1 小時",
-          hours: "每天 10:00–20:00（節日和活動時會變）",
+          hours: "每天 10:00–20:00", price: "PLN 25（約 NT$213）",
           tip: "台灣交換生推薦離開華沙前上去道別；也有旅人覺得景色不錯但稱不上震撼。", lat: 52.2318, lng: 21.0060 },
         { id: "prasowy", why: "平價快吃", when: ["day"], area: "centrum", type: "food", name: "Bar Prasowy 牛奶吧", local: "Marszałkowska 10/16", q: "Bar Prasowy Marszałkowska 10/16 Warszawa",
           line: "1954 年開業的牛奶吧，裝潢翻新過，在地人和留學生最常推薦。",
+          hours: "每天 08:00–20:00（有的網站寫週末 10:00–17:00）",
           tip: "平日中午 12～14 點人最多。", lat: 52.2189, lng: 21.0181 },
         { id: "koszyki", why: "美食街", when: ["day", "eve"], area: "centrum", type: "food", name: "Hala Koszyki 美食市場", local: "Koszykowa 63", q: "Hala Koszyki Warszawa",
           line: "老市場改建的美食街，約 30 個攤位，波蘭菜到亞洲菜都有。",
+          hours: "每天 08:00–01:00；各攤位時間不同，中午過後選擇最多",
           tip: "兩人想吃的不一樣時很方便。", lat: 52.2226, lng: 21.0126 },
-        { id: "ministerstwo", why: "手沖", when: ["day"], area: "centrum", type: "cafe", name: "Ministerstwo Kawy", local: "Marszałkowska", q: "Ministerstwo Kawy Warszawa",
-          line: "華沙知名的精品咖啡店，用瑞典烘豆商 Koppi 的豆子。", lat: 52.2237, lng: 21.0161 },
+        { id: "ministerstwo", why: "手沖", when: ["day"], area: "centrum", type: "cafe", name: "Ministerstwo Kawy", local: "Marszałkowska 27/35", q: "Ministerstwo Kawy Warszawa",
+          line: "華沙知名的精品咖啡店，用瑞典烘豆商 Koppi 的豆子。",
+          hours: "平日 08:00–20:00，週末 09:00–20:00（2023 年資料）", lat: 52.2237, lng: 21.0161 },
         { id: "charlotte", why: "早餐", when: ["day"], area: "centrum", type: "cafe", name: "Charlotte", local: "Plac Zbawiciela", q: "Charlotte Plac Zbawiciela Warszawa",
-          line: "法式麵包店咖啡館，在市中心最熱鬧的廣場上，適合吃早餐。", lat: 52.2196, lng: 21.0172 },
+          line: "法式麵包店咖啡館，在市中心最熱鬧的廣場上，適合吃早餐。",
+          hours: "週一～週四 07:00–24:00，週五到 01:00，週六 09:00–01:00，週日 09:00–22:00", lat: 52.2196, lng: 21.0172 },
         { id: "palaceisle", pri: "must", when: ["day"], area: "lazienki", type: "sight", name: "水上宮殿", local: "Pałac na Wyspie",
           line: "湖中的古典主義宮殿，裡面是末代國王收藏的畫廊。", time: "公園加宮殿 1.5～2 小時",
-          hours: "內部開放時間出發前查官網",
+          hours: "10～4 月：週二、週三 9:00–16:00，週四～週六 10:00–18:00，週日 10:00–16:00", closed: [1], price: "PLN 60（約 NT$510），含公園裡其他幾棟建築",
+          free: "週五免費（只開一樓）；公園每天 6:00–21:00 免費",
           tip: "冬天最好下午 2 點前開始逛，天黑得早，地面也可能濕滑泥濘。", lat: 52.2150, lng: 21.0353 },
         { id: "chopinmon", pri: "maybe", when: ["day"], area: "lazienki", type: "sight", name: "蕭邦紀念碑", local: "Pomnik Fryderyka Chopina",
           line: "公園入口附近的蕭邦雕像。",
+          hours: "戶外，公園每天 6:00–21:00",
           tip: "戶外蕭邦音樂會只在 5 月中到 9 月底的週末，3 月沒有。", lat: 52.2146, lng: 21.0270 }
       ]
     },
@@ -986,33 +1008,53 @@ window.TRIP = {
       pois: [
         { id: "opera", area: "bjorvika", type: "sight", pri: "must", when: ["day", "eve"], name: "奧斯陸歌劇院", local: "Operahuset",
           line: "白色大理石斜坡直接通到屋頂，走上去就能看港灣和城市，免費。", time: "1 小時",
+          hours: "屋頂斜坡戶外，隨時可上；積雪結冰時可能封閉。大廳週一～週六 11:00–16:00、週日 12:00–16:00（2026 年資料）",
           tip: "冬天斜坡可能結冰濕滑，穿止滑的鞋。", lat: 59.9075, lng: 10.7531 },
         { id: "munch", area: "bjorvika", type: "sight", pri: "must", when: ["day", "eve"], name: "孟克美術館", local: "MUNCH",
           line: "收藏孟克作品最多的美術館，《吶喊》的其中一個版本一直有展出。", time: "2～3 小時",
-          hours: "週一、二、日 10:00–18:00，週三到週六開到 21:00",
+          hours: "週一、二、日 10:00–18:00，週三到週六開到 21:00", price: "NOK 220（約 NT$781，2026 年 5 月）；週三 18:00 後免費",
           tip: "少數週一有開的大型美術館，適合排在 3/1。", lat: 59.9062, lng: 10.7556 },
         { id: "nasjonal", area: "sentrum", type: "sight", pri: "must", when: ["day"], name: "國家博物館", local: "Nasjonalmuseet",
           line: "北歐最大的美術館，從古典大師到孟克都有，也有一版《吶喊》。", time: "至少 2 小時",
           hours: "週二、三 10:00–20:00，週四到週日 10:00–17:00", closed: [1],
           tip: "頂樓有可以看峽灣的咖啡廳。", lat: 59.9115, lng: 10.7289 },
         { id: "akershus", area: "sentrum", type: "sight", pri: "maybe", when: ["day"], name: "阿克斯胡斯城堡", local: "Akershus festning",
-          line: "峽灣邊的中世紀要塞，城牆上散步可以看港口，戶外區域免費。", time: "1 小時", lat: 59.9070, lng: 10.7360 },
+          line: "峽灣邊的中世紀要塞，城牆上散步可以看港口，戶外區域免費。", time: "1 小時",
+          hours: "園區每天 06:00–21:00，免費；10～4 月側門 18:00 就關，晚一點走正門", lat: 59.9070, lng: 10.7360 },
         { id: "fuglen", area: "sentrum", type: "cafe", why: "老店", when: ["day", "eve"], name: "Fuglen", local: "Universitetsgata 2",
           line: "1963 年開業的咖啡館，滿屋北歐中世紀家具，白天咖啡、晚上變酒吧。",
-          tip: "有旅人說這是整趟旅行喝過最好的濃縮咖啡。", lat: 59.9145, lng: 10.7350 },
+          hours: "週一、週二 07:30–20:00，週三、週四到 24:00，週五到 01:00，週六 09:00–01:00，週日 09:00–20:00",
+          tip: "有旅人說這是整趟旅行喝過最好的濃縮咖啡。19:00 後不做義式咖啡，晚上是調酒吧。", lat: 59.9145, lng: 10.7350 },
         { id: "wendelboe", area: "lokka", type: "cafe", why: "手沖", when: ["day"], name: "Tim Wendelboe", local: "Grüners gate 1",
           line: "2004 年世界咖啡師冠軍開的店，北歐淺焙的代表，咖啡迷必朝聖。",
-          tip: "店內座位少、氣氛安靜，像在吧台看職人工作。", lat: 59.9233, lng: 10.7559 },
-        { id: "supreme", area: "lokka", type: "cafe", why: "手沖", when: ["day"], name: "Supreme Roastworks", local: "Thorvald Meyers gate 18A",
-          line: "離 Tim Wendelboe 幾個路口，品質不相上下，氣氛比較熱鬧，在地常客多。", lat: 59.9228, lng: 10.7590 },
+          hours: "平日 08:30–18:00，週末 11:00–17:00（2026 年資料）",
+          tip: "只有 16 個座位、只賣咖啡。平日剛開門到 10 點比較不用排隊。", lat: 59.9233, lng: 10.7559 },
+        { id: "supreme", area: "lokka", type: "cafe", why: "手沖", when: ["day"], name: "Supreme Roastworks", local: "Thorvald Meyers gate 18",
+          line: "離 Tim Wendelboe 幾個路口，品質不相上下，氣氛比較熱鬧，在地常客多。",
+          hours: "平日約 08:00–17:00，週末 10:00–17:00（各網站差一小時）", lat: 59.9228, lng: 10.7590 },
         { id: "vigeland", area: "frogner", type: "sight", pri: "maybe", when: ["day"], name: "維格蘭雕塑公園", local: "Vigelandsparken",
           line: "雕塑家維格蘭一人創作的兩百多座雕像，中央是人體疊成的巨石柱，免費。", time: "1～1.5 小時",
-          tip: "冬天雪景裡的雕像別有味道，但天黑得早，要白天去。", lat: 59.9270, lng: 10.7008 }
+          hours: "戶外，隨時可去",
+          tip: "冬天雪景裡的雕像別有味道，但天黑得早，要白天去。", lat: 59.9270, lng: 10.7008 },
+        { id: "deichman", area: "bjorvika", type: "sight", pri: "maybe", when: ["day", "eve"], name: "迪希曼圖書館", local: "Deichman Bjørvika, Anne-Cath. Vestlys plass 1", q: "Deichman Bjørvika Oslo",
+          line: "2020 年開幕的市立總圖書館，在中央車站和歌劇院中間，六層樓可以自由進去逛，免費。", time: "30～45 分鐘",
+          hours: "平日 08:00–22:00，週末 10:00–18:00" },
+        { id: "radhus", area: "sentrum", type: "sight", pri: "maybe", when: ["day"], name: "奧斯陸市政廳", local: "Oslo rådhus", q: "Oslo rådhus",
+          line: "諾貝爾和平獎頒獎的地方，大廳四面是巨幅壁畫，免費。", time: "30 分鐘",
+          hours: "每天 09:00–16:00，要過安檢" },
+        { id: "mathallen", area: "lokka", type: "food", why: "美食街", when: ["day", "eve"], name: "Mathallen 美食市場", local: "Mathallen Oslo, Vulkan", q: "Mathallen Oslo",
+          line: "Grünerløkka 旁的室內美食市場，海鮮、起司、各國小吃都有。",
+          hours: "週二～週六 10:00–20:00，週日 11:00–18:00", closed: [1],
+          tip: "3/1 週一沒開。2/28 週日開到 18:00。" },
+        { id: "fiskeriet", area: "sentrum", type: "food", why: "坐下來吃", when: ["day", "eve"], name: "Fiskeriet Youngstorget", local: "Youngstorget 2B", q: "Fiskeriet Youngstorget Oslo",
+          line: "魚店兼海鮮小館，招牌是奶油魚湯和炸魚薯條。",
+          hours: "週一～週五 11:00–22:00，週六、週日 12:00–22:00",
+          tip: "台灣旅人評價兩極：很多人推魚湯，也有人覺得偏鹹、有腥味。魚湯約 NOK 175（約 NT$621，2018 年的價格，現在應該更貴）。用餐時段常客滿。" }
       ]
     },
     tos: {
       name: "特羅姆瑟", region: "tos",
-      transit: [{ n: "市區公車", d: "用 Svipper app 買票。住處樓下有 33、34 號公車，到市中心約 5～10 分鐘，走路約 15 分鐘。" }, { n: "機場巴士 Airport Express", d: "大人單程 NOK 125（約 NT$444）、來回 NOK 200（約 NT$710），只能刷卡。" }, { n: "計程車", d: "Tromsø Taxi 03011、Din Taxi 02045。" }], ref: "tos", mapCity: "Tromsø",
+      transit: [{ n: "市區公車", d: "用 Svipper app 買票。住處樓下有 33、34 號公車，到市中心約 5～10 分鐘，走路約 15 分鐘。" }, { n: "33、34 號公車", d: "住處樓下的 33、34 號是同一條環狀線的兩個方向：34 號往北進市中心，33 號從市中心往南回住處，再往南是 Telegrafbukta、Sydspissen。" }, { n: "機場巴士 Airport Express", d: "大人單程 NOK 125（約 NT$444）、來回 NOK 200（約 NT$710），只能刷卡。" }, { n: "計程車", d: "Tromsø Taxi 03011、Din Taxi 02045。" }], ref: "tos", mapCity: "Tromsø",
       intro: "北極圈裡生活機能最好的城市，市中心在島上，走路就能逛完。",
       tips: [
         { i: "sun", t: "白天短，戶外行程排中午前後", d: "晚上留給極光團。" },
@@ -1029,24 +1071,48 @@ window.TRIP = {
       pois: [
         { id: "polaria", area: "centre", type: "sight", pri: "maybe", when: ["day"], name: "Polaria 北極水族館", local: "Polaria",
           line: "像傾倒冰塊的建築，主角是海豹，每天有固定的餵食和訓練時段。", time: "1～2 小時",
-          tip: "台灣交換生說館不大，但海豹訓練很可愛。", lat: 69.6427, lng: 18.9476 },
+          hours: "每天 10:00–17:00；海豹餵食 10:30、12:30、15:30",
+          tip: "2025 年擴建完成。評價兩極，有人覺得館小、票價偏高；海豹訓練普遍好評。", lat: 69.6427, lng: 18.9476 },
         { id: "polarmuseum", area: "centre", type: "sight", pri: "maybe", when: ["day"], name: "極地博物館", local: "Polarmuseet",
-          line: "19 世紀木造倉庫裡，講阿蒙森等極地探險家和早期北極狩獵。", time: "1 小時", lat: 69.6517, lng: 18.9606 },
+          line: "19 世紀木造倉庫裡，講阿蒙森等極地探險家和早期北極狩獵。", time: "1 小時",
+          hours: "冬季每天 11:00–17:00", lat: 69.6517, lng: 18.9606 },
         { id: "domkirke", area: "centre", type: "sight", pri: "maybe", when: ["day", "eve"], name: "特羅姆瑟大教堂", local: "Tromsø domkirke",
-          line: "市中心的新哥德式木造教堂，雪地裡很上相。", lat: 69.6489, lng: 18.9555 },
+          line: "市中心的新哥德式木造教堂，雪地裡很上相。",
+          hours: "內部只在週二、週五 12:00–16:00 開放，免費",
+          tip: "3/2 是週二，下午可以進去。", lat: 69.6489, lng: 18.9555 },
         { id: "riso", area: "centre", type: "cafe", why: "手沖", when: ["day"], name: "Risø 咖啡", local: "Strandgata 32",
           line: "旅人和咖啡迷公認特羅姆瑟最好的咖啡，肉桂捲也很有名。",
-          tip: "肉桂捲常常中午前就賣完；週日公休。", lat: 69.6491, lng: 18.9575 },
-        { id: "kaffebonna", area: "centre", type: "cafe", why: "在地老店", when: ["day"], name: "Kaffebønna", local: "Stortorget",
-          line: "在地老牌咖啡店，自家烘焙的麵包甜點多，招牌是卡士達椰子麵包 skolebrød。", lat: 69.6487, lng: 18.9563 },
-        { id: "raketten", area: "centre", type: "food", why: "邊走邊吃", when: ["day", "eve"], name: "Raketten 熱狗亭", local: "Raketten Bar & Pølse",
-          line: "港邊的小圓亭，招牌是馴鹿肉熱狗，配熱紅酒。", lat: 69.6493, lng: 18.9566 },
+          hours: "週一～週四 08:00–16:00，週五 08:00–17:00，週六 09:00–17:00", closed: [0],
+          tip: "肉桂捲常常中午前就賣完。這趟在特羅姆瑟的三天都是 16:00 關門。", lat: 69.6491, lng: 18.9575 },
+        { id: "kaffebonna", area: "centre", type: "cafe", why: "在地老店", when: ["day"], name: "Kaffebønna", local: "Stortorget 3",
+          line: "在地老牌咖啡店，自家烘焙的麵包甜點多，招牌是卡士達椰子麵包 skolebrød。",
+          hours: "平日 07:30–18:00，週六 09:00–18:00，週日 10:00–18:00", lat: 69.6487, lng: 18.9563 },
+        { id: "raketten", area: "centre", type: "food", why: "邊走邊吃", when: ["day", "eve"], name: "Raketten 熱狗亭", local: "Raketten Bar & Pølse, Storgata 94B",
+          line: "港邊的小圓亭，招牌是馴鹿肉熱狗，配熱紅酒。",
+          hours: "冬季每天約 11:00–21:00（有的網站寫 12:00 開）", lat: 69.6493, lng: 18.9566 },
+        { id: "tosbib", area: "centre", type: "sight", pri: "maybe", when: ["day"], name: "特羅姆瑟圖書館", local: "Tromsø bibliotek, Grønnegata 94", q: "Tromsø bibliotek Grønnegata 94",
+          line: "弧形屋頂配整面玻璃的市立圖書館，屋頂原本是電影院的。免費，適合天氣不好時進去坐。", time: "20～45 分鐘",
+          hours: "週一～週四 09:00–19:00，週五 09:00–16:00，週六 11:00–15:30" },
+        { id: "telegrafbukta", area: "centre", type: "sight", pri: "maybe", when: ["day", "night"], name: "Telegrafbukta 海灘", local: "Telegrafbukta", q: "Telegrafbukta Tromsø",
+          line: "島南端的海灘，光害比市中心少，是不出城看極光的地點。在住處更南邊。",
+          tip: "33 號公車（從市中心往南的方向）有 Telegrafbukta 站。" },
+        { id: "dragoy", area: "centre", type: "food", why: "坐下來吃", when: ["day"], name: "Dragøy 魚市小館", local: "Dragøy, Kystens Mathus, Stortorget 1", q: "Dragøy Kystens Mathus Tromsø",
+          line: "港邊魚市場裡的午餐店，現點現做的魚和海鮮，價位中等。",
+          hours: "週一～週五 10:00–17:00，週六 11:00–17:00", closed: [0],
+          tip: "只做白天，不收訂位。" },
+        { id: "fiskekompaniet", area: "centre", type: "food", why: "想吃一頓好的", when: ["day", "eve"], name: "Fiskekompaniet", local: "Killengreens gate", q: "Fiskekompaniet Tromsø",
+          line: "特羅姆瑟最有名的海鮮餐廳，在港邊，台灣和香港旅人幾乎都會提到。",
+          hours: "午餐 11:30–14:00，晚餐 17:00–22:00", closed: [0],
+          tip: "每人約 NOK 600～1,000 以上（約 NT$2,130～3,550），要先訂位。" },
         { id: "cathedral", area: "tromsdalen", type: "sight", pri: "must", when: ["day", "eve"], name: "北極大教堂", local: "Ishavskatedralen",
           line: "1965 年的白色三角形教堂，背面有整面彩繪玻璃。", time: "1 小時",
-          tip: "常因婚禮、喪禮或音樂會不開放內部，看外觀就很值得。", lat: 69.6481, lng: 18.9876 },
-        { id: "fjellheisen", area: "tromsdalen", type: "sight", pri: "must", when: ["day", "eve"], name: "特羅姆瑟纜車", local: "Fjellheisen",
+          hours: "每週不同，多半下午才開（約 13:00–17:00），官網每週更新", price: "NOK 90（約 NT$320）",
+          tip: "常因婚禮、喪禮或音樂會不開放內部，看外觀就很值得。從市中心搭 20、24、26、28 號公車，或走過大橋約 20 分鐘。", lat: 69.6481, lng: 18.9876 },
+        { id: "fjellheisen", area: "tromsdalen", type: "sight", pri: "maybe", when: ["day", "eve"], name: "特羅姆瑟纜車", local: "Fjellheisen", warn: "施工中",
           line: "上 421 公尺的觀景台，看整個市區、跨海大橋和峽灣。", time: "1～2 小時",
-          tip: "強風會停駛、山頂冷很多；天氣好時傍晚上去看日落轉夜景。", lat: 69.6406, lng: 18.9965 }
+          hours: "每天 09:00–24:00，強風停駛",
+          price: "來回票各來源不一：NOK 495（約 NT$1,757，2026 年 8 月）到 NOK 645（約 NT$2,290，2026 年 10 月），買票前看官網",
+          tip: "山上山下兩站從 2025 年 7 月起施工，山頂的戶外觀景平台封閉、只有臨時咖啡店。冬天傍晚下山排隊可能超過 1 小時。天氣好再上去；搭 26 號公車到山下站。", lat: 69.6406, lng: 18.9965 }
       ]
     },
     lof: {
@@ -1074,7 +1140,7 @@ window.TRIP = {
       intro: "雪山直接從海裡拔起，一條 E10 公路串起整排島。",
       tips: [
         { i: "shop", t: "3/7 週日大型超市不開", d: "偏遠地區週日營業的店更少。3/6 週六先把 3/7 的食物買好。" },
-        { i: "car", t: "暴風雪就不要開車", d: "下大雪、強風時待在住處。E10 曾因風暴封路，橋也會因強風封閉，沒有替代道路。只是下雨或陰天，可以去室內：洛弗特維京博物館（Borg）、卡伯爾沃格（Kabelvåg）的水族館、亨寧斯韋爾（Henningsvær）的 Galleri Lofoten，開放時間前一天查。" },
+        { i: "car", t: "暴風雪就不要開車", d: "下大雪、強風時待在住處。E10 曾因風暴封路，橋也會因強風封閉，沒有替代道路。只是下雨或陰天，可以去室內：洛弗特維京博物館（Borg）、卡伯爾沃格（Kabelvåg）的水族館，開放時間前一天查。亨寧斯韋爾的羅弗敦美術館冬天只開週三～週六。" },
         { i: "car", t: "看雲量開車追晴天", d: "雲量預報哪邊晴就往哪邊開。" },
         { i: "clock", t: "冬天店家常不照公告開門", d: "有旅人說不一定照公告時間營業，想去的店前一天先查。" },
         { i: "aurora", t: "北側海灘看極光", d: "Vik、烏塔克萊夫（Uttakleiv）、Gimsøy 北岸、Skagsanden 面向北方、光害少。各住處怎麼看，見極光頁。" },
@@ -1093,29 +1159,35 @@ window.TRIP = {
           line: "橋上看紅色漁屋配背後的尖山，攝影師最愛的機位。", lat: 67.9470, lng: 13.1330 },
         { id: "anita", area: "west", type: "food", why: "外帶", when: ["day"], name: "Anita's 海鮮", local: "Anita's Sjømat, Sakrisøy",
           line: "黃色小村裡的海鮮小店，招牌是鱈魚漢堡，也賣在地起司、巧克力和魚乾。",
-          tip: "冬天營業時間不穩定，出發前查。", lat: 67.9420, lng: 13.1150 },
-        { id: "aa", area: "west", type: "food", why: "肉桂捲", when: ["day"], name: "Å 的老麵包店", local: "Å i Lofoten",
-          line: "E10 終點的老麵包店，在地人說是這一帶最好吃的肉桂捲。",
-          tip: "冬天營業日不固定，出發前查。", lat: 67.8790, lng: 12.9830 },
+          hours: "冬季大約 12:00–16:00，依月份變動，前一天看店家 Facebook",
+          tip: "就在 Sakrisøy 住處旁邊。", lat: 67.9420, lng: 13.1150 },
         { id: "skagsanden", area: "west", type: "sight", pri: "maybe", when: ["day", "night"], name: "Skagsanden 海灘", local: "Skagsanden, Flakstad",
-          line: "面向西北的大沙灘，從雷訥（Reine）往東約 25 分鐘，是離雷訥最近的開闊極光點。" },
+          line: "面向西北的大沙灘，從雷訥（Reine）往東約 25 分鐘，是離雷訥最近的開闊極光點。", lat: 68.1046, lng: 13.2899 },
+        { id: "nusfjord", area: "west", type: "sight", pri: "maybe", when: ["day"], name: "努斯峽灣漁村", local: "Nusfjord",
+          line: "保存最完整的老漁村之一，從 E10 岔進去的小峽灣裡。",
+          price: "入村費 NOK 100～150（約 NT$355～533），各來源不一",
+          tip: "3 月也收入村費（有旅人 3 月去照樣要付）。評價兩極，有人覺得是觀光陷阱。住在村裡、在村裡餐廳用餐可免入村費。", lat: 68.0353, lng: 13.3475 },
         { id: "haukland", area: "mid", type: "sight", pri: "must", when: ["day"], name: "豪克蘭海灘", local: "Haukland strand",
           line: "白沙配雪山，白天最好看。面向西南，晚上要極光很強才看得到。", lat: 68.1990, lng: 13.5520 },
         { id: "uttakleiv", area: "mid", type: "sight", pri: "must", when: ["night"], name: "烏塔克萊夫海灘", local: "Uttakleiv",
           line: "西北到北方開闊、光害少，極光倒映在潮池裡。東邊被山擋住。", lat: 68.2140, lng: 13.5330 },
         { id: "vik", area: "mid", type: "sight", pri: "maybe", when: ["night"], name: "Vik 海灘", local: "Vik strand",
-          line: "夾在豪克蘭和烏塔克萊夫中間，對北方最開闊，等極光先來這裡。" },
+          line: "夾在豪克蘭和烏塔克萊夫中間，對北方最開闊，等極光先來這裡。",
+          tip: "導航到豪克蘭海灘，沿同一條路再往前開一小段就是 Vik，再過去是往烏塔克萊夫的隧道。" },
         { id: "lofotr", area: "mid", type: "sight", pri: "maybe", when: ["day"], name: "洛弗特維京博物館", local: "Lofotr Vikingmuseum, Borg",
           line: "重建的 83 公尺維京酋長長屋，就在 E10 旁，室內為主，天氣不好也能去。",
           hours: "2026 年 11～12 月只開週三、週六 11:00～17:00；2027 年冬季時間出發前查。",
-          tip: "3/6 週六從 Gimsøy 開往 Sakrisøy 會經過。", lat: 68.2440, lng: 13.7566 },
+          tip: "3/6 週六會經過。和羅弗敦美術館都只有這天對得上，兩個都去會很趕，先去美術館。", lat: 68.2440, lng: 13.7566 },
         { id: "football", area: "east", type: "sight", pri: "maybe", when: ["day"], name: "亨寧斯韋爾足球場", local: "Henningsvær stadion",
           line: "建在岩石小島上的球場，經典照片是空拍，站在地面看不太出來。", lat: 68.1530, lng: 14.2070 },
         { id: "gallery", area: "east", type: "sight", pri: "must", when: ["day"], name: "羅弗敦美術館", local: "Galleri Lofoten",
           line: "收藏挪威最大的北挪威 19 世紀繪畫之一，還有雕塑和當代作品。",
-          hours: "冬季開放時間出發前查", lat: 68.1550, lng: 14.2040 },
+          hours: "2026 年：2/22～3/31 只開週三～週六 11:00–16:00。2027 年的時間出發前查", closed: [0, 1, 2],
+          price: "NOK 110（約 NT$391）", warn: "這趟只有 3/6 能去",
+          tip: "照 2026 年的時間，在羅弗敦的五天只有 3/5（五）和 3/6（六）有開，3/5 到的時候已經關門。", lat: 68.1550, lng: 14.2040 },
         { id: "lysstoperi", area: "east", type: "cafe", why: "氣氛", when: ["day"], name: "Henningsvær 蠟燭坊咖啡", local: "Henningsvær Lysstøperi og Cafe",
-          line: "村子中心的小咖啡館，兼賣手工蠟燭和手作，熱巧克力很受歡迎。", lat: 68.1550, lng: 14.2050 }
+          line: "村子中心的小咖啡館，兼賣手工蠟燭和手作，熱巧克力很受歡迎。",
+          hours: "冬季各來源不一，多半 10:00 或 12:00 開、16:00 關，可能有公休日，前一天查", lat: 68.1550, lng: 14.2050 }
       ]
     },
     bgo: {
@@ -1132,13 +1204,25 @@ window.TRIP = {
         { id: "bryggen", area: "bryggen", type: "sight", pri: "must", when: ["day", "eve"], name: "布呂根", local: "Bryggen",
           line: "漢薩同盟時期的木造商館，世界遺產；鑽進後巷看木板走道和老倉庫。", time: "1 小時", lat: 60.3975, lng: 5.3245 },
         { id: "floyen", area: "bryggen", type: "sight", pri: "must", when: ["day", "eve"], name: "弗洛伊恩纜車", local: "Fløibanen",
-          line: "上山看整個港灣，晚上夜景很美。", time: "1～1.5 小時", lat: 60.3964, lng: 5.3285 },
+          line: "上山看整個港灣，晚上夜景很美。", time: "1～1.5 小時",
+          hours: "平日 07:30–24:00，週末 08:00–24:00（2026 年資料）", price: "來回 NOK 150（約 NT$533，2027 年 1～3 月票價）", lat: 60.3964, lng: 5.3285 },
         { id: "fishmarket", area: "bryggen", type: "food", why: "坐下來吃", when: ["day"], name: "魚市場", local: "Fisketorget",
-          line: "港邊吃海鮮，價格偏高但是卑爾根經典。", lat: 60.3948, lng: 5.3253 },
+          line: "冬天只有室內的玻璃屋市場有開，戶外攤位 5～9 月才有。價格比市區餐廳貴約兩成，吃氣氛。",
+          hours: "室內市場週一～週六 09:00–21:30，週日 10:00–21:30（2025 年遊記引用官網）", lat: 60.3948, lng: 5.3253 },
         { id: "kaffemisjonen", area: "bryggen", type: "cafe", why: "手沖", when: ["day"], name: "Kaffemisjonen", local: "Øvre Korskirkeallmenning 5",
-          line: "纜車站旁的精品咖啡店，在地人常推薦的卑爾根最好咖啡之一。", lat: 60.3956, lng: 5.3270 },
-        { id: "dlk", area: "bryggen", type: "cafe", why: "老店", when: ["day"], name: "Det Lille Kaffekompaniet", local: "Nedre Fjellsmug 2",
-          line: "1996 年開業，卑爾根最小也最老的精品咖啡店，在纜車站附近的小巷裡。", lat: 60.3963, lng: 5.3281 }
+          line: "纜車站旁的精品咖啡店，在地人常推薦的卑爾根最好咖啡之一。",
+          hours: "平日 08:00–18:00，週末 10:00–18:00", lat: 60.3956, lng: 5.3270 },
+        { id: "dlk", area: "bryggen", type: "cafe", why: "老店", when: ["day"], name: "Det Lille Kaffekompaniet", local: "Nedre Fjellsmauet 2",
+          line: "1996 年開業，卑爾根最小也最老的精品咖啡店，在纜車站附近的小巷裡。",
+          hours: "每天約 10:00–18:00（有的網站寫 11:00 開）", lat: 60.3963, lng: 5.3281 },
+        { id: "hagelin", area: "bryggen", type: "food", why: "平價快吃", when: ["day"], name: "Søstrene Hagelin 魚湯店", local: "Strandkaien 3", q: "Søstrene Hagelin Strandkaien 3 Bergen",
+          line: "1929 年開的魚店，賣魚湯和魚餅，離魚市場走路 1 分鐘，在地人也會來外帶。",
+          hours: "週一～週四 10:00–19:00，週五 10:00–18:00，週六 10:00–17:00", closed: [0],
+          tip: "3/10 到卑爾根已經傍晚，19:00 關門可能趕不上；3/12 週五上午 10:00 開，去機場前可以吃。" },
+        { id: "trekroneren", area: "bryggen", type: "food", why: "邊走邊吃", when: ["day", "eve"], name: "Trekroneren 熱狗亭", local: "Kong Oscars gate 1", q: "Trekroneren Kong Oscars gate 1 Bergen",
+          line: "卑爾根最有名的熱狗攤，招牌是馴鹿肉熱狗，配越橘醬和炸洋蔥。",
+          hours: "11:00 開到深夜",
+          tip: "馴鹿熱狗約 NOK 90（約 NT$320，2026 年遊記）。" }
       ]
     },
     gdn: {
@@ -1147,9 +1231,10 @@ window.TRIP = {
       intro: "波羅的海邊的漢薩港口古城，冬天安靜又有氣氛。",
       tips: [
         { i: "food", t: "長街一帶的牛奶吧和餃子店", d: "便宜好吃，在地人和學生常去，午餐和傍晚要排隊。" },
-        { i: "museum", t: "聖母聖殿鐘樓淡季可能不開", d: "有旅人說淡季不開放登頂，出發前查。" },
+        { i: "museum", t: "聖母聖殿鐘樓 3 月不開", d: "鐘樓只在 3/25～11/30 開放。" },
         { i: "museum", t: "3/12、3/13 博物館和城堡都有開", d: "3/12 週五、3/13 週六。" },
-        { i: "rain", t: "海邊冬天風很大", d: "去索波特棧橋要穿防風外套。" }
+        { i: "rain", t: "海邊冬天風很大", d: "去索波特棧橋要穿防風外套。" },
+        { i: "museum", t: "團結工會中心沒有中文導覽", d: "歐洲團結工會中心（ECS）評價很高，門票含語音導覽，但沒有中文（有英文），展場文字是波蘭文和英文。離老城走路約 20 分鐘。" }
       ],
       areas: [
         { id: "main", name: "主城區：長街與長市場", line: "從金門到綠門的皇家之路，彩色山牆房屋和海神噴泉。" },
@@ -1159,32 +1244,46 @@ window.TRIP = {
       pois: [
         { id: "longmarket", area: "main", type: "sight", pri: "must", when: ["day", "eve"], name: "長街與長市場", local: "Długa, Długi Targ",
           line: "兩旁是彩色山牆商人房屋，中間是海神噴泉，格但斯克最經典的畫面。", time: "1 小時", lat: 54.3486, lng: 18.6533 },
+        { id: "amber", area: "main", type: "sight", pri: "maybe", when: ["day"], name: "琥珀博物館", local: "Muzeum Bursztynu, Wielkie Młyny 16", q: "Muzeum Bursztynu Wielkie Młyny 16 Gdańsk",
+          line: "在中世紀的大磨坊裡，看包著昆蟲的琥珀和琥珀工藝。台灣旅人常推薦。", time: "1.5～2 小時",
+          hours: "週二～週日 10:00–18:00，週一 12:00–18:00（各網站寫法不一，去之前查）", price: "PLN 37（約 NT$315）", free: "週一免費",
+          tip: "2021 年搬到現在的大磨坊（Wielki Młyn）。舊文章寫的監獄塔是舊址。" },
         { id: "mariacki", area: "main", type: "sight", pri: "must", when: ["day"], name: "聖母聖殿", local: "Bazylika Mariacka",
           line: "世界最大的磚造教堂之一，內部高大明亮。", time: "1 小時",
-          tip: "鐘樓有 400 多階，淡季可能不開放。", lat: 54.3497, lng: 18.6532 },
+          hours: "週一～週六 08:30–17:30，週日 11:00–12:00、13:00–17:30（2025 年遊記），教堂免費",
+          tip: "教堂裡有 1464 年的天文鐘。鐘樓只在 3/25～11/30 開放，這趟上不去。", lat: 54.3497, lng: 18.6532 },
         { id: "mariacka", area: "main", type: "sight", pri: "maybe", when: ["day", "eve"], name: "瑪麗亞街", local: "ulica Mariacka",
           line: "石階門廊和琥珀小店林立的窄街，從聖母聖殿走到河邊。", lat: 54.3502, lng: 18.6550 },
-        { id: "gdnmuseum", area: "main", type: "sight", pri: "must", when: ["day"], name: "國家博物館（格但斯克）", local: "Muzeum Narodowe w Gdańsku",
+        { id: "gdnmuseum", area: "main", type: "sight", pri: "must", when: ["day"], name: "國家博物館（格但斯克）", local: "Muzeum Narodowe w Gdańsku, Oddział Sztuki Dawnej, Toruńska 1", warn: "先確認畫回來了沒",
           line: "收藏漢斯・梅姆林的祭壇畫《最後的審判》，喜歡古典繪畫一定要去。",
-          hours: "開放時間出發前查", lat: 54.3436, lng: 18.6560 },
-        { id: "neptun", area: "main", type: "food", why: "平價快吃", when: ["day"], name: "Neptun 牛奶吧", local: "Bar Mleczny Neptun, Długa",
+          hours: "週二～週日 10:00–17:00，最後入場 16:30", closed: [1], price: "PLN 25（約 NT$213）", free: "週二免費",
+          tip: "梅姆林的《最後的審判》2025 年 2 月起送去檢修，不在展場。館方說 2026 年底重新展出，也有資料寫到 2027 年 3 月。出發前確認，畫還沒回來就不用特地去。", lat: 54.3436, lng: 18.6560 },
+        { id: "neptun", area: "main", type: "food", why: "平價快吃", when: ["day"], name: "Neptun 牛奶吧", local: "Bar Mleczny Neptun, Długa 33/34",
           line: "長街上最有名的牛奶吧，兩道菜不到 25 茲羅提（約台幣 213）。",
-          tip: "14:00 前去選擇最多，之後份量會變少。", lat: 54.3487, lng: 18.6510 },
+          hours: "淡季平日 07:30–19:00，週末 10:00–18:00",
+          tip: "14:00 前去選擇最多，之後份量會變少。有網站寫只收現金，帶一點茲羅提。", lat: 54.3487, lng: 18.6510 },
         { id: "mandu", area: "main", type: "food", why: "坐下來吃", when: ["day", "eve"], name: "Mandu 波蘭餃子", local: "Pierogarnia Mandu, Elżbietańska 4/8",
-          line: "常被選為格但斯克最好吃的餃子店，在火車站附近。", lat: 54.3555, lng: 18.6458 },
+          line: "常被選為格但斯克最好吃的餃子店，在火車站附近。",
+          hours: "每天 11:00–22:00", lat: 54.3555, lng: 18.6458 },
         { id: "pyra", area: "main", type: "food", why: "平價快吃", when: ["day", "eve"], name: "Pyra Bar 烤馬鈴薯", local: "Pyra Bar",
-          line: "各式配料的烤馬鈴薯，一盤不到 40 茲羅提（約台幣 340）。", lat: 54.3505, lng: 18.6518 },
+          line: "各式配料的烤馬鈴薯，一盤不到 40 茲羅提（約台幣 340）。",
+          hours: "週日～週四 11:00–21:00，週五、週六到 22:00", lat: 54.3505, lng: 18.6518 },
         { id: "drukarnia", area: "main", type: "cafe", why: "氣氛", when: ["day", "eve"], name: "Drukarnia Café", local: "Mariacka 36",
-          line: "瑪麗亞街上的咖啡館，旅遊作家常推薦。", lat: 54.3501, lng: 18.6560 },
+          line: "瑪麗亞街上的咖啡館，旅遊作家常推薦。",
+          hours: "每天 09:00–21:00，週五、週六到 22:00", lat: 54.3501, lng: 18.6560 },
         { id: "zuraw", area: "river", type: "sight", pri: "must", when: ["day", "eve"], name: "中世紀起重機", local: "Żuraw",
-          line: "河邊的木造起重機塔樓，格但斯克的地標。", lat: 54.3507, lng: 18.6574 },
+          line: "河邊的木造起重機塔樓，格但斯克的地標。",
+          hours: "外觀隨時可看。內部展覽 4～10 月才開，冬天不開（只有一個來源）", lat: 54.3507, lng: 18.6574 },
         { id: "stagiewna", area: "river", type: "food", why: "平價快吃", when: ["day"], name: "Stągiewna 牛奶吧", local: "Bar Mleczny Stągiewna, Stągiewna 15",
-          line: "老城和穀倉島之間的牛奶吧，一整餐不到 25 茲羅提。", lat: 54.3475, lng: 18.6585 },
+          line: "老城和穀倉島之間的牛奶吧，一整餐不到 25 茲羅提。",
+          hours: "09:00–18:00", lat: 54.3475, lng: 18.6585 },
         { id: "malborkpoi", area: "trips", type: "sight", pri: "must", when: ["day"], name: "馬爾堡城堡", local: "Zamek w Malborku",
-          line: "世界最大的紅磚城堡，條頓騎士團總部，世界遺產。從格但斯克搭火車約 30～40 分鐘。", time: "半天",
-          hours: "冬季開放時間出發前查", tip: "室內展區多，冬天去也不怕冷。", lat: 54.0397, lng: 19.0277 },
+          line: "世界最大的紅磚城堡，條頓騎士團總部，世界遺產。從格但斯克搭火車約 25～35 分鐘，大約每小時一班。", time: "完整路線約 3.5 小時，加來回車程要大半天",
+          hours: "冬季（10 月～4 月底）週二～週日 09:00–15:00，最晚約 13:00 入場；週一只開外圍路線", closed: [1], price: "完整路線 PLN 80（約 NT$680），含語音導覽",
+          tip: "語音導覽沒有中文，有英文。城堡沒有暖氣，室內也冷，穿暖。3/13 是週六，有開。", lat: 54.0397, lng: 19.0277 },
         { id: "sopotpoi", area: "trips", type: "sight", pri: "maybe", when: ["day"], name: "索波特海上棧橋", local: "Molo w Sopocie",
           line: "歐洲最長的木造海上棧橋，從格但斯克搭通勤火車約 20～30 分鐘。", time: "半天",
+          hours: "全天開放。4/10～9/30 才收門票，3 月免費（2026 年的規定）",
           tip: "冬天的波羅的海是灰藍色的，適合排半天輕鬆逛。", lat: 54.4466, lng: 18.5700 }
       ]
     }
@@ -1247,11 +1346,11 @@ window.TRIP = {
         items: ["這一帶很暗，有住客在小屋外就看到極光。",
           { d: "哈姆諾伊（Hamnøy）橋：極光出現時擠滿腳架，往 Toppøy 走幾百公尺比較有空間。", poi: "hamnoy" },
           "新月前後，對岸的山會被村子的燈照成橘色，只影響照片，不影響肉眼看。",
-          { d: "Skagsanden 海灘（Flakstad）：面向西北，往北都開闊。從雷訥（Reine）往東 26 公里、好路況約 25 分鐘。", q: "Skagsanden beach, Flakstad" }] },
+          { d: "Skagsanden 海灘（Flakstad）：面向西北，往北都開闊。從雷訥（Reine）往東 26 公里、好路況約 25 分鐘。", poi: "skagsanden" }] },
       { stay: "lof3", t: "Laukvik Suites", sum: "出門就看，往西北是開闊海面。",
         items: ["白天先在住處附近找一個沒有路燈的位置。", "3/8 是新月，整趟最暗的一夜。"] },
       { t: "中段海灘", sub: "從哪個住處都可以開過來追晴天", sum: "先到 Vik 海灘等，極光移動再換到隔壁海灘。",
-        items: [{ d: "Vik 海灘：對北方最開闊，適合先在這裡等。在豪克蘭和烏塔克萊夫中間。", q: "Vik beach, Vestvågøy" },
+        items: [{ d: "Vik 海灘：對北方最開闊，適合先在這裡等。在豪克蘭和烏塔克萊夫中間。導航到豪克蘭海灘，沿同一條路再往前開一小段就是 Vik，再過去是往烏塔克萊夫的隧道。", q: "Vik beach, Vestvågøy" },
           { d: "烏塔克萊夫海灘（Uttakleiv）：西北到北方開闊，東邊被山擋住。", poi: "uttakleiv" },
           { d: "豪克蘭海灘（Haukland）：面向西南，北邊和東邊是山，極光很強、到頭頂時才適合。", poi: "haukland" }] }
     ],
@@ -1272,7 +1371,7 @@ window.TRIP = {
     { id: "sakrisoy-checkin", text: "向 Sakrisøy Rorbuer 確認冬季入住時間、怎麼拿鑰匙" },
     { id: "pkp", due: "2027-02-12", dueApprox: true, text: "買格但斯克 → 華沙火車票", sub: "出發前約 30 天開賣" },
     { id: "entry", due: "2027-01-25", text: "查入境規定最新公告", sub: "歐盟 EES、ETIAS 上路時程" },
-    { id: "hours", due: "2027-01-25", text: "確認景點營業時間", sub: "出發前一個月，包括蕭邦博物館有沒有重開" },
+    { id: "hours", due: "2027-01-25", text: "確認景點營業時間", sub: "出發前一個月。重點：蕭邦博物館有沒有重開、格但斯克《最後的審判》回來了沒、羅弗敦美術館和洛弗特維京博物館 2027 年冬季哪幾天開、特羅姆瑟纜車票價。" },
     { id: "offline", due: "2027-02-11", text: "手冊加到主畫面、測試離線", sub: "出發前兩週。備忘要在主畫面打開的手冊裡打，清除瀏覽器資料會一起消失" },
     { id: "sjoparken-bath", due: "2027-02-25", text: "跟 May 確認能不能接受 Sjøparken 和房東共用浴室", sub: "不行的話 2/25 15:00（當地時間）前取消" },
     { id: "chopin-reply", text: "等 Chopin Boutique 回信，確認飯店收到訂單" },
