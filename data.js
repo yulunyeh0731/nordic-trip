@@ -19,16 +19,21 @@
      room 房型、phone 電話、getThere 怎麼去、access 入住方式（自助入住、鑰匙盒等），不知道就不寫
    days.times 重要時間點（色帶「接下來」用）：[{ at "HH:MM"（不知道寫「待補」）, t 說明, who, est: true 推估的時間，畫面寫「建議」 }]
    days.transfers 怎麼去卡（畫面上叫「怎麼去」）：[{ id, who, after 放在第幾段交通後面（-1＝最前面）, leg 對應的航班或車次（資料頁交通連到這張卡）, from, to, sub 趕幾點的什麼,
-     opts: [{ n 名稱, rec: true 推薦, steps 怎麼走, time 要多久, cost 多少錢, pay 怎麼付, fit 適合什麼情況, note 注意 }], warn 注意事項, addr 地址卡（addresses 的 key，或 "stay:<住處 id>"）, checkin 入住提醒 }]
+     opts: [{ n 名稱, rec: true 推薦, steps 怎麼走, time 要多久（車程）, freq 班距（不和車程寫在同一句）, cost 多少錢, pay 怎麼付, fit 適合什麼情況, note 注意 }], warn 注意事項, addr 地址卡（addresses 的 key，或 "stay:<住處 id>"）, checkin 入住提醒 }]
    cities.pois 地點座標：lat、lng；approx: true 表示座標只代表附近一帶（旁邊的廣場或地標），算距離、排序照用，導航改用名稱搜尋（q）
+   路線號碼寫成方括號，畫面會換成號碼牌：公車 [160]、電車 [11] [12]、SKM [S2]、輕軌 [1]（只認 1～3 個英數字的號碼）。
+     前面寫交通工具，號碼後面不加「號」；分鐘一律帶「分」放在後面。
+     怎麼去卡、routes、cities.transit、地點的 line 和 tip、checklist 的 text 和 sub 都可以這樣寫。
    cities.routes 區域之間怎麼走（地區頁的示意路線圖，有寫才顯示；座標照 viewBox 0 0 366 h）：h 圖的高度、foot 圖下小字、
-     water 水域 { points, label, lx, ly, rotate }、
+     water 水域，可以有很多塊 [{ points, label, lx, ly, rotate }]、
      nodes 節點 [{ id, kind：area 區域／spot 單一地點／stay 住處／station 車站, area 對應 areas 的 id, stay 對應住處 id, x, y, r 半徑, name 全名, short 簡稱,
-       lb 文字 [[dx, dy, 文字, 字級, 粗細, 對齊]] }]、
+       lb 文字 [[dx, dy, 文字（可以有 [xx]）, 字級, 粗細, 對齊]] }]、
      edges 線 [{ id, a、b 兩端節點 id, style：line 粗線／spur 點線／link 住處細虛線／stn 車站細虛線, draw: false 不畫在圖上（只出現在區域卡片的「隔壁」）,
-       walk 圖上的步行標籤, bus 圖上的大眾運輸標籤, lx、ly 步行標籤離線段中點的位移, bx、by 大眾運輸標籤離步行標籤的位移,
-       min 步行分鐘, busMin 大眾運輸分鐘, cards 要出現在哪幾區的「隔壁」, row 這一區不是兩端之一時列上寫的文字,
-       sheet 半頁卡 { walk 走路, go 大眾運輸 [], back 回程 [], warn 紅字注意, nav 導航按鈕 [{ t 按鈕文字, q 目的地, mode：walking／transit }] } }]、
+       walk 圖上的步行標籤, bus 圖上的搭車標籤（可以有 [xx]）, lx、ly 步行標籤離線段中點的位移, bx、by 搭車標籤離步行標籤的位移,
+       min 步行分鐘, km 步行距離（例如 "2.6 公里"、"400 公尺"）, busMin 搭車全程分鐘, cards 要出現在哪幾區的「隔壁」, row 這一區不是兩端之一時列上寫的文字,
+       sheet 半頁卡 { walk 走路經過哪裡（一句，不寫分鐘和距離）, note 搭車那一段只有一句說明時用,
+         go 去程、back 回程 { total 全程（例如 "約 20 分"）, steps [[模式：walk 走路／bus 公車／tram 電車, 文字, 分鐘（可以是空字串）]] },
+         fare 車票, warn 紅字注意, nav 導航按鈕 [{ t 按鈕文字, q 目的地, mode：walking／transit }] } }]、
      notes 圖上的補充文字 [[x, y, 文字]]
    cities.transit 交通怎麼搭：[{ n 名稱, d 一句說明 }]；cities.drive 自駕區塊、cities.e10 示意圖（羅弗敦）
    checklist：due 是出發前的期限；旅途中的項目改寫 day（YYYY-MM-DD），可加 until 顯示到哪天、eve: true 前一晚做
@@ -179,7 +184,7 @@ window.TRIP = {
               "rec": true,
               "steps": [
                 "機場航廈地下就是車站。",
-                "搭 S3 到華沙中央車站（Warszawa Centralna），或搭 S2 到 Warszawa Śródmieście，兩站相鄰。",
+                "搭 SKM [S3] 到華沙中央車站（Warszawa Centralna），或搭 SKM [S2] 到 Warszawa Śródmieście，兩站相鄰。",
                 "下車走到旅館。"
               ],
               "time": "車程約 25 分鐘",
@@ -259,7 +264,7 @@ window.TRIP = {
               "rec": true,
               "steps": [
                 "12:00 退房，建議 12:00 前出門（推估）。",
-                "走到華沙中央車站（Warszawa Centralna）搭 S3，或到 Warszawa Śródmieście 搭 S2，往機場方向。",
+                "走到華沙中央車站（Warszawa Centralna）搭 SKM [S3]，或到 Warszawa Śródmieście 搭 SKM [S2]，往機場方向。",
                 "坐到機場站，上樓就是航廈。"
               ],
               "time": "車程約 25 分鐘",
@@ -384,13 +389,13 @@ window.TRIP = {
               "fit": "兩人帶大行李最省事。價錢和兩人搭機場巴士差不多，但直接送到門口。"
             },
             {
-              "n": "市區公車 40 或 42 號",
+              "n": "市區公車 [40] [42]",
               "steps": [
                 "站牌不在航廈門口：出入境大廳左轉走幾步，看到標示停車場的樓梯，下去就是站牌。",
                 "搭往市中心（Sentrum）方向的車，不要搭往 Kvaløya、Slettaelva、Eidkjosen 的方向。",
                 "在 Polaria 站下車，約 15 分鐘。",
-                "換 33 號往南坐 1～2 站，在 Lanesbukta 下車（旁邊是 Eurospar 超市）；或沿 Strandvegen 平路走約 1 公里。",
-                "40 號有可能直接開到 Lanesbukta：當天在 Google 地圖輸入住址，顯示 40 號直達就不用在 Polaria 下車。"
+                "換公車 [33] 往南坐 1～2 站，在 Lanesbukta 下車（旁邊是 Eurospar 超市）；或沿 Strandvegen 平路走約 1 公里。",
+                "公車 [40] 有可能直接開到 Lanesbukta：當天在 Google 地圖輸入住址，顯示 [40] 直達就不用在 Polaria 下車。"
               ],
               "time": "到 Polaria 約 15 分鐘，加轉車或走路",
               "cost": "每人 NOK 50（約 NT$178）；平日 9:00–14:00、17:00–01:00 離峰每人 NOK 30（約 NT$107）。3/2 週二 14:00 前上車，兩人 NOK 60（約 NT$213）",
@@ -401,7 +406,7 @@ window.TRIP = {
               "n": "機場巴士 Airport Express",
               "steps": [
                 "紅色巴士，在入境大廳旁上車，13:00、13:40、14:10 發車（12:20 那班趕不上）。",
-                "最南只停到 Polaria，下車後和公車一樣要換 33 號，或拖行李走約 1 公里。"
+                "最南只停到 Polaria，下車後和公車一樣要換公車 [33]，或拖行李走約 1 公里。"
               ],
               "time": "約 15～20 分鐘到 Polaria",
               "cost": "每人 NOK 125（約 NT$444）；兩人 NOK 250（約 NT$888）",
@@ -460,18 +465,20 @@ window.TRIP = {
               "n": "機場巴士",
               "steps": [
                 "Polaria 09:10 或 Prostneset 09:07 上車，09:30 到機場。",
-                "從住處到 Polaria：樓下 Lanesbukta 站搭 34 號往北 1～2 站，或沿 Strandvegen 走約 1 公里（約 15 分鐘）。"
+                "從住處到 Polaria：樓下 Lanesbukta 站搭公車 [34] 往北坐 1～2 站；或沿 Strandvegen 走約 1 公里，約 15 分鐘。"
               ],
               "cost": "每人 NOK 125（約 NT$444）；兩人合計 NOK 250（約 NT$888）",
               "pay": "只能刷卡",
               "note": "下一班 09:37 → 10:00，搭 10:55 的飛機太趕。"
             },
             {
-              "n": "市區公車 42 號",
+              "n": "市區公車 [42]",
               "steps": [
                 "從住處到 Polaria（同上）。",
-                "在 Polaria 搭 42 號往機場（Tromsø lufthavn），白天約 15 分鐘一班，車程約 15 分鐘。"
+                "在 Polaria 搭公車 [42] 往機場（Tromsø lufthavn）。"
               ],
+              "time": "車程約 15 分鐘",
+              "freq": "白天約 15 分鐘一班",
               "cost": "每人 NOK 50（約 NT$178）；09:00 後是離峰，每人 NOK 30（約 NT$107）",
               "pay": "Svipper app 或感應式信用卡，車上不收現金",
               "fit": "最便宜，但要轉車、拖行李，搭 10:55 的飛機時間比較緊。"
@@ -627,7 +634,7 @@ window.TRIP = {
           "sub": "16:40 落地",
           "opts": [
             {
-              "n": "輕軌 Bybanen 1 號線",
+              "n": "輕軌 Bybanen [1]",
               "rec": true,
               "steps": [
                 "上車前用 Skyss app 或月台售票機買票（用新的 Skyss app；舊的 Skyss Billett 2026 年秋天停用），單程票效期 60 分鐘。",
@@ -716,7 +723,7 @@ window.TRIP = {
           "sub": "趕 13:40 W61746",
           "opts": [
             {
-              "n": "輕軌 Bybanen 1 號線",
+              "n": "輕軌 Bybanen [1]",
               "rec": true,
               "steps": [
                 "早上可以先寄放行李，去布呂根（Bryggen）或魚市場。",
@@ -742,13 +749,14 @@ window.TRIP = {
           "sub": "15:25 落地",
           "opts": [
             {
-              "n": "210 號公車",
+              "n": "公車 [210]",
               "rec": true,
               "steps": [
                 "坐往 Dworzec Główny（中央車站）方向。",
                 "坐到底站，就在旅館這條街上。"
               ],
-              "time": "約 40 分鐘；平日每小時 2 班",
+              "time": "約 40 分鐘",
+              "freq": "平日每小時 2 班、週末每小時 1 班",
               "cost": "ZTM 75 分鐘票每人約 PLN 4.80（約 NT$41，各網站寫 4.80～6）；兩人合計約 PLN 9.60（約 NT$82）",
               "pay": "Jakdojade app 或站牌售票機"
             },
@@ -799,7 +807,7 @@ window.TRIP = {
               "steps": [
                 "走到格但斯克中央車站（Gdańsk Główny）約 4 分鐘。",
                 "火車 2.5～3 小時，票約 2/12 開賣，時間待補。",
-                "在中央車站前的 Dworzec Centralny 站搭 175 號公車，往 Pl. Piłsudskiego 方向，經 Centrum、Krucza，第 3 站 Foksal 下車，走到 Smolna 14。"
+                "在中央車站前的 Dworzec Centralny 站搭公車 [175]，往 Pl. Piłsudskiego 方向，經 Centrum、Krucza，坐 3 站在 Foksal 下車，走到 Smolna 14。"
               ],
               "time": "火車 2.5～3 小時",
               "cost": "華沙市區 75 分鐘票每人 PLN 4.40（約 NT$37）；兩人合計 PLN 8.80（約 NT$75）；火車票待補"
@@ -844,20 +852,20 @@ window.TRIP = {
           "sub": "趕 13:40 EK180",
           "opts": [
             {
-              "n": "175 號公車",
+              "n": "公車 [175]",
               "rec": true,
               "steps": [
                 "阿聯酋建議起飛前 3 小時到機場，建議 10:00 前出門（推估）。",
-                "在新世界街（Nowy Świat）上的 Foksal 站搭 175 號公車往機場（Lotnisko Chopina）方向，從 Pl. Piłsudskiego 到機場全程約 33 分鐘。"
+                "在新世界街（Nowy Świat）上的 Foksal 站搭公車 [175] 往機場（Lotnisko Chopina）方向，從 Pl. Piłsudskiego 到機場全程約 33 分鐘。"
               ],
               "cost": "ZTM 75 分鐘票每人 PLN 4.40（約 NT$37）；兩人合計 PLN 8.80（約 NT$75）",
               "pay": "Jakdojade app 或售票機",
-              "note": "2026 年 11 月起王宮之路禁止公車通行，175 號改道。出發前一天用 Jakdojade 查 Foksal 站往機場方向還有沒有停；沒有的話改到中央車站搭 175 號或 SKM。"
+              "note": "2026 年 11 月起王宮之路禁止公車通行，[175] 改道。出發前一天用 Jakdojade 查 Foksal 站往機場方向還有沒有停；沒有的話改到中央車站搭 [175] 或 SKM。"
             },
             {
-              "n": "SKM S2",
+              "n": "SKM [S2]",
               "steps": [
-                "從 Warszawa Śródmieście 搭 S2 到機場。"
+                "從 Warszawa Śródmieście 搭 SKM [S2] 到機場。"
               ],
               "cost": "每人 PLN 4.40（約 NT$37）"
             },
@@ -928,6 +936,7 @@ window.TRIP = {
       routes: {
         h: 410,
         foot: "公車要先查：王宮之路一帶 2026 年 11 月 7 日起禁止公車通行（到另行通知為止），經過那裡的公車都改道。",
+        water: [{ points: [[314, 0], [366, 0], [366, 410], [336, 410]], label: "維斯瓦河（Wisła）", lx: 344, ly: 70, rotate: 85 }],
         nodes: [
           { id: "old", kind: "area", area: "old", x: 184, y: 62, name: "王宮之路與老城", short: "老城",
             lb: [[0, -26, "王宮之路與老城", 14, 700, "middle"], [0, 30, "王宮・老城廣場・聖十字教堂", 10.5, 400, "middle"]] },
@@ -940,51 +949,51 @@ window.TRIP = {
           { id: "lazienki", kind: "area", area: "lazienki", x: 278, y: 340, name: "瓦津基公園", short: "瓦津基公園",
             lb: [[0, 32, "瓦津基公園", 14, 700, "middle"], [0, 48, "水上宮殿・蕭邦紀念碑", 10.5, 400, "middle"]] },
           { id: "waw1", kind: "stay", stay: "waw1", x: 32, y: 196, name: "Mercure", short: "Mercure",
-            lb: [[-18, -46, "Mercure", 12, 700, "start"], [-18, -32, "Yulun 2/26–2/28", 9.5, 400, "start"], [-18, -18, "到老城：走 36 分，或 160 號公車約 20 分", 9.5, 400, "start"]] },
+            lb: [[-18, -46, "Mercure", 12, 700, "start"], [-18, -32, "Yulun 2/26–2/28", 9.5, 400, "start"], [-18, -17, "到老城：走 36 分／公車 [160] 約 20 分", 9.5, 400, "start"]] },
           { id: "waw2", kind: "stay", stay: "waw2", x: 310, y: 128, name: "Chopin Boutique", short: "Chopin Boutique",
             lb: [[12, -22, "Chopin Boutique", 12, 700, "end"], [12, -8, "3/14–3/16", 9.5, 400, "end"]] },
           { id: "stn", kind: "station", x: 36, y: 352, name: "中央車站", short: "中央車站",
-            lb: [[14, 5, "中央車站（Mercure 走 5 分）", 12, 700, "start"], [-22, 24, "機場：SKM S2、S3 或 175 號公車", 9.5, 400, "start"]] }
+            lb: [[14, 5, "中央車站（Mercure 走 5 分）", 12, 700, "start"], [-22, 26, "機場：SKM [S2] [S3] 或 公車 [175]", 9.5, 400, "start"]] }
         ],
         edges: [
-          { id: "w-polin", a: "polin", b: "old", style: "spur", walk: "走 23 分・1.6 公里", lx: 0, ly: 0, min: 23, cards: ["old"],
-            sheet: { walk: "23 分、1.6 公里，經 Miodowa 街。",
-              go: ["Miodowa 街也在封閉範圍，原本經過的 111、180 號公車改道，建議走路。"],
+          { id: "w-polin", a: "polin", b: "old", style: "spur", walk: "走 23 分・1.6 公里", lx: 0, ly: 0, min: 23, km: "1.6 公里", cards: ["old"],
+            sheet: { walk: "經 Miodowa 街。",
+              note: "Miodowa 街也在封閉範圍，原本經過的公車 [111]、[180] 改道，建議走路。",
               nav: [{ t: "去 POLIN", q: "POLIN Museum Anielewicza 6 Warszawa", mode: "walking" }, { t: "去城堡廣場", q: "Plac Zamkowy, Warszawa", mode: "walking" }] } },
-          { id: "w-old-pow", a: "old", b: "powisle", style: "line", walk: "走 26 分・1.9 公里", lx: -62, ly: 6, min: 26, cards: ["old", "powisle"],
-            sheet: { walk: "26 分、1.9 公里，從城堡廣場沿 Krakowskie Przedmieście、Nowy Świat 一路直走到戴高樂圓環，沿途就是王宮之路。",
-              go: ["這一段路從 2026 年 11 月 7 日起禁止汽車和公車通行（到另行通知為止），原本經過的 116、128、175、180、503 號都改道，建議走路。"],
+          { id: "w-old-pow", a: "old", b: "powisle", style: "line", walk: "走 26 分・1.9 公里", lx: -62, ly: 6, min: 26, km: "1.9 公里", cards: ["old", "powisle"],
+            sheet: { walk: "從城堡廣場沿 Krakowskie Przedmieście、Nowy Świat 一路直走到戴高樂圓環，沿途就是王宮之路。",
+              note: "這一段路從 2026 年 11 月 7 日起禁止汽車和公車通行（到另行通知為止），原本經過的公車 [116]、[128]、[175]、[180]、[503] 都改道，建議走路。",
               nav: [{ t: "去戴高樂圓環", q: "Rondo Charles'a de Gaulle'a, Warszawa", mode: "walking" }, { t: "去城堡廣場", q: "Plac Zamkowy, Warszawa", mode: "walking" }] } },
-          { id: "w-pow-cen", a: "powisle", b: "centrum", style: "line", walk: "走 14 分・1 公里", lx: -10, ly: -22, min: 14, cards: ["powisle", "centrum"],
-            sheet: { walk: "14 分、1 公里，沿 Aleje Jerozolimskie。",
-              go: ["不用搭車。要搭的話：圓環旁 Muzeum Narodowe 站搭 7、9、22、24、25 號電車，2 站到 Centrum 站下車，含走路約 9 分。"],
+          { id: "w-pow-cen", a: "powisle", b: "centrum", style: "line", walk: "走 14 分・1 公里", lx: -10, ly: -22, min: 14, km: "1 公里", cards: ["powisle", "centrum"],
+            sheet: { walk: "沿 Aleje Jerozolimskie，不用搭車。",
+              go: { total: "約 9 分", steps: [["walk", "走到圓環旁的 Muzeum Narodowe 站", ""], ["tram", "電車 [7] [9] [22] [24] [25] 任一班，坐 2 站到 Centrum 站", "3～4 分"], ["walk", "走到科學文化宮", "4 分"]] },
               nav: [{ t: "去科學文化宮", q: "Pałac Kultury i Nauki, Warszawa", mode: "walking" }, { t: "去戴高樂圓環", q: "Rondo Charles'a de Gaulle'a, Warszawa", mode: "walking" }] } },
-          { id: "w-pow-laz", a: "powisle", b: "lazienki", style: "line", walk: "走 32 分・2.4 公里", lx: 40, ly: 0, bus: "或 公車 116、180 約 20 分", bx: -4, by: 22, min: 32, busMin: 20, cards: ["powisle", "lazienki"],
-            sheet: { walk: "32 分、2.4 公里。",
-              go: ["新世界街上的 Foksal 站搭 116 或 180 號公車，約 7～8 分到 Łazienki Królewskie 站，下車穿過公園走約 10 分到水上宮殿，共約 20 分。"],
-              warn: "116、180 號目前因王宮之路封閉而改道，出發前用 Jakdojade 確認 Foksal 站還有停。",
+          { id: "w-pow-laz", a: "powisle", b: "lazienki", style: "line", walk: "走 32 分・2.4 公里", lx: 40, ly: 0, bus: "公車 [116] [180] 約 20 分", bx: -4, by: 22, min: 32, busMin: 20, km: "2.4 公里", cards: ["powisle", "lazienki"],
+            sheet: { walk: "經 Aleja Tomasza Hopfera。",
+              go: { total: "約 20 分", steps: [["walk", "走到新世界街上的 Foksal 站", "2 分"], ["bus", "公車 [116] 或 [180]，坐到 Łazienki Królewskie 站", "7～8 分"], ["walk", "穿過公園走到水上宮殿", "約 10 分"]] },
+              warn: "公車 [116]、[180] 目前因王宮之路封閉改道，出發前用 Jakdojade 確認 Foksal 站還有停。",
               nav: [{ t: "去水上宮殿", q: "Pałac na Wyspie, Łazienki Królewskie, Warszawa", mode: "transit" }, { t: "去戴高樂圓環", q: "Rondo Charles'a de Gaulle'a, Warszawa", mode: "transit" }] } },
-          { id: "w-mer-cen", a: "waw1", b: "centrum", style: "link", walk: "走 5 分", lx: -14, ly: 6, min: 5, cards: ["centrum"],
-            sheet: { walk: "5 分、400 公尺。",
+          { id: "w-mer-cen", a: "waw1", b: "centrum", style: "link", walk: "走 5 分", lx: -14, ly: 6, min: 5, km: "400 公尺", cards: ["centrum"],
+            sheet: { walk: "經 Złota、Emilii Plater 街。",
               nav: [{ t: "去科學文化宮", q: "Pałac Kultury i Nauki, Warszawa", mode: "walking" }, { t: "回 Mercure", q: "Mercure Warszawa Centrum Złota 48/54 Warszawa", mode: "walking" }] } },
-          { id: "w-cho-pow", a: "waw2", b: "powisle", style: "link", walk: "走 5 分", lx: 12, ly: -14, min: 5, cards: ["powisle"],
-            sheet: { walk: "5 分、350 公尺，沿 Smolna 街到戴高樂圓環。",
+          { id: "w-cho-pow", a: "waw2", b: "powisle", style: "link", walk: "走 5 分", lx: 12, ly: -14, min: 5, km: "350 公尺", cards: ["powisle"],
+            sheet: { walk: "沿 Smolna 街到戴高樂圓環。",
               nav: [{ t: "去戴高樂圓環", q: "Rondo Charles'a de Gaulle'a, Warszawa", mode: "walking" }, { t: "回 Chopin Boutique", q: "Chopin Boutique Smolna 14 Warszawa", mode: "walking" }] } },
           { id: "w-stn", a: "stn", b: "centrum", style: "stn" },
-          { id: "w-mer-old", a: "waw1", b: "old", draw: false, min: 36, busMin: 20, cards: ["old"],
-            sheet: { walk: "36 分、2.6 公里，經 Senatorska 街。",
-              go: ["飯店走約 4 分到中央車站旁的 Dworzec Centralny 站（在 Al. Jana Pawła II 上），搭 160 號公車約 11～12 分，在 Stare Miasto 站下車（站在地下隧道裡），搭手扶梯或走樓梯上去約 4 分就是城堡廣場，共約 20 分。"],
-              back: ["Stare Miasto 站搭 160 號回 Dworzec Centralny，車程約 14～15 分，下車走約 5 分回飯店，共約 24 分。"],
-              warn: "出發前用 Jakdojade 確認 160 號照常行駛；128、175 號目前改道，不要搭。",
+          { id: "w-mer-old", a: "waw1", b: "old", draw: false, min: 36, busMin: 20, km: "2.6 公里", cards: ["old"],
+            sheet: { walk: "經 Senatorska 街。",
+              go: { total: "約 20 分", steps: [["walk", "走到中央車站旁的 Dworzec Centralny 站（在 Al. Jana Pawła II 上）", "4 分"], ["bus", "公車 [160]，坐到 Stare Miasto 站（站在地下隧道裡）", "11～12 分"], ["walk", "搭手扶梯或走樓梯上去就是城堡廣場", "4 分"]] },
+              back: { total: "約 24 分", steps: [["bus", "Stare Miasto 站搭公車 [160]，坐到 Dworzec Centralny 站", "14～15 分"], ["walk", "走回飯店", "5 分"]] },
+              warn: "出發前用 Jakdojade 確認公車 [160] 照常行駛；[128]、[175] 目前改道，不要搭。",
               nav: [{ t: "去城堡廣場", q: "Plac Zamkowy, Warszawa", mode: "transit" }, { t: "回 Mercure", q: "Mercure Warszawa Centrum Złota 48/54 Warszawa", mode: "transit" }] } },
-          { id: "w-cho-old", a: "waw2", b: "old", draw: false, min: 28, cards: ["old"],
-            sheet: { walk: "28 分、2.1 公里，沿 Nowy Świat、Krakowskie Przedmieście 一路直走。",
-              go: ["這一段路目前禁止公車通行，建議走路。"],
+          { id: "w-cho-old", a: "waw2", b: "old", draw: false, min: 28, km: "2.1 公里", cards: ["old"],
+            sheet: { walk: "沿 Nowy Świat、Krakowskie Przedmieście 一路直走。",
+              note: "這一段路目前禁止公車通行，建議走路。",
               nav: [{ t: "去城堡廣場", q: "Plac Zamkowy, Warszawa", mode: "walking" }, { t: "回 Chopin Boutique", q: "Chopin Boutique Smolna 14 Warszawa", mode: "walking" }] } }
         ],
         notes: []
       },
-      transit: [{ n: "市區 ZTM 票", d: "公車、電車、地鐵、SKM 通用，75 分鐘票 PLN 4.40（約 NT$37），用 Jakdojade app 或售票機買。" }, { n: "機場", d: "SKM S2（到 Warszawa Śródmieście）、S3（到華沙中央車站 Warszawa Centralna），或 175 號公車。" }], ref: ["waw1", "waw2"], mapCity: "Warszawa",
+      transit: [{ n: "市區 ZTM 票", d: "公車、電車、地鐵、SKM 通用，75 分鐘票 PLN 4.40（約 NT$37），用 Jakdojade app 或售票機買。" }, { n: "機場", d: "SKM [S2]（到 Warszawa Śródmieście）、[S3]（到華沙中央車站 Warszawa Centralna），或公車 [175]。" }], ref: ["waw1", "waw2"], mapCity: "Warszawa",
       intro: "二戰後依原貌重建的首都，老城列入世界遺產，適合慢慢走、看美術館、坐咖啡館。",
       tips: [
         { i: "shop", t: "週日超市大多不開", d: "Żabka 便利商店、藥局、麵包店、加油站例外，Żabka 多數開到 23:00。餐廳照常營業。" },
@@ -1081,8 +1090,9 @@ window.TRIP = {
     osl: {
       name: "奧斯陸", region: "osl",
       routes: {
-        h: 400,
+        h: 440,
         foot: "圖上的大眾運輸都是電車，2/28 地鐵停駛不影響；冬季假期電車班次可能比平常少。",
+        water: [{ points: [[0, 402], [80, 392], [150, 406], [220, 396], [300, 388], [366, 394], [366, 440], [0, 440]], label: "奧斯陸峽灣（往南就是海）", lx: 183, ly: 428 }],
         nodes: [
           { id: "frogner", kind: "area", area: "frogner", x: 42, y: 52, r: 8, name: "維格蘭雕塑公園", short: "維格蘭公園",
             lb: [[0, -22, "維格蘭雕塑公園", 13, 700, "middle"]] },
@@ -1098,30 +1108,30 @@ window.TRIP = {
             lb: [[12, 5, "Oslo S", 12, 700, "start"], [12, 20, "Bob W 走 6 分", 9.5, 400, "start"]] }
         ],
         edges: [
-          { id: "o-vig", a: "frogner", b: "sentrum", style: "spur", walk: "走 48 分", lx: 0, ly: -14, bus: "或 電車 12 約 27 分", bx: 0, by: 22, min: 48, busMin: 27, cards: ["frogner", "sentrum"],
-            sheet: { walk: "48 分、3.3 公里，經 Frognerveien。",
-              go: ["國家博物館前的 Aker brygge 站搭 12 號電車（往 Majorstuen），約 15 分在 Vigelandsparken 站下車，下車就是公園正門（Kirkeveien），共約 27 分。"],
-              back: ["正門外的 Vigelandsparken 站搭 12 號電車（往 Kjelsås），約 16 分到 Aker brygge。"],
+          { id: "o-vig", a: "frogner", b: "sentrum", style: "spur", walk: "走 48 分", lx: 0, ly: -14, bus: "電車 [12] 約 27 分", bx: 0, by: 24, min: 48, busMin: 27, km: "3.3 公里", cards: ["frogner", "sentrum"],
+            sheet: { walk: "經 Frognerveien。",
+              go: { total: "約 27 分", steps: [["walk", "走到國家博物館前的 Aker brygge 站", "2 分"], ["tram", "電車 [12]（往 Majorstuen），坐到 Vigelandsparken 站，下車就是正門", "14～15 分"], ["walk", "走進公園中央的雕塑區", "8～10 分"]] },
+              back: { total: "約 29 分", steps: [["walk", "走回正門外的 Vigelandsparken 站", "8～10 分"], ["tram", "電車 [12]（往 Kjelsås），坐到 Aker brygge 站", "15～16 分"], ["walk", "走到國家博物館", "2 分"]] },
               nav: [{ t: "去維格蘭雕塑公園", q: "Vigelandsparken Oslo", mode: "transit" }, { t: "去國家博物館", q: "Nasjonalmuseet Oslo", mode: "transit" }] } },
-          { id: "o-bob-lok", a: "osl", b: "lokka", style: "line", walk: "走 24 分・1.7 公里", lx: -34, ly: 0, bus: "或 電車 11、12 約 15 分", bx: -8, by: 22, min: 24, busMin: 15, cards: ["lokka"],
-            sheet: { walk: "24 分、1.7 公里，經 Torggata、Markveien。",
-              go: ["住處走約 2～3 分到 Dronningens gate 站，搭 11 或 12 號電車（往 Kjelsås），約 9～10 分在 Olaf Ryes plass 站下車，走約 2 分到 Tim Wendelboe，共約 15 分。"],
-              back: ["Olaf Ryes plass 站搭 11 或 12 號電車（往 Majorstuen），到 Dronningens gate 站下車，走約 2～3 分回住處，共約 14 分。"],
+          { id: "o-bob-lok", a: "osl", b: "lokka", style: "line", walk: "走 24 分・1.7 公里", lx: -34, ly: 0, bus: "電車 [11] [12] 約 15 分", bx: -8, by: 24, min: 24, busMin: 15, km: "1.7 公里", cards: ["lokka"],
+            sheet: { walk: "經 Torggata、Markveien。",
+              go: { total: "約 15 分", steps: [["walk", "走到 Dronningens gate 站", "2～3 分"], ["tram", "電車 [11] 或 [12]（往 Kjelsås），坐到 Olaf Ryes plass 站", "9～10 分"], ["walk", "走到 Tim Wendelboe", "2 分"]] },
+              back: { total: "約 14 分", steps: [["walk", "走到 Olaf Ryes plass 站", "2 分"], ["tram", "電車 [11] 或 [12]（往 Majorstuen），坐到 Dronningens gate 站", "約 9 分"], ["walk", "走回住處", "2～3 分"]] },
               nav: [{ t: "去 Tim Wendelboe", q: "Tim Wendelboe Grüners gate 1 Oslo", mode: "transit" }, { t: "回 Bob W", q: "Kirkegata 30, Oslo", mode: "transit" }] } },
-          { id: "o-bob-sen", a: "osl", b: "sentrum", style: "line", walk: "走 15 分・1.1 公里", lx: 6, ly: 22, min: 15, cards: ["sentrum"],
-            sheet: { walk: "15 分、1.1 公里，經 Tollbugata。",
-              go: ["Dronningens gate 站搭 12 號電車（往 Majorstuen），2 站到 Aker brygge 站，下車就在國家博物館前，共約 7 分。"],
+          { id: "o-bob-sen", a: "osl", b: "sentrum", style: "line", walk: "走 15 分・1.1 公里", lx: 6, ly: 22, min: 15, km: "1.1 公里", cards: ["sentrum"],
+            sheet: { walk: "經 Tollbugata。",
+              go: { total: "約 7 分", steps: [["walk", "走到 Dronningens gate 站", "2 分"], ["tram", "電車 [12]（往 Majorstuen），坐 2 站到 Aker brygge 站", "3 分"], ["walk", "下車就在國家博物館前", "2 分"]] },
               nav: [{ t: "去國家博物館", q: "Nasjonalmuseet Oslo", mode: "walking" }, { t: "回 Bob W", q: "Kirkegata 30, Oslo", mode: "walking" }] } },
-          { id: "o-bob-bjo", a: "osl", b: "bjorvika", style: "line", walk: "走 11 分", lx: 38, ly: -8, min: 11, cards: ["bjorvika"],
-            sheet: { walk: "11 分、850 公尺，經 Prinsens gate。不用搭車。",
+          { id: "o-bob-bjo", a: "osl", b: "bjorvika", style: "line", walk: "走 11 分", lx: 38, ly: -8, min: 11, km: "850 公尺", cards: ["bjorvika"],
+            sheet: { walk: "經 Prinsens gate，不用搭車。",
               nav: [{ t: "去歌劇院", q: "Operahuset Oslo", mode: "walking" }, { t: "回 Bob W", q: "Kirkegata 30, Oslo", mode: "walking" }] } },
-          { id: "o-sen-bjo", a: "sentrum", b: "bjorvika", style: "line", walk: "走 24 分・1.7 公里", lx: 0, ly: 22, min: 24, cards: ["sentrum", "bjorvika"],
-            sheet: { walk: "24 分、1.7 公里，經 Tollbugata。建議走路。",
+          { id: "o-sen-bjo", a: "sentrum", b: "bjorvika", style: "line", walk: "走 24 分・1.7 公里", lx: 0, ly: 22, min: 24, km: "1.7 公里", cards: ["sentrum", "bjorvika"],
+            sheet: { walk: "經 Tollbugata，建議走路。",
               nav: [{ t: "去歌劇院", q: "Operahuset Oslo", mode: "walking" }, { t: "去國家博物館", q: "Nasjonalmuseet Oslo", mode: "walking" }] } },
           { id: "o-stn", a: "stn", b: "osl", style: "stn" },
-          { id: "o-lok-bjo", a: "lokka", b: "bjorvika", draw: false, min: 32, cards: ["lokka", "bjorvika"],
-            sheet: { walk: "32 分、2.3 公里，經 Markveien。",
-              go: ["Olaf Ryes plass 站搭 11 或 12 號電車到 Jernbanetorget（Oslo S 前）下車，再走到歌劇院。"],
+          { id: "o-lok-bjo", a: "lokka", b: "bjorvika", draw: false, min: 32, km: "2.3 公里", cards: ["lokka", "bjorvika"],
+            sheet: { walk: "經 Markveien。",
+              go: { total: "", steps: [["tram", "電車 [11] 或 [12]，坐到 Jernbanetorget 站（Oslo S 前）", ""], ["walk", "走到歌劇院", ""]] },
               nav: [{ t: "去歌劇院", q: "Operahuset Oslo", mode: "transit" }, { t: "去 Tim Wendelboe", q: "Tim Wendelboe Grüners gate 1 Oslo", mode: "transit" }] } }
         ],
         notes: []
@@ -1191,11 +1201,11 @@ window.TRIP = {
       routes: {
         h: 330,
         foot: "回程的公車和去程不同線，點下面區域裡的「隔壁」看去回怎麼搭。",
-        water: { points: [[202, 0], [250, 0], [220, 330], [172, 330]], label: "Tromsøysundet 海峽", lx: 214, ly: 170, rotate: -84 },
+        water: [{ points: [[202, 0], [250, 0], [220, 330], [172, 330]], label: "Tromsøysundet 海峽", lx: 214, ly: 190, rotate: -84 }],
         nodes: [
           { id: "centre", kind: "area", area: "centre", x: 108, y: 74, name: "市中心（島上）", short: "市中心",
             lb: [[0, -24, "市中心（島上）", 14, 700, "middle"], [-6, 32, "大教堂・Storgata・港邊", 10.5, 400, "middle"], [-6, 47, "Polaria 在市中心南邊", 10.5, 400, "middle"]] },
-          { id: "tromsdalen", kind: "area", area: "tromsdalen", x: 306, y: 92, name: "跨橋：北極大教堂與纜車", short: "跨橋",
+          { id: "tromsdalen", kind: "area", area: "tromsdalen", x: 306, y: 132, name: "跨橋：北極大教堂與纜車", short: "跨橋",
             lb: [[0, -24, "跨橋", 14, 700, "middle"], [0, 30, "北極大教堂・纜車", 10.5, 400, "middle"]] },
           { id: "tos", kind: "stay", stay: "tos", x: 128, y: 232, name: "Sjøparken", short: "Sjøparken",
             lb: [[18, -2, "Sjøparken", 13, 700, "start"], [18, 13, "3/2–3/5", 9.5, 400, "start"]] },
@@ -1203,30 +1213,31 @@ window.TRIP = {
             lb: [[14, 5, "Telegrafbukta 海灘", 12, 700, "start"]] }
         ],
         edges: [
-          { id: "t-cen-arc", a: "centre", b: "tromsdalen", style: "line", walk: "走 28 分・過橋", lx: 10, ly: -16, bus: "或 公車 20、24、26、28 約 15 分", bx: 30, by: -24, min: 28, busMin: 15, cards: ["centre", "tromsdalen"],
-            sheet: { walk: "28 分、2 公里，走 Tromsø 橋過海峽。",
-              go: ["大教堂走約 4 分到 Prostneset 或 Roald Amundsens plass 站，搭 20、24、26 或 28 號公車過橋，約 7～8 分在 Tromsdalen kirke 站下車，走約 2 分到北極大教堂，共約 15 分。"],
+          { id: "t-cen-arc", a: "centre", b: "tromsdalen", style: "line", walk: "走 28 分・過橋", lx: 0, ly: -14, bus: "公車 [20] [24] [26] [28] 約 15 分", bx: 28, by: -26, min: 28, busMin: 15, km: "2 公里", cards: ["centre", "tromsdalen"],
+            sheet: { walk: "走 Tromsø 橋過海峽。",
+              go: { total: "約 15 分", steps: [["walk", "走到 Prostneset 或 Roald Amundsens plass 站", "4 分"], ["bus", "公車 [20] [24] [26] [28] 任一班過橋，坐到 Tromsdalen kirke 站", "7～8 分"], ["walk", "走到北極大教堂", "2 分"]] },
               nav: [{ t: "去北極大教堂", q: "Ishavskatedralen Tromsø", mode: "transit" }, { t: "去大教堂", q: "Tromsø domkirke", mode: "transit" }] } },
-          { id: "t-home-cen", a: "tos", b: "centre", style: "line", walk: "走 26 分・1.9 公里", lx: -66, ly: -6, bus: "或 公車 34、40 約 12 分", bx: -4, by: 22, min: 26, busMin: 12, cards: ["centre"],
-            sheet: { walk: "26 分、1.9 公里，沿海邊 Strandvegen 往北，一路平路。",
-              go: ["住處附近的站搭 34 或 40 號往市中心（Sentrum），約 6 分在 Bankgata 或 Nerstranda 站下車，走約 3 分到大教堂，共約 12 分。"],
-              back: ["市中心的 Bankgata 或 Wi-To 站搭 40 號（往 Tromsø museum）或 33 號，約 5 分回到住處附近，共約 10 分。"],
-              warn: "住處附近的站名各來源不一（Lanesbukta、Bjerkely、Solbakken），到了在 Google 地圖輸入住址查。車票單程 NOK 50（約 NT$178），平日 9:00–14:00、17:00–01:00 離峰 NOK 30（約 NT$107），用 Svipper app 或感應式信用卡，車上不收現金。",
+          { id: "t-home-cen", a: "tos", b: "centre", style: "line", walk: "走 26 分・1.9 公里", lx: -66, ly: -6, bus: "公車 [34] [40] 約 12 分", bx: 6, by: 24, min: 26, busMin: 12, km: "1.9 公里", cards: ["centre"],
+            sheet: { walk: "沿海邊 Strandvegen 往北，一路平路。",
+              go: { total: "約 12 分", steps: [["walk", "走到住處附近的公車站", "2～5 分"], ["bus", "公車 [34] 或 [40]（往市中心 Sentrum），坐到 Bankgata 或 Nerstranda 站", "約 6 分"], ["walk", "走到大教堂", "3 分"]] },
+              back: { total: "約 10 分", steps: [["walk", "走到 Bankgata 或 Wi-To 站", "3 分"], ["bus", "公車 [40]（往 Tromsø museum）或 [33]，坐回住處附近", "約 5 分"], ["walk", "走回住處", "2 分"]] },
+              fare: "單程 NOK 50（約 NT$178）；平日 9:00–14:00、17:00–01:00 離峰 NOK 30（約 NT$107）。用 Svipper app 或感應式信用卡，車上不收現金。",
+              warn: "住處附近的站名各來源不一（Lanesbukta、Bjerkely、Solbakken），到了在 Google 地圖輸入住址查。",
               nav: [{ t: "去大教堂", q: "Tromsø domkirke", mode: "transit" }, { t: "回住處", q: "Strandvegen 114B, Tromsø", mode: "transit" }] } },
-          { id: "t-home-tel", a: "tos", b: "tel", style: "line", walk: "走 17 分・1.2 公里", lx: -22, ly: -14, min: 17, cards: ["centre"], row: "Sjøparken → Telegrafbukta 海灘",
-            sheet: { walk: "17 分、1.2 公里。",
-              go: ["住處附近的站搭 33 號往南到 Telegrafbukta 站，或搭 40 號到終點 Tromsø Museum 站，下車走 2～3 分，共約 10 分。"],
-              back: ["Telegrafbukta 站搭 34 號往市中心方向，2 站回到住處附近，共約 7～10 分。"],
+          { id: "t-home-tel", a: "tos", b: "tel", style: "line", walk: "走 17 分・1.2 公里", lx: -22, ly: -14, min: 17, km: "1.2 公里", cards: ["centre"], row: "Sjøparken → Telegrafbukta 海灘",
+            sheet: { walk: "經 Kohtvegen。",
+              go: { total: "約 10 分", steps: [["walk", "走到住處附近的公車站", ""], ["bus", "公車 [33] 往南坐到 Telegrafbukta 站，或 [40] 坐到終點 Tromsø Museum 站", "約 3 分"], ["walk", "走到海灘", "2～3 分"]] },
+              back: { total: "約 7～10 分", steps: [["bus", "Telegrafbukta 站搭公車 [34]（往市中心方向），坐 2 站", "約 3 分"], ["walk", "走回住處", "2～3 分"]] },
               nav: [{ t: "去 Telegrafbukta", q: "Telegrafbukta Tromsø", mode: "walking" }, { t: "回住處", q: "Strandvegen 114B, Tromsø", mode: "walking" }] } },
-          { id: "t-home-arc", a: "tos", b: "tromsdalen", draw: false, min: 53, busMin: 25, cards: ["tromsdalen"],
-            sheet: { walk: "53 分、3.8 公里，經 Strandvegen 和 Tromsø 橋。",
-              go: ["先搭 34 或 40 號到市中心 Wi-To 或 Prostneset 站（約 6 分），換 20、24、26 或 28 號過橋到 Tromsdalen kirke 站（約 8 分），共約 25 分，轉車 1 次。"],
-              back: ["Tromsdalen kirke 站搭 20、24、26、28 號到市中心，換 40 號或 33 號回住處附近，共約 26 分。"],
+          { id: "t-home-arc", a: "tos", b: "tromsdalen", draw: false, min: 53, busMin: 25, km: "3.8 公里", cards: ["tromsdalen"],
+            sheet: { walk: "經 Strandvegen 和 Tromsø 橋。",
+              go: { total: "約 25 分", steps: [["bus", "公車 [34] 或 [40]，坐到市中心 Wi-To 或 Prostneset 站", "約 6 分"], ["bus", "換公車 [20] [24] [26] [28] 任一班過橋，坐到 Tromsdalen kirke 站", "約 8 分"], ["walk", "走到北極大教堂", "2 分"]] },
+              back: { total: "約 26 分", steps: [["bus", "Tromsdalen kirke 站搭公車 [20] [24] [26] [28]，坐到市中心", "約 8 分"], ["bus", "換公車 [40] 或 [33]，坐回住處附近", "5～6 分"], ["walk", "走回住處", "2～4 分"]] },
               nav: [{ t: "去北極大教堂", q: "Ishavskatedralen Tromsø", mode: "transit" }, { t: "回住處", q: "Strandvegen 114B, Tromsø", mode: "transit" }] } }
         ],
-        notes: [[238, 232, "住處 → 北極大教堂："], [238, 247, "公車轉 1 次約 25 分"]]
+        notes: [[238, 232, "住處 → 北極大教堂："], [238, 247, "搭車約 25 分，要轉車"]]
       },
-      transit: [{ n: "市區公車", d: "用 Svipper app 或感應式信用卡買票，車上不收現金。單程 NOK 50（約 NT$178），平日 9:00–14:00、17:00–01:00 離峰 NOK 30（約 NT$107）。住處最近的站各來源寫 Lanesbukta、Bjerkely 或 Solbakken，到了用 Google 地圖查；搭到市中心約 12 分鐘，走路到大教堂約 26 分鐘。" }, { n: "33、34 號公車", d: "住處樓下的 33、34 號是同一條環狀線的兩個方向：34 號往北進市中心，33 號從市中心往南回住處，再往南是 Telegrafbukta、Sydspissen。" }, { n: "機場公車 40、42 號", d: "停機場和 Polaria，到市中心約 15～20 分鐘。機場站牌在航廈旁停車場樓梯下面。大行李空間不多，司機可以拒載。" }, { n: "機場巴士 Airport Express", d: "大人單程 NOK 125（約 NT$444）、來回 NOK 200（約 NT$710），只能刷卡。市區最南停 Polaria，到不了住處門口。" }, { n: "計程車", d: "Tromsø Taxi 03011、Din Taxi 02045。機場到市中心約 NOK 250～410（約 NT$888～1,456），可刷卡。" }], ref: "tos", mapCity: "Tromsø",
+      transit: [{ n: "市區公車", d: "用 Svipper app 或感應式信用卡買票，車上不收現金。單程 NOK 50（約 NT$178），平日 9:00–14:00、17:00–01:00 離峰 NOK 30（約 NT$107）。住處最近的站各來源寫 Lanesbukta、Bjerkely 或 Solbakken，到了用 Google 地圖查；搭到市中心約 12 分鐘，走路到大教堂約 26 分鐘。" }, { n: "公車 [33] [34]", d: "住處樓下的 [33]、[34] 是同一條環狀線的兩個方向：[34] 往北進市中心，[33] 從市中心往南回住處，再往南是 Telegrafbukta、Sydspissen。" }, { n: "機場公車 [40] [42]", d: "停機場和 Polaria，到市中心約 15～20 分鐘。機場站牌在航廈旁停車場樓梯下面。大行李空間不多，司機可以拒載。" }, { n: "機場巴士 Airport Express", d: "大人單程 NOK 125（約 NT$444）、來回 NOK 200（約 NT$710），只能刷卡。市區最南停 Polaria，到不了住處門口。" }, { n: "計程車", d: "Tromsø Taxi 03011、Din Taxi 02045。機場到市中心約 NOK 250～410（約 NT$888～1,456），可刷卡。" }], ref: "tos", mapCity: "Tromsø",
       intro: "北極圈裡生活機能最好的城市，市中心在島上，走路就能逛完。",
       tips: [
         { i: "sun", t: "白天短，戶外行程排中午前後", d: "晚上留給極光團。" },
@@ -1267,7 +1278,7 @@ window.TRIP = {
           hours: "週一～週四 09:00–19:00，週五 09:00–16:00，週六 11:00–15:30", lat: 69.6507, lng: 18.9546 },
         { id: "telegrafbukta", area: "centre", type: "sight", pri: "maybe", when: ["day", "night"], name: "Telegrafbukta 海灘", local: "Telegrafbukta", q: "Telegrafbukta Tromsø",
           line: "島南端的海灘，光害比市中心少，是不出城看極光的地點。在住處更南邊。",
-          tip: "33 號公車（從市中心往南的方向）有 Telegrafbukta 站。", lat: 69.6321, lng: 18.9066 },
+          tip: "公車 [33]（從市中心往南的方向）有 Telegrafbukta 站。", lat: 69.6321, lng: 18.9066 },
         { id: "dragoy", area: "centre", type: "food", why: "坐下來吃", when: ["day"], name: "Dragøy 魚市小館", local: "Dragøy, Kystens Mathus, Stortorget 1", q: "Dragøy Kystens Mathus Tromsø",
           line: "港邊魚市場裡的午餐店，現點現做的魚和海鮮，價位中等。",
           hours: "週一～週五 10:00–17:00，週六 11:00–17:00", closed: [0],
@@ -1279,12 +1290,12 @@ window.TRIP = {
         { id: "cathedral", area: "tromsdalen", type: "sight", pri: "must", when: ["day", "eve"], name: "北極大教堂", local: "Ishavskatedralen",
           line: "1965 年的白色三角形教堂，背面有整面彩繪玻璃。", time: "1 小時",
           hours: "每週不同，多半下午才開（約 13:00–17:00），官網每週更新", price: "NOK 90（約 NT$320）",
-          tip: "常因婚禮、喪禮或音樂會不開放內部，看外觀就很值得。從市中心搭 20、24、26、28 號公車，或走過大橋約 20 分鐘。", lat: 69.6481, lng: 18.9876 },
+          tip: "常因婚禮、喪禮或音樂會不開放內部，看外觀就很值得。從市中心搭公車 [20] [24] [26] [28]，或走過大橋約 28 分鐘。", lat: 69.6481, lng: 18.9876 },
         { id: "fjellheisen", area: "tromsdalen", type: "sight", pri: "maybe", when: ["day", "eve"], name: "特羅姆瑟纜車", local: "Fjellheisen", warn: "施工中",
           line: "上 421 公尺的觀景台，看整個市區、跨海大橋和峽灣。", time: "1～2 小時",
           hours: "每天 09:00–24:00，強風停駛",
           price: "來回票各來源不一：NOK 495（約 NT$1,757，2026 年 8 月）到 NOK 645（約 NT$2,290，2026 年 10 月），買票前看官網",
-          tip: "山上山下兩站從 2025 年 7 月起施工，山頂的戶外觀景平台封閉、只有臨時咖啡店。冬天傍晚下山排隊可能超過 1 小時。天氣好再上去；搭 26 號公車到山下站。", lat: 69.6406, lng: 18.9965 }
+          tip: "山上山下兩站從 2025 年 7 月起施工，山頂的戶外觀景平台封閉、只有臨時咖啡店。冬天傍晚下山排隊可能超過 1 小時。天氣好再上去；搭公車 [26] 到山下站。", lat: 69.6406, lng: 18.9965 }
       ]
     },
     lof: {
@@ -1364,7 +1375,7 @@ window.TRIP = {
     },
     bgo: {
       name: "卑爾根", region: "bgo",
-      transit: [{ n: "公車、輕軌", d: "用 Skyss 票，上車前在 app 或售票機買。" }, { n: "輕軌 1 號線到機場", d: "大人 NOK 51（約 NT$181）。火車站旁的 Nonneseter 站 2026 年關閉，改在 Bystasjonen（巴士總站）上下車。" }], ref: "bgo", mapCity: "Bergen", tour: "2027-03-11",
+      transit: [{ n: "公車、輕軌", d: "用 Skyss 票，上車前在 app 或售票機買。" }, { n: "輕軌 [1] 到機場", d: "大人 NOK 51（約 NT$181）。火車站旁的 Nonneseter 站 2026 年關閉，改在 Bystasjonen（巴士總站）上下車。" }], ref: "bgo", mapCity: "Bergen", tour: "2027-03-11",
       intro: "峽灣入口的港口城市，彩色木屋街是世界遺產。",
       tips: [
         { i: "rain", t: "雨具要帶", d: "挪威最常下雨的城市之一。" }
@@ -1399,7 +1410,7 @@ window.TRIP = {
     },
     gdn: {
       name: "格但斯克", region: "gdn",
-      transit: [{ n: "公車", d: "用 ZTM 票（Jakdojade app 或售票機），SKM、PKM 火車另外買票。" }, { n: "機場", d: "210 號公車。" }, { n: "3/13 一日遊", d: "去馬爾堡（Malbork）或索波特（Sopot）搭火車。" }], ref: "gdn", mapCity: "Gdańsk",
+      transit: [{ n: "公車", d: "用 ZTM 票（Jakdojade app 或售票機），SKM、PKM 火車另外買票。" }, { n: "機場", d: "公車 [210]。" }, { n: "3/13 一日遊", d: "去馬爾堡（Malbork）或索波特（Sopot）搭火車。" }], ref: "gdn", mapCity: "Gdańsk",
       intro: "波羅的海邊的漢薩港口古城，冬天安靜又有氣氛。",
       tips: [
         { i: "food", t: "長街一帶的牛奶吧和餃子店", d: "便宜好吃，在地人和學生常去，午餐和傍晚要排隊。" },
@@ -1565,7 +1576,7 @@ window.TRIP = {
     { id: "road-0310", day: "2027-03-09", eve: true, text: "查 175 路況和 yr 天氣，決定 3/10 出發時間" },
     { id: "fuel-0310", day: "2027-03-09", eve: true, text: "在斯沃爾韋爾（Svolvær）加滿油" },
     { id: "train-0314", day: "2027-03-13", eve: true, text: "確認 3/14 火車時間，11:00 前退房" },
-    { id: "waw-175", day: "2027-03-15", text: "查明天去機場的 175 號公車 Foksal 站有沒有停", sub: "王宮之路 2026 年 11 月起禁止公車通行，175 號改道；用 Jakdojade 查" }
+    { id: "waw-175", day: "2027-03-15", text: "查明天去機場的公車 [175] 在 Foksal 站有沒有停", sub: "王宮之路 2026 年 11 月起禁止公車通行，[175] 改道；用 Jakdojade 查" }
   ],
   /* 資料頁「緊急」：tel 撥號 [號碼, 說明]，不寫卡號 */
   sos: [

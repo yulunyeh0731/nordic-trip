@@ -396,9 +396,23 @@ details.area[open]>summary .nb-s{display:none}
 .nbr{display:flex;align-items:center;gap:10px;width:100%;min-height:48px;padding:6px 2px;border:0;border-top:1px solid var(--line2);background:none;text-align:left;font-size:14.5px;line-height:1.4;color:var(--ink2);cursor:pointer}
 .nb-k+.nbr{border-top:0}
 .nbr>span:first-child{flex:1;min-width:0}
-.nbr b{font-weight:600;color:var(--ink);margin-right:8px}
+.nbr>span>b{font-weight:600;color:var(--ink);margin-right:8px}
 .nbr .chev{transform:rotate(-45deg)}
 .nb{margin:0 0 6px}
+/* 路線號碼牌 */
+b.ln{display:inline-block;margin:0 3px;padding:0 5px;border:1.5px solid var(--k-move);border-radius:4px;background:var(--paper);color:var(--ink);font-size:.9em;font-weight:700;line-height:1.3;font-variant-numeric:tabular-nums;white-space:nowrap;font-family:var(--sans);letter-spacing:0}
+.rt-warn b.ln{border-color:var(--alert);color:var(--alert)}
+.rt-ch{fill:var(--paper);stroke:var(--k-move);stroke-width:1.4}
+.rt-cht{fill:var(--ink);font-weight:700}
+.rt-kb{margin-left:10px;color:var(--k-move);white-space:nowrap}
+.rts .rts-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.rts-h small{font-size:13px;font-weight:700;color:var(--k-move);letter-spacing:0;white-space:nowrap;font-variant-numeric:tabular-nums}
+.rsteps{list-style:none;margin:2px 0 6px;padding:0}
+.rsteps li{display:grid;grid-template-columns:2.6em minmax(0,1fr) auto;gap:10px;align-items:center;min-height:44px;padding:7px 0;border-top:1px solid var(--line2);font-size:15px;line-height:1.55}
+.rsteps li:first-child{border-top:0}
+.rsteps .m{font-size:12.5px;font-weight:700;color:var(--ink2)} .rsteps .m.v{color:var(--k-move)}
+.rsteps li>b{font-weight:700;white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums}
+.rts .rt-fare{font-size:14px;color:var(--ink2)}
 .rts h3{margin:14px 0 2px;font-size:12.5px;font-weight:700;color:var(--ink2);letter-spacing:.06em}
 .rts h3:first-child{margin-top:0}
 .rts p{margin:0 0 6px;font-size:15.5px;line-height:1.6}
@@ -546,7 +560,7 @@ details.fgrp>summary .kic{margin-right:-2px}
 details.topt{border:1px solid var(--line2);border-radius:3px}
 details.topt>summary{display:flex;align-items:center;gap:8px;min-height:48px;padding:6px 10px}
 details.topt>summary span:first-child{flex:1;min-width:0}
-details.topt>summary b{font-size:14.5px;font-weight:600;margin-right:8px}
+details.topt>summary>span>b{font-size:14.5px;font-weight:600;margin-right:8px}
 details.topt>summary small{font-size:12.5px;color:var(--ink2);margin-right:8px}
 details.topt>.topt-b{padding:0 10px 8px}
 .tsteps{margin:6px 0 4px;padding-left:1.3em;font-size:14.5px;line-height:1.55}
@@ -795,7 +809,7 @@ details.more-d .tipl{border-top:1px solid var(--line2)}
 .trl{list-style:none;margin:0;padding:0}
 .trl li{padding:10px 14px;border-top:1px solid var(--line2);font-size:14.5px;line-height:1.55}
 .trl li:first-child{border-top:0}
-.trl b{display:block;font-weight:600;font-size:15px}
+.trl li>b{display:block;font-weight:600;font-size:15px}
 .trl span{color:var(--ink2)}
 .pf{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin:0 0 6px}
 .pf .seg{margin:0}
@@ -970,6 +984,9 @@ details.learn>summary h2.sec{margin:12px 0}
   function telHref(p){ return "tel:"+p.replace(/[^\d+]/g,""); }
   function telBtn(p, label){ return '<a class="callb" href="'+telHref(p)+'">'+svg("phone")+'<span>'+(label||"撥號")+'</span></a>'; }
   function li(a){ return a.map(function(t){return "<li>"+t+"</li>";}).join(""); }
+  /* 路線號碼牌：資料裡寫 [160]、[S2]，畫面換成小框 */
+  var LN=/\[([A-Za-z]{0,3}\d{1,3}[A-Za-z]?)\]/g;
+  function lineTxt(s){ return s?String(s).replace(LN,'<b class="ln">$1</b>'):s; }
   var today=todayISO(), inTrip=today>=T.start&&today<=T.end;
   var lastDay = key(inTrip?today:T.start);
   function staysOn(iso){ return T.stays.filter(function(s){return iso>=s.from && iso<add(s.from,s.nights);}); }
@@ -1306,8 +1323,8 @@ details.learn>summary h2.sec{margin:12px 0}
   }
   var done={}; try{ done=JSON.parse(localStorage.getItem("checklist")||"{}"); }catch(e){ done={}; }
   function checkItem(x){
-    return '<li><label><input type="checkbox" data-id="'+x.id+'"'+(done[x.id]?" checked":"")+'><span class="bx">'+svg("check")+'</span><span class="txt">'+x.text+
-      (x.due?'<em class="due-s">'+dueText(x)+'</em>':"")+(x.day?'<em class="due-s">'+md(x.day)+(x.eve?" 晚上":"")+'</em>':"")+(x.sub?'<small>'+x.sub+'</small>':"")+'</span></label></li>'; }
+    return '<li><label><input type="checkbox" data-id="'+x.id+'"'+(done[x.id]?" checked":"")+'><span class="bx">'+svg("check")+'</span><span class="txt">'+lineTxt(x.text)+
+      (x.due?'<em class="due-s">'+dueText(x)+'</em>':"")+(x.day?'<em class="due-s">'+md(x.day)+(x.eve?" 晚上":"")+'</em>':"")+(x.sub?'<small>'+lineTxt(x.sub)+'</small>':"")+'</span></label></li>'; }
   function checkGroup(name, items){
     if (!items.length) return "";
     var open=items.filter(function(x){return !done[x.id];}), fin=items.filter(function(x){return done[x.id];});
@@ -1380,8 +1397,8 @@ details.learn>summary h2.sec{margin:12px 0}
     var h='<h2 class="sec">最近要做的事</h2><div class="card nxt">';
     if (!dated.length&&!rest.length) h+='<p class="muted" style="margin:0;padding:12px 14px">清單都完成了</p>';
     if (dated.length) h+='<ul class="nx-d">'+dated.map(function(x){ var late=x.due<today;
-      return '<li><span class="due'+(late||x.cancel?" late":"")+'">'+dueText(x)+'</span><div><p>'+x.text+'</p>'+(late?'<p class="s late">已過期</p>':(x.sub?'<p class="s">'+x.sub+'</p>':""))+'</div></li>'; }).join("")+'</ul>';
-    if (rest.length) h+='<p class="nx-r"><span>還沒有日期：</span>'+rest.slice(0,3).map(function(x){return x.text;}).join("、")+(rest.length>3?"⋯等 "+rest.length+" 項":"")+'</p>';
+      return '<li><span class="due'+(late||x.cancel?" late":"")+'">'+dueText(x)+'</span><div><p>'+lineTxt(x.text)+'</p>'+(late?'<p class="s late">已過期</p>':(x.sub?'<p class="s">'+lineTxt(x.sub)+'</p>':""))+'</div></li>'; }).join("")+'</ul>';
+    if (rest.length) h+='<p class="nx-r"><span>還沒有日期：</span>'+rest.slice(0,3).map(function(x){return lineTxt(x.text);}).join("、")+(rest.length>3?"⋯等 "+rest.length+" 項":"")+'</p>';
     return h+'<a class="more" href="#/info/list">看完整清單 ›</a></div>';
   }
   function pageHome(){
@@ -1463,12 +1480,12 @@ details.learn>summary h2.sec{margin:12px 0}
     if (p.when) meta.push("適合"+p.when.map(function(w){return {day:"白天",eve:"傍晚",night:"晚上"}[w];}).join("、"));
     if (p.time) meta.push(/^\d/.test(p.time)?"約 "+p.time:p.time);
     var h='<div class="sh-l2">'+l2.join("")+'</div><div class="sh-l3">'+(meta.length?'<p class="sh-meta">'+meta.join('<span aria-hidden="true">・</span>')+'</p>':"")+
-      '<p class="sh-p">'+p.line+(p.why?" "+p.why:"")+'</p>';
+      '<p class="sh-p">'+lineTxt(p.line)+(p.why?" "+p.why:"")+'</p>';
     if (p.warn&&!p.shut) h+='<p class="sh-p"><span class="closed">'+p.warn+'</span></p>';
     if (Array.isArray(p.closed)&&!p.shut) h+='<p class="sh-k">營業日</p>'+wkHTML(p,date);
     if (p.price) h+='<p class="sh-p">票價：'+p.price+'</p>';
     if (p.free) h+='<p class="sh-p muted">'+p.free+'</p>';
-    if (p.tip) h+='<p class="tip" style="font-size:14px;color:var(--ink2);border-left:2px solid var(--line);padding-left:9px">'+p.tip+'</p>';
+    if (p.tip) h+='<p class="tip" style="font-size:14px;color:var(--ink2);border-left:2px solid var(--line);padding-left:9px">'+lineTxt(p.tip)+'</p>';
     h+='<a class="more" href="#/city/'+cid+'/area/'+p.area+'">看這一區全部 ›</a></div>';
     return {k:TYPE[p.type]+"・"+c.name+(A?"・"+A.name.split("：")[0]:""), t:p.name, ts:p.local&&p.name.indexOf(p.local)<0?p.local:"", key:key, keyCls:cls, c:col(c.region), h:h}; }
   /* 我的備忘：存在這支手機（localStorage memo:<住處 id>、memo:car），打字就自動存 */
@@ -1489,8 +1506,8 @@ details.learn>summary h2.sec{margin:12px 0}
   function optBody(o){
     var rows=[];
     function row(k,v){ if(v) rows.push('<div><span>'+k+'</span><div>'+v+'</div></div>'); }
-    if (o.steps) rows.push('<ol class="tsteps">'+li(o.steps)+'</ol>');
-    row("要多久",o.time); row("多少錢",o.cost); row("怎麼付",o.pay); row("適合",o.fit); row("注意",o.note);
+    if (o.steps) rows.push('<ol class="tsteps">'+li(o.steps.map(lineTxt))+'</ol>');
+    row("要多久",lineTxt(o.time)); row("班距",lineTxt(o.freq)); row("多少錢",o.cost); row("怎麼付",o.pay); row("適合",o.fit); row("注意",lineTxt(o.note));
     return '<div class="topt-b">'+rows.join("")+'</div>'; }
   function transferHTML(t, dkey){
     var opts=t.opts||[], rec=opts.filter(function(o){return o.rec;})[0]||opts[0];
@@ -1498,10 +1515,10 @@ details.learn>summary h2.sec{margin:12px 0}
   function transferBody(t){
     var opts=t.opts||[], rec=opts.filter(function(o){return o.rec;})[0]||opts[0];
     var h='<div class="tc-b">';
-    if (rec) h+='<div class="topt rec"><p class="topt-n">'+(opts.length>1?'<em>推薦</em>':"")+rec.n+'</p>'+optBody(rec)+'</div>';
+    if (rec) h+='<div class="topt rec"><p class="topt-n">'+(opts.length>1?'<em>推薦</em>':"")+lineTxt(rec.n)+'</p>'+optBody(rec)+'</div>';
     opts.filter(function(o){return o!==rec;}).forEach(function(o){
-      h+='<details class="topt"><summary><span><b>'+o.n+'</b>'+[o.time,o.cost].filter(Boolean).map(function(x){return '<small>'+x+'</small>';}).join("")+'</span><span class="chev"></span></summary>'+optBody(o)+'</details>'; });
-    if (t.warn) h+='<p class="dnote">'+t.warn+'</p>';
+      h+='<details class="topt"><summary><span><b>'+lineTxt(o.n)+'</b>'+[o.time,o.cost].filter(Boolean).map(function(x){return '<small>'+lineTxt(x)+'</small>';}).join("")+'</span><span class="chev"></span></summary>'+optBody(o)+'</details>'; });
+    if (t.warn) h+='<p class="dnote">'+lineTxt(t.warn)+'</p>';
     if (t.checkin) h+='<p class="tci">'+svg("key")+'<span>'+t.checkin+'</span></p>';
     var ads=(t.addr||[]).map(addrByRef).filter(Boolean);
     if (ads.length) h+='<div class="tads">'+ads.map(addrRow).join("")+'</div>';
@@ -1625,10 +1642,10 @@ details.learn>summary h2.sec{margin:12px 0}
     if (dist) dl=ctx.froms.length===1?"離 "+dist.f.name+" 直線約 "+dist.k.toFixed(1)+" 公里":"離住處直線："+ctx.froms.map(function(f){ return f.name+" 約 "+km(f,p).toFixed(1)+" 公里"; }).join("、");
     var url=navURL(p, p.q||((p.local||p.name)+" "+(ctx.mapCity||"")));
     return '<details class="poi" id="poi-'+p.id+'"'+(focusPoi===p.id?" open":"")+'><summary class="ph">'+sm+'</summary><div class="pb">'+
-      '<p class="pl">'+p.line+(p.warn?' <span class="closed">'+p.warn+'</span>':"")+'</p>'+
+      '<p class="pl">'+lineTxt(p.line)+(p.warn?' <span class="closed">'+p.warn+'</span>':"")+'</p>'+
       (meta.length?'<p class="meta">'+meta.join("・")+'</p>':"")+wkHTML(p,ctx.date)+
       (info.length?'<p class="meta">'+info.join("；")+'</p>':"")+(p.price?'<p class="meta">票價：'+p.price+'</p>':"")+(dl?'<p class="meta">'+dl+'</p>':"")+
-      (p.tip?'<p class="tip">'+p.tip+'</p>':"")+
+      (p.tip?'<p class="tip">'+lineTxt(p.tip)+'</p>':"")+
       '<p class="loc"><span>'+(p.local||"")+'</span>'+ext(url,"地圖")+'</p></div></details>';
   }
   function pageCity(id){
@@ -1680,7 +1697,7 @@ details.learn>summary h2.sec{margin:12px 0}
       }
       h+='<p class="foot">營業時間是 2025～2026 年的資料，出發前一個月再確認一次。</p>';
     }
-    if (c.transit) h+='<h2 class="sec">交通怎麼搭</h2><div class="card"><ul class="trl">'+c.transit.map(function(t){ return '<li><b>'+t.n+'</b><span>'+t.d+'</span></li>'; }).join("")+'</ul></div>';
+    if (c.transit) h+='<h2 class="sec">交通怎麼搭</h2><div class="card"><ul class="trl">'+c.transit.map(function(t){ return '<li><b>'+lineTxt(t.n)+'</b><span>'+lineTxt(t.d)+'</span></li>'; }).join("")+'</ul></div>';
     if (c.tour){ var td=dayOf(c.tour), tl=td&&(td.legs||[]).filter(function(l){return l.stops;})[0];
       if (tl) h+='<h2 class="sec">'+(tl.short||"挪威縮影")+' <small>'+md(c.tour)+' '+wd(c.tour)+'</small></h2><details class="card fold"><summary>'+tl.dep+' 出發、'+tl.arr+' 回到卑爾根<span class="chev"></span></summary><div class="in"><ol class="stops">'+li(tl.stops)+'</ol>'+(tl.stopsNote?'<p class="dnote">'+tl.stopsNote+'</p>':"")+'<a class="more" href="#/day/'+key(c.tour)+'">看 '+md(c.tour)+' 每日行程 ›</a></div></details>'; }
     if (!carFirst) h+=dv;
@@ -1691,19 +1708,39 @@ details.learn>summary h2.sec{margin:12px 0}
   }
 
   /* ── 區域之間怎麼走：示意路線圖、區域卡片的「隔壁」、「怎麼走」半頁卡 ── */
-  function rtW(t,fs){ var w=0, i, ch; for (i=0;i<t.length;i++){ ch=t.charCodeAt(i); w+=ch>0x2E7F?fs:ch===32?fs*0.3:fs*0.58; } return w; }
+  /* 量 SVG 文字寬度：用 canvas 實際量（量不到時才估算） */
+  var rtCx=null, rtFam=null;
+  function rtW(t,fs,bold){
+    if (rtCx===null){ try{ rtCx=document.createElement("canvas").getContext("2d")||false; rtFam=getComputedStyle(document.body).fontFamily; }catch(x){ rtCx=false; } }
+    if (rtCx){ rtCx.font=(bold?"700 ":"400 ")+fs+"px "+rtFam; var mw=rtCx.measureText(t).width; if (mw>0) return mw; }
+    var w=0, i, ch; for (i=0;i<t.length;i++){ ch=t.charCodeAt(i); w+=ch>0x2E7F?fs:ch===32?fs*0.3:fs*(bold?0.63:0.58); } return w; }
+  /* 含號碼牌的 SVG 文字：切段逐段量寬。號碼框寬＝號碼寬＋9，框和前後各留 3；間隔用座標加（SVG 文字頭尾的空白會被吃掉） */
+  function rtLay(t,fs,bold){ var ps=[], last=0, m, x=0; LN.lastIndex=0;
+    function push(s,ln){ if (!ln){ s=s.replace(/^\s+|\s+$/g,""); if (!s) return; }
+      var w=ln?rtW(s,fs,true)+9:rtW(s,fs,bold); if (ps.length) x+=3; ps.push({t:s,ln:ln,x:x,w:w}); x+=w; }
+    while ((m=LN.exec(t))){ if (m.index>last) push(t.slice(last,m.index),false); push(m[1],true); last=LN.lastIndex; }
+    if (last<t.length) push(t.slice(last),false);
+    return {w:x, ps:ps}; }
+  function rtDraw(L,x0,y,fs,cls,attr){ return L.ps.map(function(p){
+    if (!p.ln) return '<text class="'+cls+'" x="'+f1(x0+p.x)+'" y="'+f1(y)+'"'+(attr||"")+'>'+p.t+'</text>';
+    var h=fs+5, cy=y-fs*0.36;
+    return '<rect class="rt-ch" x="'+f1(x0+p.x)+'" y="'+f1(cy-h/2)+'" width="'+f1(p.w)+'" height="'+f1(h)+'" rx="3.5"/><text class="rt-cht" x="'+f1(x0+p.x+p.w/2)+'" y="'+f1(y)+'" font-size="'+fs+'" text-anchor="middle">'+p.t+'</text>'; }).join(""); }
+  function hasLn(t){ LN.lastIndex=0; return LN.test(t); }
   function rtNodes(c){ var N={}; c.routes.nodes.forEach(function(n){ N[n.id]=n; }); return N; }
   function f1(n){ return (+n).toFixed(1).replace(/\.0$/,""); }
   function routeMapHTML(c, id){
     var R=c.routes, N=rtNodes(c), g="", lab=[];
     var tn=inTrip&&cityOn(today)===id?staysOn(today).map(function(s){return s.id;}):[];
     var hasTn=R.nodes.some(function(n){ return n.kind==="stay"&&tn.indexOf(n.stay)>-1; });
-    if (R.water){ var w=R.water; g+='<polygon class="rt-w" points="'+w.points.map(function(p){return p.join(",");}).join(" ")+'"/>'+
-      (w.label?'<text class="rt-wl" x="'+w.lx+'" y="'+w.ly+'" text-anchor="middle"'+(w.rotate?' transform="rotate('+w.rotate+' '+w.lx+' '+w.ly+')"':"")+'>'+w.label+'</text>':""); }
+    [].concat(R.water||[]).forEach(function(w){ g+='<polygon class="rt-w" points="'+w.points.map(function(p){return p.join(",");}).join(" ")+'"/>'+
+      (w.label?'<text class="rt-wl" x="'+w.lx+'" y="'+w.ly+'" text-anchor="middle"'+(w.rotate?' transform="rotate('+w.rotate+' '+w.lx+' '+w.ly+')"':"")+'>'+w.label+'</text>':""); });
     var dr=R.edges.filter(function(e){ return e.draw!==false; }), pills="";
     /* 標籤和文字照資料的位置畫；會超出圖的左右邊界時才往內推 */
     function fit(x0,w){ return Math.max(3,Math.min(363-w,x0))-x0; }
-    function pill(cx,cy,t,k){ var pw=rtW(t,10)+12; cx+=fit(cx-pw/2,pw);
+    function pill(cx,cy,t,k){
+      if (hasLn(t)){ var L=rtLay(t,10,true), lw=L.w+16; cx+=fit(cx-lw/2,lw);
+        return '<rect class="rt-p'+k+'" x="'+f1(cx-lw/2)+'" y="'+f1(cy-11)+'" width="'+f1(lw)+'" height="22" rx="11"/>'+rtDraw(L,cx-L.w/2,cy+3.7,10,"rt-p"+k+"t"); }
+      var pw=rtW(t,10,true)+12; cx+=fit(cx-pw/2,pw);
       return '<rect class="rt-p'+k+'" x="'+f1(cx-pw/2)+'" y="'+f1(cy-9)+'" width="'+f1(pw)+'" height="18" rx="9"/><text class="rt-p'+k+'t" x="'+f1(cx)+'" y="'+f1(cy+3.7)+'" text-anchor="middle">'+t+'</text>'; }
     dr.forEach(function(e){ var a=N[e.a], b=N[e.b];
       g+='<line class="rt-e rt-'+e.style+'" x1="'+a.x+'" y1="'+a.y+'" x2="'+b.x+'" y2="'+b.y+'"/>';
@@ -1716,9 +1753,12 @@ details.learn>summary h2.sec{margin:12px 0}
       else if (n.kind==="station") o+='<rect class="rt-sq" x="'+(x-8)+'" y="'+(y-8)+'" width="16" height="16" rx="3"/><text class="rt-sqt" x="'+x+'" y="'+(y+3.6)+'" text-anchor="middle">站</text>';
       else o+='<circle class="rt-n" cx="'+x+'" cy="'+y+'" r="'+(n.r||11)+'"/>';
       var boxes=[];
-      (n.lb||[]).forEach(function(l){ var X=x+l[0], Y=y+l[1], tw=rtW(l[2],l[3]), x0=l[5]==="start"?X:l[5]==="end"?X-tw:X-tw/2, sh=fit(x0,tw); X+=sh; x0+=sh;
+      (n.lb||[]).forEach(function(l){ var X=x+l[0], Y=y+l[1], ln=hasLn(l[2]), L=ln?rtLay(l[2],l[3],l[4]>=600):null, tw=ln?L.w:rtW(l[2],l[3],l[4]>=600);
+        var x0=l[5]==="start"?X:l[5]==="end"?X-tw:X-tw/2, sh=fit(x0,tw); X+=sh; x0+=sh;
+        var cls='rt-t'+(n.kind==="stay"?" s":n.kind==="station"?" m":l[4]>=600?" b":"");
         boxes.push([x0,Y-l[3]*0.8,x0+tw,Y+l[3]*0.2]);
-        o+='<text class="rt-t'+(n.kind==="stay"?" s":n.kind==="station"?" m":l[4]>=600?" b":"")+'" x="'+f1(X)+'" y="'+Y+'" font-size="'+l[3]+'" font-weight="'+l[4]+'" text-anchor="'+l[5]+'">'+l[2]+'</text>'; });
+        o+=ln?rtDraw(L,x0,Y,l[3],cls,' font-size="'+l[3]+'" font-weight="'+l[4]+'"')
+          :'<text class="'+cls+'" x="'+f1(X)+'" y="'+Y+'" font-size="'+l[3]+'" font-weight="'+l[4]+'" text-anchor="'+l[5]+'">'+l[2]+'</text>'; });
       /* 今晚住：標在房子右上角；會壓到這個住處自己的文字時改放右邊或右下 */
       if (isTn){ var cs=[[8,-27],[15,-7],[8,13]], pk=cs[0];
         for (var i=0;i<cs.length;i++){ var bx=x+cs[i][0], by=y+cs[i][1];
@@ -1726,7 +1766,7 @@ details.learn>summary h2.sec{margin:12px 0}
         o+='<rect class="rt-tg" x="'+(x+pk[0])+'" y="'+(y+pk[1])+'" width="38" height="14" rx="3"/><text class="rt-tgt" x="'+(x+pk[0]+19)+'" y="'+(y+pk[1]+10.4)+'" text-anchor="middle">今晚住</text>'; }
       g+=(hasTn&&n.kind==="stay"&&!isTn)?'<g opacity=".35">'+o+'</g>':o; });
     (R.notes||[]).forEach(function(t){ g+='<text class="rt-nt" x="'+t[0]+'" y="'+t[1]+'">'+t[2]+'</text>'; });
-    return '<h2 class="sec">區域之間怎麼走</h2><p class="spn">示意圖，不照比例；北在上。時間是 Google 地圖的步行時間（2026 年 11 月查）。</p>'+
+    return '<h2 class="sec">區域之間怎麼走</h2><p class="spn">示意圖，不照比例；北在上。<br>黃色＝走路時間；藍色＝搭車全程時間（含走到車站），框裡是路線號碼。2026 年 11 月 Google 地圖。</p>'+
       '<div class="card rt"><svg viewBox="0 0 366 '+R.h+'" role="img" aria-label="'+esc(c.name+"各區之間的步行時間示意圖："+lab.join("，"))+'">'+g+'</svg></div>'+
       (R.foot?'<p class="rt-foot">'+R.foot+'</p>':""); }
   /* 這一區相關的線：cards 包含這一區；other 是另一端節點（這一區不是兩端之一時沒有） */
@@ -1738,18 +1778,22 @@ details.learn>summary h2.sec{margin:12px 0}
     return xs.length?'<span class="nb-s">隔壁：'+xs.map(function(x){ return (x.other||x.b).short+" "+x.e.min+" 分"; }).join("・")+'</span>':""; }
   function nbRows(cid, c, aid){ var xs=nbEdges(c,aid); if (!xs.length) return "";
     return '<div class="nb"><p class="nb-k">隔壁</p>'+xs.map(function(x){ var e=x.e;
-      return '<button type="button" class="nbr" data-rt="'+cid+'|'+e.id+'" aria-haspopup="dialog"><span><b>'+(x.other?x.other.name:e.row||x.b.name)+'</b>走 '+e.min+' 分'+
+      return '<button type="button" class="nbr" data-rt="'+cid+'|'+e.id+'" aria-haspopup="dialog"><span><b>'+lineTxt(x.other?x.other.name:e.row||x.b.name)+'</b>走 '+e.min+' 分'+
         (e.busMin?'・'+(/電車/.test(e.bus||"")?"電車":"公車")+'約 '+e.busMin+' 分':"")+'</span><span class="chev"></span></button>'; }).join("")+'</div>'; }
   function routeSheet(ref){
     var p=ref.split("|"), c=T.cities[p[0]], e=c&&c.routes&&c.routes.edges.filter(function(x){return x.id===p[1];})[0]; if (!e) return null;
-    var N=rtNodes(c), sh=e.sheet||{}, km=/、\s*([\d.,]+ 公[里尺])/.exec(sh.walk||""), h='<div class="rts">';
-    if (sh.walk) h+='<h3>走路</h3><p>'+sh.walk+'</p>';
-    if (sh.go&&sh.go.length) h+='<h3>大眾運輸</h3>'+sh.go.map(function(t){return '<p>'+t+'</p>';}).join("");
-    if (sh.back&&sh.back.length) h+='<h3>回程</h3>'+sh.back.map(function(t){return '<p>'+t+'</p>';}).join("");
-    if (sh.warn) h+='<p class="rt-warn">'+sh.warn+'</p>';
+    var N=rtNodes(c), sh=e.sheet||{}, h='<div class="rts">', MODE={walk:"走路",bus:"公車",tram:"電車"};
+    function hd(n,x){ return '<h3 class="rts-h"><span>'+n+'</span>'+(x&&x.total?'<small>全程'+x.total+'</small>':"")+'</h3>'; }
+    function steps(x){ return '<ol class="rsteps">'+(x.steps||[]).map(function(st){
+      return '<li><span class="m'+(st[0]==="walk"?"":" v")+'">'+(MODE[st[0]]||"")+'</span><span class="t">'+lineTxt(st[1])+'</span><b>'+(st[2]||"")+'</b></li>'; }).join("")+'</ol>'; }
+    if (sh.walk) h+='<h3>走路</h3><p>'+lineTxt(sh.walk)+'</p>';
+    if (sh.go||sh.note){ h+=hd(sh.back?"搭車（去程）":"搭車",sh.go); if (sh.note) h+='<p>'+lineTxt(sh.note)+'</p>'; if (sh.go) h+=steps(sh.go); }
+    if (sh.back) h+=hd("回程",sh.back)+steps(sh.back);
+    if (sh.fare) h+='<h3>車票</h3><p class="rt-fare">'+lineTxt(sh.fare)+'</p>';
+    if (sh.warn) h+='<p class="rt-warn">'+lineTxt(sh.warn)+'</p>';
     if (sh.nav&&sh.nav.length) h+='<div class="acts big">'+sh.nav.map(function(n){
       return ext("https://www.google.com/maps/dir/?api=1&destination="+encodeURIComponent(n.q)+"&travelmode="+n.mode, n.t); }).join("")+'</div>';
-    return {k:"怎麼走・"+c.name, t:N[e.a].name+" ↔ "+N[e.b].name, key:"走 "+e.min+" 分"+(km?"・"+km[1]:""), c:col(c.region), h:h+'</div>'}; }
+    return {k:"怎麼走・"+c.name, t:N[e.a].name+" ↔ "+N[e.b].name, key:"走 "+e.min+" 分"+(e.km?"・"+e.km:"")+(e.busMin?'<span class="rt-kb">搭車約 '+e.busMin+' 分</span>':""), c:col(c.region), h:h+'</div>'}; }
 
   /* 羅弗敦 E10 示意圖（不是實際道路） */
   function e10HTML(m){
