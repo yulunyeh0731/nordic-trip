@@ -20,6 +20,7 @@
    days.times 重要時間點（色帶「接下來」用）：[{ at "HH:MM"（不知道寫「待補」）, t 說明, who, est: true 推估的時間，畫面寫「建議」 }]
    days.transfers 怎麼去卡（畫面上叫「怎麼去」）：[{ id, who, after 放在第幾段交通後面（-1＝最前面）, leg 對應的航班或車次（資料頁交通連到這張卡）, from, to, sub 趕幾點的什麼,
      opts: [{ n 名稱, rec: true 推薦, steps 怎麼走, time 要多久, cost 多少錢, pay 怎麼付, fit 適合什麼情況, note 注意 }], warn 注意事項, addr 地址卡（addresses 的 key，或 "stay:<住處 id>"）, checkin 入住提醒 }]
+   cities.pois 地點座標：lat、lng；approx: true 表示座標只代表附近一帶（旁邊的廣場或地標），算距離、排序照用，導航改用名稱搜尋（q）
    cities.transit 交通怎麼搭：[{ n 名稱, d 一句說明 }]；cities.drive 自駕區塊、cities.e10 示意圖（羅弗敦）
    checklist：due 是出發前的期限；旅途中的項目改寫 day（YYYY-MM-DD），可加 until 顯示到哪天、eve: true 前一晚做
    我的備忘存在手機的 localStorage：memo:<住處 id>、memo:car
@@ -34,7 +35,7 @@
    訂位代號、確認號不要寫進來（網頁是公開的）。 */
 
 window.TRIP = {
-  updated: "2026-11-05",
+  updated: "2026-11-12",
   start: "2027-02-25",
   end: "2027-03-17",
   departures: { Y: "2027-02-25", M: "2027-02-27" },
@@ -974,11 +975,11 @@ window.TRIP = {
           tip: "下午就關門，只能當早餐或午餐。牛奶吧是自己到櫃台點餐的平價食堂，吃完就走。", lat: 52.2509, lng: 21.0102 },
         { id: "holycross", pri: "must", when: ["day"], area: "old", type: "sight", name: "聖十字教堂", local: "Kościół Świętego Krzyża, Krakowskie Przedmieście 3", q: "Kościół Świętego Krzyża Krakowskie Przedmieście 3 Warszawa",
           line: "蕭邦的心臟封在教堂左側第二根柱子裡。就在王宮之路上，走路會經過。", time: "15 分鐘",
-          hours: "免費。開放時間各來源不一（有的寫每天 6:00–20:00），遇到彌撒不方便參觀" },
+          hours: "免費。開放時間各來源不一（有的寫每天 6:00–20:00），遇到彌撒不方便參觀", lat: 52.2387, lng: 21.0168 },
         { id: "polin", pri: "maybe", when: ["day"], area: "old", type: "sight", name: "POLIN 波蘭猶太人歷史博物館", local: "Muzeum POLIN, Anielewicza 6", q: "POLIN Museum Anielewicza 6 Warszawa",
           line: "講波蘭猶太人一千年的歷史，華沙評價最高的博物館之一。在老城西北邊。", time: "2.5 小時",
           hours: "週一、週三～週五、週日 10:00–18:00，週六到 20:00；常設展最後入場是關門前 2 小時", closed: [2], price: "PLN 45（約 NT$383）", free: "週四免費",
-          tip: "有中文語音導覽。週一有開，王宮和國家博物館休館的 3/15 可以來。" },
+          tip: "有中文語音導覽。週一有開，王宮和國家博物館休館的 3/15 可以來。", lat: 52.2494, lng: 20.9931 },
         { id: "pkin", pri: "must", when: ["day", "eve"], area: "centrum", type: "sight", name: "科學文化宮觀景台", local: "Pałac Kultury i Nauki，30 樓", q: "Pałac Kultury i Nauki Warszawa",
           line: "在 30 樓看整個華沙，也是少數週一有開的景點。", time: "1 小時",
           hours: "每天 10:00–20:00", price: "PLN 25（約 NT$213）",
@@ -1056,18 +1057,18 @@ window.TRIP = {
           tip: "冬天雪景裡的雕像別有味道，但天黑得早，要白天去。", lat: 59.9270, lng: 10.7008 },
         { id: "deichman", area: "bjorvika", type: "sight", pri: "maybe", when: ["day", "eve"], name: "迪希曼圖書館", local: "Deichman Bjørvika, Anne-Cath. Vestlys plass 1", q: "Deichman Bjørvika Oslo",
           line: "2020 年開幕的市立總圖書館，在中央車站和歌劇院中間，六層樓可以自由進去逛，免費。", time: "30～45 分鐘",
-          hours: "平日 08:00–22:00，週末 10:00–18:00" },
+          hours: "平日 08:00–22:00，週末 10:00–18:00", lat: 59.9088, lng: 10.7522 },
         { id: "radhus", area: "sentrum", type: "sight", pri: "maybe", when: ["day"], name: "奧斯陸市政廳", local: "Oslo rådhus", q: "Oslo rådhus",
           line: "諾貝爾和平獎頒獎的地方，大廳四面是巨幅壁畫，免費。", time: "30 分鐘",
-          hours: "每天 09:00–16:00，要過安檢" },
+          hours: "每天 09:00–16:00，要過安檢", lat: 59.9118, lng: 10.7336 },
         { id: "mathallen", area: "lokka", type: "food", why: "美食街", when: ["day", "eve"], name: "Mathallen 美食市場", local: "Mathallen Oslo, Vulkan", q: "Mathallen Oslo",
           line: "Grünerløkka 旁的室內美食市場，海鮮、起司、各國小吃都有。",
           hours: "週二～週六 10:00–20:00，週日 11:00–18:00", closed: [1],
-          tip: "3/1 週一沒開。2/28 週日開到 18:00。" },
+          tip: "3/1 週一沒開。2/28 週日開到 18:00。", lat: 59.9233, lng: 10.7517 },
         { id: "fiskeriet", area: "sentrum", type: "food", why: "坐下來吃", when: ["day", "eve"], name: "Fiskeriet Youngstorget", local: "Youngstorget 2B", q: "Fiskeriet Youngstorget Oslo",
           line: "魚店兼海鮮小館，招牌是奶油魚湯和炸魚薯條。",
           hours: "週一～週五 11:00–22:00，週六、週日 12:00–22:00",
-          tip: "台灣旅人評價兩極：很多人推魚湯，也有人覺得偏鹹、有腥味。魚湯約 NOK 175（約 NT$621，2018 年的價格，現在應該更貴）。用餐時段常客滿。" }
+          tip: "台灣旅人評價兩極：很多人推魚湯，也有人覺得偏鹹、有腥味。魚湯約 NOK 175（約 NT$621，2018 年的價格，現在應該更貴）。用餐時段常客滿。", lat: 59.9147, lng: 10.7498 }
       ]
     },
     tos: {
@@ -1102,26 +1103,26 @@ window.TRIP = {
           line: "旅人和咖啡迷公認特羅姆瑟最好的咖啡，肉桂捲也很有名。",
           hours: "週一～週四 08:00–16:00，週五 08:00–17:00，週六 09:00–17:00", closed: [0],
           tip: "肉桂捲常常中午前就賣完。這趟在特羅姆瑟的三天都是 16:00 關門。", lat: 69.6491, lng: 18.9575 },
-        { id: "kaffebonna", area: "centre", type: "cafe", why: "在地老店", when: ["day"], name: "Kaffebønna", local: "Stortorget 3",
+        { id: "kaffebonna", area: "centre", type: "cafe", why: "在地老店", when: ["day"], name: "Kaffebønna", local: "Stortorget 3", q: "Kaffebønna Stortorget 3 Tromsø",
           line: "在地老牌咖啡店，自家烘焙的麵包甜點多，招牌是卡士達椰子麵包 skolebrød。",
-          hours: "平日 07:30–18:00，週六 09:00–18:00，週日 10:00–18:00", lat: 69.6487, lng: 18.9563 },
+          hours: "平日 07:30–18:00，週六 09:00–18:00，週日 10:00–18:00", lat: 69.6516, lng: 18.9589, approx: true },
         { id: "raketten", area: "centre", type: "food", why: "邊走邊吃", when: ["day", "eve"], name: "Raketten 熱狗亭", local: "Raketten Bar & Pølse, Storgata 94B",
           line: "港邊的小圓亭，招牌是馴鹿肉熱狗，配熱紅酒。",
           hours: "冬季每天約 11:00–21:00（有的網站寫 12:00 開）", lat: 69.6493, lng: 18.9566 },
         { id: "tosbib", area: "centre", type: "sight", pri: "maybe", when: ["day"], name: "特羅姆瑟圖書館", local: "Tromsø bibliotek, Grønnegata 94", q: "Tromsø bibliotek Grønnegata 94",
           line: "弧形屋頂配整面玻璃的市立圖書館，屋頂原本是電影院的。免費，適合天氣不好時進去坐。", time: "20～45 分鐘",
-          hours: "週一～週四 09:00–19:00，週五 09:00–16:00，週六 11:00–15:30" },
+          hours: "週一～週四 09:00–19:00，週五 09:00–16:00，週六 11:00–15:30", lat: 69.6507, lng: 18.9546 },
         { id: "telegrafbukta", area: "centre", type: "sight", pri: "maybe", when: ["day", "night"], name: "Telegrafbukta 海灘", local: "Telegrafbukta", q: "Telegrafbukta Tromsø",
           line: "島南端的海灘，光害比市中心少，是不出城看極光的地點。在住處更南邊。",
-          tip: "33 號公車（從市中心往南的方向）有 Telegrafbukta 站。" },
+          tip: "33 號公車（從市中心往南的方向）有 Telegrafbukta 站。", lat: 69.6321, lng: 18.9066 },
         { id: "dragoy", area: "centre", type: "food", why: "坐下來吃", when: ["day"], name: "Dragøy 魚市小館", local: "Dragøy, Kystens Mathus, Stortorget 1", q: "Dragøy Kystens Mathus Tromsø",
           line: "港邊魚市場裡的午餐店，現點現做的魚和海鮮，價位中等。",
           hours: "週一～週五 10:00–17:00，週六 11:00–17:00", closed: [0],
-          tip: "只做白天，不收訂位。" },
-        { id: "fiskekompaniet", area: "centre", type: "food", why: "想吃一頓好的", when: ["day", "eve"], name: "Fiskekompaniet", local: "Killengreens gate", q: "Fiskekompaniet Tromsø",
+          tip: "只做白天，不收訂位。", lat: 69.6514, lng: 18.9600, approx: true },
+        { id: "fiskekompaniet", area: "centre", type: "food", why: "想吃一頓好的", when: ["day", "eve"], name: "Fiskekompaniet", local: "Killengreens gate 6", q: "Fiskekompaniet Killengreens gate 6 Tromsø",
           line: "特羅姆瑟最有名的海鮮餐廳，在港邊，台灣和香港旅人幾乎都會提到。",
           hours: "午餐 11:30–14:00，晚餐 17:00–22:00", closed: [0],
-          tip: "每人約 NOK 600～1,000 以上（約 NT$2,130～3,550），要先訂位。" },
+          tip: "每人約 NOK 600～1,000 以上（約 NT$2,130～3,550），要先訂位。", lat: 69.6514, lng: 18.9600, approx: true },
         { id: "cathedral", area: "tromsdalen", type: "sight", pri: "must", when: ["day", "eve"], name: "北極大教堂", local: "Ishavskatedralen",
           line: "1965 年的白色三角形教堂，背面有整面彩繪玻璃。", time: "1 小時",
           hours: "每週不同，多半下午才開（約 13:00–17:00），官網每週更新", price: "NOK 90（約 NT$320）",
@@ -1135,14 +1136,14 @@ window.TRIP = {
     },
     lof: {
       name: "羅弗敦", region: "lof",
-      transit: [{ n: "自駕", d: "見下方「開車」。" }], mapCity: "Lofoten",
+      mapCity: "Lofoten",
       /* E10 示意圖：投影 x = 14 + (經度 − 12.9) × 84，y = 16 + (68.62 − 緯度) × 210 */
       e10: {
         road: [["Å", 67.879, 12.983], ["Reine", 67.932, 13.089], ["Flakstad", 68.05, 13.30], ["Leknes", 68.147, 13.611], ["Borg", 68.243, 13.785],
                ["Gimsøy 橋", 68.30, 14.05], ["Svolvær", 68.234, 14.568], ["Fiskebøl", 68.41, 14.79], ["Gullesfjord", 68.53, 16.05], ["EVE 機場", 68.49, 16.68]],
         spurs: [["Svolvær", "Laukvik", 68.387, 14.412], ["Gimsøy 橋", "Lofoten Links", 68.3404, 14.1285], ["Svolvær", "Henningsvær", 68.155, 14.204], ["Reine", "Sakrisøy", 67.9409, 13.1111]],
         stays: [{ n: 1, stay: "lof1", lat: 68.3404, lng: 14.1285, t: "Lofoten Links 3/5" }, { n: 2, stay: "lof2", lat: 67.9409, lng: 13.1111, t: "Sakrisøy 3/6–3/8" }, { n: 3, stay: "lof3", lat: 68.387, lng: 14.412, t: "Laukvik 3/8–3/10" }],
-        towns: [["Å", 67.879, 12.983], ["Leknes", 68.147, 13.611], ["Svolvær", 68.234, 14.568], ["Henningsvær", 68.155, 14.204], ["Uttakleiv", 68.214, 13.533]],
+        towns: [["Å", 67.879, 12.983], ["Leknes", 68.147, 13.611], ["Svolvær", 68.234, 14.568], ["Henningsvær", 68.155, 14.204], ["Uttakleiv", 68.2096, 13.5016]],
         supply: [["Svolvær", "超市・加油"], ["Leknes", "超市・加油"], ["Reine", "超市・加油"], ["Laukvik", "超市"]],
         drives: [["3/5", "EVE 機場 → ① Lofoten Links", "約 205～210 公里，好路況約 3 小時"], ["3/6", "① → ② Sakrisøy", "約 103 公里，好路況約 1 小時 45 分"], ["3/8", "② → ③ Laukvik", "約 154 公里，好路況約 2.5 小時"], ["3/10", "③ Laukvik → EVE 機場", "約 167 公里，2.5～3 小時"]],
         drivesNote: "都是不停車、好路況的時間。下雪要多抓 1 小時以上。"
@@ -1151,7 +1152,7 @@ window.TRIP = {
         { t: "取車時要確認", items: ["輪胎是冬季胎或釘胎。", "油車還是電動車（Yulun 沒開過電動車）。", "車上有沒有 AutoPASS：過路費之後從租車費扣，羅弗敦本身過路費很少。", "道路救援電話（在租車合約上，記到租車備忘）。", "繞車一圈拍照存證，記下油的種類。"] },
         { t: "每天開車前", items: ["路況看 175（Statens vegvesen，vegvesen.no，也可撥 175），天氣看 yr.no 的風和降雪。", "Gimsøystraumen 橋、Raftsundet 橋強風時會封橋，可能封幾小時，沒有替代道路。", "建議油量低於一半就加（推論）。"] },
         { t: "補給點", items: ["斯沃爾韋爾（Svolvær）：Kiwi、Rema 1000、Coop Mega；Alti 購物中心裡的 Bunnpris 週日 10:00～23:00 有開。", "Leknes：Coop Extra、Rema 1000、Bunnpris 等，Bunnpris 週日也開。", "Laukvik：Coop Marked，週一～五 10:00～18:00、週六 10:00～15:00，週日不開。", "加油站在 Svolvær、Leknes、雷訥（Reine），多為自助、只收卡，部分無人站要用有 PIN 碼的卡。", "營業時間是舊資料，出發前和前一天都要再查。"] },
-        { t: "路上要注意", items: ["Leknes 以西路比較窄、會車困難。", "冬天路肩不清雪，不要隨便路邊停車拍照，到有標示的停車場。", "豪克蘭（Haukland）、烏塔克萊夫（Uttakleiv）海灘停車要付費（EasyPark 或 Parka app）。", "天黑早，日照時間看每日頁。"] },
+        { t: "路上要注意", items: ["Leknes 以西路比較窄、會車困難。", "冬天路肩不清雪，不要隨便路邊停車拍照，到有標示的停車場。", "豪克蘭（Haukland）、烏塔克萊夫（Uttakleiv）海灘停車要付費。烏塔克萊夫用車牌辨識自動收費（YouPark），小客車每 3 小時 NOK 60（約 NT$213），開進村子就算。", "天黑早，日照時間看每日頁。"] },
         { t: "出事時", items: ["租車道路救援看合約，保險資料在雲端硬碟。"], tel: [["112", "警察"], ["113", "救護"], ["110", "消防"]] },
         { t: "3/10 還車", items: ["08:00 出發、中午前還車。", "前一晚查路況和天氣。", "3/9 在斯沃爾韋爾（Svolvær）加滿油。", "暴風雪時的備案是改住機場附近。"] }
       ],
@@ -1186,26 +1187,26 @@ window.TRIP = {
           price: "入村費 NOK 100～150（約 NT$355～533），各來源不一",
           tip: "3 月也收入村費（有旅人 3 月去照樣要付）。評價兩極，有人覺得是觀光陷阱。住在村裡、在村裡餐廳用餐可免入村費。", lat: 68.0353, lng: 13.3475 },
         { id: "haukland", area: "mid", type: "sight", pri: "must", when: ["day"], name: "豪克蘭海灘", local: "Haukland strand",
-          line: "白沙配雪山，白天最好看。面向西南，晚上要極光很強才看得到。", lat: 68.1990, lng: 13.5520 },
+          line: "白沙配雪山，白天最好看。面向西南，晚上要極光很強才看得到。", lat: 68.1994, lng: 13.5321 },
         { id: "uttakleiv", area: "mid", type: "sight", pri: "must", when: ["night"], name: "烏塔克萊夫海灘", local: "Uttakleiv",
-          line: "西北到北方開闊、光害少，極光倒映在潮池裡。東邊被山擋住。", lat: 68.2140, lng: 13.5330 },
+          line: "西北到北方開闊、光害少，極光倒映在潮池裡。東邊被山擋住。", lat: 68.2096, lng: 13.5016 },
         { id: "vik", area: "mid", type: "sight", pri: "maybe", when: ["night"], name: "Vik 海灘", local: "Vik strand",
-          line: "夾在豪克蘭和烏塔克萊夫中間，對北方最開闊，等極光先來這裡。",
-          tip: "導航到豪克蘭海灘，沿同一條路再往前開一小段就是 Vik，再過去是往烏塔克萊夫的隧道。" },
+          line: "在豪克蘭海灘旁邊，對北方最開闊，等極光先來這裡。",
+          tip: "從 Leknes 開往豪克蘭會先經過 Vik，再往前是豪克蘭海灘和往烏塔克萊夫的隧道。路邊停車位很少。", lat: 68.1931, lng: 13.5403 },
         { id: "lofotr", area: "mid", type: "sight", pri: "maybe", when: ["day"], name: "洛弗特維京博物館", local: "Lofotr Vikingmuseum, Borg",
           line: "重建的 83 公尺維京酋長長屋，就在 E10 旁，室內為主，天氣不好也能去。",
           hours: "2026 年 11～12 月只開週三、週六 11:00～17:00；2027 年冬季時間出發前查。",
           tip: "3/6 週六會經過。和羅弗敦美術館都只有這天對得上，兩個都去會很趕，先去美術館。", lat: 68.2440, lng: 13.7566 },
         { id: "football", area: "east", type: "sight", pri: "maybe", when: ["day"], name: "亨寧斯韋爾足球場", local: "Henningsvær stadion",
           line: "建在岩石小島上的球場，經典照片是空拍，站在地面看不太出來。", lat: 68.1530, lng: 14.2070 },
-        { id: "gallery", area: "east", type: "sight", pri: "must", when: ["day"], name: "羅弗敦美術館", local: "Galleri Lofoten",
+        { id: "gallery", area: "east", type: "sight", pri: "must", when: ["day"], name: "羅弗敦美術館", local: "Galleri Lofoten, Misværveien 18", q: "Galleri Lofoten Misværveien 18 Henningsvær",
           line: "收藏挪威最大的北挪威 19 世紀繪畫之一，還有雕塑和當代作品。",
           hours: "2026 年：2/22～3/31 只開週三～週六 11:00–16:00。2027 年的時間出發前查", closed: [0, 1, 2],
           price: "NOK 110（約 NT$391）", warn: "這趟只有 3/6 能去",
-          tip: "照 2026 年的時間，在羅弗敦的五天只有 3/5（五）和 3/6（六）有開，3/5 到的時候已經關門。", lat: 68.1550, lng: 14.2040 },
-        { id: "lysstoperi", area: "east", type: "cafe", why: "氣氛", when: ["day"], name: "Henningsvær 蠟燭坊咖啡", local: "Henningsvær Lysstøperi og Cafe",
+          tip: "照 2026 年的時間，在羅弗敦的五天只有 3/5（五）和 3/6（六）有開，3/5 到的時候已經關門。", lat: 68.1550, lng: 14.2040, approx: true },
+        { id: "lysstoperi", area: "east", type: "cafe", why: "氣氛", when: ["day"], name: "Henningsvær 蠟燭坊咖啡", local: "Henningsvær Lysstøperi og Cafe", q: "Henningsvær Lysstøperi og Cafe",
           line: "村子中心的小咖啡館，兼賣手工蠟燭和手作，熱巧克力很受歡迎。",
-          hours: "冬季各來源不一，多半 10:00 或 12:00 開、16:00 關，可能有公休日，前一天查", lat: 68.1550, lng: 14.2050 }
+          hours: "冬季各來源不一，多半 10:00 或 12:00 開、16:00 關，可能有公休日，前一天查", lat: 68.1550, lng: 14.2050, approx: true }
       ]
     },
     bgo: {
@@ -1236,11 +1237,11 @@ window.TRIP = {
         { id: "hagelin", area: "bryggen", type: "food", why: "平價快吃", when: ["day"], name: "Søstrene Hagelin 魚湯店", local: "Strandkaien 3", q: "Søstrene Hagelin Strandkaien 3 Bergen",
           line: "1929 年開的魚店，賣魚湯和魚餅，離魚市場走路 1 分鐘，在地人也會來外帶。",
           hours: "週一～週四 10:00–19:00，週五 10:00–18:00，週六 10:00–17:00", closed: [0],
-          tip: "3/10 到卑爾根已經傍晚，19:00 關門可能趕不上；3/12 週五上午 10:00 開，去機場前可以吃。" },
+          tip: "3/10 到卑爾根已經傍晚，19:00 關門可能趕不上；3/12 週五上午 10:00 開，去機場前可以吃。", lat: 60.3952, lng: 5.3259, approx: true },
         { id: "trekroneren", area: "bryggen", type: "food", why: "邊走邊吃", when: ["day", "eve"], name: "Trekroneren 熱狗亭", local: "Kong Oscars gate 1", q: "Trekroneren Kong Oscars gate 1 Bergen",
           line: "卑爾根最有名的熱狗攤，招牌是馴鹿肉熱狗，配越橘醬和炸洋蔥。",
           hours: "11:00 開到深夜",
-          tip: "馴鹿熱狗約 NOK 90（約 NT$320，2026 年遊記）。" }
+          tip: "馴鹿熱狗約 NOK 90（約 NT$320，2026 年遊記）。", lat: 60.3952, lng: 5.3259, approx: true }
       ]
     },
     gdn: {
@@ -1265,7 +1266,7 @@ window.TRIP = {
         { id: "amber", area: "main", type: "sight", pri: "maybe", when: ["day"], name: "琥珀博物館", local: "Muzeum Bursztynu, Wielkie Młyny 16", q: "Muzeum Bursztynu Wielkie Młyny 16 Gdańsk",
           line: "在中世紀的大磨坊裡，看包著昆蟲的琥珀和琥珀工藝。台灣旅人常推薦。", time: "1.5～2 小時",
           hours: "週二～週日 10:00–18:00，週一 12:00–18:00（各網站寫法不一，去之前查）", price: "PLN 37（約 NT$315）", free: "週一免費",
-          tip: "2021 年搬到現在的大磨坊（Wielki Młyn）。舊文章寫的監獄塔是舊址。" },
+          tip: "2021 年搬到現在的大磨坊（Wielki Młyn）。舊文章寫的監獄塔是舊址。", lat: 54.3540, lng: 18.6500 },
         { id: "mariacki", area: "main", type: "sight", pri: "must", when: ["day"], name: "聖母聖殿", local: "Bazylika Mariacka",
           line: "世界最大的磚造教堂之一，內部高大明亮。", time: "1 小時",
           hours: "週一～週六 08:30–17:30，週日 11:00–12:00、13:00–17:30（2025 年遊記），教堂免費",
@@ -1368,7 +1369,7 @@ window.TRIP = {
       { stay: "lof3", t: "Laukvik Suites", sum: "出門就看，往西北是開闊海面。",
         items: ["白天先在住處附近找一個沒有路燈的位置。", "3/8 是新月，整趟最暗的一夜。"] },
       { t: "中段海灘", sub: "從哪個住處都可以開過來追晴天", sum: "先到 Vik 海灘等，極光移動再換到隔壁海灘。",
-        items: [{ d: "Vik 海灘：對北方最開闊，適合先在這裡等。在豪克蘭和烏塔克萊夫中間。導航到豪克蘭海灘，沿同一條路再往前開一小段就是 Vik，再過去是往烏塔克萊夫的隧道。", q: "Vik beach, Vestvågøy" },
+        items: [{ d: "Vik 海灘：對北方最開闊，適合先在這裡等。從 Leknes 開往豪克蘭會先經過這裡，路邊停車位很少。", poi: "vik" },
           { d: "烏塔克萊夫海灘（Uttakleiv）：西北到北方開闊，東邊被山擋住。", poi: "uttakleiv" },
           { d: "豪克蘭海灘（Haukland）：面向西南，北邊和東邊是山，極光很強、到頭頂時才適合。", poi: "haukland" }] }
     ],
