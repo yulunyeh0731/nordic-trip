@@ -23,6 +23,7 @@
   --brick:#A3452A; --fjord:#1D5476; --aurora:#137A5A; --slate:#3E4D5A; --alert:#B23A2A;
   --glow:#5DCAA5; --violet:#AFA9EC;
   --k-move:#34508F; --k-stay:#C8901E; --k-car:#7E62C8; --k-act:#C2507A;
+  --rt-water:#D6E6EF; --rt-water-ink:#5B8098; --rt-walk-bg:#FBEFC8; --rt-walk-ink:#775708; --rt-bus-bg:#DCE8F6; --rt-bus-ink:#2B4F8C; --rt-stay-ink:#8A6410;
   --serif:"TripSerif","Noto Serif TC","Songti TC",serif;
   --sans:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
   --navh:60px; --dnavh:48px; --pvh:44px;
@@ -35,6 +36,7 @@
     --line:#2A3B49; --line2:#203140; --night:#0A1520; --night2:#16293A;
     --brick:#B9573A; --fjord:#2E6C93; --aurora:#1E8B68; --slate:#4E606F; --alert:#E0675A;
     --k-move:#7894D8; --k-stay:#E2AE4C; --k-car:#A68EE8; --k-act:#E27DA3;
+  --rt-water:#18303F; --rt-water-ink:#7FA3BA; --rt-walk-bg:#4A3B12; --rt-walk-ink:#F2D58A; --rt-bus-bg:#1F3352; --rt-bus-ink:#A9C4F0; --rt-stay-ink:#E2AE4C;
   }
 }
 :root[data-theme="dark"]{
@@ -43,6 +45,7 @@
   --line:#2A3B49; --line2:#203140; --night:#0A1520; --night2:#16293A;
   --brick:#B9573A; --fjord:#2E6C93; --aurora:#1E8B68; --slate:#4E606F; --alert:#E0675A;
   --k-move:#7894D8; --k-stay:#E2AE4C; --k-car:#A68EE8; --k-act:#E27DA3;
+  --rt-water:#18303F; --rt-water-ink:#7FA3BA; --rt-walk-bg:#4A3B12; --rt-walk-ink:#F2D58A; --rt-bus-bg:#1F3352; --rt-bus-ink:#A9C4F0; --rt-stay-ink:#E2AE4C;
 }
 *,*::before,*::after{box-sizing:inherit;-webkit-tap-highlight-color:transparent}
 html{-webkit-text-size-adjust:100%}
@@ -368,6 +371,38 @@ button.sh-box{cursor:pointer}
 .back{display:inline-flex;align-items:center;min-height:44px;padding:0 16px 0 12px;border:1px solid var(--line);border-radius:22px;background:var(--paper);font-size:14.5px;font-weight:600;color:var(--ink);cursor:pointer}
 .has-back .itabs{top:calc(53px + var(--pv,0px))}
 .has-back .dsec,.has-back details.area{scroll-margin-top:calc(62px + var(--pv,0px))}
+/* 區域之間怎麼走：示意路線圖（不能點）、區域卡片的「隔壁」 */
+.rt{padding:6px 4px}
+.rt svg{display:block;width:100%;height:auto;pointer-events:none;-webkit-user-select:none;user-select:none}
+.rt text{font-family:var(--sans)}
+.rt-t{fill:var(--ink2);paint-order:stroke;stroke:var(--paper);stroke-width:4px;stroke-linejoin:round}
+.rt-t.b{fill:var(--ink)} .rt-t.s{fill:var(--rt-stay-ink)} .rt-t.m{fill:var(--k-move)}
+.rt-w{fill:var(--rt-water)} .rt-wl{fill:var(--rt-water-ink);font-size:10.5px;letter-spacing:.08em}
+.rt-e{fill:none;stroke:var(--c);stroke-linecap:round}
+.rt-line{stroke-width:7} .rt-spur{stroke-width:5;stroke-dasharray:2 9}
+.rt-link{stroke:var(--k-stay);stroke-width:1.6;stroke-dasharray:3 3;stroke-linecap:butt} .rt-stn{stroke:var(--k-move);stroke-width:1.6;stroke-dasharray:3 3;stroke-linecap:butt}
+.rt-n{fill:var(--paper);stroke:var(--c);stroke-width:4}
+.rt-h{fill:var(--k-stay);stroke:var(--paper);stroke-width:1.5;stroke-linejoin:round} .rt-hd{fill:var(--paper)}
+.rt-sq{fill:var(--k-move)} .rt-sqt{fill:#fff;font-size:10px;font-weight:700}
+.rt-pw{fill:var(--rt-walk-bg)} .rt-pwt{fill:var(--rt-walk-ink);font-size:10px;font-weight:700}
+.rt-pb{fill:var(--rt-bus-bg)} .rt-pbt{fill:var(--rt-bus-ink);font-size:10px;font-weight:700}
+.rt-nt{fill:var(--rt-stay-ink);font-size:11px;paint-order:stroke;stroke:var(--paper);stroke-width:4px;stroke-linejoin:round}
+.rt-tg{fill:var(--k-stay)} .rt-tgt{fill:var(--paper);font-size:9.5px;font-weight:700}
+.rt-foot{margin:8px 0 0;font-size:12.5px;color:var(--ink2)}
+details.area>summary>div{min-width:0}
+details.area>summary .nb-s{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+details.area[open]>summary .nb-s{display:none}
+.nb-k{margin:10px 0 2px;font-size:12.5px;font-weight:700;color:var(--ink2);letter-spacing:.06em}
+.nbr{display:flex;align-items:center;gap:10px;width:100%;min-height:48px;padding:6px 2px;border:0;border-top:1px solid var(--line2);background:none;text-align:left;font-size:14.5px;line-height:1.4;color:var(--ink2);cursor:pointer}
+.nb-k+.nbr{border-top:0}
+.nbr>span:first-child{flex:1;min-width:0}
+.nbr b{font-weight:600;color:var(--ink);margin-right:8px}
+.nbr .chev{transform:rotate(-45deg)}
+.nb{margin:0 0 6px}
+.rts h3{margin:14px 0 2px;font-size:12.5px;font-weight:700;color:var(--ink2);letter-spacing:.06em}
+.rts h3:first-child{margin-top:0}
+.rts p{margin:0 0 6px;font-size:15.5px;line-height:1.6}
+.rts .rt-warn{margin-top:12px;color:var(--alert);font-weight:600}
 /* 試看列：試看時固定在每一頁最上面，內容和返回標籤往下讓出高度 */
 body.pv{--pv:calc(var(--pvh) + env(safe-area-inset-top,0px));padding-top:var(--pv)}
 .pv .dsec,.pv details.area{scroll-margin-top:calc(10px + var(--pv))}
@@ -1612,6 +1647,7 @@ details.learn>summary h2.sec{margin:12px 0}
     if (c.tips){ var tip=function(t){ return '<li>'+svg(t.i)+'<div><b>'+t.t+'</b>'+(t.d?'<span>'+t.d+'</span>':"")+'</div></li>'; };
       h+='<h2 class="sec">要先知道</h2><div class="card"><ul class="tipl">'+c.tips.slice(0,3).map(tip).join("")+'</ul>'+
         (c.tips.length>3?'<details class="more-d"><summary>更多（'+(c.tips.length-3)+' 條）<span class="chev"></span></summary><ul class="tipl">'+c.tips.slice(3).map(tip).join("")+'</ul></details>':"")+'</div>'; }
+    if (c.routes) h+=routeMapHTML(c,id);
     /* 開車是主軸的地區（羅弗敦）：E10 示意圖和開車排在區域和地點前面 */
     var dv="";
     if (c.e10) dv+=e10HTML(c.e10);
@@ -1639,7 +1675,7 @@ details.learn>summary h2.sec{margin:12px 0}
       } else {
         h+=c.areas.map(function(a){ var list=c.pois.filter(function(p){return p.area===a.id&&vis(p);});
           var op=!!opensToday[a.id]||a.id===focusArea||list.some(function(p){return p.id===focusPoi;});
-          return '<details class="area" id="area-'+a.id+'"'+(op?" open":"")+'><summary><div><b>'+a.name+'</b><span>'+list.length+' 個地點</span></div><span class="chev"></span></summary><div class="pois"><p class="al">'+a.line+'</p>'+
+          return '<details class="area" id="area-'+a.id+'"'+(op?" open":"")+'><summary><div><b>'+a.name+'</b><span>'+list.length+' 個地點</span>'+nbSum(c,a.id)+'</div><span class="chev"></span></summary><div class="pois"><p class="al">'+a.line+'</p>'+nbRows(id,c,a.id)+
             list.map(function(p){return poiHTML(p,ctx);}).join("")+'</div></details>'; }).join("");
       }
       h+='<p class="foot">營業時間是 2025～2026 年的資料，出發前一個月再確認一次。</p>';
@@ -1653,6 +1689,67 @@ details.learn>summary h2.sec{margin:12px 0}
       return '<button type="button" class="srow" data-stay="'+s.id+'" aria-haspopup="dialog">'+svg("bed")+'<span>'+who(s.who)+'<b>'+s.name+'</b>・'+md(s.from)+'～'+md(add(s.from,s.nights))+'，'+s.nights+' 晚</span><span class="chev"></span></button>'; }).join("")+'</div>';
     return h+'</main>'+sw;
   }
+
+  /* ── 區域之間怎麼走：示意路線圖、區域卡片的「隔壁」、「怎麼走」半頁卡 ── */
+  function rtW(t,fs){ var w=0, i, ch; for (i=0;i<t.length;i++){ ch=t.charCodeAt(i); w+=ch>0x2E7F?fs:ch===32?fs*0.3:fs*0.58; } return w; }
+  function rtNodes(c){ var N={}; c.routes.nodes.forEach(function(n){ N[n.id]=n; }); return N; }
+  function f1(n){ return (+n).toFixed(1).replace(/\.0$/,""); }
+  function routeMapHTML(c, id){
+    var R=c.routes, N=rtNodes(c), g="", lab=[];
+    var tn=inTrip&&cityOn(today)===id?staysOn(today).map(function(s){return s.id;}):[];
+    var hasTn=R.nodes.some(function(n){ return n.kind==="stay"&&tn.indexOf(n.stay)>-1; });
+    if (R.water){ var w=R.water; g+='<polygon class="rt-w" points="'+w.points.map(function(p){return p.join(",");}).join(" ")+'"/>'+
+      (w.label?'<text class="rt-wl" x="'+w.lx+'" y="'+w.ly+'" text-anchor="middle"'+(w.rotate?' transform="rotate('+w.rotate+' '+w.lx+' '+w.ly+')"':"")+'>'+w.label+'</text>':""); }
+    var dr=R.edges.filter(function(e){ return e.draw!==false; }), pills="";
+    /* 標籤和文字照資料的位置畫；會超出圖的左右邊界時才往內推 */
+    function fit(x0,w){ return Math.max(3,Math.min(363-w,x0))-x0; }
+    function pill(cx,cy,t,k){ var pw=rtW(t,10)+12; cx+=fit(cx-pw/2,pw);
+      return '<rect class="rt-p'+k+'" x="'+f1(cx-pw/2)+'" y="'+f1(cy-9)+'" width="'+f1(pw)+'" height="18" rx="9"/><text class="rt-p'+k+'t" x="'+f1(cx)+'" y="'+f1(cy+3.7)+'" text-anchor="middle">'+t+'</text>'; }
+    dr.forEach(function(e){ var a=N[e.a], b=N[e.b];
+      g+='<line class="rt-e rt-'+e.style+'" x1="'+a.x+'" y1="'+a.y+'" x2="'+b.x+'" y2="'+b.y+'"/>';
+      if (e.walk){ var cx=(a.x+b.x)/2+(e.lx||0), cy=(a.y+b.y)/2+(e.ly||0); pills+=pill(cx,cy,e.walk,"w");
+        if (e.bus) pills+=pill(cx+(e.bx||0),cy+(e.by||0),e.bus,"b");
+        lab.push(a.name+"到"+b.name+e.walk.replace(/・.*/,"")); } });
+    g+=pills;
+    R.nodes.forEach(function(n){ var x=n.x, y=n.y, o="", isTn=n.kind==="stay"&&tn.indexOf(n.stay)>-1;
+      if (n.kind==="stay") o+='<path class="rt-h" d="M'+(x-12)+' '+(y-1)+'L'+x+' '+(y-11.5)+'L'+(x+12)+' '+(y-1)+'H'+(x+8.5)+'V'+(y+11.5)+'H'+(x-8.5)+'V'+(y-1)+'Z"/><rect class="rt-hd" x="'+(x-2.5)+'" y="'+(y+4)+'" width="5" height="7.5"/>';
+      else if (n.kind==="station") o+='<rect class="rt-sq" x="'+(x-8)+'" y="'+(y-8)+'" width="16" height="16" rx="3"/><text class="rt-sqt" x="'+x+'" y="'+(y+3.6)+'" text-anchor="middle">站</text>';
+      else o+='<circle class="rt-n" cx="'+x+'" cy="'+y+'" r="'+(n.r||11)+'"/>';
+      var boxes=[];
+      (n.lb||[]).forEach(function(l){ var X=x+l[0], Y=y+l[1], tw=rtW(l[2],l[3]), x0=l[5]==="start"?X:l[5]==="end"?X-tw:X-tw/2, sh=fit(x0,tw); X+=sh; x0+=sh;
+        boxes.push([x0,Y-l[3]*0.8,x0+tw,Y+l[3]*0.2]);
+        o+='<text class="rt-t'+(n.kind==="stay"?" s":n.kind==="station"?" m":l[4]>=600?" b":"")+'" x="'+f1(X)+'" y="'+Y+'" font-size="'+l[3]+'" font-weight="'+l[4]+'" text-anchor="'+l[5]+'">'+l[2]+'</text>'; });
+      /* 今晚住：標在房子右上角；會壓到這個住處自己的文字時改放右邊或右下 */
+      if (isTn){ var cs=[[8,-27],[15,-7],[8,13]], pk=cs[0];
+        for (var i=0;i<cs.length;i++){ var bx=x+cs[i][0], by=y+cs[i][1];
+          if (bx+38<=364&&!boxes.some(function(b){ return bx<b[2]&&bx+38>b[0]&&by<b[3]&&by+14>b[1]; })){ pk=cs[i]; break; } }
+        o+='<rect class="rt-tg" x="'+(x+pk[0])+'" y="'+(y+pk[1])+'" width="38" height="14" rx="3"/><text class="rt-tgt" x="'+(x+pk[0]+19)+'" y="'+(y+pk[1]+10.4)+'" text-anchor="middle">今晚住</text>'; }
+      g+=(hasTn&&n.kind==="stay"&&!isTn)?'<g opacity=".35">'+o+'</g>':o; });
+    (R.notes||[]).forEach(function(t){ g+='<text class="rt-nt" x="'+t[0]+'" y="'+t[1]+'">'+t[2]+'</text>'; });
+    return '<h2 class="sec">區域之間怎麼走</h2><p class="spn">示意圖，不照比例；北在上。時間是 Google 地圖的步行時間（2026 年 11 月查）。</p>'+
+      '<div class="card rt"><svg viewBox="0 0 366 '+R.h+'" role="img" aria-label="'+esc(c.name+"各區之間的步行時間示意圖："+lab.join("，"))+'">'+g+'</svg></div>'+
+      (R.foot?'<p class="rt-foot">'+R.foot+'</p>':""); }
+  /* 這一區相關的線：cards 包含這一區；other 是另一端節點（這一區不是兩端之一時沒有） */
+  function nbEdges(c, aid){ if (!c.routes) return [];
+    var N=rtNodes(c), me=c.routes.nodes.filter(function(n){ return n.kind==="area"&&n.area===aid; })[0];
+    return c.routes.edges.filter(function(e){ return (e.cards||[]).indexOf(aid)>-1; }).map(function(e){
+      return {e:e, other:me&&e.a===me.id?N[e.b]:me&&e.b===me.id?N[e.a]:null, b:N[e.b]}; }); }
+  function nbSum(c, aid){ var xs=nbEdges(c,aid).filter(function(x){ return x.e.draw!==false; });
+    return xs.length?'<span class="nb-s">隔壁：'+xs.map(function(x){ return (x.other||x.b).short+" "+x.e.min+" 分"; }).join("・")+'</span>':""; }
+  function nbRows(cid, c, aid){ var xs=nbEdges(c,aid); if (!xs.length) return "";
+    return '<div class="nb"><p class="nb-k">隔壁</p>'+xs.map(function(x){ var e=x.e;
+      return '<button type="button" class="nbr" data-rt="'+cid+'|'+e.id+'" aria-haspopup="dialog"><span><b>'+(x.other?x.other.name:e.row||x.b.name)+'</b>走 '+e.min+' 分'+
+        (e.busMin?'・'+(/電車/.test(e.bus||"")?"電車":"公車")+'約 '+e.busMin+' 分':"")+'</span><span class="chev"></span></button>'; }).join("")+'</div>'; }
+  function routeSheet(ref){
+    var p=ref.split("|"), c=T.cities[p[0]], e=c&&c.routes&&c.routes.edges.filter(function(x){return x.id===p[1];})[0]; if (!e) return null;
+    var N=rtNodes(c), sh=e.sheet||{}, km=/、\s*([\d.,]+ 公[里尺])/.exec(sh.walk||""), h='<div class="rts">';
+    if (sh.walk) h+='<h3>走路</h3><p>'+sh.walk+'</p>';
+    if (sh.go&&sh.go.length) h+='<h3>大眾運輸</h3>'+sh.go.map(function(t){return '<p>'+t+'</p>';}).join("");
+    if (sh.back&&sh.back.length) h+='<h3>回程</h3>'+sh.back.map(function(t){return '<p>'+t+'</p>';}).join("");
+    if (sh.warn) h+='<p class="rt-warn">'+sh.warn+'</p>';
+    if (sh.nav&&sh.nav.length) h+='<div class="acts big">'+sh.nav.map(function(n){
+      return ext("https://www.google.com/maps/dir/?api=1&destination="+encodeURIComponent(n.q)+"&travelmode="+n.mode, n.t); }).join("")+'</div>';
+    return {k:"怎麼走・"+c.name, t:N[e.a].name+" ↔ "+N[e.b].name, key:"走 "+e.min+" 分"+(km?"・"+km[1]:""), c:col(c.region), h:h+'</div>'}; }
 
   /* 羅弗敦 E10 示意圖（不是實際道路） */
   function e10HTML(m){
@@ -1915,6 +2012,7 @@ details.learn>summary h2.sec{margin:12px 0}
       if (inSheet){ var nb=document.querySelector("#sh-f ."+(sq.classList.contains("p")?"p":"n"))||document.querySelector("#sh-f button"); if (nb) nb.focus({preventScroll:true}); }
       return; }
     var ad=e.target.closest("[data-addr]"); if (ad){ openSheet(addrSheet(+ad.getAttribute("data-addr")), ad); return; }
+    var rt=e.target.closest("[data-rt]"); if (rt){ openSheet(routeSheet(rt.getAttribute("data-rt")), rt); return; }
     var sp=e.target.closest("[data-poi],[data-bag],[data-tr],[data-stay]");
     if (sp){ var x=sp.getAttribute("data-poi")!=null?poiSheet(sp.getAttribute("data-poi")):sp.getAttribute("data-bag")!=null?bagSheet(sp.getAttribute("data-bag")):sp.getAttribute("data-tr")!=null?trSheet(sp.getAttribute("data-tr")):staySheet(sp.getAttribute("data-stay"));
       openSheet(x, sp); return; }
