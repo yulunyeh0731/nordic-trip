@@ -18,6 +18,7 @@
    stays 住宿：checkin、checkout 入住和退房時間（HH:MM）；kitchen、breakfast、parking、laundry 設施（true 有、false 沒有，也可以寫文字如「含早餐」，不知道就不寫）；
      room 房型、phone 電話、getThere 怎麼去、access 入住方式（自助入住、鑰匙盒等），不知道就不寫
    days.times 重要時間點（色帶「接下來」用）：[{ at "HH:MM"（不知道寫「待補」）, t 說明, who, est: true 推估的時間，畫面寫「建議」 }]
+   days.trouble 出狀況時（每日頁「移動」最後的收合區塊）：[{ t 文字（可以有 [xx]）, tel 撥號按鈕 [[號碼, 標籤]]（可以不寫） }]
    days.transfers 怎麼去卡（畫面上叫「怎麼去」）：[{ id, who, after 放在第幾段交通後面（-1＝最前面）, leg 對應的航班或車次（資料頁交通連到這張卡）, from, to, sub 趕幾點的什麼,
      opts: [{ n 名稱, rec: true 推薦, steps 怎麼走, time 要多久（車程）, freq 班距（不和車程寫在同一句）, cost 多少錢, pay 怎麼付, fit 適合什麼情況, note 注意 }], warn 注意事項, addr 地址卡（addresses 的 key，或 "stay:<住處 id>"）, checkin 入住提醒 }]
    cities.pois 地點座標：lat、lng；approx: true 表示座標只代表附近一帶（旁邊的廣場或地標），算距離、排序照用，導航改用名稱搜尋（q）
@@ -49,7 +50,7 @@
    訂位代號、確認號不要寫進來（網頁是公開的）。 */
 
 window.TRIP = {
-  updated: "2026-11-12",
+  updated: "2026-11-13",
   start: "2027-02-25",
   end: "2027-03-17",
   departures: { Y: "2027-02-25", M: "2027-02-27" },
@@ -528,6 +529,11 @@ window.TRIP = {
         { t: "car", text: "EVE 機場取車（四驅、自排、雪胎），沿 E10 開到 Gimsøy 的 Lofoten Links Lodges", status: "pending", short: "EVE 機場租車" }
       ],
       notes: ["DHC-8 螺旋槳小飛機，置物櫃小，登機箱可能在登機門被收去託運。證件、貴重物品、行動電源放隨身小包"],
+      trouble: [
+        { t: "航班取消或延誤：先找 Widerøe 櫃台或看 Widerøe app，通常會自動改到下一班，並用簡訊通知。" },
+        { t: "改好班次後，打給租車公司說會晚到，問櫃台幾點關（電話在租車確認信）；再打給 Lofoten Links，最晚 23:30 入住。", tel: [["+47 76 07 20 02", "Lofoten Links"]] },
+        { t: "傍晚以後才到 EVE 機場：不要晚上開 3 小時雪路，改住機場附近，3/6 早上再開。" }
+      ],
       free: [{ when: "傍晚", text: "13:00 左右取到車的話，大約 17:00～17:30 到住處，當天日落 17:22。在斯沃爾韋爾（Svolvær）採買要快，路上不要多停。小屋餐廳冬季關閉，晚餐用共用廚房自己煮（16:00 起入住）。", areas: ["west", "mid", "east"] }] },
 
     { date: "2027-03-06",
@@ -671,6 +677,11 @@ window.TRIP = {
           fare: "Smart", cost: { cat: "交通", cur: "NOK", amt: 2144, twd: 7621, pay: "paid", payDate: "2026-11-02", note: "含服務費", rule: { type: "none", note: "不可退款、不可改票" } } }
       ],
       notes: ["Embraer 190-E2 噴射機，中途停特隆赫姆時留在機上", "機場輕軌到市區終點站 Byparken 約 45 分鐘"],
+      trouble: [
+        { t: "路封了（Raftsundet 橋或 E10）：打給租車公司說明，問延後還車怎麼算。WF1365 是 Smart 票，不能改，趕不上要重買。", tel: [["175", "路況"]] },
+        { t: "只有 Raftsundet 橋封、Svolvær 那一側能走：可以改從 Svolvær 機場搭 Widerøe 飛卑爾根（要轉機、另外買票，班次用 Widerøe app 查）；車能不能在 Svolvær 還，先問租車公司。" },
+        { t: "航班取消或延誤：先找 Widerøe 櫃台改票。還沒還車就先別還，問租車公司能不能延長。會晚到卑爾根，用 Agoda 訊息通知 Ole Bull。" }
+      ],
       free: [{ when: "晚上", text: "搭弗洛伊恩纜車（Fløibanen）上山看夜景，纜車開到 24:00", areas: ["bryggen"] }] },
 
     { date: "2027-03-11",
@@ -786,6 +797,10 @@ window.TRIP = {
           fare: "WIZZ PLUS", cost: { cat: "交通", cur: "TWD", amt: 7998, twd: 7998, pay: "paid", payDate: "2026-11-02", note: "Trip.com 購買，刷卡 7,965＋Trip Coins 33", rule: { type: "change", note: "退票透過 Trip.com，手續費 TWD 1,466 起" } } }
       ],
       notes: ["出發前從卑爾根 Byparken 搭機場輕軌，到機場約 45 分鐘"],
+      trouble: [
+        { t: "Wizz 是在 Trip.com 買的：機場櫃台可能沒辦法改票，要改票或退款找 Trip.com app 的客服（24 小時、有中文）。" },
+        { t: "改到隔天：自己訂卑爾根的住宿、留收據，之後向 Wizz 申請。格但斯克的旅館已付款，晚到用 Klook 訊息通知。" }
+      ],
       free: [{ when: "上午（卑爾根）", text: "退房後行李寄放旅館，逛布呂根（Bryggen）、魚市場（Fisketorget）。回旅館拿行李，約 11:00 搭輕軌去機場" },
              { when: "傍晚", text: "逛老城長街、河畔", areas: ["main", "river"] }] },
 
@@ -810,7 +825,8 @@ window.TRIP = {
                 "在中央車站前的 Dworzec Centralny 站搭公車 [175]，往 Pl. Piłsudskiego 方向，經 Centrum、Krucza，坐 3 站在 Foksal 下車，走到 Smolna 14。"
               ],
               "time": "火車 2.5～3 小時",
-              "cost": "華沙市區 75 分鐘票每人 PLN 4.40（約 NT$37）；兩人合計 PLN 8.80（約 NT$75）；火車票待補"
+              "cost": "華沙市區 75 分鐘票每人 PLN 4.40（約 NT$37）；兩人合計 PLN 8.80（約 NT$75）；火車票待補",
+              "note": "2026 年 11 月起王宮之路禁止公車通行，[175] 改道。出發前一天用 Jakdojade 查 Dworzec Centralny 往 Pl. Piłsudskiego 方向的 [175] 還有沒有停 Foksal；沒有的話改搭 Bolt。"
             },
             {
               "n": "火車＋Bolt",
@@ -966,11 +982,11 @@ window.TRIP = {
               nav: [{ t: "去戴高樂圓環", q: "Rondo Charles'a de Gaulle'a, Warszawa", mode: "walking" }, { t: "去城堡廣場", q: "Plac Zamkowy, Warszawa", mode: "walking" }] } },
           { id: "w-pow-cen", a: "powisle", b: "centrum", style: "line", walk: "走 14 分・1 公里", lx: -10, ly: -22, min: 14, km: "1 公里", cards: ["powisle", "centrum"],
             sheet: { walk: "沿 Aleje Jerozolimskie，不用搭車。",
-              go: { total: "約 9 分", steps: [["walk", "走到圓環旁的 Muzeum Narodowe 站", ""], ["tram", "電車 [7] [9] [22] [24] [25] 任一班，坐 2 站到 Centrum 站", "3～4 分"], ["walk", "走到科學文化宮", "4 分"]] },
+              go: { total: "約 9 分", steps: [["walk", "走到圓環旁的 Muzeum Narodowe 站", ""], ["tram", "[7] [9] [22] [24] [25] 任一班，坐 2 站到 Centrum 站", "3～4 分"], ["walk", "走到科學文化宮", "4 分"]] },
               nav: [{ t: "去科學文化宮", q: "Pałac Kultury i Nauki, Warszawa", mode: "walking" }, { t: "去戴高樂圓環", q: "Rondo Charles'a de Gaulle'a, Warszawa", mode: "walking" }] } },
           { id: "w-pow-laz", a: "powisle", b: "lazienki", style: "line", walk: "走 32 分・2.4 公里", lx: 40, ly: 0, bus: "公車 [116] [180] 約 20 分", bx: -4, by: 22, min: 32, busMin: 20, km: "2.4 公里", cards: ["powisle", "lazienki"],
             sheet: { walk: "經 Aleja Tomasza Hopfera。",
-              go: { total: "約 20 分", steps: [["walk", "走到新世界街上的 Foksal 站", "2 分"], ["bus", "公車 [116] 或 [180]，坐到 Łazienki Królewskie 站", "7～8 分"], ["walk", "穿過公園走到水上宮殿", "約 10 分"]] },
+              go: { total: "約 20 分", steps: [["walk", "走到新世界街上的 Foksal 站", "2 分"], ["bus", "[116] 或 [180] 坐到 Łazienki Królewskie 站", "7～8 分"], ["walk", "穿過公園走到水上宮殿", "約 10 分"]] },
               warn: "公車 [116]、[180] 目前因王宮之路封閉改道，出發前用 Jakdojade 確認 Foksal 站還有停。",
               nav: [{ t: "去水上宮殿", q: "Pałac na Wyspie, Łazienki Królewskie, Warszawa", mode: "transit" }, { t: "去戴高樂圓環", q: "Rondo Charles'a de Gaulle'a, Warszawa", mode: "transit" }] } },
           { id: "w-mer-cen", a: "waw1", b: "centrum", style: "link", walk: "走 5 分", lx: -14, ly: 6, min: 5, km: "400 公尺", cards: ["centrum"],
@@ -982,8 +998,8 @@ window.TRIP = {
           { id: "w-stn", a: "stn", b: "centrum", style: "stn" },
           { id: "w-mer-old", a: "waw1", b: "old", draw: false, min: 36, busMin: 20, km: "2.6 公里", cards: ["old"],
             sheet: { walk: "經 Senatorska 街。",
-              go: { total: "約 20 分", steps: [["walk", "走到中央車站旁的 Dworzec Centralny 站（在 Al. Jana Pawła II 上）", "4 分"], ["bus", "公車 [160]，坐到 Stare Miasto 站（站在地下隧道裡）", "11～12 分"], ["walk", "搭手扶梯或走樓梯上去就是城堡廣場", "4 分"]] },
-              back: { total: "約 24 分", steps: [["bus", "Stare Miasto 站搭公車 [160]，坐到 Dworzec Centralny 站", "14～15 分"], ["walk", "走回飯店", "5 分"]] },
+              go: { total: "約 20 分", steps: [["walk", "走到中央車站旁的 Dworzec Centralny 站（在 Al. Jana Pawła II 上）", "4 分"], ["bus", "[160] 坐到 Stare Miasto 站（站在地下隧道裡）", "11～12 分"], ["walk", "搭手扶梯或走樓梯上去就是城堡廣場", "4 分"]] },
+              back: { total: "約 24 分", steps: [["bus", "Stare Miasto 站搭 [160] 坐到 Dworzec Centralny 站", "14～15 分"], ["walk", "走回飯店", "5 分"]] },
               warn: "出發前用 Jakdojade 確認公車 [160] 照常行駛；[128]、[175] 目前改道，不要搭。",
               nav: [{ t: "去城堡廣場", q: "Plac Zamkowy, Warszawa", mode: "transit" }, { t: "回 Mercure", q: "Mercure Warszawa Centrum Złota 48/54 Warszawa", mode: "transit" }] } },
           { id: "w-cho-old", a: "waw2", b: "old", draw: false, min: 28, km: "2.1 公里", cards: ["old"],
@@ -1110,17 +1126,17 @@ window.TRIP = {
         edges: [
           { id: "o-vig", a: "frogner", b: "sentrum", style: "spur", walk: "走 48 分", lx: 0, ly: -14, bus: "電車 [12] 約 27 分", bx: 0, by: 24, min: 48, busMin: 27, km: "3.3 公里", cards: ["frogner", "sentrum"],
             sheet: { walk: "經 Frognerveien。",
-              go: { total: "約 27 分", steps: [["walk", "走到國家博物館前的 Aker brygge 站", "2 分"], ["tram", "電車 [12]（往 Majorstuen），坐到 Vigelandsparken 站，下車就是正門", "14～15 分"], ["walk", "走進公園中央的雕塑區", "8～10 分"]] },
-              back: { total: "約 29 分", steps: [["walk", "走回正門外的 Vigelandsparken 站", "8～10 分"], ["tram", "電車 [12]（往 Kjelsås），坐到 Aker brygge 站", "15～16 分"], ["walk", "走到國家博物館", "2 分"]] },
+              go: { total: "約 27 分", steps: [["walk", "走到國家博物館前的 Aker brygge 站", "2 分"], ["tram", "[12]（往 Majorstuen）坐到 Vigelandsparken 站，下車就是正門", "14～15 分"], ["walk", "走進公園中央的雕塑區", "8～10 分"]] },
+              back: { total: "約 29 分", steps: [["walk", "走回正門外的 Vigelandsparken 站", "8～10 分"], ["tram", "[12]（往 Kjelsås）坐到 Aker brygge 站", "15～16 分"], ["walk", "走到國家博物館", "2 分"]] },
               nav: [{ t: "去維格蘭雕塑公園", q: "Vigelandsparken Oslo", mode: "transit" }, { t: "去國家博物館", q: "Nasjonalmuseet Oslo", mode: "transit" }] } },
           { id: "o-bob-lok", a: "osl", b: "lokka", style: "line", walk: "走 24 分・1.7 公里", lx: -34, ly: 0, bus: "電車 [11] [12] 約 15 分", bx: -8, by: 24, min: 24, busMin: 15, km: "1.7 公里", cards: ["lokka"],
             sheet: { walk: "經 Torggata、Markveien。",
-              go: { total: "約 15 分", steps: [["walk", "走到 Dronningens gate 站", "2～3 分"], ["tram", "電車 [11] 或 [12]（往 Kjelsås），坐到 Olaf Ryes plass 站", "9～10 分"], ["walk", "走到 Tim Wendelboe", "2 分"]] },
-              back: { total: "約 14 分", steps: [["walk", "走到 Olaf Ryes plass 站", "2 分"], ["tram", "電車 [11] 或 [12]（往 Majorstuen），坐到 Dronningens gate 站", "約 9 分"], ["walk", "走回住處", "2～3 分"]] },
+              go: { total: "約 15 分", steps: [["walk", "走到 Dronningens gate 站", "2～3 分"], ["tram", "[11] 或 [12]（往 Kjelsås）坐到 Olaf Ryes plass 站", "9～10 分"], ["walk", "走到 Tim Wendelboe", "2 分"]] },
+              back: { total: "約 14 分", steps: [["walk", "走到 Olaf Ryes plass 站", "2 分"], ["tram", "[11] 或 [12]（往 Majorstuen）坐到 Dronningens gate 站", "約 9 分"], ["walk", "走回住處", "2～3 分"]] },
               nav: [{ t: "去 Tim Wendelboe", q: "Tim Wendelboe Grüners gate 1 Oslo", mode: "transit" }, { t: "回 Bob W", q: "Kirkegata 30, Oslo", mode: "transit" }] } },
           { id: "o-bob-sen", a: "osl", b: "sentrum", style: "line", walk: "走 15 分・1.1 公里", lx: 6, ly: 22, min: 15, km: "1.1 公里", cards: ["sentrum"],
             sheet: { walk: "經 Tollbugata。",
-              go: { total: "約 7 分", steps: [["walk", "走到 Dronningens gate 站", "2 分"], ["tram", "電車 [12]（往 Majorstuen），坐 2 站到 Aker brygge 站", "3 分"], ["walk", "下車就在國家博物館前", "2 分"]] },
+              go: { total: "約 7 分", steps: [["walk", "走到 Dronningens gate 站", "2 分"], ["tram", "[12]（往 Majorstuen）坐 2 站到 Aker brygge 站", "3 分"], ["walk", "下車就在國家博物館前", "2 分"]] },
               nav: [{ t: "去國家博物館", q: "Nasjonalmuseet Oslo", mode: "walking" }, { t: "回 Bob W", q: "Kirkegata 30, Oslo", mode: "walking" }] } },
           { id: "o-bob-bjo", a: "osl", b: "bjorvika", style: "line", walk: "走 11 分", lx: 38, ly: -8, min: 11, km: "850 公尺", cards: ["bjorvika"],
             sheet: { walk: "經 Prinsens gate，不用搭車。",
@@ -1131,7 +1147,7 @@ window.TRIP = {
           { id: "o-stn", a: "stn", b: "osl", style: "stn" },
           { id: "o-lok-bjo", a: "lokka", b: "bjorvika", draw: false, min: 32, km: "2.3 公里", cards: ["lokka", "bjorvika"],
             sheet: { walk: "經 Markveien。",
-              go: { total: "", steps: [["tram", "電車 [11] 或 [12]，坐到 Jernbanetorget 站（Oslo S 前）", ""], ["walk", "走到歌劇院", ""]] },
+              go: { total: "", steps: [["tram", "[11] 或 [12] 坐到 Jernbanetorget 站（Oslo S 前）", ""], ["walk", "走到歌劇院", ""]] },
               nav: [{ t: "去歌劇院", q: "Operahuset Oslo", mode: "transit" }, { t: "去 Tim Wendelboe", q: "Tim Wendelboe Grüners gate 1 Oslo", mode: "transit" }] } }
         ],
         notes: []
@@ -1215,24 +1231,24 @@ window.TRIP = {
         edges: [
           { id: "t-cen-arc", a: "centre", b: "tromsdalen", style: "line", walk: "走 28 分・過橋", lx: 0, ly: -14, bus: "公車 [20] [24] [26] [28] 約 15 分", bx: 28, by: -26, min: 28, busMin: 15, km: "2 公里", cards: ["centre", "tromsdalen"],
             sheet: { walk: "走 Tromsø 橋過海峽。",
-              go: { total: "約 15 分", steps: [["walk", "走到 Prostneset 或 Roald Amundsens plass 站", "4 分"], ["bus", "公車 [20] [24] [26] [28] 任一班過橋，坐到 Tromsdalen kirke 站", "7～8 分"], ["walk", "走到北極大教堂", "2 分"]] },
+              go: { total: "約 15 分", steps: [["walk", "走到 Prostneset 或 Roald Amundsens plass 站", "4 分"], ["bus", "[20] [24] [26] [28] 任一班過橋，坐到 Tromsdalen kirke 站", "7～8 分"], ["walk", "走到北極大教堂", "2 分"]] },
               nav: [{ t: "去北極大教堂", q: "Ishavskatedralen Tromsø", mode: "transit" }, { t: "去大教堂", q: "Tromsø domkirke", mode: "transit" }] } },
           { id: "t-home-cen", a: "tos", b: "centre", style: "line", walk: "走 26 分・1.9 公里", lx: -66, ly: -6, bus: "公車 [34] [40] 約 12 分", bx: 6, by: 24, min: 26, busMin: 12, km: "1.9 公里", cards: ["centre"],
             sheet: { walk: "沿海邊 Strandvegen 往北，一路平路。",
-              go: { total: "約 12 分", steps: [["walk", "走到住處附近的公車站", "2～5 分"], ["bus", "公車 [34] 或 [40]（往市中心 Sentrum），坐到 Bankgata 或 Nerstranda 站", "約 6 分"], ["walk", "走到大教堂", "3 分"]] },
-              back: { total: "約 10 分", steps: [["walk", "走到 Bankgata 或 Wi-To 站", "3 分"], ["bus", "公車 [40]（往 Tromsø museum）或 [33]，坐回住處附近", "約 5 分"], ["walk", "走回住處", "2 分"]] },
+              go: { total: "約 12 分", steps: [["walk", "走到住處附近的公車站", "2～5 分"], ["bus", "[34] 或 [40]（往市中心 Sentrum）坐到 Bankgata 或 Nerstranda 站", "約 6 分"], ["walk", "走到大教堂", "3 分"]] },
+              back: { total: "約 10 分", steps: [["walk", "走到 Bankgata 或 Wi-To 站", "3 分"], ["bus", "[40]（往 Tromsø museum）或 [33] 坐回住處附近", "約 5 分"], ["walk", "走回住處", "2 分"]] },
               fare: "單程 NOK 50（約 NT$178）；平日 9:00–14:00、17:00–01:00 離峰 NOK 30（約 NT$107）。用 Svipper app 或感應式信用卡，車上不收現金。",
               warn: "住處附近的站名各來源不一（Lanesbukta、Bjerkely、Solbakken），到了在 Google 地圖輸入住址查。",
               nav: [{ t: "去大教堂", q: "Tromsø domkirke", mode: "transit" }, { t: "回住處", q: "Strandvegen 114B, Tromsø", mode: "transit" }] } },
           { id: "t-home-tel", a: "tos", b: "tel", style: "line", walk: "走 17 分・1.2 公里", lx: -22, ly: -14, min: 17, km: "1.2 公里", cards: ["centre"], row: "Sjøparken → Telegrafbukta 海灘",
             sheet: { walk: "經 Kohtvegen。",
-              go: { total: "約 10 分", steps: [["walk", "走到住處附近的公車站", ""], ["bus", "公車 [33] 往南坐到 Telegrafbukta 站，或 [40] 坐到終點 Tromsø Museum 站", "約 3 分"], ["walk", "走到海灘", "2～3 分"]] },
-              back: { total: "約 7～10 分", steps: [["bus", "Telegrafbukta 站搭公車 [34]（往市中心方向），坐 2 站", "約 3 分"], ["walk", "走回住處", "2～3 分"]] },
+              go: { total: "約 10 分", steps: [["walk", "走到住處附近的公車站", ""], ["bus", "[33] 往南坐到 Telegrafbukta 站，或 [40] 坐到終點 Tromsø Museum 站", "約 3 分"], ["walk", "走到海灘", "2～3 分"]] },
+              back: { total: "約 7～10 分", steps: [["bus", "Telegrafbukta 站搭 [34]（往市中心方向）坐 2 站", "約 3 分"], ["walk", "走回住處", "2～3 分"]] },
               nav: [{ t: "去 Telegrafbukta", q: "Telegrafbukta Tromsø", mode: "walking" }, { t: "回住處", q: "Strandvegen 114B, Tromsø", mode: "walking" }] } },
           { id: "t-home-arc", a: "tos", b: "tromsdalen", draw: false, min: 53, busMin: 25, km: "3.8 公里", cards: ["tromsdalen"],
             sheet: { walk: "經 Strandvegen 和 Tromsø 橋。",
-              go: { total: "約 25 分", steps: [["bus", "公車 [34] 或 [40]，坐到市中心 Wi-To 或 Prostneset 站", "約 6 分"], ["bus", "換公車 [20] [24] [26] [28] 任一班過橋，坐到 Tromsdalen kirke 站", "約 8 分"], ["walk", "走到北極大教堂", "2 分"]] },
-              back: { total: "約 26 分", steps: [["bus", "Tromsdalen kirke 站搭公車 [20] [24] [26] [28]，坐到市中心", "約 8 分"], ["bus", "換公車 [40] 或 [33]，坐回住處附近", "5～6 分"], ["walk", "走回住處", "2～4 分"]] },
+              go: { total: "約 25 分", steps: [["bus", "[34] 或 [40] 坐到市中心 Wi-To 或 Prostneset 站", "約 6 分"], ["bus", "換 [20] [24] [26] [28] 任一班過橋，坐到 Tromsdalen kirke 站", "約 8 分"], ["walk", "走到北極大教堂", "2 分"]] },
+              back: { total: "約 26 分", steps: [["bus", "Tromsdalen kirke 站搭 [20] [24] [26] [28] 坐到市中心", "約 8 分"], ["bus", "換 [40] 或 [33] 坐回住處附近", "5～6 分"], ["walk", "走回住處", "2～4 分"]] },
               nav: [{ t: "去北極大教堂", q: "Ishavskatedralen Tromsø", mode: "transit" }, { t: "回住處", q: "Strandvegen 114B, Tromsø", mode: "transit" }] } }
         ],
         notes: [[238, 232, "住處 → 北極大教堂："], [238, 247, "搭車約 25 分，要轉車"]]
@@ -1547,7 +1563,7 @@ window.TRIP = {
     { id: "wf863-seat", text: "選 3/5 Widerøe WF863 座位", sub: "Widerøe 的 My trips，Smart 可免費選一般座位" },
     { id: "ek-may", text: "跟 May 確認阿聯酋機票開票了沒" },
     { id: "wizz-bp", due: "2027-02-10", dueApprox: true, text: "確認 Wizz 登機證有沒有出來", sub: "WIZZ PLUS 有自動報到，兩個訂位代號都要看" },
-    { id: "wizz-check", text: "確認 Wizz 訂單是 WIZZ PLUS", sub: "兩人各一個 Wizz 訂位代號（見 Trip.com 行程單），兩個都要登入 Wizz app 查" },
+    { id: "wizz-check", text: "確認 Wizz 訂單是 WIZZ PLUS", sub: "兩人各一個 Wizz 訂位代號（見 Trip.com 行程單），兩個都要登入 Wizz app 查；順便看訂單上的聯絡 email、電話是不是我們的，不是的話，取消通知可能收不到" },
     { id: "lof-arrival", text: "告知 Lofoten Links Lodges 預計抵達時間", sub: "確認單要求事先告知；3/5 12:15 落地，取車後開過去" },
     { id: "laukvik-arrival", text: "告知 Laukvik Suites 預計抵達時間", sub: "確認單要求事先告知；3/8 從 Sakrisøy 開過去" },
     { id: "bobw-call", due: "2027-02-14", text: "打電話給 Bob W 安排入住", sub: "抵達前 14 天；同時完成線上登記（要上傳護照照片），問 May 2/28 約 14:00 能不能寄放行李" },

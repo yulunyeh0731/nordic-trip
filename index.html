@@ -760,6 +760,9 @@ h3.sub i{width:4px;height:16px;border-radius:2px;background:var(--c)}
 .free p{margin:4px 0 0;font-size:15px}
 .plan{margin:8px 0;padding-left:1.15em;font-size:15px}
 .plan li{margin:4px 0}
+details.trb{margin:10px 0 0;overflow:hidden}
+details.trb>summary{display:flex;align-items:center;gap:10px;min-height:46px;padding:0 14px;border-left:3px solid var(--alert);font-size:14.5px;font-weight:600}
+details.trb>.sos{border-top:1px solid var(--line2)}
 .dnote{margin:8px 0 0;padding:9px 12px;border-left:3px solid #C9971C;background:color-mix(in srgb,#C9971C 9%,var(--paper));font-size:14.5px}
 .carea{margin:0 0 8px;padding:10px 12px;background:var(--page);border:1px solid var(--line2);border-radius:3px}
 .carea>b{display:block;font-family:var(--serif);font-weight:700;font-size:16px;line-height:1.35}
@@ -1159,10 +1162,16 @@ details.learn>summary h2.sec{margin:12px 0}
 
   /* ── 資料 ── */
   var INFO=[["move","交通","flight"],["stay","住宿","bed"],["addr","地址","pin"],["bag","行李","bag"],["fee","費用","fee"],["list","清單","list"],["sos","緊急","phone"]];
+  /* 撥號按鈕（緊急、出狀況時共用） */
+  function telBtns(tel){ return tel&&tel.length?'<div class="sos-t">'+tel.map(function(t){ return '<a class="callb'+(t[0].length>6?" wide":"")+'" href="'+telHref(t[0])+'">'+svg("phone")+'<span><b>'+t[0]+'</b><small>'+t[1]+'</small></span></a>'; }).join("")+'</div>':""; }
+  /* 每日頁「移動」最後的「出狀況時」 */
+  function troubleHTML(list){
+    return '<details class="card trb"><summary><span>出狀況時</span><span class="chev"></span></summary><div class="sos">'+
+      list.map(function(r){ return '<div class="sos-r"><p>'+lineTxt(r.t)+'</p>'+telBtns(r.tel)+'</div>'; }).join("")+'</div></details>'; }
   function infoSos(){
     return '<h2 class="sec">緊急</h2>'+T.sos.map(function(g){
       return '<h3 class="sub">'+g.t+'</h3><div class="card sos">'+g.rows.map(function(r){
-        return '<div class="sos-r"><p><b>'+r.n+'</b>'+(r.d?'<span>'+r.d+'</span>':"")+'</p>'+(r.tel?'<div class="sos-t">'+r.tel.map(function(t){ return '<a class="callb'+(t[0].length>6?" wide":"")+'" href="'+telHref(t[0])+'">'+svg("phone")+'<span><b>'+t[0]+'</b><small>'+t[1]+'</small></span></a>'; }).join("")+'</div>':"")+'</div>'; }).join("")+'</div>'; }).join("")+
+        return '<div class="sos-r"><p><b>'+r.n+'</b>'+(r.d?'<span>'+r.d+'</span>':"")+'</p>'+telBtns(r.tel)+'</div>'; }).join("")+'</div>'; }).join("")+
       '<p class="foot">信用卡號、保單號碼不放在這個公開頁面。</p>';
   }
   var mvWho="all"; try{ mvWho=localStorage.getItem("moveWho")||"all"; }catch(e){}
@@ -1567,6 +1576,7 @@ details.learn>summary h2.sec{margin:12px 0}
       legs.forEach(function(l,n){ mv+='<ol class="evs">'+legHTML(l)+'</ol>'+tAt(n); });
       if (!legs.length) mv=trs.map(function(t){return transferHTML(t,k);}).join("");
       if (d.notes) mv+=d.notes.map(function(n){return '<p class="dnote">'+n+'</p>';}).join("");
+      if (d.trouble) mv+=troubleHTML(d.trouble);
       secs.push(dsec("move","移動",(legs.length?legs.map(function(l){ return (/^\d/.test(l.dep||"")?l.dep+" ":"")+(l.t==="flight"?(l.no||l.carrier):(l.short||l.text)); }):trs.map(function(t){return t.from+" → "+t.to;})).join("、"),oMove,mv));
       jumps.push(["move","移動"]);
     }
@@ -1969,7 +1979,9 @@ details.learn>summary h2.sec{margin:12px 0}
   /* ── 試看：頂端試看列、「試看哪一天」半頁卡 ── */
   var pvSel={d:PV?PV.d:T.start, t:PV?PV.t:"0900"};
   function hhmm(t){ return t.slice(0,2)+":"+t.slice(2); }
-  function pvLabel(){ var n=now(); return "試看中："+mdw(isoOf(n))+pad(n.getHours())+":"+pad(n.getMinutes()); }
+  /* 凌晨 00:00～02:59 算前一天，寫「深夜」 */
+  function pvLabel(){ var n=now(), h=n.getHours(), late=h<3, d=new Date(n.getFullYear(),n.getMonth(),n.getDate()-(late?1:0));
+    return "試看中："+mdw(isoOf(d))+(late?"深夜 ":"")+pad(h)+":"+pad(n.getMinutes()); }
   function pvSheet(){
     function db(iso,c){ return '<button type="button" data-pvd="'+iso+'" aria-pressed="'+(iso===pvSel.d)+'"'+(c?' style="--c:'+c+'"':"")+'>'+mdw(iso)+'</button>'; }
     var TS=["0800","1000","1300","1700","1900","2200","0130"];

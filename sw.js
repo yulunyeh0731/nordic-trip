@@ -1,7 +1,7 @@
 /* 離線快取：先回快取，背景再抓新版（stale-while-revalidate）。
    沒有快取時才等網路，超過 3 秒沒回應就改用快取。
    背景抓到內容不同的新版時，通知頁面顯示「有新版本」。 */
-const CACHE = "nordic-trip-v42";
+const CACHE = "nordic-trip-v43";
 const ASSETS = ["./", "./index.html", "./data.js", "./manifest.webmanifest",
                 "./fonts/serif.woff2", "./icon-192.png", "./icon-512.png", "./apple-touch-icon.png"];
 const TEXT = /\.(html|js|webmanifest)$|\/$/;
